@@ -1,0 +1,86 @@
+{
+  "validate_source_contract": {
+    "count": 1,
+    "total_seconds": 14.501854799687862,
+    "median_seconds": 14.501854799687862,
+    "min_seconds": 14.501854799687862,
+    "max_seconds": 14.501854799687862
+  },
+  "preflight_project_direction_fit": {
+    "count": 1,
+    "total_seconds": 0.006976775825023651,
+    "median_seconds": 0.006976775825023651,
+    "min_seconds": 0.006976775825023651,
+    "max_seconds": 0.006976775825023651
+  },
+  "get_tokenizer": {
+    "count": 1,
+    "total_seconds": 0.029631562530994415,
+    "median_seconds": 0.029631562530994415,
+    "min_seconds": 0.029631562530994415,
+    "max_seconds": 0.029631562530994415
+  },
+  "render_self_conditioning_prompt": {
+    "count": 500,
+    "total_seconds": 0.019194431602954865,
+    "median_seconds": 2.966076135635376e-05,
+    "min_seconds": 1.8697232007980347e-05,
+    "max_seconds": 0.0005930177867412567
+  },
+  "load_extraction_stack": {
+    "count": 1,
+    "total_seconds": 25.588798135519028,
+    "median_seconds": 25.588798135519028,
+    "min_seconds": 25.588798135519028,
+    "max_seconds": 25.588798135519028
+  },
+  "prepare_prompt_context": {
+    "count": 373,
+    "total_seconds": 7.722023967653513,
+    "median_seconds": 0.01921585202217102,
+    "min_seconds": 0.01690906286239624,
+    "max_seconds": 0.3538372330367565
+  },
+  "fit_concept_dense_diffmeans": {
+    "count": 1,
+    "total_seconds": 147.70971893891692,
+    "median_seconds": 147.70971893891692,
+    "min_seconds": 147.70971893891692,
+    "max_seconds": 147.70971893891692
+  },
+  "assert_masked_diffmean_feasible": {
+    "count": 50,
+    "total_seconds": 0.009076539427042007,
+    "median_seconds": 0.00017031840980052948,
+    "min_seconds": 0.00016216933727264404,
+    "max_seconds": 0.0005882009863853455
+  },
+  "load_target_model": {
+    "count": 1,
+    "total_seconds": 0.31116436049342155,
+    "median_seconds": 0.31116436049342155,
+    "min_seconds": 0.31116436049342155,
+    "max_seconds": 0.31116436049342155
+  },
+  "assert_prepared_prompt_matches": {
+    "count": 500,
+    "total_seconds": 0.012469332665205002,
+    "median_seconds": 2.0351260900497437e-05,
+    "min_seconds": 1.3615936040878296e-05,
+    "max_seconds": 0.00014676526188850403
+  },
+  "_validate_prepared": {
+    "count": 500,
+    "total_seconds": 0.03438223898410797,
+    "median_seconds": 5.833059549331665e-05,
+    "min_seconds": 3.641843795776367e-05,
+    "max_seconds": 0.00042123720049858093
+  },
+  "runtime_init": {
+    "count": 1,
+    "total_seconds": 182.01096991077065,
+    "median_seconds": 182.01096991077065,
+    "min_seconds": 182.01096991077065,
+    "max_seconds": 182.01096991077065
+  }
+}

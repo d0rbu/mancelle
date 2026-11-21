@@ -1,0 +1,129 @@
+{
+  "scope": "Measured CPU offset optimization on actual derived documents; full-splice trials qualify exact parity but do not establish causal end-to-end speedup.",
+  "baseline_commit": "360f416e5d2cd2d69f7d28f7d2fb6c3ebdf5fd9b",
+  "candidate_source_sha256": {
+    "steering/segmentation.py": "7e195fdd3318d4eb91cf5fd657bddfbaef3eb432a45fb73dab8b4b21ac0b4d94",
+    "steering/feature_io.py": "2094dae1c8e0d8197eab83494e84c5bc44fcffeed041b71be02e68a9d518adad",
+    "scripts/preprocess/splice_feature_shards.py": "a7503d198e1ce3a2f5ebe2e3fe278f6d6d60347fd0e64d84dff6d4325a6f4446"
+  },
+  "frozen_function_ast_sha256": "326fffdcbe7861ce2a6ee50abb6d980ae91331035890f7527cb860828fbad72d",
+  "driver_sha256": {
+    "full_splice": "3ba14c3427fd8d12a5a85e71021eab20d2c56acb894274e16752756884cb922d",
+    "paired_offsets": "ed55f45533755ed9c2ff9bf2a91b18fc932584fb0914718b8242190988a21909"
+  },
+  "raw_receipt_sha256": {
+    "full_splice": "e90f660aea1d4c0c53530f5d651299fbfae3ca751b03fc27e884e8268f9d68d0",
+    "paired_offsets": "7c557ae7522779bee725fdd41012eb1897e840d96ec698ae8815eb72a5591b08",
+    "paired_details": "0e71a3a63dac4d0c34c35caaad332f6b5caa5c318400b61ea8efcfc631b98d99"
+  },
+  "source_inputs_sha256": {
+    "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos/splice/cut_frac0.15/seed42/feature_statistics.safetensors": "d957803f6da9f53c5307eb1e0d60796249dafef0c053349542973545d720bf93",
+    "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/eval_contexts/gemma3_4bpt_l22_clustered/shard_00000_features.safetensors.zst": "ee4384b86359e5b1a140b0ecd5d532bfff743bd04688ad6a6218f22908923c38",
+    "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/eval_contexts/gemma3_4bpt_l22_clustered/parquet/shard_00000.parquet": "0638ab7f39abce6896c04818cc693cb5f04184e3c930db3970b4f256eeb5593d"
+  },
+  "derived_input_sha256": {
+    "out/splice_perf_03/comparison_0_baseline/_parquets/shard_00000.parquet": "0b0086ff3231cacbac0a7671beded7029cee08d92b405064769470a1e3d113d6",
+    "out/splice_perf_03/comparison_0_baseline/shard_00000_features.safetensors.zst": "74c6dbede643d74b97ce604ce2ba8ad01dec4b1be85c3c5545971cf175c6294e"
+  },
+  "derived_tokens_sha256_u32le_length_framed": "c76f6a349e9a570577520713f038c400de3c1f84c817c83f39542f0a84129573",
+  "runtime": {
+    "python": "3.13.2",
+    "torch": "2.13.0+cu130",
+    "transformers": "5.14.1",
+    "tokenizers": "0.22.2",
+    "numpy": "1.26.4",
+    "zstandard": "0.25.0",
+    "cpu": "AMD Ryzen 9 9950X 16-Core Processor",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "HF_HUB_OFFLINE": "1"
+  },
+  "paired_offsets": {
+    "documents": 8240,
+    "tokens": 2495191,
+    "order": "ABBA for even document index, BAAB for odd; two complete function calls per arm per document",
+    "total_seconds_two_calls_per_doc": {
+      "baseline": 13.781351355,
+      "candidate": 12.222407276
+    },
+    "time_reduction_percent": 11.311982684734323,
+    "blocks": 65,
+    "candidate_faster_blocks": 63,
+    "block_size_documents": 128,
+    "exact_offsets_every_call": true,
+    "stored_token_counts_and_text_roundtrips_verified": true,
+    "construction_validation_comparison_logging_excluded": true,
+    "new_array_construction_included": true
+  },
+  "whole_splice": {
+    "order": "ABBABAAB",
+    "zstd_threads_both_arms": 2,
+    "cut_fraction": 0.15,
+    "seed": 42,
+    "pairing_mode": "opposite_percentile",
+    "candidate_pool": 64,
+    "context_window": 2048,
+    "full_seconds_samples": {
+      "baseline": [
+        33.65171109884977,
+        59.49434033036232,
+        63.756432712078094,
+        64.79990713298321
+      ],
+      "candidate": [
+        31.42170249670744,
+        42.061617624014616,
+        58.305152740329504,
+        62.26400262862444
+      ]
+    },
+    "full_seconds_medians": {
+      "baseline": 61.62538652122021,
+      "candidate": 50.18338518217206
+    },
+    "compression_seconds_samples": {
+      "baseline": [
+        5.973061095923185,
+        13.676002323627472,
+        14.523442920297384,
+        13.949225686490536
+      ],
+      "candidate": [
+        6.378412090241909,
+        11.690636292099953,
+        14.019184816628695,
+        14.371202480047941
+      ]
+    },
+    "exact_decoded_features_parquet_provenance_comparisons": 7,
+    "causal_end_to_end_speedup_claimed": false
+  },
+  "cleanup": {
+    "all_eight_generated_outputs_removed": true,
+    "generated_bytes_removed": 870296830,
+    "baseline_artifact_hashes": {
+      "shard_00000_features.safetensors.zst": {
+        "bytes": 100423116,
+        "sha256": "74c6dbede643d74b97ce604ce2ba8ad01dec4b1be85c3c5545971cf175c6294e"
+      },
+      "_parquets/shard_00000.parquet": {
+        "bytes": 4466113,
+        "sha256": "0b0086ff3231cacbac0a7671beded7029cee08d92b405064769470a1e3d113d6"
+      },
+      "_splice_provenance/shard_00000.json": {
+        "bytes": 3897872,
+        "sha256": "9ae9a468a088b390bd85e2ec84896de2f23e1ad4d6961ecf67d9d2e1c224281f"
+      }
+    }
+  },
+  "limits": [
+    "Shared local CPU host; large time variation in untargeted compression and other work.",
+    "Full baseline uses frozen token_to_char_offsets from parent with unchanged helper globals, not a separate native checkout.",
+    "Paired inputs are actual derived documents retokenized and checked against stored counts and exact text round trips.",
+    "Paired calls are correlated warm-cache component measurements, not independent full-splice replicates.",
+    "No GPU/training, cold-start, per-arm memory, or causal end-to-end speedup claim.",
+    "Custom public decode/batch_decode implementations retain the original singleton path."
+  ]
+}

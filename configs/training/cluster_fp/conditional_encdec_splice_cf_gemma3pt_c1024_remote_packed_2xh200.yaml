@@ -1,0 +1,32 @@
+# @package _global_
+# Target-host preset for the two-H200 remote-packed production run.
+#
+# This keeps the semantic model/data contract inherited from
+# conditional_encdec_splice_cf_gemma3pt_c1024_remote_packed and changes only
+# operational staging. Issue #842 staging is deliberately enabled here rather
+# than in the hardware-agnostic parent preset.
+defaults:
+  - conditional_encdec_splice_cf_gemma3pt_c1024_remote_packed
+  - _self_
+
+run: l22_gemma3pt_clustered_splice_cf_c1024_remote_packed_2xh200_v1
+model_tag: l22_gemma3pt_clustered_splice_cf_c1024_remote_packed_2xh200_v1
+
+# Pin the exact production artifact root and measured two-H200 training
+# geometry. Leave data_dir null so splice-counterfactual startup derives the
+# canonical staged <feature_dir>/_parquets directory.
+feature_dir: out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos/splice/cut_frac0.15/seed42
+device_batch_size: 32
+total_batch_size: 524288
+fp8: false
+
+remote_training:
+  body_prefetch:
+    lookahead_shards_per_rank: 2
+  train_packed:
+    cuda_staging:
+      # Byte-bounded pageable CPU lookahead. This is operational state and is
+      # excluded from the semantic run/checkpoint fingerprint.
+      host_queue_bytes: 536870912
+      # Three reusable pinned slots bound the ready GPU queue.
+      pinned_slots: 3

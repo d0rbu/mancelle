@@ -1,0 +1,39 @@
+# 4xH100/PRO6000 config for depth-12 decoder-only, 10k steps
+# Short run variant of base_d12_4xh100 — saves to d12_base_10k (not d12_base)
+# Usage: torchrun --nproc_per_node=4 -m scripts.train.base_train config_name=base_d12_10k_4xh100
+
+defaults:
+  - base_train
+  - _self_
+
+# WandB run name
+run: base_d12_10k_4xh100
+
+# Checkpoint directory tag (distinct from d12_base to avoid overwriting)
+model_tag: d12_base_10k
+
+# depth=12 gives 768 dim, 6 heads
+depth: 12
+
+# 1024 context length (matches enc-dec runs)
+max_seq_len: 1024
+
+# Match enc-dec batch settings
+device_batch_size: 32
+total_batch_size: 524288
+
+# 10k steps instead of 54600
+num_iterations: 10000
+target_param_data_ratio: -1
+target_flops: -1.0
+
+# BF16 training (no FP8)
+fp8: false
+
+# Checkpoints every 1000 steps
+save_every: 1000
+
+# Eval settings
+eval_every: 250
+core_metric_every: 2000
+sample_every: 2000

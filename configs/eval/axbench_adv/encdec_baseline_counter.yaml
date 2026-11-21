@@ -1,0 +1,29 @@
+# Explicit counter-only latent Adv consumer for the four EncDec baselines.
+# The producer and its judged factor sweep must already be complete.
+phase: preflight
+positive_root: out/encdec400-baseline-latent-20260924/positive-c50
+source_main_path: out/encdec400-baseline-latent-20260924/c50-inputs/main/inference/steering_data.parquet
+source_aux_path: out/encdec400-baseline-latent-20260924/c50-inputs/aux/inference/steering_data.parquet
+prepared_dir: out/fp-head-campaign-20260921/adv-counter-extension/reference-encdec400/prepared_dir
+target_meta_path: out/fp-head-campaign-20260921/adv-counter-extension/reference-encdec400/source/meta_001013.json
+feature_statistics_path: null
+pretrain_meta_path: null
+judged_input_path: out/encdec400-baseline-latent-20260924/positive-c50-merged/steering_data.parquet
+judged_dir: out/encdec400-baseline-latent-20260924/positive-c50-judged
+counter_root: out/fp-head-campaign-20260921/adv-counter-extension/local-encdec-staging/fits/directions
+counter_layer: 9
+counter_fit_seed: 42
+output_dir: out/encdec400-baseline-latent-20260924/adv-encdec-baselines/shard-00
+shard_roots: []
+concept_ids: null
+counter_magnitudes: [256, 1024, 4096, 8192, 16384, 32768, 65536]
+device: cuda:0
+judge_cache: out/axbench/judge_cache.sqlite
+cache_only: true
+allow_live_provider: false
+api_base_url: https://openrouter.ai/api/v1
+
+hydra:
+  output_subdir: null
+  run:
+    dir: .

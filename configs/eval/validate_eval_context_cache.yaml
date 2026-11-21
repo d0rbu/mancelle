@@ -1,0 +1,98 @@
+# Validate a produced safetensors context cache against exact eval contexts.
+
+defaults:
+  - _self_
+  - optional local@_global_: validate_eval_context_cache
+
+cache_dir: ???  # cache root; validator reads cache_dir/c{model_max_seq_len}/{hash[:16]}
+checkpoint_meta_path: null  # required for turn caches; exact checkpoint metadata JSON
+source_segment_size: null  # optional assertion against turn checkpoint lineage
+source_context_window: null  # optional assertion against authenticated training statistics
+segment_mode: fixed_tokens  # use validate_eval_context_cache_turn for deep schema-5 chat_target validation
+
+contexts_file: null
+context_parquet_dir: null  # required for turn validation
+feature_dir: null  # raw evaluation shards, required for turn geometry validation
+extraction_tokenizer_id: null  # turn: defaults to the checkpoint SAE model
+summary_file: null
+
+# Optional manifest compatibility checks. Null means trust the cache manifest.
+n_sae_features: null
+num_buckets: null
+# Optional clustered-cache identity. The validator resolves these through the
+# same production mask/cluster parsers used by the builder and trainer.
+feature_mask: null
+feature_clusters: null
+stats_source_sha256: null
+stats_path: null  # when set, its exact SHA-256 must match stats_source_sha256
+
+# SAE identity — mandatory.
+identity:
+  model_id: ???
+  sae_id: ???
+  layer: ???
+  pooling: ???
+  # Must be a 64-char hex string. Standalone validation cannot compute the
+  # canonical hash unless the invoking config provides the full conditioning
+  # pipeline params.
+  feature_selection_hash: null
+
+# Enumerate exact contexts from eval task definitions. If contexts_file is also
+# set, this script verifies the file contains exactly the same token contexts.
+enumerate_evals: true
+evals: "core,chat,harmfulness,samples"
+rlvr_jsonl_files: null  # required list [train.jsonl, validation.jsonl] for evals=chat_rlvr
+
+# Must match `sample_prompts` in configs/training/conditional_encdec_train.yaml.
+# conditional_encdec_train.py generates from these every `sample_every` steps
+# through the cached context provider, so a cache built without the `samples`
+# suite KeyErrors at the first sample-generation step even though CORE passes.
+sample_prompts:
+  - "The capital of France is"
+  - "The chemical symbol of gold is"
+  - "If yesterday was Friday, then tomorrow will be"
+  - "The opposite of hot is"
+  - "The planets of the solar system are:"
+  - "My favorite color is"
+  - "If 5*x + 3 = 13, then x is"
+# Required when enumerate_evals=true and evals includes CORE. Use checkpoint
+# meta max_seq_len/model.max_seq_len so enumeration skips the same oversized rows.
+model_max_seq_len: ???
+
+# Shared progression-style seed settings.
+num_seeds: 3
+base_seed: 1234
+
+# CORE settings.
+max_per_task: 500
+
+# Chat settings.
+chat_tasks: null
+chat_batch_size: 8
+chat_max_problems: 100
+
+# Harmfulness settings.
+harm_num_benign: 50
+harm_num_harmful: 50
+
+# Target/generated segment override configs. These mirror
+# training_progression.conditioning.conditioned_configs.
+target_feature_configs: null
+
+# Target slot timing. "current" means each generated/scored segment attends to
+# features extracted from that same segment; "next" means decoder segment s
+# attends to encoder slot s - 1, matching next_segment_conditioning_offset
+# training.
+target_conditioning_mode: current
+
+# Strictness knobs.
+require_nonempty_context_features: true
+require_nonempty_context_segments: false
+fail_on_extra_cached_contexts: false
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

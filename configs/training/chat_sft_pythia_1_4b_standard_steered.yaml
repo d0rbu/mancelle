@@ -1,0 +1,24 @@
+# Pythia-1.4B instruct SFT on the standard_steered mixture: the Pythia-2.8B standard_steered preset applied to the
+# pinned 1.4B family contract. Completion-only loss like the 2.8B instruct run (pythia-standard-steered-mask-20260911).
+# `num_iterations` is the 2.8B 4-rank value and must be overridden from the built data manifest's
+# epoch.num_iterations for the actual world size at launch.
+defaults:
+  - chat_sft_pythia_1_4b
+  - _self_
+
+mixture: standard_steered
+steered_jsonl: ${oc.env:STEERED_JSONL}
+max_seq_len: 2048
+device_batch_size: 1
+total_batch_size: 524288
+num_iterations: 1091
+eval_every: 150
+save_every: 100
+sft_loss_mask: completion_only
+dry_run: false
+huggingface:
+  gradient_checkpointing: true
+  attention_implementation: sdpa
+  distributed_implementation: dist_muon_adamw
+  restart_save_every: ${save_every}
+  validate_export: true

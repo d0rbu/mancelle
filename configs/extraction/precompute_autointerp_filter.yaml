@@ -1,0 +1,102 @@
+# Precompute intruder-detection autointerp scores and emit a whitelist.
+#
+# Usage:
+#   uv run -m scripts.preprocess.precompute_autointerp_filter -- \
+#     feature_dir=path/to/features output_dir=out/autointerp/my_run
+
+feature_dir: null
+output_dir: out/autointerp_filter
+data_dir: null
+n_sae_features: null
+feature_ids: null
+feature_mask: null
+# Optional path to a plain-text file excluding specific source documents
+# (one "<shard_stem>:<doc_id>" entry per line, "#" starts a comment) from
+# ever being sampled as a positive or intruder candidate. null disables.
+document_blacklist_path: null
+
+n_trials_per_target: 100
+min_trials_for_score: 10
+n_positive_examples: 3  # + one intruder = four presented options
+n_quantiles: 5
+seed: 42
+max_targets: null
+# Per-process cap on admitted uncached trials. Each admitted trial can issue
+# judge.parse_max_retries + 1 complete() calls, plus transport-level retries.
+max_judge_calls: null
+score_threshold: 0.6
+top_k: null
+fail_on_empty: true
+audit_sample_limit: 20
+
+token_example_cache_path: ${output_dir}/token_example_cache.sqlite
+judge_cache_path: ${output_dir}/intruder_trial_cache.sqlite
+target_scores_path: ${output_dir}/target_scores.jsonl
+ranked_yaml_path: ${output_dir}/autointerp_ranked.yaml
+accepted_features_path: ${output_dir}/accepted_feature_ids.txt
+manual_feature_filter_path: ${output_dir}/manual_feature_filter.yaml
+manual_feature_filter_meta_path: ${output_dir}/manual_feature_filter.meta.json
+report_output_path: ${output_dir}/report.json
+trial_audit_path: ${output_dir}/trial_audit.jsonl
+trial_audit_yaml_path: ${output_dir}/trial_audit.yaml
+runner_manifest_path: ${output_dir}/runner_manifest.json
+lockfile_path: ${output_dir}/.lockfile
+
+judge:
+  model: openai/gpt-5-nano
+  # Per-process complete() admission rate; 0 disables this limiter. Provider
+  # transport retries can issue additional HTTP attempts.
+  requests_per_minute: 60
+  # concurrent judge threads; throughput is ultimately capped by requests_per_minute
+  max_concurrent: 8
+  max_prompt_chars: 32000
+  parse_max_retries: 2  # retries after an unparseable response
+  cot: false
+  prompt_variant: highlight_context_token_first_v1  # delphi | calibrated_v1 | highlight_context_v1 | highlight_context_token_first_v1
+  few_shot_set: sae_realistic_v1                    # delphi | sae_highlighted_v1 | sae_balanced_v1 | sae_realistic_v1
+
+token_examples:
+  device: cpu
+  model: null
+  sae_release: gemmascope
+  sae_l0: null
+  activation_backend: auto  # auto/transformerlens = SAELens reference path; native is opt-in
+  model_dtype: bfloat16     # native backend only: float32 | bfloat16
+  context_window: null
+  example_ctx_len: 32
+  activation_threshold_ratio: 0.3
+  max_positive_source_docs_per_target: 128
+  max_intruder_source_docs: 5000
+  max_windows_per_source_doc: 8
+  max_positive_windows_per_target: 512
+  max_non_activating_windows_per_target: 512
+  # 128 enables deterministic fixed-block/two-stream native-CUDA materialization;
+  # it is not a model batch dimension. Set 1 for the unchanged serial reference
+  # path or for unsupported backends.
+  materialization_batch_size: 128
+
+source_index:
+  enabled: false
+  path: ${output_dir}/source_doc_index.sqlite
+  manifest_path: ${output_dir}/source_doc_index.manifest.json
+  # Sharded plans record and enforce the exact resolved physical placement.
+  shared_cache_dir: null
+  force_rebuild: false
+  chunk_size: 5000000
+  scan_workers: 1
+
+neuronpedia:
+  enabled: false
+  model_id: null
+  sae_source: null
+  timeout_seconds: 30.0
+  max_retries: 3
+  backoff_base_seconds: 1.0
+  backoff_max_seconds: 30.0
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

@@ -1,0 +1,3202 @@
+{
+  "schema_version": 1,
+  "purpose": "Synchronized complete head-only RLVR update performance and independently reported numerical parity.",
+  "summary_script_sha256": "160c35d511528089fa8be01c443ff13e03f1de825702f50489e4bf3798b60304",
+  "pairs": [
+    {
+      "name": "short",
+      "configuration_and_count_checks_passed": true,
+      "matched_configuration": {
+        "base_checkpoint_dir": "/home/d0rb/.cache/nanochat/conditional_encdec_checkpoints/full3b_clustered_c2048_long_w32_bf16_b14_fp/standard_steered_sft_conditioned_checkpoints/sft3b-steered-turnseg32-20260905",
+        "model_step": 1116,
+        "bundle_dir": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-bccea5ce/out/rlvr-qualification/data",
+        "stats_path": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/s32/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/standard_steered_sft/context_independent/no_bos/turn_delimited/feature_statistics.safetensors",
+        "resume_from_step": -1,
+        "resume_checkpoint_dir": null,
+        "train_feature_head_only": true,
+        "global_prompts_per_step": 1,
+        "group_size": 2,
+        "num_iterations": 1,
+        "device_type": "cuda",
+        "seed": 42,
+        "tasks": [
+          "ARC-Easy",
+          "ARC-Challenge",
+          "MMLU",
+          "GSM8K"
+        ],
+        "validation_seed": 314159,
+        "temperature": 1.0,
+        "top_k": null,
+        "mc_max_tokens": 16,
+        "gsm8k_max_tokens": 64,
+        "validation_per_task": 32,
+        "eval_every": 10,
+        "save_every": 10,
+        "grad_clip_max_norm": 1.0,
+        "lr_multiplier": 1.0,
+        "init_lr_frac": 0.05,
+        "embedding_lr": 0.2,
+        "unembedding_lr": 0.004,
+        "matrix_lr": 0.02,
+        "encoder_embedding_lr": 0.2,
+        "encoder_matrix_lr": 0.02,
+        "xattn_matrix_lr": 0.02,
+        "weight_decay": 0.0,
+        "lr_decay_start": 0.8,
+        "wandb": {
+          "enabled": false,
+          "mode": "online",
+          "project": "nanochat-encdec-rlvr",
+          "entity": null,
+          "name": null,
+          "new_run": false
+        },
+        "row_indices": [
+          0,
+          8,
+          16,
+          24
+        ],
+        "warmup_steps": 1,
+        "measure_steps": 5,
+        "measure_phases": false,
+        "profile": false,
+        "parity_steps": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "allowed_differences": {
+        "config": {
+          "compiler_reset": {
+            "reset": true,
+            "retain": false
+          },
+          "output_dir": {
+            "reset": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-bf256093/out/rlvr-perf/reset-short",
+            "retain": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-bf256093/out/rlvr-perf/retain-short-retry"
+          }
+        },
+        "source_and_harness": {}
+      },
+      "reset": {
+        "results_file": {
+          "path": "out/rlvr-perf/reset-short/results.json",
+          "bytes": 13070,
+          "sha256": "1e6e2d3ee484984107e228877830c493b8bab6e21f983505530e051941e1f583"
+        },
+        "config": {
+          "base_checkpoint_dir": "/home/d0rb/.cache/nanochat/conditional_encdec_checkpoints/full3b_clustered_c2048_long_w32_bf16_b14_fp/standard_steered_sft_conditioned_checkpoints/sft3b-steered-turnseg32-20260905",
+          "model_step": 1116,
+          "bundle_dir": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-bccea5ce/out/rlvr-qualification/data",
+          "stats_path": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/s32/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/standard_steered_sft/context_independent/no_bos/turn_delimited/feature_statistics.safetensors",
+          "output_dir": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-bf256093/out/rlvr-perf/reset-short",
+          "resume_from_step": -1,
+          "resume_checkpoint_dir": null,
+          "train_feature_head_only": true,
+          "global_prompts_per_step": 1,
+          "group_size": 2,
+          "num_iterations": 1,
+          "device_type": "cuda",
+          "seed": 42,
+          "tasks": [
+            "ARC-Easy",
+            "ARC-Challenge",
+            "MMLU",
+            "GSM8K"
+          ],
+          "validation_seed": 314159,
+          "temperature": 1.0,
+          "top_k": null,
+          "mc_max_tokens": 16,
+          "gsm8k_max_tokens": 64,
+          "validation_per_task": 32,
+          "eval_every": 10,
+          "save_every": 10,
+          "grad_clip_max_norm": 1.0,
+          "lr_multiplier": 1.0,
+          "init_lr_frac": 0.05,
+          "embedding_lr": 0.2,
+          "unembedding_lr": 0.004,
+          "matrix_lr": 0.02,
+          "encoder_embedding_lr": 0.2,
+          "encoder_matrix_lr": 0.02,
+          "xattn_matrix_lr": 0.02,
+          "weight_decay": 0.0,
+          "lr_decay_start": 0.8,
+          "wandb": {
+            "enabled": false,
+            "mode": "online",
+            "project": "nanochat-encdec-rlvr",
+            "entity": null,
+            "name": null,
+            "new_run": false
+          },
+          "row_indices": [
+            0,
+            8,
+            16,
+            24
+          ],
+          "warmup_steps": 1,
+          "measure_steps": 5,
+          "compiler_reset": true,
+          "measure_phases": false,
+          "profile": false,
+          "parity_steps": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "effective_compiler_reset": true,
+        "source": {
+          "git_sha": "e75d81dce3554a3915654dc209c7ff666844feae",
+          "source_identity": {
+            "runtime_version": "chatcore_scalar_self_conditioned_v1",
+            "git_commit": "e75d81dce3554a3915654dc209c7ff666844feae",
+            "source_sha256": "996c332c392d8136acd541954ad873a55f4971c5a0ad1bf668643b9d37f90964"
+          },
+          "benchmark_sha256": "ed858c6f90c7692130741ed292cd3f7de51835235ee93e2fc5729f0795c6c491"
+        },
+        "runtime": {
+          "values": {
+            "gpu": "NVIDIA GeForce RTX 4090",
+            "gpu_capability": [
+              8,
+              9
+            ],
+            "torch": "2.13.0+cu130",
+            "cuda": "13.0",
+            "compute_dtype": "torch.bfloat16",
+            "autocast_enabled": false,
+            "attention": "sdpa",
+            "deterministic": true,
+            "compiler": {
+              "derived_minimum": 8193,
+              "window_variants": 2,
+              "sequence_len": 2048,
+              "recompile_limit": 8193,
+              "accumulated_recompile_limit": 8193,
+              "fail_on_recompile_limit_hit": true,
+              "suppress_errors": false
+            }
+          },
+          "canonical_sha256": "b7fffbd63e01eefb9f59dc1c155c4afcc82c33a3d266bdde5a926e8c35cb5471"
+        },
+        "inputs": {
+          "base_identity": {
+            "step": 1116,
+            "model_sha256": "a91b0ffb0fefe6d34c2954f72d57bdbe33f73c306177cfc8e23128c7b9cead27",
+            "metadata_sha256": "1ee6c80ec85673d1b54d9805886a55da44b528bbc1c9a06401ec571923e7d73c"
+          },
+          "bundle_sha256": "11bdc48b92295cf29ab5478581d855c5faf62b86da439b17c8eec8190763f3e6",
+          "bundle_manifest_file": {
+            "path": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-bccea5ce/out/rlvr-qualification/data/manifest.json",
+            "bytes": 4543,
+            "sha256": "484f6247cfe3962486c823adf02bb1b40689a65feea7db1cba93fa83333bf3e7"
+          },
+          "statistics": {
+            "path": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/s32/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/standard_steered_sft/context_independent/no_bos/turn_delimited/feature_statistics.safetensors",
+            "sha256": "4add3651483aa763b4fdb573b9600c2904213ca773cb97cae0a907676fe39519"
+          },
+          "tokenizers": {
+            "decoder_sha256": "dc6308e6116cbfe05fcd3af1af1cf93562ffd57fb3d58bf4287ec81bd3c3b541",
+            "extraction_sha256": "364069fd142734a146c3b455f71c1f72d1a1c416c49ed5a3097ce52fa9d40a07"
+          },
+          "hash_verification_scope": "Pins recorded by benchmark admission; no large artifact rehash in summarizer."
+        },
+        "geometry": {
+          "effective_prompts_per_update": 4,
+          "decoder": {
+            "sequence_len": 2048,
+            "vocab_size": 32768,
+            "n_layer": 27,
+            "n_head": 13,
+            "n_kv_head": 13,
+            "n_embd": 1664,
+            "window_pattern": "SSSL"
+          },
+          "encoder": {
+            "n_sae_features": 65536,
+            "num_buckets": 2,
+            "n_embd": 1664,
+            "n_layer": 27,
+            "n_head": 13,
+            "n_kv_head": 13,
+            "head_dim": 128,
+            "ve_gate_channels": 32
+          },
+          "feature_head": {
+            "weight": 0.1,
+            "layer": -1,
+            "loss_mode": "max_pool",
+            "loss_fn": "bce",
+            "mlp_layers": 0
+          },
+          "cadence": 33,
+          "parameter_count": 2988187138,
+          "trainable_parameter_count": 1405260
+        },
+        "rows": [
+          {
+            "index": 0,
+            "row_id": "rlvr:ad4f4ee72148be338012e4873a2d001ec968cb845f63447a3a29607148abc6dc",
+            "task": "ARC-Easy",
+            "prompt_tokens": 53
+          },
+          {
+            "index": 8,
+            "row_id": "rlvr:ca3053a56a6837b3d9acab125152470202eed4927b17184df388e6bab9803135",
+            "task": "ARC-Challenge",
+            "prompt_tokens": 52
+          },
+          {
+            "index": 16,
+            "row_id": "rlvr:6c876b0a5ae04500c6f03bfe8b6210d6872a2954fe748f3aad7a1ef1738ca374",
+            "task": "MMLU",
+            "prompt_tokens": 238
+          },
+          {
+            "index": 24,
+            "row_id": "rlvr:9e1e38467b4e11cd340b590d937c89e9dbd43f0551a2ad49c93252824c02d20b",
+            "task": "GSM8K",
+            "prompt_tokens": 63
+          }
+        ],
+        "parameter_manifest": [
+          "feature_pred_head.weight",
+          "feature_pred_head.bias"
+        ],
+        "timing_contract": "Outer CUDA synchronization; compiler reset, collection, native reward, replay, clipping and optimizer included. Separate phase/profiler steps are excluded from measured samples.",
+        "measured_seconds": [
+          26.962040927261114,
+          26.115577053278685,
+          26.15751514211297,
+          27.841344013810158,
+          27.24580817297101
+        ],
+        "median_seconds": 26.962040927261114,
+        "mean_seconds": 26.86445706188679,
+        "warmup_seconds": [
+          28.565991632640362
+        ],
+        "first_process_step_seconds": 28.565991632640362,
+        "cold_step_definition": "First step of this fresh process; disk compiler caches were not necessarily empty.",
+        "measured_step_count": 5,
+        "measured_generated_tokens": 638,
+        "measured_live_actions": 53,
+        "measured_reward_count": 40,
+        "measured_reward_sum": 11.0,
+        "measured_nonzero_gradient_steps": [
+          2,
+          3,
+          4
+        ],
+        "peak_allocated_bytes_measured": 10598117376,
+        "peak_allocated_bytes_warmup_and_measured": 10598117376,
+        "steps": [
+          {
+            "step": 0,
+            "seconds": 28.565991632640362,
+            "phase_seconds": {},
+            "phase_synchronized": false,
+            "gradient_norm_before_clip": 0.0,
+            "peak_allocated_bytes": 10575635968,
+            "generated_tokens": 143,
+            "live_actions": 10,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "advantages": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "replay": [
+              {
+                "loss": 0.0,
+                "ratio_min": 0.999969482421875,
+                "ratio_max": 1.0000076293945312,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 1.0,
+                "ratio_max": 1.0,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.9999847412109375,
+                "ratio_max": 1.0000152587890625,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.9999847412109375,
+                "ratio_max": 1.0000076293945312,
+                "live_decisions": 4
+              }
+            ]
+          },
+          {
+            "step": 1,
+            "seconds": 26.962040927261114,
+            "phase_seconds": {},
+            "phase_synchronized": false,
+            "gradient_norm_before_clip": 0.0,
+            "peak_allocated_bytes": 10595121664,
+            "generated_tokens": 134,
+            "live_actions": 10,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "advantages": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "replay": [
+              {
+                "loss": 0.0,
+                "ratio_min": 1.0,
+                "ratio_max": 1.0,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.9999962449073792,
+                "ratio_max": 1.0,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 1.0000457763671875,
+                "ratio_max": 1.00006103515625,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.999969482421875,
+                "ratio_max": 1.0,
+                "live_decisions": 4
+              }
+            ],
+            "nonzero_gradient_parameters": []
+          },
+          {
+            "step": 2,
+            "seconds": 26.115577053278685,
+            "phase_seconds": {},
+            "phase_synchronized": false,
+            "gradient_norm_before_clip": 28.55406951904297,
+            "peak_allocated_bytes": 10586771968,
+            "generated_tokens": 134,
+            "live_actions": 10,
+            "rewards": [
+              1.0,
+              0.0,
+              1.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "advantages": [
+              [
+                1.0,
+                -1.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                -1.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "replay": [
+              {
+                "loss": 0.0,
+                "ratio_min": 1.0,
+                "ratio_max": 1.0,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.9999923706054688,
+                "ratio_max": 1.0000038146972656,
+                "live_decisions": 2
+              },
+              {
+                "loss": 2.288818359375e-05,
+                "ratio_min": 1.0,
+                "ratio_max": 1.0000457763671875,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.9999847412109375,
+                "ratio_max": 1.0000038146972656,
+                "live_decisions": 4
+              }
+            ],
+            "nonzero_gradient_parameters": [
+              "feature_pred_head.weight",
+              "feature_pred_head.bias"
+            ]
+          },
+          {
+            "step": 3,
+            "seconds": 26.15751514211297,
+            "phase_seconds": {},
+            "phase_synchronized": false,
+            "gradient_norm_before_clip": 22.14722442626953,
+            "peak_allocated_bytes": 10598010880,
+            "generated_tokens": 87,
+            "live_actions": 9,
+            "rewards": [
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "advantages": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                -1.0
+              ],
+              [
+                1.0,
+                -1.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "replay": [
+              {
+                "loss": 0.0,
+                "ratio_min": 1.0,
+                "ratio_max": 1.0000076293945312,
+                "live_decisions": 2
+              },
+              {
+                "loss": -7.62939453125e-06,
+                "ratio_min": 1.0,
+                "ratio_max": 1.0000152587890625,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 1.0,
+                "ratio_max": 1.0,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 1.0,
+                "ratio_max": 1.000030517578125,
+                "live_decisions": 3
+              }
+            ],
+            "nonzero_gradient_parameters": [
+              "feature_pred_head.weight",
+              "feature_pred_head.bias"
+            ]
+          },
+          {
+            "step": 4,
+            "seconds": 27.841344013810158,
+            "phase_seconds": {},
+            "phase_synchronized": false,
+            "gradient_norm_before_clip": 34.70801544189453,
+            "peak_allocated_bytes": 10598117376,
+            "generated_tokens": 134,
+            "live_actions": 14,
+            "rewards": [
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0
+            ],
+            "advantages": [
+              [
+                1.0,
+                -1.0
+              ],
+              [
+                -1.0,
+                1.0
+              ],
+              [
+                -1.0,
+                1.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "replay": [
+              {
+                "loss": 0.0,
+                "ratio_min": 1.0,
+                "ratio_max": 1.0,
+                "live_decisions": 2
+              },
+              {
+                "loss": 4.57763671875e-05,
+                "ratio_min": 1.0,
+                "ratio_max": 1.000091552734375,
+                "live_decisions": 2
+              },
+              {
+                "loss": 3.4332275390625e-05,
+                "ratio_min": 0.9999923706054688,
+                "ratio_max": 1.00006103515625,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.9999923706054688,
+                "ratio_max": 1.0000152587890625,
+                "live_decisions": 8
+              }
+            ],
+            "nonzero_gradient_parameters": [
+              "feature_pred_head.weight",
+              "feature_pred_head.bias"
+            ]
+          },
+          {
+            "step": 5,
+            "seconds": 27.24580817297101,
+            "phase_seconds": {},
+            "phase_synchronized": false,
+            "gradient_norm_before_clip": 0.0,
+            "peak_allocated_bytes": 10598010880,
+            "generated_tokens": 149,
+            "live_actions": 10,
+            "rewards": [
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "advantages": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "replay": [
+              {
+                "loss": 0.0,
+                "ratio_min": 1.0000019073486328,
+                "ratio_max": 1.0000152587890625,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.9999962449073792,
+                "ratio_max": 1.0000152587890625,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.9999542832374573,
+                "ratio_max": 1.0000076293945312,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 1.0,
+                "ratio_max": 1.000030517578125,
+                "live_decisions": 4
+              }
+            ],
+            "nonzero_gradient_parameters": []
+          }
+        ],
+        "frozen_parameters_unchanged": true
+      },
+      "retain": {
+        "results_file": {
+          "path": "out/rlvr-perf/retain-short-retry/results.json",
+          "bytes": 13080,
+          "sha256": "ea6ad7bde5cf25a17c6e233224a7df86a2f952b3e7c1973ae736af1dd8b9b483"
+        },
+        "config": {
+          "base_checkpoint_dir": "/home/d0rb/.cache/nanochat/conditional_encdec_checkpoints/full3b_clustered_c2048_long_w32_bf16_b14_fp/standard_steered_sft_conditioned_checkpoints/sft3b-steered-turnseg32-20260905",
+          "model_step": 1116,
+          "bundle_dir": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-bccea5ce/out/rlvr-qualification/data",
+          "stats_path": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/s32/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/standard_steered_sft/context_independent/no_bos/turn_delimited/feature_statistics.safetensors",
+          "output_dir": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-bf256093/out/rlvr-perf/retain-short-retry",
+          "resume_from_step": -1,
+          "resume_checkpoint_dir": null,
+          "train_feature_head_only": true,
+          "global_prompts_per_step": 1,
+          "group_size": 2,
+          "num_iterations": 1,
+          "device_type": "cuda",
+          "seed": 42,
+          "tasks": [
+            "ARC-Easy",
+            "ARC-Challenge",
+            "MMLU",
+            "GSM8K"
+          ],
+          "validation_seed": 314159,
+          "temperature": 1.0,
+          "top_k": null,
+          "mc_max_tokens": 16,
+          "gsm8k_max_tokens": 64,
+          "validation_per_task": 32,
+          "eval_every": 10,
+          "save_every": 10,
+          "grad_clip_max_norm": 1.0,
+          "lr_multiplier": 1.0,
+          "init_lr_frac": 0.05,
+          "embedding_lr": 0.2,
+          "unembedding_lr": 0.004,
+          "matrix_lr": 0.02,
+          "encoder_embedding_lr": 0.2,
+          "encoder_matrix_lr": 0.02,
+          "xattn_matrix_lr": 0.02,
+          "weight_decay": 0.0,
+          "lr_decay_start": 0.8,
+          "wandb": {
+            "enabled": false,
+            "mode": "online",
+            "project": "nanochat-encdec-rlvr",
+            "entity": null,
+            "name": null,
+            "new_run": false
+          },
+          "row_indices": [
+            0,
+            8,
+            16,
+            24
+          ],
+          "warmup_steps": 1,
+          "measure_steps": 5,
+          "compiler_reset": false,
+          "measure_phases": false,
+          "profile": false,
+          "parity_steps": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "effective_compiler_reset": false,
+        "source": {
+          "git_sha": "e75d81dce3554a3915654dc209c7ff666844feae",
+          "source_identity": {
+            "runtime_version": "chatcore_scalar_self_conditioned_v1",
+            "git_commit": "e75d81dce3554a3915654dc209c7ff666844feae",
+            "source_sha256": "996c332c392d8136acd541954ad873a55f4971c5a0ad1bf668643b9d37f90964"
+          },
+          "benchmark_sha256": "ed858c6f90c7692130741ed292cd3f7de51835235ee93e2fc5729f0795c6c491"
+        },
+        "runtime": {
+          "values": {
+            "gpu": "NVIDIA GeForce RTX 4090",
+            "gpu_capability": [
+              8,
+              9
+            ],
+            "torch": "2.13.0+cu130",
+            "cuda": "13.0",
+            "compute_dtype": "torch.bfloat16",
+            "autocast_enabled": false,
+            "attention": "sdpa",
+            "deterministic": true,
+            "compiler": {
+              "derived_minimum": 8193,
+              "window_variants": 2,
+              "sequence_len": 2048,
+              "recompile_limit": 8193,
+              "accumulated_recompile_limit": 8193,
+              "fail_on_recompile_limit_hit": true,
+              "suppress_errors": false
+            }
+          },
+          "canonical_sha256": "b7fffbd63e01eefb9f59dc1c155c4afcc82c33a3d266bdde5a926e8c35cb5471"
+        },
+        "inputs": {
+          "base_identity": {
+            "step": 1116,
+            "model_sha256": "a91b0ffb0fefe6d34c2954f72d57bdbe33f73c306177cfc8e23128c7b9cead27",
+            "metadata_sha256": "1ee6c80ec85673d1b54d9805886a55da44b528bbc1c9a06401ec571923e7d73c"
+          },
+          "bundle_sha256": "11bdc48b92295cf29ab5478581d855c5faf62b86da439b17c8eec8190763f3e6",
+          "bundle_manifest_file": {
+            "path": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-bccea5ce/out/rlvr-qualification/data/manifest.json",
+            "bytes": 4543,
+            "sha256": "484f6247cfe3962486c823adf02bb1b40689a65feea7db1cba93fa83333bf3e7"
+          },
+          "statistics": {
+            "path": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/s32/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/standard_steered_sft/context_independent/no_bos/turn_delimited/feature_statistics.safetensors",
+            "sha256": "4add3651483aa763b4fdb573b9600c2904213ca773cb97cae0a907676fe39519"
+          },
+          "tokenizers": {
+            "decoder_sha256": "dc6308e6116cbfe05fcd3af1af1cf93562ffd57fb3d58bf4287ec81bd3c3b541",
+            "extraction_sha256": "364069fd142734a146c3b455f71c1f72d1a1c416c49ed5a3097ce52fa9d40a07"
+          },
+          "hash_verification_scope": "Pins recorded by benchmark admission; no large artifact rehash in summarizer."
+        },
+        "geometry": {
+          "effective_prompts_per_update": 4,
+          "decoder": {
+            "sequence_len": 2048,
+            "vocab_size": 32768,
+            "n_layer": 27,
+            "n_head": 13,
+            "n_kv_head": 13,
+            "n_embd": 1664,
+            "window_pattern": "SSSL"
+          },
+          "encoder": {
+            "n_sae_features": 65536,
+            "num_buckets": 2,
+            "n_embd": 1664,
+            "n_layer": 27,
+            "n_head": 13,
+            "n_kv_head": 13,
+            "head_dim": 128,
+            "ve_gate_channels": 32
+          },
+          "feature_head": {
+            "weight": 0.1,
+            "layer": -1,
+            "loss_mode": "max_pool",
+            "loss_fn": "bce",
+            "mlp_layers": 0
+          },
+          "cadence": 33,
+          "parameter_count": 2988187138,
+          "trainable_parameter_count": 1405260
+        },
+        "rows": [
+          {
+            "index": 0,
+            "row_id": "rlvr:ad4f4ee72148be338012e4873a2d001ec968cb845f63447a3a29607148abc6dc",
+            "task": "ARC-Easy",
+            "prompt_tokens": 53
+          },
+          {
+            "index": 8,
+            "row_id": "rlvr:ca3053a56a6837b3d9acab125152470202eed4927b17184df388e6bab9803135",
+            "task": "ARC-Challenge",
+            "prompt_tokens": 52
+          },
+          {
+            "index": 16,
+            "row_id": "rlvr:6c876b0a5ae04500c6f03bfe8b6210d6872a2954fe748f3aad7a1ef1738ca374",
+            "task": "MMLU",
+            "prompt_tokens": 238
+          },
+          {
+            "index": 24,
+            "row_id": "rlvr:9e1e38467b4e11cd340b590d937c89e9dbd43f0551a2ad49c93252824c02d20b",
+            "task": "GSM8K",
+            "prompt_tokens": 63
+          }
+        ],
+        "parameter_manifest": [
+          "feature_pred_head.weight",
+          "feature_pred_head.bias"
+        ],
+        "timing_contract": "Outer CUDA synchronization; compiler reset, collection, native reward, replay, clipping and optimizer included. Separate phase/profiler steps are excluded from measured samples.",
+        "measured_seconds": [
+          2.9181519113481045,
+          2.9198996163904667,
+          2.1148599460721016,
+          3.6340520791709423,
+          3.1066727116703987
+        ],
+        "median_seconds": 2.9198996163904667,
+        "mean_seconds": 2.938727252930403,
+        "warmup_seconds": [
+          28.965337585657835
+        ],
+        "first_process_step_seconds": 28.965337585657835,
+        "cold_step_definition": "First step of this fresh process; disk compiler caches were not necessarily empty.",
+        "measured_step_count": 5,
+        "measured_generated_tokens": 638,
+        "measured_live_actions": 53,
+        "measured_reward_count": 40,
+        "measured_reward_sum": 11.0,
+        "measured_nonzero_gradient_steps": [
+          2,
+          3,
+          4
+        ],
+        "peak_allocated_bytes_measured": 10598990336,
+        "peak_allocated_bytes_warmup_and_measured": 10598990336,
+        "steps": [
+          {
+            "step": 0,
+            "seconds": 28.965337585657835,
+            "phase_seconds": {},
+            "phase_synchronized": false,
+            "gradient_norm_before_clip": 0.0,
+            "peak_allocated_bytes": 10575635968,
+            "generated_tokens": 143,
+            "live_actions": 10,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "advantages": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "replay": [
+              {
+                "loss": 0.0,
+                "ratio_min": 0.999969482421875,
+                "ratio_max": 1.0000076293945312,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 1.0,
+                "ratio_max": 1.0,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.9999847412109375,
+                "ratio_max": 1.0000152587890625,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.9999847412109375,
+                "ratio_max": 1.0000076293945312,
+                "live_decisions": 4
+              }
+            ]
+          },
+          {
+            "step": 1,
+            "seconds": 2.9181519113481045,
+            "phase_seconds": {},
+            "phase_synchronized": false,
+            "gradient_norm_before_clip": 0.0,
+            "peak_allocated_bytes": 10598117376,
+            "generated_tokens": 134,
+            "live_actions": 10,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "advantages": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "replay": [
+              {
+                "loss": 0.0,
+                "ratio_min": 1.0,
+                "ratio_max": 1.0,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.9999962449073792,
+                "ratio_max": 1.0,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 1.0000457763671875,
+                "ratio_max": 1.00006103515625,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.999969482421875,
+                "ratio_max": 1.0,
+                "live_decisions": 4
+              }
+            ],
+            "nonzero_gradient_parameters": []
+          },
+          {
+            "step": 2,
+            "seconds": 2.9198996163904667,
+            "phase_seconds": {},
+            "phase_synchronized": false,
+            "gradient_norm_before_clip": 28.55406951904297,
+            "peak_allocated_bytes": 10598117376,
+            "generated_tokens": 134,
+            "live_actions": 10,
+            "rewards": [
+              1.0,
+              0.0,
+              1.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "advantages": [
+              [
+                1.0,
+                -1.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                -1.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "replay": [
+              {
+                "loss": 0.0,
+                "ratio_min": 1.0,
+                "ratio_max": 1.0,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.9999923706054688,
+                "ratio_max": 1.0000038146972656,
+                "live_decisions": 2
+              },
+              {
+                "loss": 2.288818359375e-05,
+                "ratio_min": 1.0,
+                "ratio_max": 1.0000457763671875,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.9999847412109375,
+                "ratio_max": 1.0000038146972656,
+                "live_decisions": 4
+              }
+            ],
+            "nonzero_gradient_parameters": [
+              "feature_pred_head.weight",
+              "feature_pred_head.bias"
+            ]
+          },
+          {
+            "step": 3,
+            "seconds": 2.1148599460721016,
+            "phase_seconds": {},
+            "phase_synchronized": false,
+            "gradient_norm_before_clip": 22.14722442626953,
+            "peak_allocated_bytes": 10598117376,
+            "generated_tokens": 87,
+            "live_actions": 9,
+            "rewards": [
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "advantages": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                -1.0
+              ],
+              [
+                1.0,
+                -1.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "replay": [
+              {
+                "loss": 0.0,
+                "ratio_min": 1.0,
+                "ratio_max": 1.0000076293945312,
+                "live_decisions": 2
+              },
+              {
+                "loss": -7.62939453125e-06,
+                "ratio_min": 1.0,
+                "ratio_max": 1.0000152587890625,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 1.0,
+                "ratio_max": 1.0,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 1.0,
+                "ratio_max": 1.000030517578125,
+                "live_decisions": 3
+              }
+            ],
+            "nonzero_gradient_parameters": [
+              "feature_pred_head.weight",
+              "feature_pred_head.bias"
+            ]
+          },
+          {
+            "step": 4,
+            "seconds": 3.6340520791709423,
+            "phase_seconds": {},
+            "phase_synchronized": false,
+            "gradient_norm_before_clip": 34.70801544189453,
+            "peak_allocated_bytes": 10598117376,
+            "generated_tokens": 134,
+            "live_actions": 14,
+            "rewards": [
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0
+            ],
+            "advantages": [
+              [
+                1.0,
+                -1.0
+              ],
+              [
+                -1.0,
+                1.0
+              ],
+              [
+                -1.0,
+                1.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "replay": [
+              {
+                "loss": 0.0,
+                "ratio_min": 1.0,
+                "ratio_max": 1.0,
+                "live_decisions": 2
+              },
+              {
+                "loss": 4.57763671875e-05,
+                "ratio_min": 1.0,
+                "ratio_max": 1.000091552734375,
+                "live_decisions": 2
+              },
+              {
+                "loss": 3.4332275390625e-05,
+                "ratio_min": 0.9999923706054688,
+                "ratio_max": 1.00006103515625,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.9999923706054688,
+                "ratio_max": 1.0000152587890625,
+                "live_decisions": 8
+              }
+            ],
+            "nonzero_gradient_parameters": [
+              "feature_pred_head.weight",
+              "feature_pred_head.bias"
+            ]
+          },
+          {
+            "step": 5,
+            "seconds": 3.1066727116703987,
+            "phase_seconds": {},
+            "phase_synchronized": false,
+            "gradient_norm_before_clip": 0.0,
+            "peak_allocated_bytes": 10598990336,
+            "generated_tokens": 149,
+            "live_actions": 10,
+            "rewards": [
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "advantages": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "replay": [
+              {
+                "loss": 0.0,
+                "ratio_min": 1.0000019073486328,
+                "ratio_max": 1.0000152587890625,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.9999962449073792,
+                "ratio_max": 1.0000152587890625,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.9999542832374573,
+                "ratio_max": 1.0000076293945312,
+                "live_decisions": 2
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 1.0,
+                "ratio_max": 1.000030517578125,
+                "live_decisions": 4
+              }
+            ],
+            "nonzero_gradient_parameters": []
+          }
+        ],
+        "frozen_parameters_unchanged": true
+      },
+      "comparison": {
+        "reset_median_over_retain_median": 9.233893102322181,
+        "median_time_reduction_fraction": 0.8917033163673386,
+        "median_time_reduction_percent": 89.17033163673386,
+        "paired_reset_over_retain_ratios": [
+          9.239423356409642,
+          8.94399824798167,
+          12.368438482507997,
+          7.661239687066281,
+          8.77009286192927
+        ],
+        "peak_measured_allocation_delta_bytes": 872960
+      },
+      "parity": {
+        "report_file": {
+          "path": "out/rlvr-perf/short-parity.json",
+          "bytes": 2707,
+          "sha256": "6f613720bef983816588819557764e691bc452cad764a3740f02ec508b6fdcdd"
+        },
+        "report": {
+          "reference": "out/rlvr-perf/reset-short",
+          "candidate": "out/rlvr-perf/retain-short-retry",
+          "atol": 0.0,
+          "rtol": 0.0,
+          "tensors": 120,
+          "exact_tensors": 120,
+          "scalars": 163,
+          "exact_scalars": 163,
+          "max_abs": {
+            "parity-000.pt/clipped_gradients/feature_pred_head.weight": 0.0,
+            "parity-000.pt/clipped_gradients/feature_pred_head.bias": 0.0,
+            "parity-000.pt/updated_parameters/feature_pred_head.weight": 0.0,
+            "parity-000.pt/updated_parameters/feature_pred_head.bias": 0.0,
+            "parity-000.pt/optimizer/state/0/exp_avg": 0.0,
+            "parity-000.pt/optimizer/state/0/exp_avg_sq": 0.0,
+            "parity-000.pt/optimizer/state/1/exp_avg": 0.0,
+            "parity-000.pt/optimizer/state/1/exp_avg_sq": 0.0,
+            "parity-001.pt/clipped_gradients/feature_pred_head.weight": 0.0,
+            "parity-001.pt/clipped_gradients/feature_pred_head.bias": 0.0,
+            "parity-001.pt/updated_parameters/feature_pred_head.weight": 0.0,
+            "parity-001.pt/updated_parameters/feature_pred_head.bias": 0.0,
+            "parity-001.pt/optimizer/state/0/exp_avg": 0.0,
+            "parity-001.pt/optimizer/state/0/exp_avg_sq": 0.0,
+            "parity-001.pt/optimizer/state/1/exp_avg": 0.0,
+            "parity-001.pt/optimizer/state/1/exp_avg_sq": 0.0,
+            "parity-002.pt/clipped_gradients/feature_pred_head.weight": 0.0,
+            "parity-002.pt/clipped_gradients/feature_pred_head.bias": 0.0,
+            "parity-002.pt/updated_parameters/feature_pred_head.weight": 0.0,
+            "parity-002.pt/updated_parameters/feature_pred_head.bias": 0.0,
+            "parity-002.pt/optimizer/state/0/exp_avg": 0.0,
+            "parity-002.pt/optimizer/state/0/exp_avg_sq": 0.0,
+            "parity-002.pt/optimizer/state/1/exp_avg": 0.0,
+            "parity-002.pt/optimizer/state/1/exp_avg_sq": 0.0,
+            "parity-003.pt/clipped_gradients/feature_pred_head.weight": 0.0,
+            "parity-003.pt/clipped_gradients/feature_pred_head.bias": 0.0,
+            "parity-003.pt/updated_parameters/feature_pred_head.weight": 0.0,
+            "parity-003.pt/updated_parameters/feature_pred_head.bias": 0.0,
+            "parity-003.pt/optimizer/state/0/exp_avg": 0.0,
+            "parity-003.pt/optimizer/state/0/exp_avg_sq": 0.0,
+            "parity-003.pt/optimizer/state/1/exp_avg": 0.0,
+            "parity-003.pt/optimizer/state/1/exp_avg_sq": 0.0,
+            "parity-004.pt/clipped_gradients/feature_pred_head.weight": 0.0,
+            "parity-004.pt/clipped_gradients/feature_pred_head.bias": 0.0,
+            "parity-004.pt/updated_parameters/feature_pred_head.weight": 0.0,
+            "parity-004.pt/updated_parameters/feature_pred_head.bias": 0.0,
+            "parity-004.pt/optimizer/state/0/exp_avg": 0.0,
+            "parity-004.pt/optimizer/state/0/exp_avg_sq": 0.0,
+            "parity-004.pt/optimizer/state/1/exp_avg": 0.0,
+            "parity-004.pt/optimizer/state/1/exp_avg_sq": 0.0
+          },
+          "failures": [],
+          "passed": true
+        },
+        "verification_scope": "Existing comparator report; tensor receipts are not reloaded or rehashed here."
+      }
+    },
+    {
+      "name": "full",
+      "configuration_and_count_checks_passed": true,
+      "matched_configuration": {
+        "base_checkpoint_dir": "/home/d0rb/.cache/nanochat/conditional_encdec_checkpoints/full3b_clustered_c2048_long_w32_bf16_b14_fp/standard_steered_sft_conditioned_checkpoints/sft3b-steered-turnseg32-20260905",
+        "model_step": 1116,
+        "bundle_dir": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-bccea5ce/out/rlvr-qualification/data",
+        "stats_path": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/s32/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/standard_steered_sft/context_independent/no_bos/turn_delimited/feature_statistics.safetensors",
+        "resume_from_step": -1,
+        "resume_checkpoint_dir": null,
+        "train_feature_head_only": true,
+        "global_prompts_per_step": 1,
+        "group_size": 4,
+        "num_iterations": 1,
+        "device_type": "cuda",
+        "seed": 42,
+        "tasks": [
+          "ARC-Easy",
+          "ARC-Challenge",
+          "MMLU",
+          "GSM8K"
+        ],
+        "validation_seed": 314159,
+        "temperature": 1.0,
+        "top_k": null,
+        "mc_max_tokens": 16,
+        "gsm8k_max_tokens": 512,
+        "validation_per_task": 32,
+        "eval_every": 10,
+        "save_every": 10,
+        "grad_clip_max_norm": 1.0,
+        "lr_multiplier": 1.0,
+        "init_lr_frac": 0.05,
+        "embedding_lr": 0.2,
+        "unembedding_lr": 0.004,
+        "matrix_lr": 0.02,
+        "encoder_embedding_lr": 0.2,
+        "encoder_matrix_lr": 0.02,
+        "xattn_matrix_lr": 0.02,
+        "weight_decay": 0.0,
+        "lr_decay_start": 0.8,
+        "wandb": {
+          "enabled": false,
+          "mode": "online",
+          "project": "nanochat-encdec-rlvr",
+          "entity": null,
+          "name": null,
+          "new_run": false
+        },
+        "row_indices": [
+          0,
+          10,
+          16,
+          26
+        ],
+        "warmup_steps": 1,
+        "measure_steps": 3,
+        "measure_phases": false,
+        "profile": false,
+        "parity_steps": [
+          0,
+          1,
+          2
+        ]
+      },
+      "allowed_differences": {
+        "config": {
+          "compiler_reset": {
+            "reset": true,
+            "retain": null
+          },
+          "output_dir": {
+            "reset": "out/rlvr-perf/reset-full",
+            "retain": "out/rlvr-perf/retain-full"
+          }
+        },
+        "source_and_harness": {}
+      },
+      "reset": {
+        "results_file": {
+          "path": "out/rlvr-perf/reset-full/results.json",
+          "bytes": 11830,
+          "sha256": "c3e478833443753eeeef9e96c8a151e293c3cfb10286ba783829d9c4baccb15c"
+        },
+        "config": {
+          "base_checkpoint_dir": "/home/d0rb/.cache/nanochat/conditional_encdec_checkpoints/full3b_clustered_c2048_long_w32_bf16_b14_fp/standard_steered_sft_conditioned_checkpoints/sft3b-steered-turnseg32-20260905",
+          "model_step": 1116,
+          "bundle_dir": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-bccea5ce/out/rlvr-qualification/data",
+          "stats_path": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/s32/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/standard_steered_sft/context_independent/no_bos/turn_delimited/feature_statistics.safetensors",
+          "output_dir": "out/rlvr-perf/reset-full",
+          "resume_from_step": -1,
+          "resume_checkpoint_dir": null,
+          "train_feature_head_only": true,
+          "global_prompts_per_step": 1,
+          "group_size": 4,
+          "num_iterations": 1,
+          "device_type": "cuda",
+          "seed": 42,
+          "tasks": [
+            "ARC-Easy",
+            "ARC-Challenge",
+            "MMLU",
+            "GSM8K"
+          ],
+          "validation_seed": 314159,
+          "temperature": 1.0,
+          "top_k": null,
+          "mc_max_tokens": 16,
+          "gsm8k_max_tokens": 512,
+          "validation_per_task": 32,
+          "eval_every": 10,
+          "save_every": 10,
+          "grad_clip_max_norm": 1.0,
+          "lr_multiplier": 1.0,
+          "init_lr_frac": 0.05,
+          "embedding_lr": 0.2,
+          "unembedding_lr": 0.004,
+          "matrix_lr": 0.02,
+          "encoder_embedding_lr": 0.2,
+          "encoder_matrix_lr": 0.02,
+          "xattn_matrix_lr": 0.02,
+          "weight_decay": 0.0,
+          "lr_decay_start": 0.8,
+          "wandb": {
+            "enabled": false,
+            "mode": "online",
+            "project": "nanochat-encdec-rlvr",
+            "entity": null,
+            "name": null,
+            "new_run": false
+          },
+          "row_indices": [
+            0,
+            10,
+            16,
+            26
+          ],
+          "warmup_steps": 1,
+          "measure_steps": 3,
+          "compiler_reset": true,
+          "measure_phases": false,
+          "profile": false,
+          "parity_steps": [
+            0,
+            1,
+            2
+          ]
+        },
+        "effective_compiler_reset": true,
+        "source": {
+          "git_sha": "93f70c0c97140434246629875f1b725a22a30d69",
+          "source_identity": {
+            "runtime_version": "chatcore_scalar_self_conditioned_v1",
+            "git_commit": "93f70c0c97140434246629875f1b725a22a30d69",
+            "source_sha256": "4419bc744b655acdada397d814ec4239430bfa6dae9989e62805ef5398986875"
+          },
+          "benchmark_sha256": "170ae9dd0f8a2d4982fce5845c59a0405f79bcacc6cbb724f7b7d35f5a117deb"
+        },
+        "runtime": {
+          "values": {
+            "gpu": "NVIDIA GeForce RTX 4090",
+            "gpu_capability": [
+              8,
+              9
+            ],
+            "torch": "2.13.0+cu130",
+            "cuda": "13.0",
+            "compute_dtype": "torch.bfloat16",
+            "autocast_enabled": false,
+            "attention": "sdpa",
+            "deterministic": true,
+            "compiler": {
+              "derived_minimum": 8193,
+              "window_variants": 2,
+              "sequence_len": 2048,
+              "recompile_limit": 8193,
+              "accumulated_recompile_limit": 8193,
+              "fail_on_recompile_limit_hit": true,
+              "suppress_errors": false
+            }
+          },
+          "canonical_sha256": "b7fffbd63e01eefb9f59dc1c155c4afcc82c33a3d266bdde5a926e8c35cb5471"
+        },
+        "inputs": {
+          "base_identity": {
+            "step": 1116,
+            "model_sha256": "a91b0ffb0fefe6d34c2954f72d57bdbe33f73c306177cfc8e23128c7b9cead27",
+            "metadata_sha256": "1ee6c80ec85673d1b54d9805886a55da44b528bbc1c9a06401ec571923e7d73c"
+          },
+          "bundle_sha256": "11bdc48b92295cf29ab5478581d855c5faf62b86da439b17c8eec8190763f3e6",
+          "bundle_manifest_file": {
+            "path": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-bccea5ce/out/rlvr-qualification/data/manifest.json",
+            "bytes": 4543,
+            "sha256": "484f6247cfe3962486c823adf02bb1b40689a65feea7db1cba93fa83333bf3e7"
+          },
+          "statistics": {
+            "path": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/s32/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/standard_steered_sft/context_independent/no_bos/turn_delimited/feature_statistics.safetensors",
+            "sha256": "4add3651483aa763b4fdb573b9600c2904213ca773cb97cae0a907676fe39519"
+          },
+          "tokenizers": {
+            "decoder_sha256": "dc6308e6116cbfe05fcd3af1af1cf93562ffd57fb3d58bf4287ec81bd3c3b541",
+            "extraction_sha256": "364069fd142734a146c3b455f71c1f72d1a1c416c49ed5a3097ce52fa9d40a07"
+          },
+          "hash_verification_scope": "Pins recorded by benchmark admission; no large artifact rehash in summarizer."
+        },
+        "geometry": {
+          "effective_prompts_per_update": 4,
+          "decoder": {
+            "sequence_len": 2048,
+            "vocab_size": 32768,
+            "n_layer": 27,
+            "n_head": 13,
+            "n_kv_head": 13,
+            "n_embd": 1664,
+            "window_pattern": "SSSL"
+          },
+          "encoder": {
+            "n_sae_features": 65536,
+            "num_buckets": 2,
+            "n_embd": 1664,
+            "n_layer": 27,
+            "n_head": 13,
+            "n_kv_head": 13,
+            "head_dim": 128,
+            "ve_gate_channels": 32
+          },
+          "feature_head": {
+            "weight": 0.1,
+            "layer": -1,
+            "loss_mode": "max_pool",
+            "loss_fn": "bce",
+            "mlp_layers": 0
+          },
+          "cadence": 33,
+          "parameter_count": 2988187138,
+          "trainable_parameter_count": 1405260
+        },
+        "rows": [
+          {
+            "index": 0,
+            "row_id": "rlvr:ad4f4ee72148be338012e4873a2d001ec968cb845f63447a3a29607148abc6dc",
+            "task": "ARC-Easy",
+            "prompt_tokens": 53
+          },
+          {
+            "index": 10,
+            "row_id": "rlvr:7350cea01aabec567c8935f6256482aa409fd51d84ceeea1916d82ab947438ad",
+            "task": "ARC-Challenge",
+            "prompt_tokens": 72
+          },
+          {
+            "index": 16,
+            "row_id": "rlvr:6c876b0a5ae04500c6f03bfe8b6210d6872a2954fe748f3aad7a1ef1738ca374",
+            "task": "MMLU",
+            "prompt_tokens": 238
+          },
+          {
+            "index": 26,
+            "row_id": "rlvr:473eefdd207779e9381a428b54ff9aa99b94ba01ab6d57b267cd163fdca17bbe",
+            "task": "GSM8K",
+            "prompt_tokens": 103
+          }
+        ],
+        "parameter_manifest": [
+          "feature_pred_head.weight",
+          "feature_pred_head.bias"
+        ],
+        "timing_contract": "Outer CUDA synchronization; compiler reset, collection, native reward, replay, clipping and optimizer included. Separate phase/profiler steps are excluded from measured samples.",
+        "measured_seconds": [
+          52.83062904700637,
+          59.967157404869795,
+          60.854444928467274
+        ],
+        "median_seconds": 59.967157404869795,
+        "mean_seconds": 57.88407712678114,
+        "warmup_seconds": [
+          61.68058766797185
+        ],
+        "first_process_step_seconds": 61.68058766797185,
+        "cold_step_definition": "First step of this fresh process; disk compiler caches were not necessarily empty.",
+        "measured_step_count": 3,
+        "measured_generated_tokens": 4575,
+        "measured_live_actions": 176,
+        "measured_reward_count": 48,
+        "measured_reward_sum": 11.0,
+        "measured_nonzero_gradient_steps": [
+          1,
+          2,
+          3
+        ],
+        "peak_allocated_bytes_measured": 10651522048,
+        "peak_allocated_bytes_warmup_and_measured": 10651522048,
+        "steps": [
+          {
+            "step": 0,
+            "seconds": 61.68058766797185,
+            "phase_seconds": {},
+            "phase_synchronized": false,
+            "gradient_norm_before_clip": 8.915684700012207,
+            "peak_allocated_bytes": 10628826112,
+            "generated_tokens": 1657,
+            "live_actions": 63,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "advantages": [
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                -1.0,
+                1.0,
+                -1.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "replay": [
+              {
+                "loss": 0.0,
+                "ratio_min": 0.999969482421875,
+                "ratio_max": 1.0000076293945312,
+                "live_decisions": 4
+              },
+              {
+                "loss": 1.9073486328125e-06,
+                "ratio_min": 1.0,
+                "ratio_max": 1.0000076293945312,
+                "live_decisions": 4
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.9999847412109375,
+                "ratio_max": 1.0000152587890625,
+                "live_decisions": 4
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.999969482421875,
+                "ratio_max": 1.000091552734375,
+                "live_decisions": 51
+              }
+            ]
+          },
+          {
+            "step": 1,
+            "seconds": 52.83062904700637,
+            "phase_seconds": {},
+            "phase_synchronized": false,
+            "gradient_norm_before_clip": 10.339204788208008,
+            "peak_allocated_bytes": 10651522048,
+            "generated_tokens": 1306,
+            "live_actions": 53,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "advantages": [
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.5773502588272095,
+                0.5773502588272095,
+                0.5773502588272095,
+                -1.732050895690918
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "replay": [
+              {
+                "loss": 0.0,
+                "ratio_min": 0.9999923706054688,
+                "ratio_max": 1.0000038146972656,
+                "live_decisions": 4
+              },
+              {
+                "loss": -2.7120113372802734e-06,
+                "ratio_min": 0.9999923706054688,
+                "ratio_max": 1.0000152587890625,
+                "live_decisions": 4
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 1.0,
+                "ratio_max": 1.00006103515625,
+                "live_decisions": 4
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.99993896484375,
+                "ratio_max": 1.000091552734375,
+                "live_decisions": 41
+              }
+            ],
+            "nonzero_gradient_parameters": [
+              "feature_pred_head.weight",
+              "feature_pred_head.bias"
+            ]
+          },
+          {
+            "step": 2,
+            "seconds": 59.967157404869795,
+            "phase_seconds": {},
+            "phase_synchronized": false,
+            "gradient_norm_before_clip": 23.119340896606445,
+            "peak_allocated_bytes": 10650440192,
+            "generated_tokens": 1609,
+            "live_actions": 61,
+            "rewards": [
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "advantages": [
+              [
+                1.0,
+                -1.0,
+                -1.0,
+                1.0
+              ],
+              [
+                -1.732050895690918,
+                0.5773502588272095,
+                0.5773502588272095,
+                0.5773502588272095
+              ],
+              [
+                1.732050895690918,
+                -0.5773502588272095,
+                -0.5773502588272095,
+                -0.5773502588272095
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "replay": [
+              {
+                "loss": -1.9073486328125e-06,
+                "ratio_min": 0.9999847412109375,
+                "ratio_max": 1.0,
+                "live_decisions": 4
+              },
+              {
+                "loss": -6.854534149169922e-06,
+                "ratio_min": 0.9999847412109375,
+                "ratio_max": 1.0000019073486328,
+                "live_decisions": 4
+              },
+              {
+                "loss": 2.175569534301758e-06,
+                "ratio_min": 0.9999847412109375,
+                "ratio_max": 1.000030517578125,
+                "live_decisions": 4
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.999969482421875,
+                "ratio_max": 1.00006103515625,
+                "live_decisions": 49
+              }
+            ],
+            "nonzero_gradient_parameters": [
+              "feature_pred_head.weight",
+              "feature_pred_head.bias"
+            ]
+          },
+          {
+            "step": 3,
+            "seconds": 60.854444928467274,
+            "phase_seconds": {},
+            "phase_synchronized": false,
+            "gradient_norm_before_clip": 10.831221580505371,
+            "peak_allocated_bytes": 10651307520,
+            "generated_tokens": 1660,
+            "live_actions": 62,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "advantages": [
+              [
+                -0.5773502588272095,
+                -0.5773502588272095,
+                -0.5773502588272095,
+                1.732050895690918
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                1.732050895690918,
+                -0.5773502588272095,
+                -0.5773502588272095,
+                -0.5773502588272095
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "replay": [
+              {
+                "loss": 5.4836273193359375e-06,
+                "ratio_min": 0.9999847412109375,
+                "ratio_max": 1.0,
+                "live_decisions": 4
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.9999847412109375,
+                "ratio_max": 1.00006103515625,
+                "live_decisions": 4
+              },
+              {
+                "loss": 2.7120113372802734e-06,
+                "ratio_min": 0.9999962449073792,
+                "ratio_max": 1.0000076293945312,
+                "live_decisions": 4
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.9998779296875,
+                "ratio_max": 1.000091552734375,
+                "live_decisions": 50
+              }
+            ],
+            "nonzero_gradient_parameters": [
+              "feature_pred_head.weight",
+              "feature_pred_head.bias"
+            ]
+          }
+        ],
+        "frozen_parameters_unchanged": true
+      },
+      "retain": {
+        "results_file": {
+          "path": "out/rlvr-perf/retain-full/results.json",
+          "bytes": 11829,
+          "sha256": "a02868a7f1b3dd8864ad2902b4cff73450d99da88642081db756e55661423f0b"
+        },
+        "config": {
+          "base_checkpoint_dir": "/home/d0rb/.cache/nanochat/conditional_encdec_checkpoints/full3b_clustered_c2048_long_w32_bf16_b14_fp/standard_steered_sft_conditioned_checkpoints/sft3b-steered-turnseg32-20260905",
+          "model_step": 1116,
+          "bundle_dir": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-bccea5ce/out/rlvr-qualification/data",
+          "stats_path": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/s32/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/standard_steered_sft/context_independent/no_bos/turn_delimited/feature_statistics.safetensors",
+          "output_dir": "out/rlvr-perf/retain-full",
+          "resume_from_step": -1,
+          "resume_checkpoint_dir": null,
+          "train_feature_head_only": true,
+          "global_prompts_per_step": 1,
+          "group_size": 4,
+          "num_iterations": 1,
+          "device_type": "cuda",
+          "seed": 42,
+          "tasks": [
+            "ARC-Easy",
+            "ARC-Challenge",
+            "MMLU",
+            "GSM8K"
+          ],
+          "validation_seed": 314159,
+          "temperature": 1.0,
+          "top_k": null,
+          "mc_max_tokens": 16,
+          "gsm8k_max_tokens": 512,
+          "validation_per_task": 32,
+          "eval_every": 10,
+          "save_every": 10,
+          "grad_clip_max_norm": 1.0,
+          "lr_multiplier": 1.0,
+          "init_lr_frac": 0.05,
+          "embedding_lr": 0.2,
+          "unembedding_lr": 0.004,
+          "matrix_lr": 0.02,
+          "encoder_embedding_lr": 0.2,
+          "encoder_matrix_lr": 0.02,
+          "xattn_matrix_lr": 0.02,
+          "weight_decay": 0.0,
+          "lr_decay_start": 0.8,
+          "wandb": {
+            "enabled": false,
+            "mode": "online",
+            "project": "nanochat-encdec-rlvr",
+            "entity": null,
+            "name": null,
+            "new_run": false
+          },
+          "row_indices": [
+            0,
+            10,
+            16,
+            26
+          ],
+          "warmup_steps": 1,
+          "measure_steps": 3,
+          "compiler_reset": null,
+          "measure_phases": false,
+          "profile": false,
+          "parity_steps": [
+            0,
+            1,
+            2
+          ]
+        },
+        "effective_compiler_reset": false,
+        "source": {
+          "git_sha": "93f70c0c97140434246629875f1b725a22a30d69",
+          "source_identity": {
+            "runtime_version": "chatcore_scalar_self_conditioned_v1",
+            "git_commit": "93f70c0c97140434246629875f1b725a22a30d69",
+            "source_sha256": "4419bc744b655acdada397d814ec4239430bfa6dae9989e62805ef5398986875"
+          },
+          "benchmark_sha256": "170ae9dd0f8a2d4982fce5845c59a0405f79bcacc6cbb724f7b7d35f5a117deb"
+        },
+        "runtime": {
+          "values": {
+            "gpu": "NVIDIA GeForce RTX 4090",
+            "gpu_capability": [
+              8,
+              9
+            ],
+            "torch": "2.13.0+cu130",
+            "cuda": "13.0",
+            "compute_dtype": "torch.bfloat16",
+            "autocast_enabled": false,
+            "attention": "sdpa",
+            "deterministic": true,
+            "compiler": {
+              "derived_minimum": 8193,
+              "window_variants": 2,
+              "sequence_len": 2048,
+              "recompile_limit": 8193,
+              "accumulated_recompile_limit": 8193,
+              "fail_on_recompile_limit_hit": true,
+              "suppress_errors": false
+            }
+          },
+          "canonical_sha256": "b7fffbd63e01eefb9f59dc1c155c4afcc82c33a3d266bdde5a926e8c35cb5471"
+        },
+        "inputs": {
+          "base_identity": {
+            "step": 1116,
+            "model_sha256": "a91b0ffb0fefe6d34c2954f72d57bdbe33f73c306177cfc8e23128c7b9cead27",
+            "metadata_sha256": "1ee6c80ec85673d1b54d9805886a55da44b528bbc1c9a06401ec571923e7d73c"
+          },
+          "bundle_sha256": "11bdc48b92295cf29ab5478581d855c5faf62b86da439b17c8eec8190763f3e6",
+          "bundle_manifest_file": {
+            "path": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-bccea5ce/out/rlvr-qualification/data/manifest.json",
+            "bytes": 4543,
+            "sha256": "484f6247cfe3962486c823adf02bb1b40689a65feea7db1cba93fa83333bf3e7"
+          },
+          "statistics": {
+            "path": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/s32/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/standard_steered_sft/context_independent/no_bos/turn_delimited/feature_statistics.safetensors",
+            "sha256": "4add3651483aa763b4fdb573b9600c2904213ca773cb97cae0a907676fe39519"
+          },
+          "tokenizers": {
+            "decoder_sha256": "dc6308e6116cbfe05fcd3af1af1cf93562ffd57fb3d58bf4287ec81bd3c3b541",
+            "extraction_sha256": "364069fd142734a146c3b455f71c1f72d1a1c416c49ed5a3097ce52fa9d40a07"
+          },
+          "hash_verification_scope": "Pins recorded by benchmark admission; no large artifact rehash in summarizer."
+        },
+        "geometry": {
+          "effective_prompts_per_update": 4,
+          "decoder": {
+            "sequence_len": 2048,
+            "vocab_size": 32768,
+            "n_layer": 27,
+            "n_head": 13,
+            "n_kv_head": 13,
+            "n_embd": 1664,
+            "window_pattern": "SSSL"
+          },
+          "encoder": {
+            "n_sae_features": 65536,
+            "num_buckets": 2,
+            "n_embd": 1664,
+            "n_layer": 27,
+            "n_head": 13,
+            "n_kv_head": 13,
+            "head_dim": 128,
+            "ve_gate_channels": 32
+          },
+          "feature_head": {
+            "weight": 0.1,
+            "layer": -1,
+            "loss_mode": "max_pool",
+            "loss_fn": "bce",
+            "mlp_layers": 0
+          },
+          "cadence": 33,
+          "parameter_count": 2988187138,
+          "trainable_parameter_count": 1405260
+        },
+        "rows": [
+          {
+            "index": 0,
+            "row_id": "rlvr:ad4f4ee72148be338012e4873a2d001ec968cb845f63447a3a29607148abc6dc",
+            "task": "ARC-Easy",
+            "prompt_tokens": 53
+          },
+          {
+            "index": 10,
+            "row_id": "rlvr:7350cea01aabec567c8935f6256482aa409fd51d84ceeea1916d82ab947438ad",
+            "task": "ARC-Challenge",
+            "prompt_tokens": 72
+          },
+          {
+            "index": 16,
+            "row_id": "rlvr:6c876b0a5ae04500c6f03bfe8b6210d6872a2954fe748f3aad7a1ef1738ca374",
+            "task": "MMLU",
+            "prompt_tokens": 238
+          },
+          {
+            "index": 26,
+            "row_id": "rlvr:473eefdd207779e9381a428b54ff9aa99b94ba01ab6d57b267cd163fdca17bbe",
+            "task": "GSM8K",
+            "prompt_tokens": 103
+          }
+        ],
+        "parameter_manifest": [
+          "feature_pred_head.weight",
+          "feature_pred_head.bias"
+        ],
+        "timing_contract": "Outer CUDA synchronization; compiler reset, collection, native reward, replay, clipping and optimizer included. Separate phase/profiler steps are excluded from measured samples.",
+        "measured_seconds": [
+          29.051602248102427,
+          35.10577503964305,
+          36.84708812460303
+        ],
+        "median_seconds": 35.10577503964305,
+        "mean_seconds": 33.6681551374495,
+        "warmup_seconds": [
+          61.81837185844779
+        ],
+        "first_process_step_seconds": 61.81837185844779,
+        "cold_step_definition": "First step of this fresh process; disk compiler caches were not necessarily empty.",
+        "measured_step_count": 3,
+        "measured_generated_tokens": 4575,
+        "measured_live_actions": 176,
+        "measured_reward_count": 48,
+        "measured_reward_sum": 11.0,
+        "measured_nonzero_gradient_steps": [
+          1,
+          2,
+          3
+        ],
+        "peak_allocated_bytes_measured": 10651307520,
+        "peak_allocated_bytes_warmup_and_measured": 10651307520,
+        "steps": [
+          {
+            "step": 0,
+            "seconds": 61.81837185844779,
+            "phase_seconds": {},
+            "phase_synchronized": false,
+            "gradient_norm_before_clip": 8.915684700012207,
+            "peak_allocated_bytes": 10628826112,
+            "generated_tokens": 1657,
+            "live_actions": 63,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "advantages": [
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                -1.0,
+                1.0,
+                -1.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "replay": [
+              {
+                "loss": 0.0,
+                "ratio_min": 0.999969482421875,
+                "ratio_max": 1.0000076293945312,
+                "live_decisions": 4
+              },
+              {
+                "loss": 1.9073486328125e-06,
+                "ratio_min": 1.0,
+                "ratio_max": 1.0000076293945312,
+                "live_decisions": 4
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.9999847412109375,
+                "ratio_max": 1.0000152587890625,
+                "live_decisions": 4
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.999969482421875,
+                "ratio_max": 1.000091552734375,
+                "live_decisions": 51
+              }
+            ]
+          },
+          {
+            "step": 1,
+            "seconds": 29.051602248102427,
+            "phase_seconds": {},
+            "phase_synchronized": false,
+            "gradient_norm_before_clip": 10.339204788208008,
+            "peak_allocated_bytes": 10651307520,
+            "generated_tokens": 1306,
+            "live_actions": 53,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "advantages": [
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.5773502588272095,
+                0.5773502588272095,
+                0.5773502588272095,
+                -1.732050895690918
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "replay": [
+              {
+                "loss": 0.0,
+                "ratio_min": 0.9999923706054688,
+                "ratio_max": 1.0000038146972656,
+                "live_decisions": 4
+              },
+              {
+                "loss": -2.7120113372802734e-06,
+                "ratio_min": 0.9999923706054688,
+                "ratio_max": 1.0000152587890625,
+                "live_decisions": 4
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 1.0,
+                "ratio_max": 1.00006103515625,
+                "live_decisions": 4
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.99993896484375,
+                "ratio_max": 1.000091552734375,
+                "live_decisions": 41
+              }
+            ],
+            "nonzero_gradient_parameters": [
+              "feature_pred_head.weight",
+              "feature_pred_head.bias"
+            ]
+          },
+          {
+            "step": 2,
+            "seconds": 35.10577503964305,
+            "phase_seconds": {},
+            "phase_synchronized": false,
+            "gradient_norm_before_clip": 23.119340896606445,
+            "peak_allocated_bytes": 10651307520,
+            "generated_tokens": 1609,
+            "live_actions": 61,
+            "rewards": [
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "advantages": [
+              [
+                1.0,
+                -1.0,
+                -1.0,
+                1.0
+              ],
+              [
+                -1.732050895690918,
+                0.5773502588272095,
+                0.5773502588272095,
+                0.5773502588272095
+              ],
+              [
+                1.732050895690918,
+                -0.5773502588272095,
+                -0.5773502588272095,
+                -0.5773502588272095
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "replay": [
+              {
+                "loss": -1.9073486328125e-06,
+                "ratio_min": 0.9999847412109375,
+                "ratio_max": 1.0,
+                "live_decisions": 4
+              },
+              {
+                "loss": -6.854534149169922e-06,
+                "ratio_min": 0.9999847412109375,
+                "ratio_max": 1.0000019073486328,
+                "live_decisions": 4
+              },
+              {
+                "loss": 2.175569534301758e-06,
+                "ratio_min": 0.9999847412109375,
+                "ratio_max": 1.000030517578125,
+                "live_decisions": 4
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.999969482421875,
+                "ratio_max": 1.00006103515625,
+                "live_decisions": 49
+              }
+            ],
+            "nonzero_gradient_parameters": [
+              "feature_pred_head.weight",
+              "feature_pred_head.bias"
+            ]
+          },
+          {
+            "step": 3,
+            "seconds": 36.84708812460303,
+            "phase_seconds": {},
+            "phase_synchronized": false,
+            "gradient_norm_before_clip": 10.831221580505371,
+            "peak_allocated_bytes": 10651307520,
+            "generated_tokens": 1660,
+            "live_actions": 62,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "advantages": [
+              [
+                -0.5773502588272095,
+                -0.5773502588272095,
+                -0.5773502588272095,
+                1.732050895690918
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                1.732050895690918,
+                -0.5773502588272095,
+                -0.5773502588272095,
+                -0.5773502588272095
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "replay": [
+              {
+                "loss": 5.4836273193359375e-06,
+                "ratio_min": 0.9999847412109375,
+                "ratio_max": 1.0,
+                "live_decisions": 4
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.9999847412109375,
+                "ratio_max": 1.00006103515625,
+                "live_decisions": 4
+              },
+              {
+                "loss": 2.7120113372802734e-06,
+                "ratio_min": 0.9999962449073792,
+                "ratio_max": 1.0000076293945312,
+                "live_decisions": 4
+              },
+              {
+                "loss": 0.0,
+                "ratio_min": 0.9998779296875,
+                "ratio_max": 1.000091552734375,
+                "live_decisions": 50
+              }
+            ],
+            "nonzero_gradient_parameters": [
+              "feature_pred_head.weight",
+              "feature_pred_head.bias"
+            ]
+          }
+        ],
+        "frozen_parameters_unchanged": true
+      },
+      "comparison": {
+        "reset_median_over_retain_median": 1.7081849734737984,
+        "median_time_reduction_fraction": 0.4145833059481957,
+        "median_time_reduction_percent": 41.45833059481957,
+        "paired_reset_over_retain_ratios": [
+          1.81850999458927,
+          1.7081849734737984,
+          1.65154013589026
+        ],
+        "peak_measured_allocation_delta_bytes": -214528
+      },
+      "parity": {
+        "report_file": {
+          "path": "out/rlvr-perf/full-parity.json",
+          "bytes": 1721,
+          "sha256": "a5b0c45e161f3c2c8e33b73041e2e8e9376348863cf5360b3233613658af4a73"
+        },
+        "report": {
+          "reference": "out/rlvr-perf/reset-full",
+          "candidate": "out/rlvr-perf/retain-full",
+          "atol": 0.0,
+          "rtol": 0.0,
+          "tensors": 72,
+          "exact_tensors": 72,
+          "scalars": 291,
+          "exact_scalars": 291,
+          "max_abs": {
+            "parity-000.pt/clipped_gradients/feature_pred_head.weight": 0.0,
+            "parity-000.pt/clipped_gradients/feature_pred_head.bias": 0.0,
+            "parity-000.pt/updated_parameters/feature_pred_head.weight": 0.0,
+            "parity-000.pt/updated_parameters/feature_pred_head.bias": 0.0,
+            "parity-000.pt/optimizer/state/0/exp_avg": 0.0,
+            "parity-000.pt/optimizer/state/0/exp_avg_sq": 0.0,
+            "parity-000.pt/optimizer/state/1/exp_avg": 0.0,
+            "parity-000.pt/optimizer/state/1/exp_avg_sq": 0.0,
+            "parity-001.pt/clipped_gradients/feature_pred_head.weight": 0.0,
+            "parity-001.pt/clipped_gradients/feature_pred_head.bias": 0.0,
+            "parity-001.pt/updated_parameters/feature_pred_head.weight": 0.0,
+            "parity-001.pt/updated_parameters/feature_pred_head.bias": 0.0,
+            "parity-001.pt/optimizer/state/0/exp_avg": 0.0,
+            "parity-001.pt/optimizer/state/0/exp_avg_sq": 0.0,
+            "parity-001.pt/optimizer/state/1/exp_avg": 0.0,
+            "parity-001.pt/optimizer/state/1/exp_avg_sq": 0.0,
+            "parity-002.pt/clipped_gradients/feature_pred_head.weight": 0.0,
+            "parity-002.pt/clipped_gradients/feature_pred_head.bias": 0.0,
+            "parity-002.pt/updated_parameters/feature_pred_head.weight": 0.0,
+            "parity-002.pt/updated_parameters/feature_pred_head.bias": 0.0,
+            "parity-002.pt/optimizer/state/0/exp_avg": 0.0,
+            "parity-002.pt/optimizer/state/0/exp_avg_sq": 0.0,
+            "parity-002.pt/optimizer/state/1/exp_avg": 0.0,
+            "parity-002.pt/optimizer/state/1/exp_avg_sq": 0.0
+          },
+          "failures": [],
+          "passed": true
+        },
+        "verification_scope": "Existing comparator report; tensor receipts are not reloaded or rehashed here."
+      }
+    }
+  ],
+  "bottleneck_profile": {
+    "results_file": {
+      "path": "out/rlvr-perf/baseline-short-retry/results.json",
+      "bytes": 11166,
+      "sha256": "41b57ae149f2e34ec8eb9a39e503a11deb227647ea05231fdfc90f67d3fbcc7a"
+    },
+    "regions_file": {
+      "path": "out/rlvr-perf/baseline-short-retry/regions.json",
+      "bytes": 153399,
+      "sha256": "67124543fea2546763bfd165b32b47ed42f77ed840f6615182ce1d7e27cce3e8"
+    },
+    "compiler_regions_file": {
+      "path": "out/rlvr-perf/baseline-short-retry/compiler-regions.json",
+      "bytes": 20613,
+      "sha256": "541c3b1fda1ebc37e3e346d72d320afe14c1b4c528a22fc9929d2cf7bab78f2b"
+    },
+    "source": {
+      "git_sha": "967c25dc8c82cde266c2b591ff1d018de06133bf",
+      "source_identity": {
+        "runtime_version": "chatcore_scalar_self_conditioned_v1",
+        "git_commit": "967c25dc8c82cde266c2b591ff1d018de06133bf",
+        "source_sha256": "81341dcef10c3385de34c1e75a30d29f915f21f776ab41d37227addd61b02a09"
+      },
+      "benchmark_sha256": "72b9e750d77fb887bbd68e52acdb6b3a06c7fdffa6c94d88c5c9ab9b23972dbe"
+    },
+    "runtime": {
+      "values": {
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "gpu_capability": [
+          8,
+          9
+        ],
+        "torch": "2.13.0+cu130",
+        "cuda": "13.0",
+        "compute_dtype": "torch.bfloat16",
+        "autocast_enabled": false,
+        "attention": "sdpa",
+        "deterministic": true,
+        "compiler": {
+          "derived_minimum": 8193,
+          "window_variants": 2,
+          "sequence_len": 2048,
+          "recompile_limit": 8193,
+          "accumulated_recompile_limit": 8193,
+          "fail_on_recompile_limit_hit": true,
+          "suppress_errors": false
+        }
+      },
+      "canonical_sha256": "b7fffbd63e01eefb9f59dc1c155c4afcc82c33a3d266bdde5a926e8c35cb5471"
+    },
+    "config": {
+      "base_checkpoint_dir": "/home/d0rb/.cache/nanochat/conditional_encdec_checkpoints/full3b_clustered_c2048_long_w32_bf16_b14_fp/standard_steered_sft_conditioned_checkpoints/sft3b-steered-turnseg32-20260905",
+      "model_step": 1116,
+      "bundle_dir": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-bccea5ce/out/rlvr-qualification/data",
+      "stats_path": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/s32/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/standard_steered_sft/context_independent/no_bos/turn_delimited/feature_statistics.safetensors",
+      "output_dir": "out/rlvr-perf/baseline-short-retry",
+      "resume_from_step": -1,
+      "resume_checkpoint_dir": null,
+      "train_feature_head_only": true,
+      "global_prompts_per_step": 1,
+      "group_size": 2,
+      "num_iterations": 1,
+      "device_type": "cuda",
+      "seed": 42,
+      "tasks": [
+        "ARC-Easy",
+        "ARC-Challenge",
+        "MMLU",
+        "GSM8K"
+      ],
+      "validation_seed": 314159,
+      "temperature": 1.0,
+      "top_k": null,
+      "mc_max_tokens": 16,
+      "gsm8k_max_tokens": 64,
+      "validation_per_task": 32,
+      "eval_every": 10,
+      "save_every": 10,
+      "grad_clip_max_norm": 1.0,
+      "lr_multiplier": 1.0,
+      "init_lr_frac": 0.05,
+      "embedding_lr": 0.2,
+      "unembedding_lr": 0.004,
+      "matrix_lr": 0.02,
+      "encoder_embedding_lr": 0.2,
+      "encoder_matrix_lr": 0.02,
+      "xattn_matrix_lr": 0.02,
+      "weight_decay": 0.0,
+      "lr_decay_start": 0.8,
+      "wandb": {
+        "enabled": false,
+        "mode": "online",
+        "project": "nanochat-encdec-rlvr",
+        "entity": null,
+        "name": null,
+        "new_run": false
+      },
+      "row_indices": [
+        0,
+        8,
+        16,
+        24
+      ],
+      "warmup_steps": 1,
+      "measure_steps": 2,
+      "compiler_reset": true,
+      "measure_phases": true,
+      "profile": true,
+      "parity_steps": [
+        0
+      ]
+    },
+    "phase_diagnostic": {
+      "step": 3,
+      "seconds": 27.829134110361338,
+      "phase_seconds": {
+        "collection": 27.586965534836054,
+        "replay_backward": 0.1732184775173664,
+        "clip_optimizer": 0.06755196675658226
+      },
+      "phase_synchronized": true,
+      "gradient_norm_before_clip": 22.14722442626953,
+      "peak_allocated_bytes": 10603632128,
+      "generated_tokens": 87,
+      "live_actions": 9,
+      "rewards": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "advantages": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          -1.0
+        ],
+        [
+          1.0,
+          -1.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "replay": [
+        {
+          "loss": 0.0,
+          "ratio_min": 1.0,
+          "ratio_max": 1.0000076293945312,
+          "live_decisions": 2
+        },
+        {
+          "loss": -7.62939453125e-06,
+          "ratio_min": 1.0,
+          "ratio_max": 1.0000152587890625,
+          "live_decisions": 2
+        },
+        {
+          "loss": 0.0,
+          "ratio_min": 1.0,
+          "ratio_max": 1.0,
+          "live_decisions": 2
+        },
+        {
+          "loss": 0.0,
+          "ratio_min": 1.0,
+          "ratio_max": 1.000030517578125,
+          "live_decisions": 3
+        }
+      ]
+    },
+    "profile_diagnostic": {
+      "step": 4,
+      "seconds": 32.5655257999897,
+      "phase_seconds": {},
+      "phase_synchronized": false,
+      "gradient_norm_before_clip": 34.70801544189453,
+      "peak_allocated_bytes": 10603934720,
+      "generated_tokens": 134,
+      "live_actions": 14,
+      "rewards": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "advantages": [
+        [
+          1.0,
+          -1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "replay": [
+        {
+          "loss": 0.0,
+          "ratio_min": 1.0,
+          "ratio_max": 1.0,
+          "live_decisions": 2
+        },
+        {
+          "loss": 4.57763671875e-05,
+          "ratio_min": 1.0,
+          "ratio_max": 1.000091552734375,
+          "live_decisions": 2
+        },
+        {
+          "loss": 3.4332275390625e-05,
+          "ratio_min": 0.9999923706054688,
+          "ratio_max": 1.00006103515625,
+          "live_decisions": 2
+        },
+        {
+          "loss": 0.0,
+          "ratio_min": 0.9999923706054688,
+          "ratio_max": 1.0000152587890625,
+          "live_decisions": 8
+        }
+      ]
+    },
+    "cpu_annotation_regions": {
+      "rlvr/collection": {
+        "calls": 4,
+        "total_seconds": 31.843752344000002
+      },
+      "rlvr/encoder": {
+        "calls": 74,
+        "total_seconds": 25.057587322000003
+      },
+      "rlvr/token_cached_forward": {
+        "calls": 148,
+        "total_seconds": 4.890880260999998
+      },
+      "rlvr/canonical_feature_policy": {
+        "calls": 20,
+        "total_seconds": 2.481989281
+      },
+      "rlvr/full_prefix_forward": {
+        "calls": 20,
+        "total_seconds": 1.930027828
+      },
+      "rlvr/replay_backward": {
+        "calls": 4,
+        "total_seconds": 0.6489323140000001
+      },
+      "rlvr/clip_optimizer": {
+        "calls": 1,
+        "total_seconds": 0.07110091099999999
+      }
+    },
+    "gpu_annotation_elapsed_regions": {
+      "rlvr/full_prefix_forward": {
+        "calls": 20,
+        "total_seconds": 1.92836814
+      },
+      "rlvr/encoder": {
+        "calls": 74,
+        "total_seconds": 0.14324007699999997
+      },
+      "rlvr/canonical_feature_policy": {
+        "calls": 20,
+        "total_seconds": 2.27288341
+      },
+      "rlvr/replay_backward": {
+        "calls": 4,
+        "total_seconds": 0.495315346
+      },
+      "rlvr/token_cached_forward": {
+        "calls": 148,
+        "total_seconds": 4.9455759279999985
+      },
+      "rlvr/clip_optimizer": {
+        "calls": 1,
+        "total_seconds": 0.069972961
+      },
+      "rlvr/collection": {
+        "calls": 4,
+        "total_seconds": 31.836922821
+      }
+    },
+    "cpu_compiler_regions": {
+      "entire_frame_compile": {
+        "calls": 11,
+        "total_seconds": 26.680177226999998
+      },
+      "_compile.compile_inner (dynamo_timed)": {
+        "calls": 11,
+        "total_seconds": 26.679862211
+      },
+      "compile_attempt_0": {
+        "calls": 11,
+        "total_seconds": 20.190170315000003
+      },
+      "compile_attempt_0 (dynamo_timed)": {
+        "calls": 11,
+        "total_seconds": 20.189853009000004
+      },
+      "backend_compile": {
+        "calls": 13,
+        "total_seconds": 12.069134036000001
+      },
+      "OutputGraph.call_user_compiler (dynamo_timed)": {
+        "calls": 13,
+        "total_seconds": 12.068318968
+      },
+      "compile_attempt_1": {
+        "calls": 2,
+        "total_seconds": 6.035633077
+      },
+      "compile_attempt_1 (dynamo_timed)": {
+        "calls": 2,
+        "total_seconds": 6.035484608999999
+      },
+      "async_compile.wait": {
+        "calls": 11,
+        "total_seconds": 0.12648771399999997
+      },
+      "async_compile.wait (dynamo_timed)": {
+        "calls": 11,
+        "total_seconds": 0.125863619
+      },
+      "StaticAutotunerFuture.warm_precompile": {
+        "calls": 68,
+        "total_seconds": 0.017775292
+      },
+      "StaticAutotunerFuture.warm_precompile (dynamo_timed)": {
+        "calls": 68,
+        "total_seconds": 0.015499257000000002
+      },
+      "TorchDynamo Cache Lookup": {
+        "calls": 4609,
+        "total_seconds": 0.14905374599999957
+      },
+      "compile_fx.<locals>.fw_compiler_base": {
+        "calls": 1,
+        "total_seconds": 0.47958009
+      },
+      "compile_fx.<locals>.fw_compiler_base (dynamo_timed)": {
+        "calls": 1,
+        "total_seconds": 0.479344786
+      },
+      "inductor_compile": {
+        "calls": 1,
+        "total_seconds": 0.36801175
+      },
+      "compile_fx_inner (dynamo_timed)": {
+        "calls": 1,
+        "total_seconds": 0.367968379
+      },
+      "fx_codegen_and_compile": {
+        "calls": 1,
+        "total_seconds": 0.366908881
+      },
+      "fx_codegen_and_compile (dynamo_timed)": {
+        "calls": 1,
+        "total_seconds": 0.366862293
+      },
+      "GraphLowering.run": {
+        "calls": 1,
+        "total_seconds": 0.08043826
+      },
+      "GraphLowering.run (dynamo_timed)": {
+        "calls": 1,
+        "total_seconds": 0.080386052
+      },
+      "GraphLowering.compile_to_fn": {
+        "calls": 1,
+        "total_seconds": 0.196567831
+      },
+      "GraphLowering.compile_to_fn (dynamo_timed)": {
+        "calls": 1,
+        "total_seconds": 0.19649177799999998
+      },
+      "GraphLowering.compile_to_module (dynamo_timed)": {
+        "calls": 1,
+        "total_seconds": 0.196447183
+      },
+      "GraphLowering.codegen": {
+        "calls": 1,
+        "total_seconds": 0.157375367
+      },
+      "GraphLowering.codegen (dynamo_timed)": {
+        "calls": 1,
+        "total_seconds": 0.157356522
+      }
+    },
+    "interpretation": [
+      "Diagnostic steps are excluded from synchronized end-to-end measurement samples.",
+      "CPU region durations include host elapsed time; nested regions overlap and must not be summed.",
+      "GPU annotation spans can include launch gaps and overlap; these are not summed kernel busy time.",
+      "Compiler regions are CPU trace events and may nest; do not add all compiler totals.",
+      "Only pre-extracted small JSON summaries are read; the full trace is neither loaded nor hashed."
+    ]
+  },
+  "gpu_ownership": {
+    "source_csv": "out/rlvr-perf/gpu-owners.csv",
+    "source_csv_sha256": "513a008d9782bead7a5da05377bfe742165bf4040302d83c77a9e3d3a3d63c89",
+    "source_csv_bytes": 31614,
+    "timestamp_basis": "Local timestamps as emitted by nvidia-smi and benchmark logger; timezone not encoded in these files.",
+    "window_basis": "Optimizer setup log through final median report, inclusive of warmup and every measured step. Final timestamp extended by one second for second-resolution logger.",
+    "runs": [
+      {
+        "run": "retain-short-retry",
+        "log_path": "out/rlvr-perf/retain-short-retry.log",
+        "log_sha256": "3b2795514e441d23eb029e7a564fcb73db872e71c6517b49cbd07aebac25d7f4",
+        "own_pids_from_warning_lines": [
+          3263932
+        ],
+        "window_start": "2026-09-20 14:22:42",
+        "window_end_exclusive": "2026-09-20 14:23:27",
+        "sample_count": 45,
+        "observed_pids": [
+          3263932
+        ],
+        "competing_samples": [],
+        "max_sample_gap_seconds": 1.001
+      },
+      {
+        "run": "reset-short",
+        "log_path": "out/rlvr-perf/reset-short.log",
+        "log_sha256": "b5c9fb4a180ed8a0d13ea5abcd0cbba7cfb079ecb5cbf08f5183064e2fc7933f",
+        "own_pids_from_warning_lines": [
+          3265737
+        ],
+        "window_start": "2026-09-20 14:24:21",
+        "window_end_exclusive": "2026-09-20 14:27:05",
+        "sample_count": 164,
+        "observed_pids": [
+          3265737
+        ],
+        "competing_samples": [],
+        "max_sample_gap_seconds": 1.001
+      },
+      {
+        "run": "retain-full",
+        "log_path": "out/rlvr-perf/retain-full.log",
+        "log_sha256": "21757dd1be5d7b6c65c1ac0890764ae60f93ae029cd42ca30be1f836312df496",
+        "own_pids_from_warning_lines": [
+          3269683
+        ],
+        "window_start": "2026-09-20 14:28:11",
+        "window_end_exclusive": "2026-09-20 14:30:55",
+        "sample_count": 164,
+        "observed_pids": [
+          3269683
+        ],
+        "competing_samples": [],
+        "max_sample_gap_seconds": 1.001
+      },
+      {
+        "run": "reset-full",
+        "log_path": "out/rlvr-perf/reset-full.log",
+        "log_sha256": "d640c3d7ddbd24bc5b3a13c31426d30657d508ace53cf4f76cc321b607020b16",
+        "own_pids_from_warning_lines": [
+          3275056
+        ],
+        "window_start": "2026-09-20 14:32:35",
+        "window_end_exclusive": "2026-09-20 14:36:31",
+        "sample_count": 235,
+        "observed_pids": [
+          3275056
+        ],
+        "competing_samples": [],
+        "max_sample_gap_seconds": 1.002
+      }
+    ],
+    "no_competing_compute_process_observed": true,
+    "limitations": [
+      "Polling is approximately 1Hz; subsecond competing processes cannot be ruled out.",
+      "Compute-process inventory does not establish absence of graphics work or CPU contention.",
+      "Earlier baseline profile window precedes the ownership capture and is not covered by this audit."
+    ],
+    "source_csv_hash_scope": "Captured prefix of source_csv_bytes bytes; live monitoring continues after this audit."
+  },
+  "validation": {
+    "cpu": {
+      "command": "CUDA_VISIBLE_DEVICES= pytest -q tests/scripts/test_encdec_rlvr_runtime.py tests/code_quality/test_production_callers.py tests/code_quality/test_removed_compatibility_reexports.py",
+      "passed": 112,
+      "failed": 1,
+      "deselected": 36,
+      "failure": "test_no_unapproved_test_only_production_symbols",
+      "baseline_reproduced": true,
+      "baseline_git_sha": "967c25dc8c82cde266c2b591ff1d018de06133bf",
+      "baseline_findings": [
+        "steering.conditional.encoder_decoder.dataloader._loader_health_reset",
+        "steering.eval.axbench_upstream.encdec_baselines.capture.conditioned_loss_forward",
+        "steering.eval.context_enumeration.enumerate_core_target_contexts",
+        "steering.eval.context_enumeration.enumerate_core_task_contexts"
+      ]
+    },
+    "cuda_nonzero_updates": {
+      "test": "tests/steering/selfcond/test_rlvr_compiler_retention.py",
+      "passed": 1,
+      "seconds": 8.57,
+      "updates_per_arm": 3,
+      "head_depth": 2,
+      "comparison_atol": 0,
+      "comparison_rtol": 0,
+      "log": {
+        "path": "out/rlvr-perf/cuda-compiler-retention-v2/pytest.log",
+        "sha256": "ced056f4ae09069543332d1ebea9cc835574a5964c606f2e354869088a697bde"
+      }
+    },
+    "cuda_existing_contracts": {
+      "passed": 3,
+      "seconds": 9.99,
+      "tests": [
+        "test_checkpoint_recompute_preserves_rlvr_compiler_configuration[cuda]",
+        "test_checkpoint_recompute_raises_on_compiler_limit_exhaustion",
+        "test_cuda_head_only_replay_matches_full_and_reports_step_time"
+      ],
+      "log": {
+        "path": "out/rlvr-perf/cuda-existing-contracts/pytest.log",
+        "sha256": "b78c6c25c24a785692cf1f283fb148e7f11eae6c4924b591ef582ec36ee06c17"
+      }
+    },
+    "lint": "ruff check passed for changed Python files",
+    "types": "ty check passed for benchmark, trainer, and added CUDA regression",
+    "documented_comparator": "Passed exact comparison on all three full-budget receipts",
+    "cuda_restart": {
+      "test": "tests/scripts/test_encdec_rlvr_runtime.py::test_tiny_real_tokenizer_cli_reexec_resumes_and_freezes_lm_head[tasks0-1-True-2]",
+      "passed": 1,
+      "seconds": 104.5,
+      "source_git_sha": "0c74936f9692bda7f4e0714a195dbe626fabfb94",
+      "head_depth": 2,
+      "world_size": 1,
+      "optimizer_steps": 3,
+      "checks": [
+        "Exact fork model, optimizer and RNG versus checkpoint continuation",
+        "Exact uninterrupted model and optimizer versus checkpoint every step",
+        "Frozen trunk and six-tensor head optimizer ownership",
+        "Standalone evaluation of all four tasks"
+      ],
+      "log": {
+        "path": "out/rlvr-perf/cuda-depth2-restart/pytest.log",
+        "sha256": "353298b86aa27663bf7f79b31dc9c3d1b0539a58489758a3b7df0e27d640ce80"
+      }
+    }
+  }
+}

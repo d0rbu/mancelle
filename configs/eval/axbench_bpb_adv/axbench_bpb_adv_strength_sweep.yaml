@@ -1,0 +1,24 @@
+# AxBench-BPB-Adv: clean per-method steering-strength sweep.
+#
+# Produces the issue-592 steering-strength family plots without counter-steering
+# pressure: each row is the base intervention at its own coefficient and
+# additive_direction magnitude 0.0. Direction-family coefficients are calibrated
+# by each concept's SAE max activation.
+
+defaults:
+  - axbench_bpb_adv_eval
+  - _self_
+
+output_root: out/eval/axbench_bpb_adv_strength_sweep
+plot_steering_strength_families: true
+
+# The steering-strength frontier's x-axis is general_val_bpb, and every plotted
+# family needs a capability x (issue #635), so the sweep must compute it.
+general_val_bpb:
+  enabled: true
+  n_documents: 20
+
+adversarial_methods:
+  - method: additive_direction
+    families: [diffmean, linear_probe, ours]
+    magnitudes: [0.0]

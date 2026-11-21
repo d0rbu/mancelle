@@ -1,0 +1,13 @@
+# Tokenizer training config
+# Usage: python -m scripts.preprocess.tok_train
+
+max_chars: 2000000000
+doc_cap: 10000
+vocab_size: 32768
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

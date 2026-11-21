@@ -1,0 +1,7 @@
+mixtures: ???           # required: list of SFT mixture names, e.g., [safety] or [safety, capabilities]
+model: gemma-2-2b       # TransformerLens model name for chat template rendering
+output_name: null        # null = auto-generated from mixture names (e.g., "capabilities+safety")
+seed: 0                  # random seed for shuffling
+base_data_dir: null      # null = {base_dir}/base_data/
+sft_data_dir: null       # null = {base_dir}/sft_data/
+output_dir: null         # null = {base_dir}/mixed_data/{output_name}/

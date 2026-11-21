@@ -1,0 +1,43 @@
+# @package _global_
+# ~100M-parameter clustered encoder-decoder pretraining over the complete
+# 370-shard Gemma-3 L22/c1024 corpus.  This is the two-node testbed: two H100s
+# per node, four DDP ranks total.  The inherited remote contract reads the
+# already-published pre-selected family from the d0rb bucket. Packed rows stay
+# on the shared filesystem in this selection-only remote mode.
+defaults:
+  - conditional_encdec_splice_cf_gemma3pt_c1024_remote
+  - _self_
+
+run: l22_gemma3pt_clustered_splice_cf_c1024_100m_2node_2xh100_v1
+model_tag: l22_gemma3pt_clustered_splice_cf_c1024_100m_2node_2xh100_v1
+
+# Explicit production artifact root; remote discovery supplies the large body
+# files while these small manifests/statistics remain on the shared filesystem.
+feature_dir: out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos/splice/cut_frac0.15/seed42
+max_train_shards: 370
+
+# Decoder depth 6 / width 384 is the ~100M scale once the active clustered
+# vocabulary is applied (the feature tables dominate this small decoder).
+depth: 6
+max_seq_len: 1024
+device_batch_size: 32
+total_batch_size: 524288
+fp8: false
+
+# 26,500 optimizer steps × 524,288 tokens ≈ 13.9B tokens, i.e. one pass over
+# the documented 370-shard (~13B-token) corpus.  Keep the ratio positive for
+# the existing LR/weight-decay scaling calculations; the explicit iteration
+# count, rather than the ratio, fixes the one-epoch horizon.
+num_iterations: 26500
+target_param_data_ratio: 189
+
+# The remote run is a training throughput experiment; avoid requiring optional
+# cached CORE/sample artifacts on every node.
+steering_eval_every: 0
+core_metric_every: 0
+sample_every: 0
+
+remote_training:
+  body_prefetch:
+    lookahead_shards_per_rank: 2
+    cache_shards: 2

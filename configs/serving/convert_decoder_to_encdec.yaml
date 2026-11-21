@@ -1,0 +1,39 @@
+# Convert a decoder-only checkpoint to encoder-decoder format
+# Usage: python -m scripts.preprocess.convert_decoder_to_encdec source=sft
+# Usage: python -m scripts.preprocess.convert_decoder_to_encdec source=sft n_sae_features=16384 num_buckets=10
+
+source: sft                     # base, sft, or rl
+model_tag: null                 # null = auto-detect largest
+step: null                      # null = auto-detect latest
+output_tag: null                # null = same as model_tag
+
+# Encoder architecture (same defaults as conditional_encdec_train.yaml)
+encoder:
+  n_embd: 0.5
+  depth: 0.5
+  n_head: null
+  n_kv_head: null
+  head_dim: 64
+
+# Cross-attention
+cross_attention:
+  frequency: 4
+  n_head: null
+  n_kv_head: null
+
+# Feature space
+n_sae_features: 16384
+num_buckets: 10
+
+# Feature labeling params (must match intended training config)
+segment_size: 128
+feature_selection:
+  threshold_type: feature_percentile_segment_topk
+  threshold: 2048.9
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

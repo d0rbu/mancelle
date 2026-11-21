@@ -1,0 +1,36 @@
+# full3b_clustered_c2048 on 31 GPUs — excludes one bad device (issue #1507:
+# node2433 GPU 1 exhibits a host-side, load-dependent CUDA completion-path
+# degradation; the slot straggles every step and the whole job waits).
+#
+# Launch (heterogeneous per-node nproc; torchrun sums worker counts):
+#   healthy nodes: torchrun --nnodes=4 --nproc_per_node=8 ...
+#   bad node:      CUDA_VISIBLE_DEVICES=0,2,3,4,5,6,7 \
+#                  torchrun --nnodes=4 --nproc_per_node=7 ...
+# See experiments/full3b-w31/full3b_prod_w31.sbatch on Engaging.
+#
+# Geometry (owner-selected ladder result): BF16, B14 per device, grad accum 2:
+# 31 ranks x 14 x 2048 x 2 = 1,777,664 tokens per optimizer step (B15 OOMs
+# at the 141 GB edge even with expandable_segments - measured 2026-08-26). LRs
+# auto-scale by sqrt(total_batch_size / B_REF). The trainer's
+# batch-divisibility guard fails loud unless the assembled world is 31.
+#
+# Caveats vs the world-32 preset:
+# - DistMuonAdamW's large-AdamW reduce-scatter path requires
+#   shape[0] % world == 0; at world 31 those params fall back to all_reduce
+#   with replicated state (~10 GiB extra bf16 optimizer state per rank —
+#   fits H200 headroom).
+# - Ordinary world-size resume still fails loud. Issue #1514's offline
+#   migrate_encdec_train_state tool can exactly reshard the optimizer and emit
+#   an audited replay-only precomputed-loader state for a supported handoff.
+defaults:
+  - full3b_clustered_c2048
+  - _self_
+
+run: full3b_clustered_c2048_w31
+model_tag: full3b_clustered_c2048_w31
+
+fp8: false
+
+# 31 x 14 x 2048 x 2 (grad_accum 2)
+total_batch_size: 1777664
+device_batch_size: 14

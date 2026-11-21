@@ -1,0 +1,33 @@
+defaults:
+  - axbench_adv
+  - _self_
+
+# Qwen2.5-3B-Instruct: c100 source rows selected for concepts 0-49.
+source:
+  prepared_dir: /orcd/pool/008/ychenliu/wt_vendored/out/axbench/prepared
+  main_parquet: /orcd/pool/008/ychenliu/wt_vendored/out/axbench/runs/c100_adv/qwen/trim50/main/inference/steering_data.parquet
+  aux_parquet: /orcd/pool/008/ychenliu/wt_vendored/out/axbench/runs/c100_adv/qwen/trim50/aux/inference/steering_data.parquet
+  evaluated_jsonl: /orcd/pool/008/ychenliu/nanochat_cache/henry_bucket/project_encdec_trim50/qwen/evaluated/steering.jsonl
+  project_parquet: /orcd/pool/008/ychenliu/nanochat_cache/henry_bucket/project_encdec_trim50/qwen/project/inference/steering_data.parquet
+  target_meta: /orcd/pool/008/ychenliu/nanochat_cache/adv_target_leaf_s32mask/meta_001125.json
+  feature_statistics: /orcd/pool/008/ychenliu/nanochat_cache/sft3b_mask_1125/feature_statistics.safetensors
+  hashes:
+    main_parquet: ceb74041ffb7b743b5a66bdd40dae5b2f40ff3ccb919f096bae29ade9a7f74aa
+    aux_parquet: dce0f63a7b832bf1b106a386d817eaefc2a6471d3d3014cde3eb7ccdb3b19908
+    evaluated_jsonl: faa1577781917d6ef996a906b1afb6a7fc8a9d52e406ce048d099d669b7e943a
+    project_parquet: 484f3b80c0426e87b71e842afe488f70b60415f95d3f87fb4aedec43c2a0885b
+    project_manifest: 2bd445ab43e95dc0af40c56f320a2a53518501c11ff4f0b09cc34306ba81fb66
+    target_receipt: e73134dcd17a3d7c0ffce13d54ff18119a84b0dfa93b2be433fc80bb93d5c0e3
+  expectations:
+    max_concepts: 50
+    target_model: Qwen/Qwen2.5-3B-Instruct
+    # this host has no revision pin; the base config's it-soup-APO must not leak in
+    model_revision: null
+    config_name_prefix: qwen2_5_3b
+    repository_git_commit: 252e6cf6761ec5c65ca4f70fec5d58b36b21d05e
+    project_target_step: 1125
+    project_target_model_tag: full3b_clustered_c2048_long_w32_bf16_b14_fp
+    project_repository_git_commit: a8b8131788230afb94b5e1defe97c88ae338f373
+
+# Concept 35's PromptSteering prompt overflows the 1024 default.
+worker_max_prompt_tokens: 2048

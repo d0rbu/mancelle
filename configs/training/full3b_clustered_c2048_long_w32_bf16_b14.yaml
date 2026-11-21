@@ -1,0 +1,16 @@
+# World-32 continuation of the world-31 production run after the degraded GPU
+# returns.  This intentionally preserves BF16, B14, accumulation-2, and the
+# 250,000-update horizon; the run identity, one-rank-larger global batch, and
+# node-local cache opt-in/budget differ from full3b_clustered_c2048_long_w31.
+defaults:
+  - full3b_clustered_c2048_long_w31
+  - _self_
+
+run: full3b_clustered_c2048_long_w32_bf16_b14
+model_tag: full3b_clustered_c2048_long_w32_bf16_b14
+
+# 32 ranks x 14 rows x 2,048 tokens x accumulation 2.
+total_batch_size: 1835008
+
+train_node_cache_dir: /scratch/henryac/ngpt-shard-cache
+train_node_cache_max_bytes: 3000000000000

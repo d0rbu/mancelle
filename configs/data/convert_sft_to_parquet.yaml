@@ -1,0 +1,9 @@
+mixture: ???  # required: standard | capabilities | safety | chatcore | standard_steered | standard_steered_balanced
+split: both  # train | val | both; the steered mixtures accept split=train ONLY
+# Steered single-turn JSONL. Required iff mixture is a steered member, rejected
+# otherwise. Their val family is standard: run mixture=standard split=val for it.
+steered_jsonl: null
+artifact_format: full_nanochat_text  # full_nanochat_text | structured_nanochat_rollout_v1
+max_conversations: null  # null = convert all
+conversations_per_shard: 40000
+output_dir: null  # null = legacy path, or sft_data/structured_nanochat_rollout_v1/{mixture}

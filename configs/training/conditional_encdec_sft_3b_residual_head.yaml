@@ -1,0 +1,70 @@
+# Issue #1681: depth-2 instruct SFT against the existing linear-head control.
+# Run with scripts/slurm/conditional_encdec_sft_residual_head.sbatch. Paths remain
+# explicit so this config cannot accidentally write into the historical run.
+defaults:
+  - conditional_encdec_sft
+  - _self_
+
+model_tag: full3b_clustered_c2048_long_w32_bf16_b14_fp
+model_step: 250000
+base_checkpoint_dir: ${oc.env:RESIDUAL_HEAD_RUN_DIR}/base
+feature_prediction_block: mlp
+feature_prediction_head_layers: 2
+
+dataset: standard_steered
+steered_jsonl: ${oc.env:RESIDUAL_HEAD_STEERED_JSONL}
+feature_dir: ${oc.env:RESIDUAL_HEAD_TRAIN_FEATURES}
+val_feature_dir: ${oc.env:RESIDUAL_HEAD_VAL_FEATURES}
+sft_parquet_dir: ${oc.env:RESIDUAL_HEAD_TRAIN_PARQUET}
+val_sft_parquet_dir: ${oc.env:RESIDUAL_HEAD_VAL_PARQUET}
+sft_loss_mask: completion_only
+# Deliberately reproduce the historical pilot policy. Its BPB is not a
+# production-policy comparison; see docs/performance/residual-feature-head.md.
+missing_percentile_policy: lowest
+feature_source_bos_char_len: 5
+alignment_probe_samples: 8
+min_loss_tokens: 8
+
+max_seq_len: 2048
+device_batch_size: 8
+total_batch_size: 524288
+num_iterations: -1
+embedding_lr: 0.3
+unembedding_lr: 0.004
+matrix_lr: 0.02
+encoder_embedding_lr: 0.2
+encoder_matrix_lr: 0.02
+xattn_matrix_lr: 0.02
+lr_multiplier: 1.0
+init_lr_frac: 1.0
+weight_decay: 0.0
+grad_clip_max_norm: null
+
+feature_mask:
+  mode: whitelist
+  path: ${oc.env:RESIDUAL_HEAD_MASK}
+feature_clusters:
+  path: ${oc.env:RESIDUAL_HEAD_CLUSTERS}
+feature_selection:
+  distribution: geometric
+  mean: 12.0
+  std: 12.0
+  min_k: 1
+  max_k: 49
+  mode: top_k_percentile
+  delta_weights: null
+num_buckets: 2
+segment_size: 32
+sae:
+  release: gemmascope_2
+  model: gemma-3-4b-pt
+  activation_type: residual
+  layer: 22
+  width: 65k
+  l0: medium
+
+eval_every: 150
+eval_tokens: 10485760
+save_every: 100
+compile_static: auto
+sft_prefetch_batches: 2

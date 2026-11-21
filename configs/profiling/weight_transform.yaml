@@ -1,0 +1,11 @@
+# TransformerLens weight transform config
+# Usage: python -m scripts.utils.nnterp_weight_transform
+
+model_name: gpt2
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

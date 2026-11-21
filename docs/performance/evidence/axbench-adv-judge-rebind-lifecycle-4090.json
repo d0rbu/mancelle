@@ -1,0 +1,43 @@
+{
+  "wall_seconds": 111.71608927845955,
+  "events": [
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "__enter__",
+      "seconds": 7.215028617531061
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 16.3390398286283
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 7.663015797734261
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 7.8951524049043655
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "close",
+      "seconds": 1.9314109981060028
+    }
+  ],
+  "local_http_calls": 90,
+  "local_http_peak_concurrency": 10,
+  "manifest": "/tmp/axbench-cell-lifecycle-pr1768-r1/output/manifest.json"
+}

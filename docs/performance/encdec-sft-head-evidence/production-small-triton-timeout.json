@@ -1,0 +1,239 @@
+{
+  "schema": "independent_production_small_triton_receipt_audit_v1",
+  "job": 23378001,
+  "status": "complete_exact_numerical_receipt_with_command_timeout",
+  "numerical_receipt_pass": true,
+  "command_exit_status": 124,
+  "campaign_pass": false,
+  "downloaded_closed_files_verified": 89,
+  "artifact_sha256": {
+    "model-triton-parity.json": "ee1c2a3d70f68c17f281702017948ce985835ac61d85e3f5283be1029c4470f2",
+    "model-triton-parity.log": "a9675a619ad5b08ed513f38c8609804496604b7d97abebf6468707cee197d4e8",
+    "model-triton-parity.exit": "ca2ebdf97d7469496b1f4b78958f9dc8447efdcb623953fee7b6996b762f6fff",
+    "exit-receipt.json": "f104fd1af66f51b97e3c0f954936708ae8e7e6588fa033b813f90c2e82c6db63",
+    "batch.log": "fca860f97d18c76eaab6fa9155556609123ca8a7149942e76519dcd9d5b9d899",
+    "runtime.json": "ddb6d18464dbdb234b159b1508c0da5693e35afa80a50416712f806f465e40e2",
+    "submitted-script.sbatch": "b25dd7ee3eca4200e64948c6f2287931b616768226cbe538eebaf036e379c841"
+  },
+  "source_manifest_sha256": "0e89bf87f2fcbea0e77fe8d3eb43d8c9b5071e9cf45666ecf85c272ea7e9c96f",
+  "source_files_verified": 1005,
+  "staged_and_executed_helpers_verified": 19,
+  "frozen_numerical_utilities_verified": 10,
+  "source_reverified_by_helper": true,
+  "final_batch_input_integrity_pass": true,
+  "runtime_identical_to_authenticated_prior": true,
+  "runtime_file_hashes_verified": 8,
+  "attention_runtime_file_hashes_verified": 4,
+  "geometry": {
+    "width": 512,
+    "decoder_depth": 4,
+    "encoder_depth": 4,
+    "sequence_length": 512,
+    "feature_vocab_size": 844,
+    "feature_prediction_block": "transformer",
+    "feature_prediction_head_layers": 10
+  },
+  "B": 2,
+  "microbatches_per_step": 2,
+  "steps_per_pair": 3,
+  "parameter_dtype_counts": {
+    "torch.float32": 93,
+    "torch.bfloat16": 7
+  },
+  "optimizer_group_counts": {
+    "muon_groups": 6,
+    "muon_matrices": 88,
+    "adamw_groups": 7,
+    "adamw_parameters": 12
+  },
+  "metric_counts": {
+    "exact_integer_state_counters": 72,
+    "exact_finite_tensor_metrics": 3246
+  },
+  "pairs": {
+    "baseline_control": {
+      "optimizer_classes": [
+        "MuonAdamW",
+        "MuonAdamW"
+      ],
+      "steps": [
+        {
+          "step": 0,
+          "all_tensors_exact": true,
+          "tensor_metrics": 541,
+          "state_entries": 48,
+          "nonzero_head_counts": {
+            "gradients": 20,
+            "updates": 40,
+            "baseline_gradients_unchanged": 20,
+            "candidate_gradients_unchanged": 20
+          },
+          "nonzero_parameter_updates": 92
+        },
+        {
+          "step": 1,
+          "all_tensors_exact": true,
+          "tensor_metrics": 541,
+          "state_entries": 48,
+          "nonzero_head_counts": {
+            "gradients": 40,
+            "updates": 40,
+            "baseline_gradients_unchanged": 40,
+            "candidate_gradients_unchanged": 40
+          },
+          "nonzero_parameter_updates": 100
+        },
+        {
+          "step": 2,
+          "all_tensors_exact": true,
+          "tensor_metrics": 541,
+          "state_entries": 48,
+          "nonzero_head_counts": {
+            "gradients": 40,
+            "updates": 40,
+            "baseline_gradients_unchanged": 40,
+            "candidate_gradients_unchanged": 40
+          },
+          "nonzero_parameter_updates": 100
+        }
+      ],
+      "all_40_head_matrices_exercised": true
+    },
+    "candidate": {
+      "optimizer_classes": [
+        "MuonAdamW",
+        "PackedMuonAdamW"
+      ],
+      "steps": [
+        {
+          "step": 0,
+          "all_tensors_exact": true,
+          "tensor_metrics": 541,
+          "state_entries": 48,
+          "nonzero_head_counts": {
+            "gradients": 20,
+            "updates": 40,
+            "baseline_gradients_unchanged": 20,
+            "candidate_gradients_unchanged": 20
+          },
+          "nonzero_parameter_updates": 92
+        },
+        {
+          "step": 1,
+          "all_tensors_exact": true,
+          "tensor_metrics": 541,
+          "state_entries": 48,
+          "nonzero_head_counts": {
+            "gradients": 40,
+            "updates": 40,
+            "baseline_gradients_unchanged": 40,
+            "candidate_gradients_unchanged": 40
+          },
+          "nonzero_parameter_updates": 100
+        },
+        {
+          "step": 2,
+          "all_tensors_exact": true,
+          "tensor_metrics": 541,
+          "state_entries": 48,
+          "nonzero_head_counts": {
+            "gradients": 40,
+            "updates": 40,
+            "baseline_gradients_unchanged": 40,
+            "candidate_gradients_unchanged": 40
+          },
+          "nonzero_parameter_updates": 100
+        }
+      ],
+      "all_40_head_matrices_exercised": true
+    }
+  },
+  "original_tolerances": {
+    "loss": {
+      "atol": 0.0001,
+      "rtol": 0.001
+    },
+    "gradient": {
+      "atol": 1e-05,
+      "rtol": 0.01,
+      "relative_rms": 0.001
+    },
+    "update": {
+      "atol": 1e-05,
+      "rtol": 0.01,
+      "relative_rms": 0.001
+    },
+    "parameter": {
+      "atol": 1e-05,
+      "rtol": 0.01,
+      "relative_rms": 0.001
+    },
+    "moment": {
+      "atol": 1e-05,
+      "rtol": 0.01,
+      "relative_rms": 0.001
+    }
+  },
+  "original_baseline_policy": {
+    "losses_parameters_updates_optimizer_state": "exact",
+    "pre_step_gradients": "unchanged declared gradient tolerance; report observed noise",
+    "post_step_gradient_preservation": "exact",
+    "candidate_tolerances_changed": false,
+    "additional_lm_fp_logits": "exact control; original loss tolerance for candidate"
+  },
+  "all_lm_and_fp_outputs_exact": true,
+  "full_output_comparisons": 24,
+  "loss_scalar_comparisons": 36,
+  "route_checks": {
+    "admit_optimizer": 28,
+    "build": 4,
+    "full_outputs": 12,
+    "forward_backward": 12
+  },
+  "compiled_graphs": {
+    "before": 0,
+    "after": 65
+  },
+  "scope": {
+    "diagnostic_only": true,
+    "candidate": "production PackedMuonAdamW selected by the actual SFT opt-in",
+    "effective_decoder_head_flex_backend": "TRITON",
+    "deterministic_algorithms": true,
+    "deterministic_warn_only": false,
+    "native_flash_independent_forward_backward_qualified": false,
+    "real_data_qualified": false,
+    "full_model_qualified": false,
+    "distributed_qualified": false,
+    "performance_qualified": false
+  },
+  "real_gate_ran": false,
+  "timing_trials_ran": 0,
+  "observed_timeline_edt": {
+    "model_command_start": "04:52:32",
+    "first_attention_import_log": "04:58:23.046",
+    "compute_init_log": "05:10:22",
+    "baseline_optimizer_construction": [
+      "05:14:39",
+      "05:14:54"
+    ],
+    "baseline_steps_pass": [
+      "05:16:54",
+      "05:16:57",
+      "05:16:59"
+    ],
+    "candidate_steps_pass": [
+      "05:17:23",
+      "05:17:26",
+      "05:17:28"
+    ],
+    "command_timeout_and_final_start": "05:17:32",
+    "final_verification_finished": "05:17:39"
+  },
+  "limits": [
+    "Command exit124 is retained; a complete passed numerical receipt does not make the command or campaign successful. The precise point of process teardown or interpreter exit delay is not established.",
+    "Every persisted numerical metric was audited; raw comparison tensors were not retained and no numerical computation was rerun.",
+    "Small synthetic width512/depth4/head10 strict deterministic Triton only. No native independent forward/backward, full real-model, distributed or performance qualification.",
+    "All final source/helper/runtime/capture/prior integrity checks passed. Large checkpoint/runtime binaries were authenticated remotely and not redownloaded or rehashed locally.",
+    "Full real-model parity and native timing trials did not run."
+  ]
+}

@@ -1,0 +1,22 @@
+# Validate the complete producer family and certify one sparse inline-eval source.
+#
+# uv run python -m scripts.preprocess.publish_remote_inline_eval_source \
+#   feature_dir=out/data/features/... \
+#   data_dir=out/data/features/.../_parquets \
+#   stem=shard_00369 \
+#   fingerprint_cache_dir=out/data/features/.../pct/.../tok/.../c1024/sall
+
+defaults:
+  - _self_
+
+feature_dir: ???
+data_dir: ???
+stem: ???
+fingerprint_cache_dir: null
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

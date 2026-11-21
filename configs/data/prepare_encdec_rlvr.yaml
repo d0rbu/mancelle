@@ -1,0 +1,45 @@
+# Stage 1 writes question-only JSONL plus exact schema-5 extraction inputs.
+# After extracting context_parquet and converting it with
+# build_eval_context_cache_turn into output_dir/context_cache, stage=finalize
+# authenticates that cache and commits manifest.json last.
+stage: prepare  # prepare | finalize
+output_dir: ???
+
+checkpoint_meta_path: ???
+base_checkpoint_path: ???
+base_checkpoint_sha256: ???
+stats_path: ???
+extraction_tokenizer_id: null
+model_max_seq_len: 2048
+
+revisions:
+  arc: 210d026faf9955653af8916fad021475a3f00453
+  mmlu: c30699e8356da336a370243923dbaf21066bb9fe
+  gsm8k: 740312add88f781978c0658806c59bc2815b9866
+
+expected_train_counts:
+  ARC-Easy: 2241
+  ARC-Challenge: 1112
+  MMLU: 99807
+  GSM8K: 7473
+expected_validation_counts:
+  ARC-Easy: 2376
+  ARC-Challenge: 1172
+  MMLU: 14042
+  GSM8K: 1319
+expected_removed_counts:
+  ARC-Easy: 10
+  ARC-Challenge: 7
+  MMLU: 35
+  GSM8K: 0
+
+# Optional qualification caps. Filtering and the full-count audit always run first.
+train_caps: null
+validation_caps: null
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

@@ -1,0 +1,40 @@
+# 4xH100/PRO6000 config for depth-13 decoder-only (parameter-matched to enc-dec d12 327M)
+# d13 with aspect_ratio=58 → n_embd=768, n_head=6, head_dim=128 → 318.5M (delta 8.5M from 327M)
+# Usage: torchrun --nproc_per_node=4 -m scripts.train.base_train config_name=base_d13_4xh100
+
+defaults:
+  - base_train
+  - _self_
+
+# WandB run name
+run: base_d13_4xh100
+
+# Checkpoint directory tag
+model_tag: d13_base
+
+# depth=13, aspect_ratio=58 → base_dim=754, rounds up to n_embd=768, n_head=6
+depth: 13
+aspect_ratio: 58
+
+# 1024 context length (matches enc-dec runs)
+max_seq_len: 1024
+
+# Match enc-dec batch settings
+device_batch_size: 32
+total_batch_size: 524288
+
+# Fixed step count (matches enc-dec d12 runs)
+num_iterations: 54600
+target_param_data_ratio: -1
+target_flops: -1.0
+
+# BF16 training (no FP8)
+fp8: false
+
+# Checkpoints every 1000 steps
+save_every: 1000
+
+# Eval settings
+eval_every: 250
+core_metric_every: 2000
+sample_every: 2000

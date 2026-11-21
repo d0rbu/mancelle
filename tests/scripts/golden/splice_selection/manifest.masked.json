@@ -1,0 +1,42 @@
+{
+  "base_shard_content_hash": "3401b4e4e307a648aaebde0579839fcfa1a4a9ed02ae49b4a578e5262e7d3f03",
+  "checksum": "30bb67f4a39279cd34538c0eb6bd414327f20cdeb11050e940022bd5c93aec15",
+  "checksum_prefix": "30bb67f4a39279cd",
+  "created_at": "2026-01-01T00:00:00Z",
+  "kind": "packed_rows",
+  "metadata": {
+    "feature_delta": {
+      "mode": "splice_counterfactual",
+      "neg_delta_ratio": 1.0
+    },
+    "packed_provenance": {
+      "packed_row_fingerprint": "40d59ec5c9746fc5a9cd1a4cc13500e80f3d295d5bcccaa0339b666916689aec",
+      "packed_stem_fingerprint": "02cc079ea5b43e956471c8422c91214b4b475c99bdd1475e507204c0394bbcb0",
+      "provenance_fingerprint": "8f941cb065da8910171649e2bac8c41ccc30b8293928de33b7e31658e0e7aac2",
+      "provenance_shard_count": 3
+    },
+    "packed_rows": {
+      "packed_row_fingerprint": "40d59ec5c9746fc5a9cd1a4cc13500e80f3d295d5bcccaa0339b666916689aec"
+    },
+    "splice_counterfactual": {
+      "boundary_fingerprint": "157b91c19202c596c51995b9e4fcab9ed250d34dc9b044fb72f95ccf3ce66296",
+      "derived_feature_fingerprint": "<volatile-input-fingerprint>",
+      "derived_shard_stems": [
+        "shard_00000",
+        "shard_00001",
+        "shard_00002",
+        "shard_00003",
+        "shard_00004",
+        "shard_00005",
+        "shard_00006"
+      ],
+      "schema_version": 1,
+      "sidecar_fingerprint": "<volatile-input-fingerprint>",
+      "status": "complete",
+      "total_delta_positions_selected": 11,
+      "total_packed_segments_selected": 37,
+      "total_sidecar_splice_positions_referenced": 11
+    }
+  },
+  "schema_version": 2
+}

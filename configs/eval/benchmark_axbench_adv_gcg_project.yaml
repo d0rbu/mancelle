@@ -1,0 +1,26 @@
+# Run in the root environment; source JSON extends the baseline benchmark input.
+input: ???
+output: ???
+method: SelfConditioning
+objectives: [response_margin, activation_l2]
+token_counts: [1, 16]
+factor: 1.0
+members: 4
+batch_size: 4
+warmups: 5
+repeats: 7
+seed: 20260918
+deterministic: true
+# Both arms must use the same setting for the reference's retained backwards.
+donated_buffer: false
+full_logits: false
+# Alternate the selected reference and candidate; assert exact parity per pair.
+paired: false
+paired_reference: logits  # logits or state (the frozen original GCG state guard)
+profile: false
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

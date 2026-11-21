@@ -1,0 +1,17 @@
+# Build the chat TUI's offline feature-description JSON from an autointerp run.
+#
+# Usage:
+#   uv run -m scripts.preprocess.build_chat_tui_descriptions -- \
+#     ranked_yaml_path=out/autointerp_filter/<run>/autointerp_ranked.yaml
+
+# Ranked YAML written by the autointerp filter runner; a launch-time override is mandatory.
+ranked_yaml_path: ???
+# Destination {feature_id: text} JSON for chat_tui.descriptions_json_path.
+output_path: out/chat_tui/descriptions.json
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

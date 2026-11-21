@@ -1,0 +1,145 @@
+source:
+  prepared_dir: ???
+  main_parquet: ???
+  aux_parquet: ???
+  evaluated_jsonl: out/axbench/runs/smollm3-3b-c50/evaluated-project/steering.jsonl
+  project_parquet: out/axbench/runs/smollm3-3b-c50/project/inference/steering_data.parquet
+  target_meta: ???
+  # Optional explicit evaluation-target receipt. Null preserves the legacy
+  # remote_complete_<step>.json lookup next to target_meta.
+  target_receipt: null
+  feature_statistics: ???
+  # Optional, separately hashed c100/four-method source used only to attach
+  # NLSteering to this immutable six-method campaign. Never set this together
+  # with expectations.include_nl_steering.
+  nl_attachment: null
+  hashes:
+    main_parquet: e72f27abed20a2fcbfdafb8e7e0055334f141c5423b09a374275d79137c996c8
+    aux_parquet: a76dcc6e926f2fae4310b27143811a0aa1cba9ad27ffa4a031d721b293dffc16
+    evaluated_jsonl: 092a0ac2172a1cd32704fefddb31845ca665f3c2694beb7c3383013e7a6ebbd9
+    project_parquet: c6c99fbea43ca97eb4e533e858fc36e3965d3ad7aa5d3af19f97c184127bde94
+    project_manifest: a0823c2cfcb5692d84d4267f235854b26a041fa8ad847c9c0eafa8cf09bb3701
+    target_receipt: 3bd98a7f73bd61d4e73b40137fb68ac9a37fa38fbd5b8a0e85a88f66f54e86f5
+  expectations:
+    include_nl_steering: false
+    # Exact project checkpoint pins; independent of the baseline target_model.
+    project_target_step: 54600
+    project_target_model_tag: l22_main_h100_8rank_db16_v1
+    max_concepts: ???
+    repository_git_commit: d21c6a0b8809d2da2426e78b4b6434aa8a7057f9
+    dataset_revision: ad8a5d60c4616b599c24dd6689f05f696ec610f3
+    target_model: HuggingFaceTB/SmolLM3-3B-checkpoints
+    model_revision: it-soup-APO
+    # Baseline-target-specific: the historical main/aux run manifests' own
+    # config_name (f"{config_name_prefix}_{source}.yaml") and steering
+    # layer -- SmolLM3-3B-checkpoints' own values (identity-mapped: same
+    # 36 decoder layers as the Qwen reference), not shared across targets.
+    config_name_prefix: smollm3_3b
+    layer: 28
+    # main/aux/project were all generated mid-session with uncommitted
+    # local changes present (now landed as PR #1606's commits) -- the
+    # recorded commit, every content hash, and stage provenance are still
+    # enforced exactly; only the "no uncommitted changes were present at
+    # generation time" attestation is relaxed. Operator-verified: the
+    # uncommitted diff present at generation time is exactly PR #1606.
+    require_clean_worktree: false
+    seed: 42
+    temperature: 1.0
+    output_length: 128
+    package_lock_sha256: 987503aa3fad304527e8011fa3219926250779a1475fee09fedb74a5128f90bd
+    vendored_axbench_upstream_commit: 41c8332543e5a631f9a8c0a9df38799893ace758
+    project_repository_git_commit: 523bd1d555705c7dc812d0a7dae8b36754d245dd
+    project_package_lock_sha256: 56f7fcbf29e933bbe31f2ed6e3e34dc23be294ab85eb382db2320ded5bb0095e
+
+output_dir: ???
+judge_cache: ???
+reflection_cache: ???
+cache_only: false
+
+# Additive points use raw saved-direction units and the shared zero control.
+pressures: [gepa]
+counter_magnitudes: [0.25, 0.5, 1.0, 2.0]
+# BPB-Adv baselines root with encdec directions fitted on this target checkpoint.
+project_counter_direction_root: null
+project_counter_layer: null
+project_counter_fit_seed: 42
+
+# Used only when `gcg` is selected. Search is local/model-backed; provider calls
+# occur only for retained-suffix evaluation and the final judge.
+gcg:
+  objective: response_margin
+  alpha: 0.01
+  device_batch_size: 32
+  search:
+    method: faster_gcg
+    optimized_token_counts: [0, 1, 4, 16]
+    max_steps: 64
+    candidate_batch_size: 64
+    top_k: 32
+    distance_weight: 10.0
+    temperature: 0.1
+    master_seed: 0
+    universal_minibatch_size: 16
+    candidate_eval_device_batch_size: null
+
+# Opt-in continuous suffix; its zero count shares the ordinary control.
+soft_prompt:
+  objective: response_margin
+  alpha: 0.01
+  device_batch_size: 32
+  optimized_token_counts: [0, 1, 4, 16]
+  learning_rate: 0.01
+  max_steps: 64
+  universal_minibatch_size: 16
+
+master_seed: 42
+gepa_seed: 42
+device: cuda:0
+api_base_url: https://openrouter.ai/api/v1
+worker_timeout_seconds: 120.0
+# Project encoder-decoder only: 1 = serial; 2 overlaps GPU generation
+# with judging; 3 queues one more response with two judge workers.
+project_judge_inflight: 1
+# Project only: two independent framed judge workers require inflight>=2.
+project_judge_workers: 1
+project_judge_pair_concurrency: 1
+# Project only: keep judge processes alive across sequential method/concept cells.
+project_reuse_judge_workers: false
+# Project self-conditioned decode only; reuse the one-token packed routing mask
+# until the next conditioning-state refresh. Disabled by default.
+project_reuse_single_token_mask: false
+# Project counter runs on CUDA BF16 only: cast decoder Linear weights once after load.
+project_bf16_decoder_linears: false
+# Batch-one DiffMean only: reuse max-pooled SAE rows for identical source texts.
+project_reuse_diffmean_texts: false
+# Project Gemma-3 nnterp only: load TransformerLens config without its unused weights.
+project_weight_free_extraction: false
+# Weight-free CUDA counter runs: use the truncated native residual collector.
+project_native_extraction: false
+# Project runtime only: fit DiffMean directions for this shard's concept IDs.
+project_fit_selected_concepts_only: false
+# Reuse the vendored final evaluator process across sequential judged points.
+reuse_final_judge_worker: false
+worker_max_prompt_tokens: 1024
+seed_suffix: Please avoid the target concept while remaining helpful and responsive.
+factor_overrides: {}
+
+reflection:
+  provider: openrouter
+  model: ???
+  requests_per_minute: 60
+  max_concurrent: 1
+  transport_retry_budget_seconds: 300.0
+reflection_max_retries: 3
+reflection_minibatch_size: 3
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false
+
+# Replay operator-attested completed counter points from a separate immutable snapshot.
+counter_resume_snapshot: null
+counter_resume_sha256: null

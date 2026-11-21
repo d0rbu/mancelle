@@ -1,0 +1,10 @@
+defaults:
+  - conditional_encdec_sft_grpo
+  - _self_
+
+# Convert mixture=chatcore with artifact_format=structured_nanochat_rollout_v1;
+# supply its train and val directories through the base config's required paths.
+# Short multiple-choice conversations need a decision at the user/assistant
+# boundary, and their answer plus end token falls below the base 8-token floor.
+segmentation_mode: turn_delimited_fixed_length
+min_reward_tokens: 1

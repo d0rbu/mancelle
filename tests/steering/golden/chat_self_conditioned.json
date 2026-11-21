@@ -1,0 +1,66 @@
+{
+  "fixed_tokens": {
+    "forwards_sha256": "7607906e297d5c42b01e714556331078c7a6cd922f846d48eaf8a20f6b324f10",
+    "predictions": {
+      "ARC-Challenge": [
+        "B"
+      ],
+      "ARC-Easy": [
+        "B"
+      ],
+      "GSM8K": [
+        "\ufffd<unused328>(<user_start>W"
+      ],
+      "HumanEval": [
+        "\ufffd<unused328>(<user_start>W"
+      ],
+      "MMLU": [
+        "B"
+      ],
+      "SpellingBee": [
+        "\ufffd<unused328>(<user_start>W"
+      ]
+    },
+    "results": {
+      "ARC-Challenge": 1.0,
+      "ARC-Easy": 1.0,
+      "GSM8K": 0.0,
+      "HumanEval": 0.0,
+      "MMLU": 0.0,
+      "SpellingBee": 0.0
+    },
+    "selection_sha256": "4ad02cf027fc3d94636b4f612f679cbe0e571164481d014c64900d94f1828f90"
+  },
+  "turn_delimited_fixed_tokens": {
+    "forwards_sha256": "8c1c4e446201c981bc2a1b95300c687caa26946c75fb81a4d3377057fafbfcac",
+    "predictions": {
+      "ARC-Challenge": [
+        "B"
+      ],
+      "ARC-Easy": [
+        "B"
+      ],
+      "GSM8K": [
+        "\ufffd<unused328>("
+      ],
+      "HumanEval": [
+        "\ufffd<unused328>("
+      ],
+      "MMLU": [
+        "B"
+      ],
+      "SpellingBee": [
+        "\ufffd<unused328>("
+      ]
+    },
+    "results": {
+      "ARC-Challenge": 1.0,
+      "ARC-Easy": 1.0,
+      "GSM8K": 0.0,
+      "HumanEval": 0.0,
+      "MMLU": 0.0,
+      "SpellingBee": 0.0
+    },
+    "selection_sha256": "45b60b682a75d7382c2db43c3fd1dc93aca9dd0a9a1236ffab0ab20c5a4c933e"
+  }
+}

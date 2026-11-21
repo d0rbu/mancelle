@@ -1,0 +1,430 @@
+{
+  "scope": "CPU-only diagnostic of spawn/forkserver startup using unchanged worker targets and observed parent process lifecycle; not a production timeout change or non-fork performance qualification.",
+  "job_id": 23294415,
+  "raw_directory": "loop4_context_23294415",
+  "raw_summary_sha256": "e2fd3fd623a5de86850874749bd2686a2f97285d34f9befd469f838b543e0d9a",
+  "host": "node3403",
+  "python": "3.13.14 (main, Aug  5 2026, 15:44:26) [Clang 22.1.3 ]",
+  "executable": "/orcd/home/002/henryac/chatcore-perf-20260920/source-loop4-candidate/.venv/bin/python3",
+  "affinity": [
+    1,
+    3,
+    5,
+    7,
+    25,
+    27,
+    29,
+    31,
+    65,
+    67,
+    69,
+    71,
+    89,
+    91,
+    93,
+    95
+  ],
+  "import_time_tracing": false,
+  "source_sha256": {
+    "baseline": "06228c9f0ad20d9b2b2bbac393664a7cba8c1c9e0ebb5a2778f2c417170f5e46",
+    "candidate": "95dd57ef6fa31f22ca66a53774a5cd0eb81d1ee7fade26bf160f13a1c8d6d8fb"
+  },
+  "scalar_function_sha256": "800990d1e404cef3bc3e741b308996f051b88c3c5cb355b403fa6747e23dcab8",
+  "scalar_function_source_identical": true,
+  "case_count": 12,
+  "case_process_exit_codes_all_zero": true,
+  "parent_grace_seconds": 1.0,
+  "maximum_memory_bytes": null,
+  "default_timeout_observations": {
+    "case_count": 6,
+    "worker_count": 14,
+    "all_verdicts_false": true,
+    "execution_markers": 0,
+    "all_workers_killed_joined_and_closed": true,
+    "kill_age_seconds_min": 6.005368825048208,
+    "kill_age_seconds_max": 6.02314093708992
+  },
+  "diagnostic_timeout_observations": {
+    "timeout_seconds": 30.0,
+    "case_count": 6,
+    "worker_count": 14,
+    "all_expected_verdicts_match": true,
+    "execution_markers": 14,
+    "killed_workers": 0,
+    "all_workers_joined_and_closed": true,
+    "execution_marker_delay_seconds_min": 10.11679496243596,
+    "execution_marker_delay_seconds_max": 12.609378922730684
+  },
+  "all_cases_active_children_after_empty": true,
+  "interpretation": [
+    "At timeout 5 seconds plus 1 second parent grace, untouched-parent scalar, current scalar, and current batch all terminated workers before the early program marker was written.",
+    "With diagnostic timeout 30 seconds, every worker wrote the marker 10.117 to 12.609 seconds after start returned and all pass/fail results matched.",
+    "Markers occur near the beginning of generated program execution, after standard-library imports and before the diagnostic assertion; they are not an exact _unsafe_execute entry timestamp.",
+    "Results support a remote startup/pre-marker latency boundary shared with untouched parent. Per-import tracing was disabled, so attribution to particular libraries is not measured here.",
+    "Memory limits were disabled for these context probes, matching the context-test diagnostic scope. Production execution timeout, grace, and memory limit are unchanged.",
+    "No tested child remained active after any case. Forkserver/resource-tracker infrastructure processes are outside multiprocessing.active_children and are not claimed absent.",
+    "Non-fork production behavior at the default timeout remains failed/unqualified on this remote environment; production parallel admission is restricted to fork."
+  ],
+  "cases": [
+    {
+      "case": "spawn-5-baseline-scalar",
+      "method": "spawn",
+      "source_variant": "baseline",
+      "api": "scalar",
+      "timeout_seconds": 5.0,
+      "expected": [
+        true,
+        false
+      ],
+      "actual": [
+        false,
+        false
+      ],
+      "matches_expected": false,
+      "worker_count": 2,
+      "execution_markers": 0,
+      "killed_workers": 2,
+      "all_workers_joined_dead_then_closed": true,
+      "active_children_after": [],
+      "kill_age_after_start_return_seconds": [
+        6.005855579860508,
+        6.006095502991229
+      ],
+      "execution_marker_delay_after_start_return_seconds": [],
+      "round_seconds": 12.048202773090452,
+      "parent_import_seconds": 21.687060003634542,
+      "result_json_sha256": "fc02d30fe86fa8b521347590916c0590b08a9316712def8f39e3ea48ec7f3314"
+    },
+    {
+      "case": "spawn-5-candidate-scalar",
+      "method": "spawn",
+      "source_variant": "candidate",
+      "api": "scalar",
+      "timeout_seconds": 5.0,
+      "expected": [
+        true,
+        false
+      ],
+      "actual": [
+        false,
+        false
+      ],
+      "matches_expected": false,
+      "worker_count": 2,
+      "execution_markers": 0,
+      "killed_workers": 2,
+      "all_workers_joined_dead_then_closed": true,
+      "active_children_after": [],
+      "kill_age_after_start_return_seconds": [
+        6.006089580710977,
+        6.005368825048208
+      ],
+      "execution_marker_delay_after_start_return_seconds": [],
+      "round_seconds": 12.040516391862184,
+      "parent_import_seconds": 12.362981671001762,
+      "result_json_sha256": "021b4e88c485218307105a4ae44c1196a00819e0a050586ff34de743516023c2"
+    },
+    {
+      "case": "spawn-5-candidate-batch",
+      "method": "spawn",
+      "source_variant": "candidate",
+      "api": "batch",
+      "timeout_seconds": 5.0,
+      "expected": [
+        true,
+        false,
+        true
+      ],
+      "actual": [
+        false,
+        false,
+        false
+      ],
+      "matches_expected": false,
+      "worker_count": 3,
+      "execution_markers": 0,
+      "killed_workers": 3,
+      "all_workers_joined_dead_then_closed": true,
+      "active_children_after": [],
+      "kill_age_after_start_return_seconds": [
+        6.006701859179884,
+        6.017829382326454,
+        6.0060871336609125
+      ],
+      "execution_marker_delay_after_start_return_seconds": [],
+      "round_seconds": 12.051491898018867,
+      "parent_import_seconds": 10.622563934419304,
+      "result_json_sha256": "8c03bcdef2882f23cc14984c5b6a77484d10e1accb549304cbbbb6f8236ac298"
+    },
+    {
+      "case": "spawn-30-baseline-scalar",
+      "method": "spawn",
+      "source_variant": "baseline",
+      "api": "scalar",
+      "timeout_seconds": 30.0,
+      "expected": [
+        true,
+        false
+      ],
+      "actual": [
+        true,
+        false
+      ],
+      "matches_expected": true,
+      "worker_count": 2,
+      "execution_markers": 2,
+      "killed_workers": 0,
+      "all_workers_joined_dead_then_closed": true,
+      "active_children_after": [],
+      "kill_age_after_start_return_seconds": [],
+      "execution_marker_delay_after_start_return_seconds": [
+        10.11679496243596,
+        11.041671776212752
+      ],
+      "round_seconds": 22.75417707907036,
+      "parent_import_seconds": 10.161144079174846,
+      "result_json_sha256": "682b4595e13931ae935978762190c054e727ae5af92f6e42e7b9c022574013c7"
+    },
+    {
+      "case": "spawn-30-candidate-scalar",
+      "method": "spawn",
+      "source_variant": "candidate",
+      "api": "scalar",
+      "timeout_seconds": 30.0,
+      "expected": [
+        true,
+        false
+      ],
+      "actual": [
+        true,
+        false
+      ],
+      "matches_expected": true,
+      "worker_count": 2,
+      "execution_markers": 2,
+      "killed_workers": 0,
+      "all_workers_joined_dead_then_closed": true,
+      "active_children_after": [],
+      "kill_age_after_start_return_seconds": [],
+      "execution_marker_delay_after_start_return_seconds": [
+        11.703074065037072,
+        10.180031347088516
+      ],
+      "round_seconds": 23.4543813187629,
+      "parent_import_seconds": 10.608034878969193,
+      "result_json_sha256": "cc2959a7e1ed8ac177d77c7e6748103a7101cbab916aec0d636a304b3e3a71e1"
+    },
+    {
+      "case": "spawn-30-candidate-batch",
+      "method": "spawn",
+      "source_variant": "candidate",
+      "api": "batch",
+      "timeout_seconds": 30.0,
+      "expected": [
+        true,
+        false,
+        true
+      ],
+      "actual": [
+        true,
+        false,
+        true
+      ],
+      "matches_expected": true,
+      "worker_count": 3,
+      "execution_markers": 3,
+      "killed_workers": 0,
+      "all_workers_joined_dead_then_closed": true,
+      "active_children_after": [],
+      "kill_age_after_start_return_seconds": [],
+      "execution_marker_delay_after_start_return_seconds": [
+        11.41018837923184,
+        11.412412610836327,
+        10.75895064510405
+      ],
+      "round_seconds": 23.93968366505578,
+      "parent_import_seconds": 10.15858922386542,
+      "result_json_sha256": "e3ea0934732b2e7bbdd003ca40243ef8249dc4b3635ea48ac4236351cf0a8933"
+    },
+    {
+      "case": "forkserver-5-baseline-scalar",
+      "method": "forkserver",
+      "source_variant": "baseline",
+      "api": "scalar",
+      "timeout_seconds": 5.0,
+      "expected": [
+        true,
+        false
+      ],
+      "actual": [
+        false,
+        false
+      ],
+      "matches_expected": false,
+      "worker_count": 2,
+      "execution_markers": 0,
+      "killed_workers": 2,
+      "all_workers_joined_dead_then_closed": true,
+      "active_children_after": [],
+      "kill_age_after_start_return_seconds": [
+        6.006122346036136,
+        6.005778707098216
+      ],
+      "execution_marker_delay_after_start_return_seconds": [],
+      "round_seconds": 12.186935543548316,
+      "parent_import_seconds": 10.412542304955423,
+      "result_json_sha256": "8431715fb8822f0fac6947ecd96f2e311eaa2ebc9bfead32af0e841e27bc6bb9"
+    },
+    {
+      "case": "forkserver-5-candidate-scalar",
+      "method": "forkserver",
+      "source_variant": "candidate",
+      "api": "scalar",
+      "timeout_seconds": 5.0,
+      "expected": [
+        true,
+        false
+      ],
+      "actual": [
+        false,
+        false
+      ],
+      "matches_expected": false,
+      "worker_count": 2,
+      "execution_markers": 0,
+      "killed_workers": 2,
+      "all_workers_joined_dead_then_closed": true,
+      "active_children_after": [],
+      "kill_age_after_start_return_seconds": [
+        6.006158770993352,
+        6.0061063300818205
+      ],
+      "execution_marker_delay_after_start_return_seconds": [],
+      "round_seconds": 12.183152955956757,
+      "parent_import_seconds": 10.21816869173199,
+      "result_json_sha256": "c741b4ecd4382822900b088eb21cc19975e70a19c73ddeedc99960e60af8e425"
+    },
+    {
+      "case": "forkserver-5-candidate-batch",
+      "method": "forkserver",
+      "source_variant": "candidate",
+      "api": "batch",
+      "timeout_seconds": 5.0,
+      "expected": [
+        true,
+        false,
+        true
+      ],
+      "actual": [
+        false,
+        false,
+        false
+      ],
+      "matches_expected": false,
+      "worker_count": 3,
+      "execution_markers": 0,
+      "killed_workers": 3,
+      "all_workers_joined_dead_then_closed": true,
+      "active_children_after": [],
+      "kill_age_after_start_return_seconds": [
+        6.006811027880758,
+        6.02314093708992,
+        6.006113236770034
+      ],
+      "execution_marker_delay_after_start_return_seconds": [],
+      "round_seconds": 12.19719709502533,
+      "parent_import_seconds": 10.246921218931675,
+      "result_json_sha256": "a1f85a98c31cdfb343f7ecf391d3538756655b6d2ee837ed8572ffece51aa085"
+    },
+    {
+      "case": "forkserver-30-baseline-scalar",
+      "method": "forkserver",
+      "source_variant": "baseline",
+      "api": "scalar",
+      "timeout_seconds": 30.0,
+      "expected": [
+        true,
+        false
+      ],
+      "actual": [
+        true,
+        false
+      ],
+      "matches_expected": true,
+      "worker_count": 2,
+      "execution_markers": 2,
+      "killed_workers": 0,
+      "all_workers_joined_dead_then_closed": true,
+      "active_children_after": [],
+      "kill_age_after_start_return_seconds": [],
+      "execution_marker_delay_after_start_return_seconds": [
+        11.687879516743124,
+        10.228313074912876
+      ],
+      "round_seconds": 22.151749180164188,
+      "parent_import_seconds": 10.262825712095946,
+      "result_json_sha256": "5a2bb2c2a80b0e0905c442e7738b3b351995909c4d28e894533d07693f164d03"
+    },
+    {
+      "case": "forkserver-30-candidate-scalar",
+      "method": "forkserver",
+      "source_variant": "candidate",
+      "api": "scalar",
+      "timeout_seconds": 30.0,
+      "expected": [
+        true,
+        false
+      ],
+      "actual": [
+        true,
+        false
+      ],
+      "matches_expected": true,
+      "worker_count": 2,
+      "execution_markers": 2,
+      "killed_workers": 0,
+      "all_workers_joined_dead_then_closed": true,
+      "active_children_after": [],
+      "kill_age_after_start_return_seconds": [],
+      "execution_marker_delay_after_start_return_seconds": [
+        10.545451424084604,
+        10.884787513874471
+      ],
+      "round_seconds": 21.666706264019012,
+      "parent_import_seconds": 10.29585527209565,
+      "result_json_sha256": "c10422c741d3e3d2953224806bae3d5b437e41ad6cf036ca0991c5fa7c054217"
+    },
+    {
+      "case": "forkserver-30-candidate-batch",
+      "method": "forkserver",
+      "source_variant": "candidate",
+      "api": "batch",
+      "timeout_seconds": 30.0,
+      "expected": [
+        true,
+        false,
+        true
+      ],
+      "actual": [
+        true,
+        false,
+        true
+      ],
+      "matches_expected": true,
+      "worker_count": 3,
+      "execution_markers": 3,
+      "killed_workers": 0,
+      "all_workers_joined_dead_then_closed": true,
+      "active_children_after": [],
+      "kill_age_after_start_return_seconds": [],
+      "execution_marker_delay_after_start_return_seconds": [
+        12.609378922730684,
+        12.60577780008316,
+        10.230175181291997
+      ],
+      "round_seconds": 23.068671207875013,
+      "parent_import_seconds": 10.310074490029365,
+      "result_json_sha256": "99d87e510e6277c9f9b17a660f328b534a7abf04056bf67451660a2eb8d3111c"
+    }
+  ]
+}

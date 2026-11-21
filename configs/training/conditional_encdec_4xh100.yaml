@@ -1,0 +1,57 @@
+# 4xH100 (80GB each) config for encoder-decoder conditional pretraining
+# Usage: torchrun --nproc_per_node=4 -m scripts.train.conditional_encdec_train -- config_name=conditional_encdec_4xh100
+
+defaults:
+  - conditional_encdec_train
+  - _self_
+
+# WandB run name
+run: encdec_d20_4xh100
+
+# depth=20 gives 1280 dim, 10 heads
+depth: 20
+
+# H100 has 80GB VRAM (vs 141GB H200), reduce batch size accordingly
+device_batch_size: 8
+
+# Dynamic compilation: no pad_F/pad_n_seg padding until static compile is fixed
+compile_static: false
+
+# FP8 training (H100 Hopper supports FP8)
+fp8: true
+
+# Training duration via data ratio (no fixed step count)
+num_iterations: -1
+target_param_data_ratio: 20
+
+# Use all 370 feature shards
+max_train_shards: null
+
+# Feature selection: geometric, mean=10, max=40, top-k percentile
+feature_selection:
+  distribution: geometric
+  mean: 10.0
+  std: 10.0
+  min_k: 1
+  max_k: 40
+  mode: top_k_percentile
+  delta_weights: null  # null since feature_delta is disabled
+
+# Negative feature sampling: geometric, mean=10, max=40
+negative_selection:
+  distribution: geometric
+  mean: 10.0
+  min_k: 0
+  max_k: 40
+
+# Steering eval every 250 steps (CPU tensor bug fixed in #295)
+steering_eval_every: 250
+
+# Feature delta conditioning disabled
+feature_delta: null
+
+# No feature-prediction head: it did not improve steering in the d12_fp (weight 1.0) /
+# d12_fp10 (weight 10.0) ablations. Inherits feature_prediction: null from the parent.
+# This config is the parent of conditional_encdec_delta_4xh100 (and, through it,
+# conditional_encdec_delta_8xh100), so the weight-1.0 override that used to live here was
+# silently giving the feature-delta runs a head they were never meant to have.

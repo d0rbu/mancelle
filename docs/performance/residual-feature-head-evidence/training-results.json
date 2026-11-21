@@ -1,0 +1,582 @@
+{
+  "best_validation_bpb": {
+    "depth2_exact_metadata_best": 0.22311385230889186,
+    "historical_exact_metadata_best": 0.236180399296458,
+    "scope": "Persisted min_val_bpb values are best-in-retained-lineage values, not independently persisted full-precision terminal measurements."
+  },
+  "chatcore": {
+    "evaluation_seed": 1234,
+    "identity_review": {
+      "receipt": "chatcore-identity-review.json",
+      "sha256": "46e57823181a74afa52849bd6580b076bf250cf85ac15819d368661ec8e49a2e"
+    },
+    "limits": [
+      "One fixed seed; no variance or significance estimate.",
+      "Historical training code/runtime and resumed feature-selection RNG differ; not a causal depth-only comparison.",
+      "No peak GPU memory measurement.",
+      "Steering evaluation and GRPO campaign deferred."
+    ],
+    "metric_definition": "Unweighted mean of (accuracy - baseline)/(1 - baseline); baseline 1/4 for ARC-Easy, ARC-Challenge, MMLU and zero for other tasks. Raw units; not multiplied by 100.",
+    "results": {
+      "control": 0.1660786331300813,
+      "depth2": 0.19975211720867211,
+      "depth2_minus_control": 0.033673484078590804,
+      "receipt": "chatcore-results.json",
+      "sha256": "286dc880677acef19e08fb966b1cd9b6da4537db8e7357d60240a3fe364b5577"
+    },
+    "reviewed_at_utc": "2026-09-18T17:44:53.170031+00:00",
+    "status": "all_twelve_tasks_and_both_merges_verified",
+    "tasks": {
+      "ARC-Challenge": 500,
+      "ARC-Easy": 500,
+      "GSM8K": 500,
+      "HumanEval": 164,
+      "MMLU": 500,
+      "SpellingBee": 256
+    }
+  },
+  "checkpoint_inspection": {
+    "cpu_job": "22983241",
+    "job_exit": "0:0",
+    "job_state": "COMPLETED",
+    "limits": "CPU strict state load and finite scans, no model forward or optimizer step. This is not an executed production resume and does not restore uncheckpointed feature-selection RNG.",
+    "operator_sha256": "c6de6ca635de305bf1cdc4e80cf20d44a9b73b33dc7a25338fccf0922483576f",
+    "receipt": "checkpoint-inspection.json",
+    "receipt_sha256": "1b1f4f465bec2e4ba6ceee66e9cd78024eb9ec770bab36933a9dad2b6644fc7e",
+    "scope": "Safe weights-only CPU mmap deserialization of every shard; exact group fields, state IDs, four-rank shapes and dtype; all integer Adam steps equal1125; finite moments and nonnegative second moments in bounded chunks; matching group headers across ranks; stable file signatures. No optimizer step was executed.",
+    "status": "checkpoint_inspection_and_view_passed"
+  },
+  "checkpoints": [
+    {
+      "metadata_save_log_line": 1348,
+      "model_save_log_line": 1347,
+      "step": 500
+    },
+    {
+      "metadata_save_log_line": 2511,
+      "model_save_log_line": 2510,
+      "step": 1000
+    },
+    {
+      "metadata_save_log_line": 2839,
+      "model_save_log_line": 2838,
+      "step": 1125
+    }
+  ],
+  "comparison_scope": "Real-feature-conditioned decoder LM BPB; not self-conditioned ChatCORE or held-out head BCE. Different historical training code/runtime/routing and resumed, uncheckpointed feature-selection RNG prevent a causal depth-only interpretation. Losses are rank0 EMAs, not epoch/global means. No new linear control was trained.",
+  "consumption": {
+    "indexed_dataset_size": 1210674,
+    "rank0_scaled_consumed": 1210644,
+    "rank_states": [
+      {
+        "buffered_count": 100,
+        "consumed": 1210644,
+        "ddp_rank": 0,
+        "local_packed_occurrences": 302661,
+        "next_cursor": 1329508
+      },
+      {
+        "buffered_count": 100,
+        "consumed": 1207920,
+        "ddp_rank": 1,
+        "local_packed_occurrences": 301980,
+        "next_cursor": 1323421
+      },
+      {
+        "buffered_count": 99,
+        "consumed": 1211616,
+        "ddp_rank": 2,
+        "local_packed_occurrences": 302904,
+        "next_cursor": 1329406
+      },
+      {
+        "buffered_count": 100,
+        "consumed": 1210952,
+        "ddp_rank": 3,
+        "local_packed_occurrences": 302738,
+        "next_cursor": 1327315
+      }
+    ],
+    "saved_artifact_coverage_exactly_equals_historical": true,
+    "saved_dataloader_envelope_exactly_equals_historical": true,
+    "scope": "consumed is world-size-scaled accepted packing occurrences, not unique source rows; next_cursor is generator position, not committed unique consumption. MAX across ranks triggers stopping. Exact endpoint envelope equality does not establish identical stochastic feature selections.",
+    "sum_local_packed_occurrences": 1210283
+  },
+  "date": "2026-09-18",
+  "figure": {
+    "copy_scope": "Byte-identical copy of the already-rendered final SVG; not rerendered for documentation.",
+    "generator_sha256": {
+      "analyze_sft_training_artifacts.py": "c9a7736c5a23d37ecec94323a7b7c343ec9375b21a0b197635616aaf9ada55b3",
+      "plot_sft_loss_comparison.py": "34a56186f701a1ea554fae2f3d642f83fb8cda716757c0c1daceaf3cb2a124d0"
+    },
+    "historical_selection": "Initial steps<=500 plus final invocation>=501; display only through current production step.",
+    "label_position_rule": "Lower value below, higher value above; ties put historical below and depth2 above; a single label goes above.",
+    "path": "training-losses.svg",
+    "rendered_at_utc": "2026-09-18T14:09:24.485951+00:00",
+    "sha256": "70fd83fd385f8f312a1c2e051a3dd9c5a54cb63ba72ffcf3fb02856f28d7f67e"
+  },
+  "final_step": 1125,
+  "historical_root": "/orcd/data/dylanhm/001/nano-gpt-pretrain-steer/claude-sft3b-steered-20260905",
+  "historical_training_commit": "aed7b5d00f699f907136146a7d1cf2b790bffdc6",
+  "initial_counted_source_pass": {
+    "excluded_claims": [
+      "Full-run unique skip or permanent-drop totals",
+      "Counts of conversations actually used in successful optimizer steps",
+      "Counts caused specifically by truncation rather than already-short supervision",
+      "Validation skip counts",
+      "A global steered-row skip or missing-assistant-segment count",
+      "Direct equality/comparison with historical resumed generator counters"
+    ],
+    "ranks": [
+      {
+        "line": 2568,
+        "passed_min_target_criterion": 275765,
+        "rank": 0,
+        "rendered": 302669,
+        "skipped": 26904
+      },
+      {
+        "line": 2585,
+        "passed_min_target_criterion": 276379,
+        "rank": 1,
+        "rendered": 302669,
+        "skipped": 26290
+      },
+      {
+        "line": 2571,
+        "passed_min_target_criterion": 275878,
+        "rank": 2,
+        "rendered": 302668,
+        "skipped": 26790
+      },
+      {
+        "line": 2576,
+        "passed_min_target_criterion": 276247,
+        "rank": 3,
+        "rendered": 302668,
+        "skipped": 26421
+      }
+    ],
+    "scope": "For this fresh uninterrupted invocation, exactly 106405 of the 1210674 covered indexed training source rows failed the <8 supervised-target eligibility check on the first counted buffer-refill pass across the four ranks. Uniqueness refers to original_index rows, not distinct text content. Startup alignment probes and the separate canary are outside these counters.",
+    "source": {
+      "commit": "50462075083d793d0e9a406fde7e07d08bb9a50c",
+      "line_references": {
+        "cursor_advance": 3217,
+        "epoch_stop": 5135,
+        "initial_pass_counter_and_log": 3154,
+        "packed_consumption": 3377,
+        "rank_stride": 3034,
+        "startup_probe_before_counters": 3102,
+        "steered_packing_counter_after_batch": 3582
+      },
+      "path": "scripts/train/conditional_encdec_sft.py",
+      "sha256": "90fedd38fd9b465412e97fe02e9aa717e67372a825b3553d990e3be78cec2537"
+    },
+    "steered_counter_limit": "Rank0-only lagging packing counter does not establish global steered coverage. The existing comment bounds lag by buffer size too tightly because the counter updates after a whole packed batch; no runtime change was made.",
+    "summary": {
+      "indexed_rows": 1210674,
+      "min_target_skips": 106405,
+      "passed_min_target_criterion": 1104269,
+      "skip_fraction_exact": "106405/1210674",
+      "skip_percent_rounded6": "8.788906"
+    }
+  },
+  "initial_head_parity": {
+    "compiled": true,
+    "depth": 2,
+    "dtype": "bfloat16",
+    "eager": true,
+    "shape": [
+      8,
+      2048,
+      1664
+    ],
+    "width": 844
+  },
+  "model_sha256": "d404424912a03b876cc89a318ac994a606c13f4031986b86b6a997ca327e468a",
+  "production_job": 22958005,
+  "raw_evidence_local_archive": "out/issue1681 (untracked; raw logs and payloads are not included here)",
+  "restart_history": {
+    "failed_auxiliary_probe": {
+      "AllocTRES": "cpu=1,gres/gpu:h200=4,gres/gpu=4,mem=512G,node=1",
+      "ElapsedRaw": "1",
+      "End": "2026-09-18T10:20:20",
+      "ExitCode": "1:0",
+      "JobIDRaw": "22958005.2",
+      "JobName": "du",
+      "MaxRSS": "1824K",
+      "NodeList": "node3200",
+      "Restarts": "",
+      "Start": "2026-09-18T10:20:19",
+      "State": "FAILED",
+      "SubmitLine": "srun --jobid=22958005 --overlap --exact --nodes=1 --ntasks=1 --cpus-per-task=1 du -s /scratch/henryac/residual-head-22958005.*/inputs"
+    },
+    "failed_auxiliary_probe_scope": "Owned read-only staging disk-usage probe, not trainer or restart. Exact stderr/cause is not recovered; no glob/path-cause inference. Its one second is already inside allocation elapsed.",
+    "historical_scope": "Seven identified allocations, repeated resumes from500,776 logged completed step ordinals abandoned/replayed. Historical feature-selection RNG was not checkpointed; repeated ordinals are not bitwise-identical updates.",
+    "historical_totals": {
+      "final_checkpoint_step": 1125,
+      "first_start_to_final_end_seconds": 71673,
+      "four_h200_allocation_gpu_hours": 74.32222222222222,
+      "gaps_between_identified_allocations_seconds": 4783,
+      "identified_allocation_elapsed_hms": "18:34:50",
+      "identified_allocation_elapsed_seconds": 66890,
+      "logged_completed_optimizer_steps_across_attempts": 1901,
+      "logged_completed_steps_abandoned_and_replayed": 776,
+      "scheduler_restarts": 0
+    },
+    "production_completed_updates": 1125,
+    "production_parent_accounting": {
+      "AllocTRES": "billing=32,cpu=32,gres/gpu:h200=4,gres/gpu=4,mem=512G,node=1",
+      "ElapsedRaw": "13697",
+      "End": "2026-09-18T14:07:11",
+      "ExitCode": "0:0",
+      "JobIDRaw": "22958005",
+      "JobName": "sft3b-head2",
+      "MaxRSS": "",
+      "NodeList": "node3200",
+      "Restarts": "0",
+      "Start": "2026-09-18T10:18:54",
+      "State": "COMPLETED",
+      "SubmitLine": "sbatch --parsable --hold --output=/orcd/data/dylanhm/001/nano-gpt-pretrain-steer/codex-issue1681-depth2-20260918/logs/train-%j.log /orcd/data/dylanhm/001/nano-gpt-pretrain-steer/codex-issue1681-depth2-20260918/repo/scripts/slurm/conditional_encdec_sft_residual_head.sbatch train"
+    },
+    "production_resume_from_step": -1,
+    "production_scheduler_restarts": 0,
+    "production_training_invocations": 1,
+    "qualification_canary_updates_separate": 2
+  },
+  "run_root": "/orcd/data/dylanhm/001/nano-gpt-pretrain-steer/codex-issue1681-depth2-20260918",
+  "runtime_checks": {
+    "compute_dtype": "torch.bfloat16",
+    "configured_depth": 2,
+    "gpus": [
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200",
+      "NVIDIA H200"
+    ],
+    "package_count": 227,
+    "packages_exactly_match_preflight": true
+  },
+  "runtime_commit": "50462075083d793d0e9a406fde7e07d08bb9a50c",
+  "source_artifacts": {
+    "historical-control-allocation-restart-evidence.json": {
+      "bytes": 24303,
+      "sha256": "0c77ea2cee40b272c99cfe0f3ac7d2e8ed4a6a87e6b9785aeed62b839039e8c6"
+    },
+    "historical-control-final-training.err": {
+      "bytes": 230426,
+      "sha256": "34207a798c8d9f0e29679a4bfc7c867d58bb998a4e3e2dcad68644453566566c"
+    },
+    "historical-control-initial-training.err": {
+      "bytes": 275176,
+      "sha256": "c3ce9edb6a396ef1c41f1f2b206877f86b584828517fd5c40d4e2687805ed233"
+    },
+    "historical-control-meta-001125.json": {
+      "bytes": 112132,
+      "sha256": "fe13541e383db19ecfc2c1ae96ebc808b99ec3d1f3686cb7a615d9a8eb7c4727"
+    },
+    "historical-training-timing-evidence.json": {
+      "bytes": 142141,
+      "sha256": "f06d742a39724b923ead3957a69629b36bc189fc61da94b7326a00f52d6942ba"
+    },
+    "initial-source-pass-source-evidence.json": {
+      "bytes": 37937,
+      "sha256": "a661668448ea16386de2212c243c60cb010ff50c3af58152bd34c65bb6016049"
+    },
+    "inputs.json": {
+      "bytes": 53472,
+      "sha256": "c1d14d07ae3b493c3d426d2a3f9d72d29ef21ab718485372b8b55b8cb89345cd"
+    },
+    "production-22958005-final-accounting.psv": {
+      "bytes": 3348,
+      "sha256": "354a659719f713c1ba7e0eac7db44365cb70a956eb45955aa8a61fb4b59e10cf"
+    },
+    "production-22958005-final-completion-markers.json": {
+      "bytes": 7313,
+      "sha256": "6f75112fdf641258afee0bb7f52c2b60978a5987acf7208536ea2c2e33d03152"
+    },
+    "production-22958005-final-loss-curves.json": {
+      "bytes": 4854,
+      "sha256": "eabfb0bd8c0a9db46b8ae3e306390a2437388f41b2fd1f11c24b10feeb4b6d07"
+    },
+    "production-22958005-final-meta.json": {
+      "bytes": 232334,
+      "sha256": "de5f122bdda2f30ad61c39e06a7cfa325aab4e00ddbc0db6f9e88411be46ff2a"
+    },
+    "production-22958005-final-metrics.json": {
+      "bytes": 374320,
+      "sha256": "69d1e75cca7d92aa5cbc00faf9b995cd6bdc06871311079d0eb170b97621f8bc"
+    },
+    "production-22958005-final-training-report.json": {
+      "bytes": 66064,
+      "sha256": "06d470c635b916482ac3bc6a7f14c8b4c20dfa6278d67602cdd992c2ad92e614"
+    },
+    "production-22958005-final-training.log": {
+      "bytes": 352140,
+      "sha256": "a73b69b3fda00a6da465b406ddb15c39f4f72919ab857e9262870163367b6b61"
+    },
+    "production-22958005-qualification.json": {
+      "bytes": 593,
+      "sha256": "579b1d3c8ed457424eee82c12bdb2e224fb661e29099609d502b83c718279afe"
+    },
+    "production-22958005-runtime.json": {
+      "bytes": 9839,
+      "sha256": "495e895873b8b10554e7411ef06bee4d8a9b58fdbb41ce01709557f8c34b34ac"
+    },
+    "production-initial-source-pass-audit.json": {
+      "bytes": 10088,
+      "sha256": "d67ea76edc58ff9b9196fc6887aab71fcd4ff85bccfc68154e7ad86e3a0795da"
+    }
+  },
+  "status": "Training, CPU checkpoint inspection, fresh matched cadence views and all twelve ChatCORE task jobs with both six-task aggregates verified. Steering evaluation and GRPO campaign remain deferred.",
+  "timing": {
+    "after_first_step": {
+      "input_positions_per_step": 524288,
+      "mean_seconds_from_rounded_dt": 8.894053380782918,
+      "padded_input_positions_per_second": 58948.15080970972,
+      "seconds_from_rounded_dt": 9996.916,
+      "step_range": [
+        2,
+        1125
+      ],
+      "steps": 1124,
+      "sum_rounding_bound_seconds": 0.562
+    },
+    "all_steps": {
+      "input_positions_per_step": 524288,
+      "mean_seconds_from_rounded_dt": 8.978437333333334,
+      "padded_input_positions_per_second": 58394.125896889556,
+      "seconds_from_rounded_dt": 10100.742,
+      "step_range": [
+        1,
+        1125
+      ],
+      "steps": 1125,
+      "sum_rounding_bound_seconds": 0.5625
+    },
+    "allocated_h200_hours": 15.21888888888889,
+    "allocation_elapsed_seconds": 13697,
+    "allocation_scope": "Entire allocation, including staging, qualification canary, production startup/validation/saving and overlapping probes; excludes queue wait, separate CPU preflight and ChatCORE. Do not add overlapping step durations.",
+    "exact_saved_training_seconds": 9921.568670988083,
+    "historical_exact_retained_counter_seconds": 16362.868120908737,
+    "historical_resumed_step501_warmup_seconds": 6815.384824,
+    "matched_steps_502_1125": {
+      "depth2": {
+        "input_positions_per_step": 524288,
+        "mean_seconds_from_rounded_dt": 8.95149358974359,
+        "padded_input_positions_per_second": 58569.89057119103,
+        "seconds_from_rounded_dt": 5585.732,
+        "step_range": [
+          502,
+          1125
+        ],
+        "steps": 624,
+        "sum_rounding_bound_seconds": 0.312
+      },
+      "historical": {
+        "input_positions_per_step": 524288,
+        "mean_seconds_from_rounded_dt": 8.619488782051281,
+        "padded_input_positions_per_second": 60825.88112322237,
+        "seconds_from_rounded_dt": 5378.561,
+        "step_range": [
+          502,
+          1125
+        ],
+        "steps": 624,
+        "sum_rounding_bound_seconds": 0.312
+      },
+      "scope": "Same completed-step interval, after each invocation first step. Runtime/routing/resume differences remain confounds; no causal head-overhead claim."
+    },
+    "saved_counter_reconciliation": {
+      "absolute_difference_seconds": 0.0003290119166194927,
+      "agrees_with_rounded_step_sum": true,
+      "rounding_bound_seconds": 0.5575
+    },
+    "saved_counter_scope": "Sum of timed global steps >10; excludes outside-step startup, validation and saving; retained on resume.",
+    "scope": "dt windows include timed data/forward/backward/optimizer work; first invocation step includes compile warmup. They exclude outside-step validation/save/startup. Throughput counts padded input positions, not supervised tokens or useful GPU compute. Checkpoint counter retains lineage steps>10; it is not allocation elapsed. Startup summary timers have slightly different boundaries from dt; retain both without equating them. Later validation-loader phase events are not added to the initial startup total.",
+    "startup_summary": {
+      "clock_as_logged": "10:06:40",
+      "ddp_rank": "0",
+      "ddp_world_size": "4",
+      "first_step_warmup_s": "103.826429",
+      "line": 2842,
+      "post_first_step_mean_s": "8.894092",
+      "post_first_step_steps": "1124",
+      "startup_phase_sum_s": "699.801094",
+      "status": "completed",
+      "summary": "steady_state",
+      "time_to_first_step_s": "1042.729742",
+      "unattributed_startup_s": "239.102219"
+    }
+  },
+  "trace_integrity": {
+    "contiguous_steps": 1125,
+    "finite_bpbs": 9,
+    "finite_feature_emas": 1125,
+    "finite_lm_emas": 1125,
+    "parser_issues": [],
+    "previous1050_snapshot_is_exact_byte_prefix": true,
+    "previous_parsed_trace_is_exact_prefix": true,
+    "resume_events": [],
+    "step_range": [
+      1,
+      1125
+    ],
+    "timed_counter_reconciliation": {
+      "absolute_difference_seconds": 0.0003290119166194927,
+      "agrees_with_rounded_step_sum": true,
+      "rounding_bound_seconds": 0.5575
+    }
+  },
+  "training_complete_log_line": 2843,
+  "training_loss": {
+    "depth2_exact_smoothed_metadata": {
+      "smooth_fp_loss": 0.08689202007252518,
+      "smooth_train_loss": 0.8026314791696589
+    },
+    "depth2_final": {
+      "clock_as_logged": "10:03:26",
+      "dt_ms_rounded": 8461,
+      "fp_ema": 0.086892,
+      "horizon": "epoch",
+      "line": 2815,
+      "lm_ema": 0.802631,
+      "lr_multiplier_rounded": 0.0,
+      "progress_percent_rounded": 100.0,
+      "step": 1125
+    },
+    "feature_ema_peaks": [
+      {
+        "fp_ema": 270.276412,
+        "line": 190,
+        "lm_ema": 1.761182,
+        "step": 3
+      },
+      {
+        "fp_ema": 8.881493,
+        "line": 703,
+        "lm_ema": 1.030451,
+        "step": 226
+      },
+      {
+        "fp_ema": 0.160314,
+        "line": 1637,
+        "lm_ema": 0.932234,
+        "step": 621
+      }
+    ],
+    "historical_final": {
+      "clock_as_logged": "08:12:19",
+      "dt_ms_rounded": 8446,
+      "fp_ema": 0.087089,
+      "horizon": "epoch",
+      "line": 1752,
+      "lm_ema": 0.840391,
+      "lr_multiplier_rounded": 0.0,
+      "progress_percent_rounded": 100.0,
+      "step": 1125
+    },
+    "scope": "Rank0 debiased EMA beta0.9. LM: final accumulation microbatch. FP: mean over accumulation microbatches, unweighted. No epoch or global-rank means inferred."
+  },
+  "training_metadata_sha256": "de5f122bdda2f30ad61c39e06a7cfa325aab4e00ddbc0db6f9e88411be46ff2a",
+  "two_step_canary": {
+    "canary_overrides": {
+      "eval_every": 0,
+      "eval_tokens": 65536,
+      "num_iterations": 2,
+      "resume_from_step": -1,
+      "save_every": 0
+    },
+    "checkpoint": "/orcd/data/dylanhm/001/nano-gpt-pretrain-steer/codex-issue1681-depth2-20260918/canary/22958005/base/standard_steered_sft_conditioned_checkpoints",
+    "commit": "50462075083d793d0e9a406fde7e07d08bb9a50c",
+    "finite_parameters": true,
+    "nonzero_residual_outputs": true,
+    "parameters": 3032489474,
+    "preflight_sha256": "c1d14d07ae3b493c3d426d2a3f9d72d29ef21ab718485372b8b55b8cb89345cd",
+    "step": 2,
+    "strict_reload": true
+  },
+  "validation": [
+    {
+      "depth2_bpb_logged": "0.4429",
+      "depth2_log_line": 168,
+      "depth2_minus_historical": "+0.0000",
+      "historical_bpb_logged": "0.4429",
+      "historical_log": "historical-control-initial-training.err",
+      "historical_log_line": 297,
+      "step": 0
+    },
+    {
+      "depth2_bpb_logged": "0.2661",
+      "depth2_log_line": 536,
+      "depth2_minus_historical": "+0.0097",
+      "historical_bpb_logged": "0.2564",
+      "historical_log": "historical-control-initial-training.err",
+      "historical_log_line": 753,
+      "step": 150
+    },
+    {
+      "depth2_bpb_logged": "0.2613",
+      "depth2_log_line": 887,
+      "depth2_minus_historical": "+0.0025",
+      "historical_bpb_logged": "0.2588",
+      "historical_log": "historical-control-initial-training.err",
+      "historical_log_line": 1104,
+      "step": 300
+    },
+    {
+      "depth2_bpb_logged": "0.2530",
+      "depth2_log_line": 1238,
+      "depth2_minus_historical": "-0.0102",
+      "historical_bpb_logged": "0.2632",
+      "historical_log": "historical-control-initial-training.err",
+      "historical_log_line": 1455,
+      "step": 450
+    },
+    {
+      "depth2_bpb_logged": "0.2502",
+      "depth2_log_line": 1590,
+      "depth2_minus_historical": "-0.0112",
+      "historical_bpb_logged": "0.2614",
+      "historical_log": "historical-control-final-training.err",
+      "historical_log_line": 513,
+      "step": 600
+    },
+    {
+      "depth2_bpb_logged": "0.2457",
+      "depth2_log_line": 1941,
+      "depth2_minus_historical": "-0.0208",
+      "historical_bpb_logged": "0.2665",
+      "historical_log": "historical-control-final-training.err",
+      "historical_log_line": 879,
+      "step": 750
+    },
+    {
+      "depth2_bpb_logged": "0.2444",
+      "depth2_log_line": 2290,
+      "depth2_minus_historical": "-0.0154",
+      "historical_bpb_logged": "0.2598",
+      "historical_log": "historical-control-final-training.err",
+      "historical_log_line": 1228,
+      "step": 900
+    },
+    {
+      "depth2_bpb_logged": "0.2306",
+      "depth2_log_line": 2651,
+      "depth2_minus_historical": "-0.0123",
+      "historical_bpb_logged": "0.2429",
+      "historical_log": "historical-control-final-training.err",
+      "historical_log_line": 1587,
+      "step": 1050
+    },
+    {
+      "depth2_bpb_logged": "0.2231",
+      "depth2_log_line": 2837,
+      "depth2_minus_historical": "-0.0131",
+      "historical_bpb_logged": "0.2362",
+      "historical_log": "historical-control-final-training.err",
+      "historical_log_line": 1774,
+      "step": 1125
+    }
+  ]
+}

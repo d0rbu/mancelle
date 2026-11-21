@@ -1,0 +1,21 @@
+# Single-model harmfulness progression plots for conditioned SFT branches.
+# Usage: uv run python -m scripts.eval.plot_harmfulness_progression model_tag=d12_baseline
+
+model_tag: d12_baseline
+base_dir: nanochat_cache
+output_dir: null    # null => fig/harmfulness_progression/${model_tag}
+num_harmful: 700
+# Optional training_progression results.json files, one per collected strength.
+# Nonempty selects checkpoint x labels and averages each receipt's judged seeds.
+progression_paths: []
+
+# Optional exact {targets_sha256: SHA256, strength: NUMBER} receipt filter.
+# Null includes each observed safety strength as a separate plotted signal.
+safety_steering: null
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

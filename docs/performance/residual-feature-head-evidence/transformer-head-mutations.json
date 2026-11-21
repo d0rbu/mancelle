@@ -1,0 +1,114 @@
+{
+  "reviewed_source_commit": "9cb4b9418e54d0f2d39d322ec73ebb99fc251cec",
+  "core": [
+    {
+      "mutation": "nonzero_attention_initialization",
+      "test": "tests/steering/test_transformer_feature_head.py::test_identity_retains_projection_rng_gradients_and_only_new_output_matrices_learn_first",
+      "detected": true,
+      "exit": 1,
+      "source_sha256": "45ccc1d94beaae6a6c17c4f63b3abf46bc4dd2289fd08093ca56e2d158387bc6"
+    },
+    {
+      "mutation": "remove_head_window",
+      "test": "tests/steering/test_transformer_feature_head.py::test_learned_head_matches_independent_fp64_outputs_and_every_gradient",
+      "detected": true,
+      "exit": 1,
+      "source_sha256": "45ccc1d94beaae6a6c17c4f63b3abf46bc4dd2289fd08093ca56e2d158387bc6"
+    },
+    {
+      "mutation": "future_state_leak",
+      "test": "tests/steering/test_transformer_feature_head.py::test_learned_head_is_causal_across_document_and_prediction_group_boundaries",
+      "detected": true,
+      "exit": 1,
+      "source_sha256": "45ccc1d94beaae6a6c17c4f63b3abf46bc4dd2289fd08093ca56e2d158387bc6"
+    },
+    {
+      "mutation": "reset_head_rope_offset",
+      "test": "tests/steering/test_transformer_feature_head.py::test_learned_cache_matches_full_prefix_absolute_positions_and_advances_once",
+      "detected": true,
+      "exit": 1,
+      "source_sha256": "e104dd62fa72ba7cdbf4abf778de3ce44c0a10cc673cd53028ddf1e360809d81"
+    },
+    {
+      "mutation": "overwrite_decoder_cache_slots",
+      "test": "tests/steering/test_transformer_feature_head.py::test_learned_cache_matches_full_prefix_absolute_positions_and_advances_once",
+      "detected": true,
+      "exit": 1,
+      "source_sha256": "45ccc1d94beaae6a6c17c4f63b3abf46bc4dd2289fd08093ca56e2d158387bc6"
+    },
+    {
+      "mutation": "omit_lm_only_head_commit",
+      "test": "tests/steering/test_transformer_feature_head.py::test_speculate_rewind_lm_only_commit_copy_reset_and_failure_rollback",
+      "detected": true,
+      "exit": 1,
+      "source_sha256": "e104dd62fa72ba7cdbf4abf778de3ce44c0a10cc673cd53028ddf1e360809d81"
+    },
+    {
+      "mutation": "omit_counter_rollback",
+      "test": "tests/steering/test_transformer_feature_head.py::test_speculate_rewind_lm_only_commit_copy_reset_and_failure_rollback",
+      "detected": true,
+      "exit": 1,
+      "source_sha256": "e104dd62fa72ba7cdbf4abf778de3ce44c0a10cc673cd53028ddf1e360809d81"
+    },
+    {
+      "mutation": "allow_implicit_checkpoint_architecture",
+      "test": "tests/steering/test_feature_head_metadata_migration.py::test_runtime_never_infers_legacy_architecture",
+      "detected": true,
+      "exit": 1,
+      "source_sha256": "f8b554685ab75f4a9630409128f4675bbf7b349965f6a30a121cde84949c6bcb"
+    },
+    {
+      "mutation": "omit_residual_optimizer_parameters",
+      "test": "tests/steering/test_transformer_feature_head.py::test_optimizer_parameter_accounting_and_transformer_attention_flops",
+      "detected": true,
+      "exit": 1,
+      "source_sha256": "e104dd62fa72ba7cdbf4abf778de3ce44c0a10cc673cd53028ddf1e360809d81"
+    },
+    {
+      "mutation": "omit_pretraining_resume_architecture_admission",
+      "test": "tests/steering/test_feature_head_metadata_migration.py::test_real_pretraining_resume_checks_architecture_before_applying_state",
+      "detected": true,
+      "exit": 1,
+      "source_sha256": "82ebfa6918c4919284fdced28f068769ca000ab87b1934dbd4a127bd59bc1aca"
+    },
+    {
+      "mutation": "omit_topology_mirror_admission",
+      "test": "tests/scripts/test_migrate_encdec_train_state.py::test_topology_migration_admits_only_explicit_consistent_head_architecture",
+      "detected": true,
+      "exit": 1,
+      "source_sha256": "b5aaa1d711a6470a1a80014157d507674c92466eeb481639ef0120f35e11196b"
+    },
+    {
+      "mutation": "require_cuda_backend_for_cpu_models",
+      "test": "tests/steering/test_sm12_fa4.py::test_cpu_meta_model_lifecycle_does_not_require_visible_sm12_dependency",
+      "detected": true,
+      "exit": 1,
+      "source_sha256": "afeaf4ba80e3a348b685bb0b5cb7aacf87dcea054990ee55fd1edfbebbf13db7"
+    }
+  ],
+  "generation_consumers": {
+    "commit": "9cb4b9418e54d0f2d39d322ec73ebb99fc251cec",
+    "test_sha256": "95651885234ad218977b8ebea5aa5f9c323d17a01d967acc3e68f751cb5e8d82",
+    "baseline_passed": true,
+    "mutations": [
+      {
+        "name": "omit_multisegment_head_cache_slots",
+        "filename": "steering/eval/multiseg_generator.py",
+        "test": "tests/steering/test_transformer_head_generation_consumers.py::test_multisegment_learned_head_matches_replayed_conditioning_across_fixed_commits",
+        "detected": true,
+        "exit_code": 1,
+        "source_sha256": "a74e3e7adea97c9ef2971bc1f8263224e31efda651c6ab4c3579a0d2394cdd65",
+        "original_source_restored": true
+      },
+      {
+        "name": "omit_axbench_head_cache_slots",
+        "filename": "steering/eval/axbench_adv/self_conditioning.py",
+        "test": "tests/steering/test_transformer_head_generation_consumers.py::test_axbench_gcg_prompt_seed_uses_learned_head_cache_and_matches_full_prefix",
+        "detected": true,
+        "exit_code": 1,
+        "source_sha256": "03af91f15c2ccdc1e8d8ffb2ca23d49e1fb8b467c358b7429e704129e3c617b2",
+        "original_source_restored": true
+      }
+    ]
+  }
+}

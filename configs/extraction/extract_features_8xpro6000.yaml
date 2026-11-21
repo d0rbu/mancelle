@@ -1,0 +1,9 @@
+# 8x RTX PRO 6000 Blackwell Server Edition (98GB each) extraction config
+# Usage: torchrun --standalone --nproc_per_node=8 -m steering.extract_features --config-name extract_features_8xpro6000 num_shards=370
+
+defaults:
+  - extract_features
+  - _self_
+
+gpu_batch_size: 64
+cpu_batch_size: 128

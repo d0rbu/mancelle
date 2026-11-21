@@ -1,0 +1,23 @@
+# Safety SFT for d12 decoder-only baseline
+# Usage: torchrun --nproc_per_node=4 -m scripts.train.chat_sft config_name=sft_d12_safety
+
+defaults:
+  - chat_sft
+  - _self_
+
+run: sft_d12_safety
+
+# Load d12 base pretrained model
+source: base
+model_tag: d12_base
+
+# Safety mixture
+mixture: safety
+
+# 2500 iterations (~2.5 epochs depending on dataset size)
+num_iterations: 2500
+
+# Match pretraining context length
+max_seq_len: 1024
+device_batch_size: 32
+total_batch_size: 524288

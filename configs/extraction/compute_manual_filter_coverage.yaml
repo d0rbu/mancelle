@@ -1,0 +1,16 @@
+# Compute per-segment selected-feature coverage for a manual autointerp filter.
+#
+# Usage:
+#   uv run -m scripts.preprocess.compute_manual_filter_coverage -- \
+#     feature_dir=path/to/features selection_yaml_path=path/to/manual_feature_filter.yaml
+
+feature_dir: null
+selection_yaml_path: null
+exclude_last_shard: true
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

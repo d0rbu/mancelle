@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "measured_at": "2026-08-29",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "torch": "2.13.0+cu130",
+  "reference_commit": "0753edef12de4285d3df9391bfe3bdc748f958c4",
+  "candidate_commit": "766d5f8ba4a835c5107b102e282bb026be7118f5",
+  "checkpoint": {
+    "step": 54600,
+    "model_sha256": "153d29c0e813036539f71cad8058e47051131d458b21513641f05994471a278d",
+    "metadata_sha256": "03e2f1ead1b3fe48712d9d8ab7fc12c17f04d61db2cc1d6416d959ba5d74cb0f",
+    "feature_vocab_sha256": "8c183369ce4a8ff1e5f153a749e9eb71f9def65283d0a22b4d33bf5ff2d6f16c",
+    "feature_vocab_size": 2074
+  },
+  "workload": {
+    "suite": "core",
+    "seed": 1234,
+    "max_per_task": 5,
+    "task_count": 22,
+    "selected_examples": 110,
+    "scored_rows": 255,
+    "scored_positions": 2226,
+    "conditioned_feature_id": 8,
+    "conditioned_bucket": 1,
+    "core_example_batch_size": 1,
+    "decoder_attention": "the caller's unchanged FlexAttention path",
+    "context_cache_manifest_sha256": "5f3aa7ed6637bab0b6162b147e590cf84da4390b0d4225aca18217cecdb694ac"
+  },
+  "thresholds": {
+    "logits_max_abs": 0.5,
+    "logits_rms": 0.05,
+    "logits_mean_cosine": 0.999,
+    "logits_min_record_cosine": 0.995,
+    "top1_agreement": 0.999,
+    "top50_overlap_mean": 47.5,
+    "losses_max_abs": 0.1,
+    "losses_rms": 0.02,
+    "eval_metrics_max_abs": 0.2
+  },
+  "result": {
+    "passed": true,
+    "scored_row_identities_exact": true,
+    "logits_max_abs": 0.0,
+    "logits_mean_abs": 0.0,
+    "logits_rms": 0.0,
+    "logits_mean_cosine": 1.0,
+    "logits_min_record_cosine": 0.9996304512023926,
+    "top1_agreement": 1.0,
+    "top50_overlap_mean": 50.0,
+    "losses_max_abs": 0.0,
+    "losses_mean_abs": 0.0,
+    "losses_rms": 0.0,
+    "eval_metrics_max_abs": 0.0,
+    "core_metric_delta": 0.0,
+    "all_task_metric_deltas_zero": true
+  },
+  "rejected_cross_example_batching": {
+    "reason": "Changing the real BF16 model's cross-example GEMM and attention shapes changed scored logits and task decisions even with identical row tokens, target masks, and context keys.",
+    "batch_2_flex": {
+      "passed": false,
+      "logits_max_abs": 15.640625,
+      "logits_rms": 0.7082588659014754,
+      "top1_agreement": 0.8984725965858041,
+      "losses_max_abs": 18.41411781311035,
+      "eval_metrics_max_abs": 0.40000003576278687
+    },
+    "batch_5_flex": {
+      "passed": false,
+      "logits_max_abs": 16.3359375,
+      "logits_rms": 0.7209127725283914,
+      "top1_agreement": 0.8998203054806828,
+      "losses_max_abs": 15.675555229187012,
+      "eval_metrics_max_abs": 0.40000003576278687
+    },
+    "batch_5_sdpa": {
+      "passed": false,
+      "logits_max_abs": 17.8125,
+      "logits_rms": 0.8469664735504392,
+      "top1_agreement": 0.8378256963162624,
+      "losses_max_abs": 21.566184997558594,
+      "eval_metrics_max_abs": 0.40000003576278687
+    },
+    "disposition": "The default is restored to one example per forward. Larger values remain explicit throughput-only opt-ins and are not score-comparable."
+  },
+  "artifacts": {
+    "reference_capture_bytes": 146584806,
+    "reference_capture_sha256": "2ad5b413b1a5cd6a1158c4117bc007d31c55669c1f099d9ec0d4d9a628fbfd98",
+    "candidate_capture_bytes": 146585641,
+    "candidate_capture_sha256": "01072b640e15435846984064facdcb5ef94949fcc33d8604706e608740212a3a",
+    "comparison_sha256": "b93cb55d98f5d50b66249fa16663743f916008716e2c618dc37e980acdf56fce"
+  },
+  "measurement_note": "A separate AxBench process was co-resident for both captures. No wall-clock timing from this run is used; GPU contention cannot explain the observed bitwise equality.",
+  "unrun_boundary": "No paid judge call, harmfulness judge suite, full uncapped CORE suite, multi-GPU run, or H200 qualification was performed."
+}

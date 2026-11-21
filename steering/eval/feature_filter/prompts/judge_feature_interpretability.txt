@@ -1,0 +1,44 @@
+You are evaluating whether a human-readable description of an SAE feature
+consistently describes what the feature represents across different
+activation strengths.
+
+The feature's description is:
+
+{DESCRIPTION}
+
+Activating examples are grouped into firing bands (5/5 = peak firing,
+1/5 = weakest firing), followed by a set of negative baselines (text
+windows where the feature did not fire at all). Each activating
+example's peak token is marked with <<token>>.
+
+{BAND_BLOCKS}
+
+Evaluate TWO dimensions:
+
+(a) INTERPRETABILITY — does the description capture a consistent theme
+    across the positive (non-absent) examples?
+    0 = examples do not match the description at all
+    1 = examples weakly match
+    2 = examples partially match
+    3 = examples moderately match
+    4 = examples strongly match
+    5 = examples near-perfectly match
+
+(b) CONSISTENCY — does the description hold across activation strengths?
+    Look at band 5/5 (peak) through band 1/5 (weak). Does the description
+    describe all firing bands equally well? Use the "Negative baselines"
+    block only to check for *over-broad* descriptions (text that matches
+    the description but shouldn't activate the feature), not to penalize
+    description fit for genuine weak firings.
+    0 = description only matches peak bands; weaker bands are about a
+        different concept
+    1 = description mostly fails at lower bands
+    2 = description weakens noticeably below the peak
+    3 = description weakens but remains recognizable at all bands
+    4 = description mostly holds across all bands
+    5 = description holds equally well at every firing band
+
+Respond in EXACTLY this format and nothing else:
+
+Interpretability: [[N]]
+Consistency: [[N]]

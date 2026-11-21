@@ -1,0 +1,4 @@
+# Keep archived machine output collapsible while leaving evidence notes visible.
+docs/performance/encdec-sft-head-evidence/**/*.json linguist-generated=true
+docs/performance/encdec-sft-head-evidence/**/*.svg linguist-generated=true
+docs/performance/encdec-sft-head-evidence/**/*.sha256 linguist-generated=true

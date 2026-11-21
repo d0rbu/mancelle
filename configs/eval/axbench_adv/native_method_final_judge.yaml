@@ -1,0 +1,12 @@
+run_dir: ???
+judge_cache: ???
+final_root: null  # Required only when identity selects archived shared-control replay.
+cache_only: false
+api_base_url: https://openrouter.ai/api/v1
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

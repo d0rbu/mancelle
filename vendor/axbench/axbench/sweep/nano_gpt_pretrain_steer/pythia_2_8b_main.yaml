@@ -1,0 +1,58 @@
+# Local AxBench configuration; see ../../../VENDORED.md.
+#
+# Base-model (not chat-model) comparison point: EleutherAI/pythia-2.8b is not
+# registered in CHAT_MODELS, so the vendored pipeline treats it as a base
+# model automatically (raw prompts, no chat-template wrapping) -- no code
+# change needed for that. layer/steering_layer/lora_layers are scaled from
+# the Qwen sweep's layer 28 / [7, 14, 21, 28] of 36 decoder layers to
+# Pythia-2.8b's 32 (round(32 * qwen_layer / 36)): 28->25, [7,14,21,28]->[6,12,19,25].
+train:
+  model_name: EleutherAI/pythia-2.8b
+  layer: 25
+  component: res
+  seed: 42
+  use_bf16: true
+  output_length: 128
+  models:
+    DiffMean:
+      batch_size: 6
+      n_epochs: 1
+      binarize_dataset: true
+      low_rank_dimension: 1
+    LinearProbe:
+      batch_size: 12
+      gradient_accumulation_steps: 4
+      n_epochs: 24
+      lr: 0.005
+      weight_decay: 0.001
+      coeff_l1_loss: 0.0
+      binarize_dataset: true
+      low_rank_dimension: 1
+
+generate:
+  lm_model: openai/gpt-5.6-luna
+  output_length: 128
+  num_of_examples: 144
+  dataset_category: instruction
+  lm_use_cache: true
+  seed: 42
+
+inference:
+  models: [DiffMean, LinearProbe]
+  model_name: EleutherAI/pythia-2.8b
+  steering_model_name: EleutherAI/pythia-2.8b
+  use_bf16: true
+  seed: 42
+  lm_model: openai/gpt-5.6-luna
+  latent_num_of_examples: 36
+  latent_batch_size: 16
+  steering_intervention_type: addition
+  steering_datasets: [AlpacaEval]
+  steering_batch_size: 10
+  steering_output_length: 128
+  steering_layer: 25
+  steering_layers: [25]
+  steering_num_of_examples: 10
+  steering_factors: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, 4.0, 5.0, 6.0]
+  temperature: 1.0
+  intervene_on_prompt: true

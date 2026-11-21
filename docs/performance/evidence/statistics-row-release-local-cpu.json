@@ -1,0 +1,399 @@
+{
+  "status": "COMPONENT_QUALIFIED_SCOPED_PUBLICATION_WITH_FAILED_REPOSITORY_TEST_CAVEAT",
+  "mechanism": "Release consumed percentile rows from the privately owned native Tensor.tolist result after the original rounding loop. Automatic eligibility falls back to original reconstruction for custom mappings, custom keys, nonnative tensors, instance attributes, overridden tolist and TorchFunctionMode; no configuration knob.",
+  "baseline_head": "177af936ce4b4a7621841b65d790aa6d89d41f82",
+  "baseline_tree": "30043ea510db1b8877bc435577f4a29f173baf36",
+  "baseline_source_sha256": "921d0e05dc18fb42c3eb99c19a08bd3e06c6d1cc7c406b6d32a8e965595738f3",
+  "candidate_source_sha256": "3d7f1590cd8ed22900269278e996e8e49b1f12cefb545e4e97b3d9d4ef05e43c",
+  "input": {
+    "bytes": 82241744,
+    "sha256": "d957803f6da9f53c5307eb1e0d60796249dafef0c053349542973545d720bf93",
+    "stats_rows": 65471,
+    "n_sae_features": 65536
+  },
+  "measurement_scope": "Warm-filesystem same-process complete public CPU load_statistics: file read, parsing and reconstruction inside clocks; collection, graph destruction, hashing and validation outside clocks. Candidate warmup route instrumentation is excluded from all eight timed calls.",
+  "runtime": {
+    "environment": {
+      "OMP_NUM_THREADS": null,
+      "MKL_NUM_THREADS": null,
+      "OPENBLAS_NUM_THREADS": null,
+      "TOKENIZERS_PARALLELISM": null,
+      "RAYON_NUM_THREADS": null
+    },
+    "intra": 16,
+    "interop": 32,
+    "nice": 6,
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "dtype": "torch.float32",
+    "device": "cpu",
+    "gc_enabled": true,
+    "gc_threshold": [
+      2000,
+      10,
+      10
+    ],
+    "gc_debug": 0,
+    "gc_callbacks": []
+  },
+  "schedule": "Two untimed warmups (one per arm), then eight ABBABAAB primary calls; no exclusions.",
+  "timings": [
+    {
+      "slot": 0,
+      "arm": "baseline",
+      "wall_seconds": 2.1887301206588745,
+      "process_CPU_seconds": 2.18865394
+    },
+    {
+      "slot": 1,
+      "arm": "candidate",
+      "wall_seconds": 2.120294287800789,
+      "process_CPU_seconds": 2.1201944889999993
+    },
+    {
+      "slot": 2,
+      "arm": "candidate",
+      "wall_seconds": 2.093955270946026,
+      "process_CPU_seconds": 2.093837191000002
+    },
+    {
+      "slot": 3,
+      "arm": "baseline",
+      "wall_seconds": 2.1693460792303085,
+      "process_CPU_seconds": 2.1692783989999995
+    },
+    {
+      "slot": 4,
+      "arm": "candidate",
+      "wall_seconds": 2.110999681055546,
+      "process_CPU_seconds": 2.109998643000001
+    },
+    {
+      "slot": 5,
+      "arm": "baseline",
+      "wall_seconds": 2.293145727366209,
+      "process_CPU_seconds": 2.292622284
+    },
+    {
+      "slot": 6,
+      "arm": "baseline",
+      "wall_seconds": 2.2114106453955173,
+      "process_CPU_seconds": 2.210575017
+    },
+    {
+      "slot": 7,
+      "arm": "candidate",
+      "wall_seconds": 2.107742313295603,
+      "process_CPU_seconds": 2.1070836220000047
+    }
+  ],
+  "summary": {
+    "all_eight": {
+      "wall_seconds": {
+        "means": {
+          "baseline": 2.2156581431627274,
+          "candidate": 2.108247888274491
+        },
+        "candidate_change_percent": -4.8477810180100445
+      },
+      "process_CPU_seconds": {
+        "means": {
+          "baseline": 2.21528241,
+          "candidate": 2.1077784862500017
+        },
+        "candidate_change_percent": -4.852831551621362
+      }
+    },
+    "first_half_ABBA": {
+      "wall_seconds": {
+        "means": {
+          "baseline": 2.1790380999445915,
+          "candidate": 2.1071247793734074
+        },
+        "candidate_change_percent": -3.3002323627573493
+      },
+      "process_CPU_seconds": {
+        "means": {
+          "baseline": 2.1789661694999998,
+          "candidate": 2.1070158400000008
+        },
+        "candidate_change_percent": -3.3020397703792392
+      }
+    },
+    "second_half_BAAB": {
+      "wall_seconds": {
+        "means": {
+          "baseline": 2.252278186380863,
+          "candidate": 2.1093709971755743
+        },
+        "candidate_change_percent": -6.345006139535691
+      },
+      "process_CPU_seconds": {
+        "means": {
+          "baseline": 2.2515986505,
+          "candidate": 2.1085411325000027
+        },
+        "candidate_change_percent": -6.35359760800307
+      }
+    },
+    "adjacent_first": {
+      "wall_seconds": {
+        "means": {
+          "baseline": 2.200070383027196,
+          "candidate": 2.102477476000786
+        },
+        "candidate_change_percent": -4.435899313917712
+      },
+      "process_CPU_seconds": {
+        "means": {
+          "baseline": 2.1996144785,
+          "candidate": 2.1019179170000015
+        },
+        "candidate_change_percent": -4.44153111624458
+      }
+    },
+    "adjacent_second": {
+      "wall_seconds": {
+        "means": {
+          "baseline": 2.231245903298259,
+          "candidate": 2.114018300548196
+        },
+        "candidate_change_percent": -5.253907808940983
+      },
+      "process_CPU_seconds": {
+        "means": {
+          "baseline": 2.2309503415,
+          "candidate": 2.113639055500002
+        },
+        "candidate_change_percent": -5.258354873157889
+      }
+    },
+    "adjacent_pair_0": {
+      "wall_seconds": {
+        "means": {
+          "baseline": 2.1887301206588745,
+          "candidate": 2.120294287800789
+        },
+        "candidate_change_percent": -3.1267369243990872
+      },
+      "process_CPU_seconds": {
+        "means": {
+          "baseline": 2.18865394,
+          "candidate": 2.1201944889999993
+        },
+        "candidate_change_percent": -3.1279248742266064
+      }
+    },
+    "adjacent_pair_1": {
+      "wall_seconds": {
+        "means": {
+          "baseline": 2.1693460792303085,
+          "candidate": 2.093955270946026
+        },
+        "candidate_change_percent": -3.4752780575716846
+      },
+      "process_CPU_seconds": {
+        "means": {
+          "baseline": 2.1692783989999995,
+          "candidate": 2.093837191000002
+        },
+        "candidate_change_percent": -3.4777098243717552
+      }
+    },
+    "adjacent_pair_2": {
+      "wall_seconds": {
+        "means": {
+          "baseline": 2.293145727366209,
+          "candidate": 2.110999681055546
+        },
+        "candidate_change_percent": -7.943064591881255
+      },
+      "process_CPU_seconds": {
+        "means": {
+          "baseline": 2.292622284,
+          "candidate": 2.109998643000001
+        },
+        "candidate_change_percent": -7.965709932879605
+      }
+    },
+    "adjacent_pair_3": {
+      "wall_seconds": {
+        "means": {
+          "baseline": 2.2114106453955173,
+          "candidate": 2.107742313295603
+        },
+        "candidate_change_percent": -4.687882475186922
+      },
+      "process_CPU_seconds": {
+        "means": {
+          "baseline": 2.210575017,
+          "candidate": 2.1070836220000047
+        },
+        "candidate_change_percent": -4.681650439551466
+      }
+    }
+  },
+  "fixed_gates": {
+    "mean_wall_at_least3percent": true,
+    "mean_CPU_at_least3percent": true,
+    "both_halves_wall_and_CPU_improve": true,
+    "both_adjacent_positions_wall_and_CPU_improve": true
+  },
+  "all_fixed_gates_pass": true,
+  "mean_seconds_saved": {
+    "wall_seconds": 0.10741025488823652,
+    "process_CPU_seconds": 0.10750392374999818
+  },
+  "correctness": {
+    "all_ten_full_protocol5_output_graphs_exact": true,
+    "output": {
+      "pickle_protocol": 5,
+      "pickle_bytes": 109282153,
+      "pickle_sha256": "ac48d388b0a5fff77400691ec20f6849bab2acd734f35b592794920bd499bdc9",
+      "type": "steering.stats_types.ExtractionStatistics",
+      "stats_rows": 65471,
+      "n_sae_features": 65536
+    },
+    "native_route_proof": {
+      "helper_calls": 1,
+      "native_true_returns": 1
+    },
+    "synthetic_controls": 32,
+    "synthetic_controls_decision": "CONTROLS_PASS",
+    "full_SFS_qualification": {
+      "decision": "PASS_CANDIDATE_ALIAS_FULL_SFS",
+      "nineteen_typed_fields_and_rawmetadata_exact": true,
+      "parquet_provenance_byte_exact": true,
+      "counts": {
+        "n_docs": 8240,
+        "n_segments": 24107,
+        "n_features": 50689690,
+        "n_switches": 2380
+      },
+      "owned_files": 3,
+      "owned_logical_bytes": 112254945,
+      "aliases_restored": true,
+      "cleanup": {
+        "decision": "PASS_EXACT_POSTCLEANUP",
+        "removed_files": 3,
+        "removed_directories": 3,
+        "logical_bytes_once": 112254945,
+        "review_sha256": "78c95c9a2fa083525f531f6a489cfc8899e2e3bf9a2db08dd1041c031e00e6fc"
+      },
+      "qualification_report_sha256": "dc90aa125c36a21a05db5ac924c6ee80b7aac79bfb9d495021ba49ba5331bb5d",
+      "independent_review_sha256": "f2f7eb80647b642a55dfdfa437606ca9d2d3f75703ba95b88459a472fb6f061a",
+      "scope": "One full original SFS with only candidate public stats-loader alias substituted and restored; correctness qualification, no A/B pipeline timing.",
+      "tracked_source_unchanged_during_alias_qualification": true
+    },
+    "production_tests_and_statics": {
+      "pytest": {
+        "passed": 479,
+        "failed": 1,
+        "skipped": 4,
+        "deselected": 11,
+        "warnings": 18,
+        "all_eleven_added_tests_passed": true,
+        "skip_reason": "CUDA unavailable",
+        "failed_node": "tests/steering/test_percentile_remote_exhaustive.py::test_identical_processing_and_cleanup_error_is_not_self_noted",
+        "failure": "Unexpected distinct native download-cancellation teardown note on shared processing/close error.",
+        "gate": "FAILED; retained, not replaced by diagnostics"
+      },
+      "statics": {
+        "initial": "Ruff I001 and ty inferred-empty-tuple test annotation failed; preserved.",
+        "minimal_fix": "Test-only import spacing and args: tuple[object, ...] annotation; executable test body unchanged.",
+        "final_exit_codes": {
+          "ruff": 0,
+          "ty": 0,
+          "git_diff_check": 0
+        }
+      },
+      "diagnostics": {
+        "v2_invalid": "Eight valid module bootstraps, but missing basetemp parent caused eight setup errors; zero test bodies ran, no attribution.",
+        "v3_fixed_unchanged_node": {
+          "order": "ABBABAAB",
+          "baseline_passes": 4,
+          "candidate_passes": 4,
+          "conclusion": "INCONCLUSIVE for original failure cause"
+        },
+        "controlled_events_witness": {
+          "fresh_process_order": [
+            "baseline",
+            "candidate"
+          ],
+          "both_native_cancellation_note_reachable": true,
+          "shared_primary_and_close_error_identity": true,
+          "original_target_download_delegated_once_per_arm": true,
+          "worker_joined_and_wrappers_restored": true,
+          "observed_nice": {
+            "baseline": 6,
+            "candidate": 19
+          },
+          "scope": "Same forced control-flow schedule on independently generated small fixtures; not matched data/performance, original scheduling/cause, failure-rate or green-suite evidence."
+        }
+      }
+    }
+  },
+  "evidence_sha256": {
+    "out/splice_perf_76/loader_benchmark.json": "a26119580833f83f7ce36079b50fa67d4e60fd48514ab8dea7ae424dbd64c7a0",
+    "out/splice_perf_76/loader_benchmark_metrics.json": "7d9e0c1ea5bc4308e42dc14f0c73839a1e88e7bb69084ac994440add6722409e",
+    "out/splice_perf_76/loader_benchmark_resources.json": "134631180ed956cfc4b2c5b9f642064fdbd9cabd54c34646ce9ec9980b93e8b2",
+    "out/splice_perf_76/loader_benchmark_freeze_final.json": "0a3ebb98933046aeed596c03765243b414ea2203bf1403cf603272115fedf616",
+    "out/splice_perf_76/functional_controls_v4.json": "7edcf406f619f722a67d0029b2dfce656cc3609ff464138e90cbb9843d1de511",
+    "out/splice_perf_76/terminal_loader_benchmark_terminal_review.json": "ce28ad255adbf96c0e22d82a1e586f62b26967639d108ee1d45008d82c385b57",
+    "out/splice_perf_76/production_pytest.log": "67fab99315edb38e3865aa16939dc98f62b325e23325a58db8279e0b2ac508c1",
+    "out/splice_perf_76/production_pytest.xml": "46f1cfbb32dbf49a3d5cc63296c2914379c586e1cdb07c78703c027fd8acbc24",
+    "out/splice_perf_76/production_pytest_resources.json": "44b67c70d346782c8074069e7dcee7ecba1ca8eef7559dfdc212838484d794ab",
+    "out/splice_perf_76/producer_production_pytest_terminal_review.json": "1a3726e6c9b1e30558625b84812a6013cb29661343d5ff1724a18b07e1b6bf81",
+    "out/splice_perf_76/root_static_initial_receipt.json": "abcaf2ac484335d36d0845642190353bcebfaf23c68203e73b2d0209fa39170b",
+    "out/splice_perf_76/root_static_v2_receipt.json": "05412fee4dc620cb66479e60afee6189c80e14e671bd27a044808bb78e7de401",
+    "out/splice_perf_76/production_test_static_fix_manifest_v2.json": "75e8cf1158dcd0ee8a07e63ee97baf2f696d5cca291a9d7bdf9edb5f14214fde",
+    "out/splice_perf_76/producer_remote_error_diagnostic_v2_terminal_review.json": "e1964e4f531b07b74b6ec1bc23dcd614ae6e446c7f29b7a97d37c02f1bd182ca",
+    "out/splice_perf_76/remote_error_diagnostic_matrix_v2.json": "626fc91f1255e9b0db7626115c9ab50ad4984fdef555e65ac8416bcd3450e9a2",
+    "out/splice_perf_76/producer_remote_error_diagnostic_v3_terminal_review.json": "7d1323b20b1ebc0afcaad1a2dc7a3bbbef288c98ff1f3008d514cc391c25f22d",
+    "out/splice_perf_76/remote_error_diagnostic_matrix_v3.json": "b47485a0f5c1ad6dadaf616b97606f334c106ca76fa619a74801bdf2264f67d5",
+    "out/splice_perf_76/cancellation_witness_freeze_final.json": "5823e0f312a4b8d53e11ce9946835285bfee6b68e69e19e70f5ae67739eecc0c",
+    "out/splice_perf_76/cancellation_witness_matrix.json": "b2c9d8303944859f82dd0b35ec01472ff84322a916edc23fbea9d8786727cfc8",
+    "out/splice_perf_76/producer_cancellation_witness_terminal_review.json": "5a8091932618f7630b658feb50383a01f46657056af4fe79232e8c7d49fda292",
+    "out/splice_perf_76/terminal_cancellation_witness_terminal_review.json": "0242ab118b936aec72dd025d4820d0e6642b227d32574cf3a06e41bf3ae61b6c",
+    "out/splice_perf_76/offset_cancellation_witness_terminal_review.json": "173a3759507a562a6117568348840ec2fe68a3dec7f28045e321bf09e2d967b3"
+  },
+  "limitations": [
+    "No measured memory reduction or causal GC-time attribution.",
+    "No pipeline, GPU, cold-cache or end-to-end speed claim.",
+    "Single canonical statistics artifact and shared-process repeated loads.",
+    "Candidate-loader SFS parity and exact cleanup passed before byte-identical production source copy. Repository pytest gate remains failed as disclosed; diagnostics establish controlled baseline reachability only."
+  ],
+  "implementation_source_sha256": "3d7f1590cd8ed22900269278e996e8e49b1f12cefb545e4e97b3d9d4ef05e43c"
+}

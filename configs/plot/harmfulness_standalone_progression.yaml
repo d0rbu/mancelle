@@ -1,0 +1,25 @@
+# Combined cross-lineage harmfulness progression
+# (d13_base + d12_baseline + standalone branches).
+# Usage: uv run python -m scripts.eval.plot_harmfulness_standalone_progression
+
+base_dir: nanochat_cache
+output_dir: fig/harmfulness_standalone_progression
+num_harmful: 700
+min_step: 53000
+d13_progression_path: out/progression/d13_base/results.json
+# Set self_conditioned for the new nested encoder-decoder progression results.
+d12_conditioned_config: null
+d12_progression_path: out/progression/d12_baseline/results.json
+last_pretrain_step: 54600
+model_tag: d12_baseline
+
+# Optional exact {targets_sha256: SHA256, strength: NUMBER} receipt filter.
+# Null includes each observed safety strength as a separate plotted signal.
+safety_steering: null
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

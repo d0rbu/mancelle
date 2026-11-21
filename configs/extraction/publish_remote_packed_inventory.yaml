@@ -1,0 +1,36 @@
+# Build the signed remote packed-row inventory after compact-FP certification.
+#
+# uv run python -m scripts.preprocess.publish_remote_packed_inventory \
+#   packed_row_dir=out/data/features/.../pct/.../tok/.../c1024/sall
+
+defaults:
+  - _self_
+
+packed_row_dir: ???
+# Optional compatibility cross-check only. Leave null to publish before sel/ exists.
+# Local mode only; an offloaded family has no local sel/ subtree.
+selection_checksum: null
+
+# Sign an OFFLOADED family (issue #1463), whose bodies live only in the bucket.
+# Each published body streams back exactly once through the verified
+# one-lookahead transport, so this needs bandwidth plus a two-body lookahead per
+# stream rather than the whole family on disk. The signed inventory is then
+# published beside the bodies, which is what pre-selection and remote training
+# read. Both roots must be exactly what the producer ran with: the prefix is
+# derived by rebasing `packed_row_dir` from `local_features_root` onto
+# `remote_packed_root`, so a mismatch points at the wrong bucket prefix.
+remote:
+  enabled: false
+  bucket_id: henryac/nano-gpt-pretrain-steer   # canonical owner/name bucket ID
+  local_features_root: null                    # local root `packed_row_dir` sits under
+  remote_packed_root: null                     # producer's remote.offload.remote_packed_root
+  staging_dir: null                            # dedicated writable scratch, a few bodies wide
+  retry_timeout_seconds: 900.0
+  retry_interval_seconds: 5.0
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

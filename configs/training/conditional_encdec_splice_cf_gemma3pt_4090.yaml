@@ -1,0 +1,53 @@
+# Single-4090 (24GB) splice-counterfactual conditioning example (issue #596).
+# gemma-3-4b-pt / gemma-scope-2 / layer 22 / 65k / s128, context-independent
+# no_bos features. Requires a SPLICED derived feature dir:
+#   uv run -m scripts.preprocess.splice_feature_shards \
+#     feature_dir=out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos \
+#     cut_fraction=0.15
+# Then point feature_dir at the derived dir; data_dir auto-derives to
+# <feature_dir>/_parquets (D8). original_val_data_dir (inherited from the
+# parent, not redeclared here) is the text source for the original/base pass
+# of D12 live dual validation; null = nanochat default corpus.
+# Usage: python -m scripts.train.conditional_encdec_train config_name=conditional_encdec_splice_cf_gemma3pt_4090 feature_dir=<derived>
+
+defaults:
+  - conditional_encdec_train
+  - _self_
+
+run: splice_cf_gemma3pt_4090
+
+# 24GB machine shape (mirrors conditional_encdec_4090.yaml)
+depth: 12
+device_batch_size: 4
+max_seq_len: 1024
+
+segment_size: 128
+
+# SAE — gemma-scope-2, gemma-3-4b-pt, layer 22, 65k (mirrors the pt extraction
+# config extract_features_gemma3_4bpt_l22_f65k_ci_nobos.yaml; sae-block schema
+# mirrors conditional_encdec_train_gemma3.yaml).
+sae:
+  release: gemmascope_2
+  model: gemma-3-4b-pt
+  activation_type: residual
+  layer: 22
+  width: 65k
+  l0: medium
+
+# Counterfactual conditioning: delta only at post-splice segments.
+feature_delta:
+  mode: splice_counterfactual
+  neg_delta_ratio: 1.0
+
+feature_selection:
+  delta_weights: percentile_delta
+
+# Live route for splice-counterfactual. Set true only after precomputing
+# packed rows + delta-aware sel/ shards for train/derived-val and a delta-free
+# sel/ shard for original/base val.
+use_precomputed_batches: false
+
+# feature_dir MUST be a spliced derived dir (…/splice/cut_frac*/seed*);
+# training fails fast at startup otherwise.
+feature_dir: null
+data_dir: null

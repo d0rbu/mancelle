@@ -1,0 +1,9 @@
+{
+  "filename": "qualification-evidence-2e533e070cd53ac2.tar.gz",
+  "sha256": "21c26327e405edce4a46a10cf2d81fd69b3b7652ab15ab48524633ce93ff3eb4",
+  "files": 268,
+  "bytes": 6544088,
+  "scope": "Review producers and small receipts/logs; no model, optimizer or feature-data payloads. Failed and superseded attempts are preserved and are not qualification passes.",
+  "remote_path": "/orcd/data/dylanhm/001/nano-gpt-pretrain-steer/codex-issue1719-20260919/qualification-evidence-2e533e070cd53ac2.tar.gz",
+  "manifest": "MANIFEST.json contains each archived relative path and SHA-256."
+}

@@ -1,0 +1,75 @@
+# Completion steering evaluation pipeline
+# Usage: uv run python -m scripts.eval.completion_steering_eval source=encdec mode=ablation
+
+# Model source (must be encoder-decoder)
+source: encdec
+
+# Pipeline control
+stage: all               # all | scan | threshold | select | generate | judge | feature_analysis
+mode: ablation           # ablation | insertion
+force_recompute: false   # true = rerun all stages even if outputs exist
+
+# Feature selection
+top_k_features: 10
+docs_per_feature: 10
+samples_per_condition: 5
+
+# Generation
+temperature: 0.7
+top_k_sampling: 50
+
+# Model checkpoint (auto-detected if null)
+model_tag: null
+step: null
+next_segment_conditioning_offset: auto
+
+# Feature data
+# segment_size=128 is the standard extraction segment size
+# feature_dir should point to the s128 feature directory
+# The last shard in feature_dir is the validation shard (e.g. shard_00369)
+segment_size: 128
+feature_selection:
+  threshold_type: feature_percentile_segment_topk
+  threshold: 2048.9
+feature_dir: null
+
+# Output
+output_dir: null
+
+# Neuronpedia
+neuronpedia:
+  model_id: gemma-2-2b
+  sae_source: 8-gemmascope-res-16k
+  cache_path: null
+
+# Judge
+judge:
+  model: openai/gpt-5-nano
+  requests_per_minute: 60
+  concurrency: 10
+
+# Post-generate evaluators (independent flags)
+run_judge: false
+run_feature_analysis: true
+
+# Feature probe analysis config
+feature_analysis:
+  use_raw_activation: true
+
+# feature_mask: restrict the feature-selection universe to a subset of SAE features.
+# absent / null → disabled (unmasked pipeline, byte-identical to pre-mask runs).
+# To apply the same blacklist used at training time, override on CLI:
+#   feature_mask.mode=blacklist feature_mask.ids=[5,42,...]
+# or point at a file:
+#   feature_mask.mode=blacklist feature_mask.path=/path/to/ids.yaml
+# EVAL CORRECTNESS: a mask-trained encoder-decoder model must be evaluated
+# WITH its feature_mask so the selection pipeline matches training; omitting
+# the mask silently conditions on features the model was never trained to see.
+feature_mask: null
+
+# Hydra config
+hydra:
+  job:
+    chdir: false
+  run:
+    dir: .

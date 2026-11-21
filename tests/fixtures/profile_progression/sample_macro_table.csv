@@ -1,0 +1,15 @@
+path,suite,stage,iter,warmup,wall_seconds
+A,core,suite_total,0,true,45.2
+A,core,suite_total,1,false,38.1
+A,core,suite_total,2,false,38.5
+A,core,suite_total,3,false,37.9
+A,chat,suite_total,0,true,12.5
+A,chat,suite_total,1,false,10.8
+A,chat,suite_total,2,false,11.0
+A,chat,suite_total,3,false,10.9
+A,harmfulness,suite_total,0,true,90.4
+A,harmfulness,suite_total,1,false,88.0
+A,harmfulness,suite_total,2,false,89.2
+A,harmfulness,suite_total,3,false,87.5
+A,,checkpoint_load,0,true,3.2
+A,,build_wrapper,0,true,0.05

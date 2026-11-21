@@ -1,0 +1,130 @@
+{
+  "schema": "independent_production_full_count_receipt_audit_v1",
+  "status": "passed_scoped_full_count_optimizer_gate",
+  "pass": true,
+  "receipt_sha256": "3ceb1d3b9444060c001eaee8d1a49d54694991f6d9b1e7f2c52cfdd9dc245dd5",
+  "harness_sha256": "9e50fe9d147070e5e15a3242986776c54cd7e1d995a05ccc07d447381c32f3c3",
+  "source_manifest_sha256": "0e89bf87f2fcbea0e77fe8d3eb43d8c9b5071e9cf45666ecf85c272ea7e9c96f",
+  "production_adapter_sha256": "d995ec99d9af8d675c6823be30fea15a8977889194dc723dea60be370630384f",
+  "upstream_optimizer_sha256": "3aed3cc16baf172d11b02a26983e0d9f3e9465d2b3363ff2f185ea9dbac8ea7c",
+  "source_files_verified": 1005,
+  "groups": [
+    {
+      "group_index": 7,
+      "matrices": 118,
+      "shape": [
+        1664,
+        1664
+      ],
+      "elements": 326729728,
+      "head_matrices": 10,
+      "ordered_names_sha256": "2aef8592a0b1ca250af635e2ee87f0ea217bef3e2507e429919b86aef1864fc0"
+    },
+    {
+      "group_index": 8,
+      "matrices": 64,
+      "shape": [
+        1664,
+        6656
+      ],
+      "elements": 708837376,
+      "head_matrices": 10,
+      "ordered_names_sha256": "360965b4af99e67cd3ad1069405a922cec3eb651a7c25ab5c974a2de731945d4"
+    },
+    {
+      "group_index": 9,
+      "matrices": 64,
+      "shape": [
+        4992,
+        1664
+      ],
+      "elements": 531628032,
+      "head_matrices": 10,
+      "ordered_names_sha256": "5640aff5d2eeee563cc21b57189e22f7e1eabf1e24504d26d558ca554d345a8d"
+    },
+    {
+      "group_index": 10,
+      "matrices": 64,
+      "shape": [
+        6656,
+        1664
+      ],
+      "elements": 708837376,
+      "head_matrices": 10,
+      "ordered_names_sha256": "78d3088b0196065b63b46e3f04d1bde9146dff712421c29d77a3b2335bece60a"
+    },
+    {
+      "group_index": 11,
+      "matrices": 28,
+      "shape": [
+        13,
+        32
+      ],
+      "elements": 11648,
+      "head_matrices": 0,
+      "ordered_names_sha256": "ac03409091506fe8f2e7fd4c23e034a24015a1f0c94305940822794c5e5d7688"
+    },
+    {
+      "group_index": 12,
+      "matrices": 27,
+      "shape": [
+        3328,
+        1664
+      ],
+      "elements": 149520384,
+      "head_matrices": 0,
+      "ordered_names_sha256": "3f832b8097433c94d317a4821c58af597f7008f473f6581dd9df2e749f265adb"
+    }
+  ],
+  "unique_muon_matrices": 365,
+  "residual_head_matrices": 40,
+  "paired_group_steps": 36,
+  "exact_finite_metrics_verified": 13356,
+  "nonzero_matrix_updates_verified": 2190,
+  "nonzero_head_updates_verified": 240,
+  "optimizer_calls_per_step": {
+    "baseline_pre": 1,
+    "baseline_post": 1,
+    "peer_pre": 1,
+    "peer_post": 1
+  },
+  "compiled_graphs": {
+    "before": 0,
+    "after": 6
+  },
+  "runtime": {
+    "torch": "2.13.0+cu130",
+    "cuda": "13.0",
+    "device": "NVIDIA H200",
+    "capability": [
+      9,
+      0
+    ],
+    "matmul_precision": "high",
+    "dynamo_cache_size_limit": 32,
+    "environment": {
+      "NANOCHAT_DTYPE": "bfloat16",
+      "NANOCHAT_ATTN_IMPL": "fa4",
+      "CUDA_VISIBLE_DEVICES": "0",
+      "TORCHINDUCTOR_MAX_AUTOTUNE": null,
+      "TORCHINDUCTOR_MAX_AUTOTUNE_GEMM_BACKENDS": null,
+      "CUBLAS_WORKSPACE_CONFIG": null
+    }
+  },
+  "full_campaign_complete": false,
+  "timing_claim": false,
+  "independent_real_forward_backward_qualified": false,
+  "distributed_qualified": false,
+  "production_opt_in_qualified": false,
+  "limitations": [
+    "Synthetic independent Gaussian weights and gradients; no captured or real-data inputs.",
+    "No forward/backward, independent gradient-equivalence, loss, or attention qualification.",
+    "Single-rank Muon only; no AdamW arithmetic, collective, or distributed qualification.",
+    "Untimed gate; no performance claim and no repair of failed native whole-model parity.",
+    "Groups run separately; no all-groups-resident peak-memory or inter-group interaction claim.",
+    "Fixed LR/momentum/weight-decay recipe matches synthetic profiling, not an SFT schedule.",
+    "Direct production-class arithmetic gate; model/SFT opt-in is qualified separately.",
+    "The runtime manifest binds new production source; the base revision label alone does not."
+  ],
+  "audit_method": "Independent stdlib audit of closed/hash-verified receipt, every recorded exact finite metric and name/state shape; matched 1005 sealed runtime file bytes and historical captured parameter names. No helper execution or GPU/remote operation."
+}

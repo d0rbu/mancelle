@@ -1,0 +1,3 @@
+# @package _global_
+# Run all pipeline stages end-to-end.
+stage: all

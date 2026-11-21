@@ -1,0 +1,88 @@
+# Supervised fine-tuning config
+# Usage: python -m scripts.train.chat_sft
+
+# Logging
+run: dummy
+
+# Runtime
+device_type: ""
+dtype: bfloat16
+
+# Model loading
+model_backend: nanochat
+source: base
+model_tag: null
+model_step: null
+huggingface: null
+
+# Training horizon
+num_iterations: -1
+
+# Loss-mask modes: full_sequence | completion_only. completion_only supervises
+# assistant text + tool CALLS (<python_start>...<python_end>) and excludes tool
+# OUTPUTS and user turns; validation uses the same mode; checkpoints record it.
+sft_loss_mask: full_sequence
+
+# Batch sizes
+max_seq_len: 1024
+device_batch_size: 32
+total_batch_size: 524288
+
+# Optimization
+embedding_lr: 0.3
+unembedding_lr: 0.004
+matrix_lr: 0.02
+weight_decay: 0.0
+init_lr_frac: 1.0
+# Nullable positive finite max norm. ``null`` deliberately skips clipping.
+grad_clip_max_norm: null
+
+# Mixture selection: "standard", "capabilities", "safety", "standard_steered",
+# or "standard_steered_balanced"
+mixture: standard
+
+# Standard mixture parameters
+mmlu_epochs: 1
+gsm8k_epochs: 1
+# Steered single-turn JSONL (only used by the steered mixtures)
+steered_jsonl: null
+
+# Capabilities mixture parameters (only used when mixture=capabilities)
+smoltalk_limit: 120000
+opencoder_limit: 50000
+capabilities_mmlu_epochs: 2
+orca_math_limit: null  # null = use all; capabilities yaml overrides
+metamath_limit: null  # null = use all; capabilities yaml overrides
+simple_spelling_size: 200000
+spelling_bee_size: 80000
+
+# Safety mixture parameters (only used when mixture=safety)
+wildjailbreak_epochs: 2
+wildguardmix_epochs: 3
+coconot_epochs: 2
+smoltalk_safety_limit: 120000
+
+# Evaluation
+eval_every: 150
+eval_tokens: 10485760  # 20 * 524288
+
+# Checkpoint saving (0 = only save at end of run; N > 0 = additionally save
+# every N optimizer steps, e.g. for training_progression eval). Intermediate
+# checkpoints are not resumable — we do not persist dataloader state.
+save_every: 0
+
+# Output
+dry_run: false
+
+# Opt-in diagnostics. Nonempty trace step/rank lists enable Chrome traces.
+profile_timing: false
+profile_trace_steps: []
+profile_trace_ranks: []
+profile_output_dir: out/profile/chat_sft
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

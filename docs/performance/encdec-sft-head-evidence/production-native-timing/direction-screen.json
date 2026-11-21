@@ -1,0 +1,183 @@
+{
+  "schema": "production_packed_prospective_direction_screen_v1",
+  "job": 23377981,
+  "recorded_at_utc": "2026-09-21T10:11:08.220395+00:00",
+  "protocol_sha256": "8c3576f6cb2f294c62d2470e55fb9ad87275788e0b53a3782929d7ba4e293fa1",
+  "protocol_recorded_before_first_timing": true,
+  "protocol_changed_after_timing": false,
+  "analysis_sha256": "2ab3b7c5bb3275867dd322b656ed7c58ccd234844d425b3aebd1897f7dfee70c",
+  "complete_campaign_integrity": "passed",
+  "all_samples_retained": true,
+  "pairs": [
+    {
+      "workload": "small",
+      "baseline": "A1",
+      "candidate": "B1",
+      "wall": {
+        "baseline_median_ms": 392.8568194969557,
+        "candidate_median_ms": 362.5066354870796,
+        "milliseconds_saved": 30.350184009876102,
+        "candidate_over_baseline": 0.9227449225681285,
+        "step_time_change_percent": -7.725507743187155
+      },
+      "optimizer": {
+        "baseline_median_ms": 211.95897674560547,
+        "candidate_median_ms": 201.92237091064453,
+        "milliseconds_saved": 10.036605834960938,
+        "candidate_over_baseline": 0.9526483568232784,
+        "step_time_change_percent": -4.735164317672158
+      }
+    },
+    {
+      "workload": "small",
+      "baseline": "A2",
+      "candidate": "B2",
+      "wall": {
+        "baseline_median_ms": 368.52466347045265,
+        "candidate_median_ms": 362.93791051139124,
+        "milliseconds_saved": 5.586752959061414,
+        "candidate_over_baseline": 0.9848402196302138,
+        "step_time_change_percent": -1.5159780369786158
+      },
+      "optimizer": {
+        "baseline_median_ms": 211.32943725585938,
+        "candidate_median_ms": 202.0204315185547,
+        "milliseconds_saved": 9.309005737304688,
+        "candidate_over_baseline": 0.9559502648652106,
+        "step_time_change_percent": -4.404973513478938
+      }
+    },
+    {
+      "workload": "large",
+      "baseline": "A1",
+      "candidate": "B1",
+      "wall": {
+        "baseline_median_ms": 4473.685028002365,
+        "candidate_median_ms": 4463.162543514045,
+        "milliseconds_saved": 10.522484488319606,
+        "candidate_over_baseline": 0.9976479156618189,
+        "step_time_change_percent": -0.23520843381811263
+      },
+      "optimizer": {
+        "baseline_median_ms": 214.93450927734375,
+        "candidate_median_ms": 206.42050170898438,
+        "milliseconds_saved": 8.514007568359375,
+        "candidate_over_baseline": 0.9603878986348665,
+        "step_time_change_percent": -3.961210136513349
+      }
+    },
+    {
+      "workload": "large",
+      "baseline": "A2",
+      "candidate": "B2",
+      "wall": {
+        "baseline_median_ms": 4471.675294480519,
+        "candidate_median_ms": 4456.861662503798,
+        "milliseconds_saved": 14.813631976721808,
+        "candidate_over_baseline": 0.996687229952719,
+        "step_time_change_percent": -0.3312770047281033
+      },
+      "optimizer": {
+        "baseline_median_ms": 214.99956512451172,
+        "candidate_median_ms": 206.37094116210938,
+        "milliseconds_saved": 8.628623962402344,
+        "candidate_over_baseline": 0.9598667841146317,
+        "step_time_change_percent": -4.013321588536833
+      }
+    }
+  ],
+  "all_four_wall_median_ratios_less_than_one": true,
+  "direction_screen": "passed",
+  "clock_diagnostics": {
+    "small-A1": {
+      "wall_cv": 0.0057625901915544465,
+      "wall_minus_cuda_phases_ms": {
+        "minimum": 23.1421600705944,
+        "median": 23.444149361457676,
+        "maximum": 23.70713640237227,
+        "negative_samples": 0
+      },
+      "interpretation": "Mixed-clock diagnostic only; no CPU-cost attribution."
+    },
+    "small-B1": {
+      "wall_cv": 0.007844211000206632,
+      "wall_minus_cuda_phases_ms": {
+        "minimum": 2.415446375962347,
+        "median": 3.0992152891121805,
+        "maximum": 3.1402315702289343,
+        "negative_samples": 0
+      },
+      "interpretation": "Mixed-clock diagnostic only; no CPU-cost attribution."
+    },
+    "small-B2": {
+      "wall_cv": 0.005446257624077361,
+      "wall_minus_cuda_phases_ms": {
+        "minimum": 3.087904617190361,
+        "median": 3.1121791694313288,
+        "maximum": 3.1462554819881916,
+        "negative_samples": 0
+      },
+      "interpretation": "Mixed-clock diagnostic only; no CPU-cost attribution."
+    },
+    "small-A2": {
+      "wall_cv": 0.006018880793807941,
+      "wall_minus_cuda_phases_ms": {
+        "minimum": 0.04994984809309244,
+        "median": 0.05161238298751414,
+        "maximum": 0.05311499163508415,
+        "negative_samples": 0
+      },
+      "interpretation": "Mixed-clock diagnostic only; no CPU-cost attribution."
+    },
+    "large-A1": {
+      "wall_cv": 0.02490657181067576,
+      "wall_minus_cuda_phases_ms": {
+        "minimum": -282.96302243694663,
+        "median": 0.12556625460274518,
+        "maximum": 153.89946577325463,
+        "negative_samples": 7
+      },
+      "interpretation": "Mixed-clock diagnostic only; no CPU-cost attribution."
+    },
+    "large-B1": {
+      "wall_cv": 0.04961764806624595,
+      "wall_minus_cuda_phases_ms": {
+        "minimum": -296.4942777119577,
+        "median": 0.12176537630148232,
+        "maximum": 372.3561806199141,
+        "negative_samples": 12
+      },
+      "interpretation": "Mixed-clock diagnostic only; no CPU-cost attribution."
+    },
+    "large-B2": {
+      "wall_cv": 0.0592969793223217,
+      "wall_minus_cuda_phases_ms": {
+        "minimum": -296.51389919407666,
+        "median": 0.12437266553752124,
+        "maximum": 396.32018299540505,
+        "negative_samples": 17
+      },
+      "interpretation": "Mixed-clock diagnostic only; no CPU-cost attribution."
+    },
+    "large-A2": {
+      "wall_cv": 0.04428500887575897,
+      "wall_minus_cuda_phases_ms": {
+        "minimum": -297.1356123192236,
+        "median": 0.12106970022432506,
+        "maximum": 372.9642414706759,
+        "negative_samples": 15
+      },
+      "interpretation": "Mixed-clock diagnostic only; no CPU-cost attribution."
+    }
+  },
+  "timing_measurement_validity_resolved": false,
+  "verified_throughput_improvement": false,
+  "reason": "Negative host-wall minus sequential CUDA-phase sums are unresolved; broad large-workload variation exceeds small paired median deltas. Require a bounded clock-coherence investigation before throughput promotion.",
+  "confidence_interval": null,
+  "general_real_data_or_distributed_speedup_claim": false,
+  "publication_ready": false,
+  "pending": [
+    "Timing-clock validation",
+    "Four-rank NCCL correctness fixture"
+  ]
+}

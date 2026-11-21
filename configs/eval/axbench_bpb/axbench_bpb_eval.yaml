@@ -1,0 +1,100 @@
+# configs/eval/axbench_bpb/axbench_bpb_eval.yaml
+# Axbench-BPB: offline BPB-based steering eval. Mirrors axbench_base_eval.yaml.
+# Schema matches steering.eval.axbench_bpb.config.AxBenchBpbConfig.
+
+# --- Anchoring (REQUIRED — must be overridden on CLI) ---
+source_run_dir: ???          # Directory produced by axbench_base stages 0-3 (concepts, features, directions, adapters, prompting descs)
+output_root: ???             # Where axbench-bpb writes context_cache/, bpb_scores/, bpb_aggregate/
+run_tag: null                # Optional: suffix appended to output paths for run isolation
+
+# --- Feature directory (REQUIRED) ---
+feature_dir: ???             # Root of the SAE feature directory (used by context cache extraction)
+feature_statistics_path: ??? # Safetensors file with percentile boundaries + tokenizer checksum
+extraction_tokenizer_id: google/gemma-2-2b
+neuronpedia_model_id: gemma-2-2b
+neuronpedia_source: 8-gemmascope-res-16k
+extraction_max_tokens: 1024
+extraction_threshold: 0.0
+
+# --- Target models (REQUIRED on CLI) ---
+decoder_only:
+  source: ???                # "local" | "huggingface" etc.
+  model_tag: ???             # e.g. "d13-base"
+  step: ???                  # training step
+encdec:
+  source: ???
+  model_tag: ???
+  step: ???
+device: cuda
+next_segment_conditioning_offset: false
+
+# --- Direction-hook layer (used by diffmean / linear_probe interventions) ---
+diffmean_and_probe_layer: 8
+
+# --- LoRA hyperparameters (used by lora-kind interventions) ---
+lora:
+  # Match axbench-base's LoraConfig defaults (rank=8, alpha=16): the
+  # saved per-concept adapters under <source_run_dir>/baselines/lora/
+  # were trained with these values, and the loader checks lora_A.shape
+  # against (rank, d_in). Mismatch trips a "tensor a (16) must match
+  # tensor b (8) at non-singleton dimension 0" RuntimeError in
+  # apply_intervention during Stage 3 (observed 2026-05-13).
+  rank: 8
+  alpha: 16.0
+
+# --- Stage / method filters ---
+stage: all                   # all | prepare_context_cache | bpb_score | bpb_aggregate
+enabled_methods: null        # null = all methods in the registry; list = allowlist
+disabled_methods:
+  # Feature-GCG and roofline Feature-DiffMean methods are BPB-Adv-only: they
+  # require precomputed conditioning bags + scored-prefix artifacts derived by
+  # the axbench-bpb-ADV BUILD_CANDIDATES stage (adv_paths). Plain axbench-bpb has
+  # no such artifacts, so build_intervention would raise.
+  - ours_gcg_encdec
+  - neg_ours_gcg_encdec
+  - ours_gcg_roofline_encdec
+  - neg_ours_gcg_roofline_encdec
+  - feature_diffmean_roofline_encdec
+  - neg_feature_diffmean_roofline_encdec
+
+# --- Sample selection ---
+filter_unaccepted_samples: true  # Drop rows where qc_accepted=False
+
+# --- Batching ---
+device_batch_size: 16
+
+# --- Context cache (Phase 4) ---
+context_cache:
+  extraction_batch_size: 32
+  force_rebuild: false
+  segment_size: 256
+  # 2 buckets matches the d12_s32 / d12_baseline encoder.magnitude_embed
+  # shape (2, 384) — the canonical conditional-encdec discretization for
+  # this codebase. Override on the CLI if scoring a model trained with
+  # a different bucket count.
+  num_buckets: 2
+
+# --- Aggregation (Phase 10) ---
+aggregation:
+  min_rows_per_side: 10             # Drop concepts with <10 rich or <10 avoiding samples
+  invalid_warning_threshold: 0.01   # Warn if mean truncation rate > this
+  invalid_drop_threshold: 0.05      # Drop method from leaderboard if mean truncation rate > this
+  primary_metric: macro_mean_best_primary_margin
+
+# Feature-DiffMean conditioning-bag baseline. null means resolve top-k from the
+# encoder-decoder checkpoint metadata, matching feature-GCG's default.
+feature_diffmean:
+  top_k_pos: null
+  top_k_neg: null
+
+# --- Progress / logging ---
+log_progress_every: 1000
+
+# --- Offload ---
+offload_between_stages: true  # Free model memory between stages (useful for single-GPU runs)
+
+# --- Hydra runtime ---
+hydra:
+  output_subdir: null
+  run:
+    dir: .

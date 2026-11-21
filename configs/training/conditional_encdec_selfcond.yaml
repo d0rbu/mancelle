@@ -1,0 +1,70 @@
+defaults:
+  - base_train
+  - _self_
+
+run: encdec_selfcond
+model_tag: ???                # REQUIRED (enforced at startup — see note below)
+model_step: null              # null = latest step in the base dir (the ONLY
+                              # latest-sentinel load_checkpoint recognizes)
+base_checkpoint_dir: null     # explicit override of the assembled dir
+# Checkpoint-dir assembly keys (must match the pretraining run; the located
+# checkpoint's meta is then authoritative for everything data-identity):
+segment_size: 128
+feature_selection:            # used ONLY for feature_selection_dirname()
+  distribution: geometric
+  mean: 12.0
+  std: 12.0
+  min_k: 1
+  max_k: 49
+  mode: top_k_percentile
+  delta_weights: null
+
+num_iterations: 500
+resume_from_step: -1          # -1 = fresh start (resume convention, unchanged)
+lr_multiplier: 1.0
+grad_clip_max_norm: 1.0
+compile: false                # v1: three distinct graphs; compile deferred
+eval_every: 100
+save_every: 250
+# In-loop evals inherited from base_train that v1 does NOT wire. They MUST be
+# forced off here: base_train defaults them to 2000, and validate_selfcond_startup
+# raises on any > 0. Omitting these lines makes the documented quickstart crash
+# at startup (they would inherit 2000).
+core_metric_every: 0
+sample_every: 0
+steering_eval_every: 0
+# Train-loader background prefetch depth. null = pretraining parity
+# (grad_accum_steps); explicit int >= 0 overrides; 0 = synchronous loader.
+# Validation loaders are deliberately NEVER prefetch-wrapped (each eval drops
+# its loader after eval_steps batches; a prefetch thread would leak).
+train_prefetch_batches: null
+
+# Profiling is opt-in. Keep timing, trace, and throughput measurements as
+# separate runs because either diagnostic perturbs the hot path. Trace steps
+# are absolute optimizer-step indices, including after resume.
+profile_timing: false
+profile_trace: null
+profile_trace_steps: 1
+profile_output_dir: out/profiles/encdec_selfcond
+
+selfcond:
+  train_scope: head_only      # head_only | full
+  ste_form: dense             # dense | selected
+  pool_mode: null             # null = inherit head loss_mode (best_token ⇒ must set)
+  positive_counts: null       # null = inherit checkpoint feature_selection counts
+  negative_counts: null       # null = inherit checkpoint negative_selection
+  # explicit example:
+  # positive_counts: {distribution: geometric, mean: 12.0, std: 12.0, min_k: 1, max_k: 49}
+  # negative_counts: {distribution: geometric, mean: 12.0, std: 12.0, min_k: 0, max_k: 49}
+
+  # --- Data source (issue #1438) ---
+  data_source: pretraining    # pretraining | sft
+  sft_dataset: null           # standard | capabilities | safety; null = recover
+                              # from the SFT-shaped base checkpoint's `dataset`
+  sft_feature_dir: null       # null = recover from base user_config.feature_dir
+  sft_parquet_dir: null       # null = recover / default {base_dir}/sft_data/{dataset}
+  val_sft_feature_dir: null   # null = derive by swapping the phase leaf
+  val_sft_parquet_dir: null   # null = derive the _val sibling
+  # The generated-assistant cadence (RustBPE target tokens per full assistant
+  # window) is MEASURED from the TRAIN artifacts and recorded at the checkpoint
+  # metadata top level; it has no config knob, and setting one is an error.

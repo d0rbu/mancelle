@@ -1,0 +1,67 @@
+# Precompute gradient-attribution scores as a base-aligned overlay
+# ({feature_dir}/grad/<checksum16>/shard_*.safetensors.zst).
+#
+# Requires the FULL model forward + per-segment backward passes — expect this
+# to be 1-2 orders of magnitude slower than activation extraction. GPU
+# strongly recommended; resumable; DDP-striped via torchrun.
+#
+# Usage:
+#   uv run python -m scripts.preprocess.precompute_gradient_attribution attribution_mode=future_half_split
+#   torchrun --standalone --nproc_per_node=4 -m scripts.preprocess.precompute_gradient_attribution resume=true
+
+defaults:
+  - _self_
+
+# Structured feature path params (used when feature_dir is null) — must match
+# the base extraction run exactly.
+model: gemma-2-2b
+activation_type: residual      # residual only (gradient attribution is residual-only)
+layer: 8
+pooling: max_pool
+segment_size: 128
+sae_width: "16k"               # 16k | 32k | 65k | 131k | 262k | 524k | 1m
+dataset_phase: null             # null = base, or: standard_sft | safety_sft | capabilities_sft
+feature_root: out/data/features
+feature_dir: null  # null = auto-construct from structured params above
+
+# SAE selection (mirrors extraction's structured block). The width comes
+# from `sae_width` above — ONE knob resolves both the feature dir and the
+# loaded SAE, and the producer additionally verifies the loaded SAE's d_sae
+# against it.
+sae:
+  release: gemmascope
+  l0: null
+
+# Source parquet data (must be the SAME data the base shards were extracted
+# from — re-derived tokens are verified against base-shard metadata per doc).
+data_dir: null     # null = nanochat default for the dataset_phase
+context_window: 1024
+
+# Attribution semantics
+attribution_mode: future_half_split  # future_half_split | future_self_full | self
+min_final_segment_tokens: 8  # doc-final segment shorter than this is merged
+                             # with the second-to-last into one attribution
+                             # unit. Must be >= 2 (a 1-token final is
+                             # unscoreable, so it always merges); 2 merges only
+                             # 1-token finals.
+# NOTE: ignore_bos_features is NOT configured here — it is INHERITED from the
+# base shards' metadata (frozen always-on at extraction since #533). A value
+# supplied via config/CLI is obsolete and fails loud; remove the stale key.
+
+# Compute
+device: auto       # auto (GPU if available), cpu, or cuda
+model_dtype: bfloat16  # bfloat16 | float32 (scores are stored fp16 either way)
+batch_size: 4      # documents per padded forward/backward batch
+
+# Processing options
+resume: false      # skip shards whose overlay file already exists
+force: false       # rewrite all overlay shards
+dry_run: false     # compute but do not write
+zstd_level: 12
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

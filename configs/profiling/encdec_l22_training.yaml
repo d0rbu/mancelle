@@ -1,0 +1,99 @@
+# Audited production-shape l22 training profile. Artifact paths are explicit
+# and required only for data/train mode; topology mode is safe and local.
+mode: topology  # data | train | distributed | topology
+output_json: null
+
+artifacts:
+  packed_shard: null
+  selection_shard: null
+  feature_mask: null
+  feature_clusters: null
+
+data:
+  workers: [1, 2, 4, 8]
+  torch_threads: 1
+  batch_size: 16
+  batches: 3
+  timeout_seconds: 300
+
+train:
+  checkpoint_dir: null
+  step: -1
+  batch_size: 1
+  warmup_steps: 3
+  steps: 10
+  compile: false
+  profile_kernels: false
+  kernel_rows: 20
+
+distributed:
+  # Also supports one standalone CUDA process for local synthetic screening.
+  trial_id: null
+  # null preserves the audited 412M model. Target presets may provide the same
+  # explicit geometry accepted by topology.model for measured full-model runs.
+  model: null
+  device_batch_size: 16
+  total_batch_size: 524288
+  padded_segments: 13
+  padded_features: 96
+  fp8: false
+  fp8_recipe: tensorwise
+  # Use the production encoder-decoder packing adapter in matched timing runs.
+  muon_parameter_packing: false
+  warmup_steps: 2
+  steps: 10
+  # Optional exact trainer validation call: eager BF16, no grad,
+  # loss_reduction=none.
+  # Disabled by default so existing throughput runs remain unchanged.
+  validation_warmup_steps: 1
+  validation_steps: 0
+  compile: true
+  # Preserve the existing fixed-shape benchmark default. Set auto for production
+  # SFT's dynamic=None policy: fixed decoder rows, symbolic packed extents.
+  # Avoid false on Hopper FA4: whole-graph dynamic=True symbolizes decoder masks.
+  compile_static: true
+  # Serialized attribution bypasses optimizer.step; incompatible with packing.
+  optimizer_diagnostic_steps: 0
+  # Optional eager-only module attribution. Ordinary compiled throughput is
+  # always measured first and remains the source of throughput/MFU numbers.
+  component_diagnostic_steps: 0
+  component_warmup_steps: 1
+  component_kernel_rows: 20
+  # Export per-rank forward/backward/optimizer traces when component diagnostics
+  # are enabled. These diagnostic steps never enter the throughput samples.
+  trace_dir: null
+  # Audited packed-manifest global bound. Packed CUDA cross-attention validates
+  # it for artifact integrity but does not use it as an allocation extent.
+  static_max_seg_size: 1024
+  avg_features_per_segment: 24.0
+  segment_size: 128
+
+topology:
+  model:
+    # These defaults reproduce the audited 412M profile. Topology mode uses the
+    # geometry for inventory; target presets may also bind distributed.model to
+    # it for measured synthetic full-model runs.
+    decoder_depth: 12
+    encoder_depth: 12
+    width: 768
+    head_dim: 128
+    sequence_length: 1024
+    feature_vocab_size: 2074
+    window_pattern: SSSL
+    feature_prediction_block: mlp
+    feature_prediction_head_layers: 0
+  world_sizes: [8, 64]
+  gpus_per_node: 8
+  intra_latency_us: 2
+  intra_bandwidth_gb_s: 450
+  inter_latency_us: [5, 25, 100]
+  inter_bandwidth_gb_s: 50
+  device_batch_size: 16
+  total_batch_size: 524288
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

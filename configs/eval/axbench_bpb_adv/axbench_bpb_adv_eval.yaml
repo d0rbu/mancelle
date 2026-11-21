@@ -1,0 +1,118 @@
+# AxBench-BPB-Adv: BPB adversarial search with configurable steering metric.
+
+source_run_dir: ???
+output_root: out/eval/axbench_bpb_adv
+run_tag: null
+device: cuda
+
+stage: all
+target_models:
+  - decoder_only
+  - encdec
+
+# Narrowing over AxBench-Base steering methods (a whitelist). null means "all
+# supported rows for target_models"; explicit unsupported/target-mismatched names
+# fail. LoRA and the encoder-decoder no-steering control (control_encdec) stay in
+# the registry and can be re-added here to compute them; they're just excluded by
+# default. Both modes are listed (each family + its neg_ dual).
+base_methods:
+  - diffmean_decoder_only
+  - neg_diffmean_decoder_only
+  - linear_probe_decoder_only
+  - neg_linear_probe_decoder_only
+  - control_decoder_only
+  - neg_control_decoder_only
+  - feature_diffmean_encdec
+  - neg_feature_diffmean_encdec
+  - ours_gcg_encdec
+  - neg_ours_gcg_encdec
+
+adversarial_methods:
+  - method: faster_gcg
+    optimized_token_counts: [0, 1, 2, 4, 8, 16, 32]
+    max_steps: 256                # configured budget; full-batch groups can stop on exact pool exhaustion
+    candidate_batch_size: 64
+    top_k: 32
+    distance_weight: 10.0
+    temperature: 0.1
+    master_seed: 0
+    universal_minibatch_size: 16  # full groups reuse one pool/target; partial groups rerank each step
+    candidate_eval_device_batch_size: null  # inherit top-level device_batch_size
+  - method: additive_direction
+    families: [diffmean, linear_probe]
+    magnitudes: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, 4.0, 6.0]
+
+feature_dir: ???
+feature_statistics_path: ???
+feature_mask: null
+feature_clusters: null
+force_cluster_shard_revalidation: false
+# Clustered splice checkpoints need the producer's batching coordinate to
+# re-derive the selection hash. Set selection_manifest_path when a feature root
+# contains more than one matching packed split and discovery cannot choose.
+selection_splice_batch_size: null
+selection_manifest_path: null
+extraction_tokenizer_id: google/gemma-2-2b
+neuronpedia_model_id: gemma-2-2b
+feature_extraction_model_id: null
+neuronpedia_source: 8-gemmascope-res-16k
+extraction_max_tokens: 1024
+extraction_threshold: 0.0
+
+# Target bundle config blocks are passed through to the AxBench-BPB runtime.
+decoder_only_target: {}
+encdec_target: {}
+lora_adapter: {}
+
+filter_unaccepted_samples: true
+next_segment_conditioning_offset: false
+diffmean_and_probe_layer: 6
+device_batch_size: 16
+feature_diffmean_extraction_batch_size: null
+steering_metric: roundtrip
+plot_steering_strength_families: false
+roundtrip_generation:
+  samples_per_candidate: 4
+  temperature: 0.7
+  top_k_sampling: 50
+  master_seed: 42
+roundtrip_steering:
+  enabled: true
+  feature_statistics_path: null
+  probe:
+    model_name: gemma-2-2b
+    sae_release: gemmascope
+    activation_type: residual
+    layer: 8
+    sae_width: 16k
+    l0: null
+    device: auto
+scores_path: null
+log_progress_every: 1000
+offload_between_stages: true
+
+context_cache:
+  extraction_batch_size: 32
+  force_rebuild: false
+  segment_size: 256
+  num_buckets: 2
+
+# General-validation BPB under steering (the `score_general_val` stage). Measures
+# how much steering degrades GENERAL language-modelling ability on a held-out
+# FineWeb-Edu shard, scored under the SAME intervention as the concept margin.
+# Enabled by default: `scatter_baseline_x` (config.py) defaults to
+# `general_val_bpb`, which requires this. Set enabled=false ONLY if you also
+# move `scatter_baseline_x` off `general_val_bpb` (validate_config fails loud
+# otherwise). Needs a base_data val shard (`python -m nanochat.dataset -n 1`).
+general_val_bpb:
+  enabled: true
+  n_documents: 64        # held-out docs scored per intervention
+  prefix_tokens: 256     # context prefix (nanochat tokens; >= 1 Gemma segment for encdec)
+  output_tokens: 128     # scored continuation length
+  max_interventions: 0   # cap on distinct interventions scored (0 = no cap)
+  seed: 0
+
+hydra:
+  output_subdir: null
+  run:
+    dir: .

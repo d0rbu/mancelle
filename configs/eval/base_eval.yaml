@@ -1,0 +1,166 @@
+# Base model evaluation config
+# Usage: python -m scripts.eval.base_eval source=base
+
+eval: "core,bpb,sample"
+source: ???  # required: base | sft | safety | capabilities | safety/rl | encdec/safety | etc.
+hf_path: null
+model_tag: null
+step: null
+max_per_task: -1
+# Target-aware encoder-decoder CORE examples per forward. Batch 1 preserves
+# pre-batching BF16 numerics and the caller's decoder-attention implementation.
+# Larger values are throughput-only opt-ins and can change scored logits.
+core_example_batch_size: 1
+# CORE few-shot sampling seed. Must match target cache enumeration
+# base_seed for target_real CORE cache rows.
+core_seed: 1234
+device_batch_size: 32
+split_tokens: 20971520  # 40 * 524288
+device_type: ""
+
+# Feature conditioning for encoder-decoder models (ignored for decoder-only / HF models).
+# Each explicit config must contain a non-empty target-delta feature dict.
+# Explicit empty feature dicts are rejected so they cannot become renamed
+# context-only/unconditioned baseline rows.
+# "path/to/features.yaml" → load {feature_id: bucket_index} from file
+# "path/to/dir/" → recursively discover features.yaml files, eval each
+# [{name: custom, features: {0: 1, 5: 2}}] → inline feature dict(s)
+#
+# Empty feature_configs means no static target-delta pass. Set explicit YAMLs
+# here for safety/capability deltas, or use target_real_configs below.
+feature_configs: []
+
+# Context-feature cache for encoder-decoder eval. Encoder-decoder models require
+# this cache so prompt/context text is conditioned on real SAE features. Decoder-
+# only and HF models ignore it. Identity bundle MUST match the cache manifest
+# exactly; feature_selection_hash must resolve to a 64-char hex hash (explicit
+# here or canonical via feature_selection + stats_source_sha256).
+conditioning:
+  context_cache_dir: null
+  identity:
+    model_id: gemma-2-2b
+    sae_id: gemmascope-residual-l8-16k
+    layer: 8
+    pooling: max_pool
+    feature_selection_hash: null
+  n_sae_features: 16384
+  # num_buckets=2 represents binary encoding: bucket 0 = low/negative direction,
+  # bucket 1 = high/positive direction. The wrapper handles arbitrary positive
+  # num_buckets; this default reflects the binary-bucket SAE training pipeline.
+  # IMPORTANT: must match the encdec model's encoder.config.num_buckets and
+  # the cache's manifest num_buckets. Override on CLI for legacy 10-bucket setups.
+  num_buckets: 2
+  # feature_mask: restrict the conditioning universe to a subset of SAE features.
+  # absent / null → disabled (unmasked pipeline, byte-identical to pre-mask runs).
+  # To apply the same blacklist used at training time, override on CLI:
+  #   conditioning.feature_mask.mode=blacklist conditioning.feature_mask.ids=[5,42,...]
+  # or point at a file:
+  #   conditioning.feature_mask.mode=blacklist conditioning.feature_mask.path=/path/to/ids.yaml
+  # EVAL CORRECTNESS: a mask-trained encoder-decoder model must be evaluated
+  # WITH its feature_mask so the conditioning pipeline matches training; omitting
+  # the mask silently conditions on features the model was never trained to see.
+  feature_mask: null
+
+# Sampling parameters for the per-config blocks.
+sampling:
+  # Per-feature-config (greedy) — used for each prompt × each feature_config.
+  per_config_max_new_tokens: 16
+  per_config_temperature: 0.0
+
+# Sample-generation prompts — must match the keys in the context cache for
+# encoder-decoder eval.
+# Single source of truth shared with configs/training/conditional_encdec_train.yaml.
+sample_prompts:
+  - "The capital of France is"
+  - "The chemical symbol of gold is"
+  - "If yesterday was Friday, then tomorrow will be"
+  - "The opposite of hot is"
+  - "The planets of the solar system are:"
+  - "My favorite color is"
+  - "If 5*x + 3 = 13, then x is"
+
+# Cache lookup uses model_max_seq_len to navigate the c{N}/ subdirectory
+# of conditioning.context_cache_dir. Must match the cache's metadata
+# (set by build_eval_context_cache when the cache was generated).
+# IMPORTANT: if your model uses a different sequence_len, override on the
+# command line: model_max_seq_len=1024
+model_max_seq_len: 1024
+
+# Encoder-decoder BPB conditioning. Encdec models require val_packed_row_dir
+# and run the conditioned precomputed-data path only. Decoder-only models ignore
+# this block and use the regular tokenized BPB loader.
+#
+# val_packed_row_dir conventions:
+# - Auto-resolution from cfg.conditioning is NOT supported here because the
+#   feature_pipeline build hash isn't part of the eval cfg. Pass an explicit
+#   path: typically the val sibling of the train packed_row_dir,
+#   {feature_dir}/pct/<hash>/tok/<hash>/c{T}/val_<shard_count>/.
+# - The directory must contain a 'sel/<selection_hash>/' subdir with selection
+#   shards (the loader fails on empty selection shards because the eval cfg
+#   doesn't carry the feature_pipeline needed for the fused inline path).
+#
+# selection_hash: the same compute_selection_hash used at training time. Pass
+# the resolved hex string, or leave null to derive the exact hash from
+# conditioning.feature_selection. If that exact directory is absent, eval uses
+# fused-inline selection; it never guesses among unrelated sel/ directories.
+# conditioning.feature_selection remains required even with an explicit hash:
+# the loader needs the matching pipeline if any shard falls back to fused-inline.
+#
+# Selection shards are OPTIONAL — when absent (the common case), the
+# precomputed_data_loader's fused-inline path runs with the
+# FeaturePipelineConfig reconstructed from cfg.conditioning + the canonical
+# stats file. See `build_feature_pipeline_from_cfg`.
+#
+# stats_path: explicit path to the feature_statistics.safetensors file used
+# at training time. When null, auto-resolves via
+# `steering.feature_paths.build_feature_dir(...)` from cfg.conditioning.identity
+# + cfg.bpb.feature_root (or default 'out/data/features') + cfg.bpb.segment_size
+# (or cfg.segment_size) + cfg.dataset_phase (default 'base').
+#
+# Auto-resolved layout:
+#   {feature_root}/s{segment_size}/l{layer}/a_{act}/p_{pool}/f{width}/
+#   m_{model}/{dataset_phase}/feature_statistics.safetensors
+bpb:
+  val_packed_row_dir: ???    # required for encdec conditioned BPB; decoder-only ignores this
+  selection_hash: null       # null = derive exact hash; absent exact dir = fused-inline
+  stats_path: null           # null = auto-resolve via cfg.conditioning.identity + cfg.bpb.feature_root
+  feature_root: null         # null = default 'out/data/features' (matches extraction conventions)
+  segment_size: null         # null = inherit cfg.segment_size
+
+segment_size: null
+next_segment_conditioning_offset: auto
+
+# Phase 2 PR-C: target-real conditioning configs (best-case upper-bound eval).
+# Each entry consumes a target cache built from full-conversation/sequence
+# tokens plus the exact prompt/context prefix rows used by scoring. Full rows
+# carry target_char_* metadata. Modes: 'lockstep' (per-token routing) or
+# 'pooled' (BUCKET_MAX/BUCKET_MEAN single-segment). See
+# steering/eval/target_conditioning.py::parse_target_real_configs.
+#
+# target_real is opt-in. Leave target_real_configs empty for normal evals.
+# To run target-real, pass explicit entries on the CLI/config; cache_dir may be
+# a concrete path or null for identity-based auto-resolution.
+#
+# cache_dir auto-resolution (PR-C Task 2): if you explicitly set an entry's
+# cache_dir to null, it is auto-resolved via
+# steering.eval.eval_cache_paths.default_target_cache_dir from the
+# conditioning identity + model_max_seq_len + suite ('core_target' for
+# base_eval). Path layout:
+#   {nanochat_cache}/eval_caches/core_target/m_{model}/l{layer}/a_{act}/p_{pool}/f{width}/c{T}/{hash[:16]}
+#
+# To build the cache: run
+#   uv run python -m scripts.eval.build_eval_context_cache stage=enumerate evals=core_target ...
+# then pass entries such as:
+#   target_real_configs=[{name:pooled,mode:pooled,cache_dir:null},{name:lockstep,mode:lockstep,cache_dir:null}]
+# with a pinned/effective conditioning.identity.feature_selection_hash for
+# auto-resolution, or replace null cache_dir values with concrete paths. See
+# steering/eval/target_conditioning.py::target_real_cache_generation_instructions
+# for the full operator workflow.
+target_real_configs: []
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

@@ -1,0 +1,14 @@
+input_path: ???
+manifest_path: ???
+output_dir: ???
+judge_cache: ???
+max_concepts: 50
+num_workers: 8
+cache_only: false
+api_base_url: https://openrouter.ai/api/v1
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

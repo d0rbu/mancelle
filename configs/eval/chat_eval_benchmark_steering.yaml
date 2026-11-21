@@ -1,0 +1,8 @@
+defaults:
+  - chat_eval_self_conditioned
+  - _self_
+
+self_conditioned:
+  benchmark_steering:
+    targets: ???
+    strength: 0.0

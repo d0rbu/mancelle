@@ -1,0 +1,60 @@
+{
+  "device": "NVIDIA GeForce RTX 4090",
+  "text_rows": 7200,
+  "unique_texts": 3816,
+  "repeated_texts": 216,
+  "rows": [
+    {
+      "mode": "baseline",
+      "wall_seconds": 148.52053282782435,
+      "exact_baseline": true,
+      "max_absolute_difference": 0.0,
+      "mismatched_concepts": [],
+      "peak_cuda_allocated_bytes": 9969396224,
+      "cache_bytes": 0,
+      "cache_entries": 0,
+      "pool_calls": 100,
+      "forward_rows": 7200,
+      "cache_hits": 0
+    },
+    {
+      "mode": "cached",
+      "wall_seconds": 81.60934207960963,
+      "exact_baseline": true,
+      "max_absolute_difference": 0.0,
+      "mismatched_concepts": [],
+      "peak_cuda_allocated_bytes": 9533698048,
+      "cache_bytes": 56623104,
+      "cache_entries": 216,
+      "pool_calls": 100,
+      "forward_rows": 3816,
+      "cache_hits": 3384
+    },
+    {
+      "mode": "cached",
+      "wall_seconds": 82.21984446048737,
+      "exact_baseline": true,
+      "max_absolute_difference": 0.0,
+      "mismatched_concepts": [],
+      "peak_cuda_allocated_bytes": 9533698048,
+      "cache_bytes": 56623104,
+      "cache_entries": 216,
+      "pool_calls": 100,
+      "forward_rows": 3816,
+      "cache_hits": 3384
+    },
+    {
+      "mode": "baseline",
+      "wall_seconds": 149.55143655091524,
+      "exact_baseline": true,
+      "max_absolute_difference": 0.0,
+      "mismatched_concepts": [],
+      "peak_cuda_allocated_bytes": 9969396224,
+      "cache_bytes": 0,
+      "cache_entries": 0,
+      "pool_calls": 100,
+      "forward_rows": 7200,
+      "cache_hits": 0
+    }
+  ]
+}

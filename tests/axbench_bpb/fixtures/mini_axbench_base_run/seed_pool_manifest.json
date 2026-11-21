@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "seed_fingerprint": "1111111111111111111111111111111111111111111111111111111111111111",
+  "token_semantics": "stored_prefix_and_continuation_are_exact_bos_free_nanochat_source_slices;one_pipeline_owned_bos_is_added_only_at_model_input",
+  "candidate_digest": "6666666666666666666666666666666666666666666666666666666666666666",
+  "candidate_count": 2,
+  "skip_counts": {},
+  "source_parquet_hashes": {
+    "/test/source.parquet": "3333333333333333333333333333333333333333333333333333333333333333"
+  },
+  "config_fingerprint": "885d5ccf68cd1ce5f95462b8bfec1bd779e227cbd29566e1d8e616c61462c403",
+  "extraction_fingerprint": "7777777777777777777777777777777777777777777777777777777777777777",
+  "nanochat_tokenizer_checksum": "9fd6874d41df0484e416ad89158f9162c942fea8b7a7fbb72d2e8f39531f0428",
+  "extraction_tokenizer_checksum": "2222222222222222222222222222222222222222222222222222222222222222",
+  "parameter_hashes": {
+    "model": "4444444444444444444444444444444444444444444444444444444444444444",
+    "sae": "5555555555555555555555555555555555555555555555555555555555555555"
+  },
+  "runtime_identity": {
+    "backend": "test"
+  },
+  "extraction_settings": {
+    "pooling": "max_pool"
+  },
+  "files": {
+    "seeds_train.safetensors": {
+      "sha256": "11f30a897b52a9ba5cec7ea92875d595b774d5b03ee5daca3776ff7ee42b7563",
+      "row_count": 1,
+      "split": "train"
+    },
+    "seeds_eval.safetensors": {
+      "sha256": "ee3d2c001990a4020d276bae69d4e06e3805f497d942009a7cef0e9e6fedf304",
+      "row_count": 1,
+      "split": "eval"
+    }
+  }
+}

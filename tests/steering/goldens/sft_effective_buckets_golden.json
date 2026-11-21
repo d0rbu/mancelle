@@ -1,0 +1,31 @@
+{
+  "_provenance": [
+    "Frozen NO-OP pin for conditioned-SFT bucket encoding on checkpoints WITHOUT",
+    "negative_selection. Captured from the pre-fix SFT path, which built",
+    "boundaries as build_boundaries_from_stats(per_feature_stats, n_sae_features,",
+    "num_buckets) and discretised with discretize_activations. For a checkpoint",
+    "with no negative_selection, effective_buckets == num_buckets, so the fixed",
+    "path must reproduce these bytes exactly.",
+    "Fixture: n_sae_features = len(magnitudes); every feature carries percentiles",
+    "p1..p99 with value float(p), so the pN boundary for feature f is literally N."
+  ],
+  "fixture": {
+    "magnitudes": [10.0, 25.0, 30.0, 50.0, 60.0, 80.0, 99.0],
+    "feature_ids": [0, 1, 2, 3, 4, 5, 6],
+    "percentile_value_equals_percentile_index": true
+  },
+  "no_negative_selection": {
+    "2": {
+      "boundaries_row0": [50.0],
+      "buckets": [0, 0, 0, 1, 1, 1, 1]
+    },
+    "3": {
+      "boundaries_row0": [33.0, 66.0],
+      "buckets": [0, 0, 0, 1, 1, 2, 2]
+    },
+    "4": {
+      "boundaries_row0": [25.0, 50.0, 75.0],
+      "buckets": [0, 1, 1, 2, 2, 3, 3]
+    }
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "source_commit": "9cb4b9418e54d0f2d39d322ec73ebb99fc251cec",
+  "job": {
+    "id": 23257899,
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "slurm_elapsed": "00:04:37",
+    "slurm_status_source": "root agent terminal scheduler read",
+    "gpu": "one H200",
+    "cpu_count": 8,
+    "memory_gib": 64,
+    "time_limit_minutes": 45
+  },
+  "execution": {
+    "launcher": "torch.distributed.run --standalone --nproc_per_node=1",
+    "distributed_world_size": 1,
+    "distributed_backend": "NCCL via unmodified compute_init CUDA path",
+    "dtype": "BF16 activations",
+    "requested_attention": "fa4",
+    "compile_static": "auto",
+    "compile_dynamic": null,
+    "compilation_disabled": false,
+    "decoder_block_mask_prewarm_completed": true,
+    "kernel_evidence_scope": "Real SFT admission and unchanged FA4 dispatch; this smoke did not capture a separate kernel profiler trace."
+  },
+  "fixture": {
+    "conversations": 8,
+    "decoder_layers": 2,
+    "embedding_width": 64,
+    "query_heads": 2,
+    "kv_heads": 2,
+    "sequence_length": 256,
+    "device_batch_size": 1,
+    "global_batch_tokens": 256,
+    "loss_mask": "completion_only",
+    "head_transition": "linear mlp:0 to transformer:2",
+    "dataset_boundary": "Only build_task_mixtures is replaced by deterministic TinyConversations; full production SFT main, data loader, compiler, optimizer, writer and resume admission execute unchanged.",
+    "feature_boundary": "Synthetic SAE values with real cached Gemma segmentation and RustBPE rendering; production parquet conversion and matching mixture fingerprints.",
+    "alignment_probe_samples": 8
+  },
+  "procedure": [
+    "Prepare fresh isolated tiny base, full-conversation parquet, feature shards and statistics.",
+    "Run fresh SFT for two optimizer updates, saving model/meta/rank-zero optimizer files at steps 1 and 2.",
+    "Strictly reload on CPU and verify canonical metadata mirrors, finite model tensors, nonzero head output projections and QKV changes after step 1.",
+    "Start a separate torchrun process with resume_from_step=1, restore optimizer and buffered cursor, run to step 2, then repeat strict checks."
+  ],
+  "fresh": {
+    "checkpoint": "/orcd/data/dylanhm/001/nano-gpt-pretrain-steer/codex-issue1719-20260919/sft-cli-23257899/base/safety_sft_conditioned_checkpoints",
+    "feature_prediction_config": {
+      "weight": 0.1,
+      "layer": -1,
+      "loss_mode": "max_pool",
+      "loss_fn": "bce",
+      "block": "transformer",
+      "head_layers": 2
+    },
+    "all_model_tensors_finite": true,
+    "strict_cpu_reload": true,
+    "learned_head_output_projection_nonzeros": {
+      "residual_blocks.0.attn.c_proj.weight": 4096,
+      "residual_blocks.0.mlp.c_proj.weight": 16384,
+      "residual_blocks.1.attn.c_proj.weight": 4096,
+      "residual_blocks.1.mlp.c_proj.weight": 16384
+    },
+    "head_qkv_changed_after_first_step": {
+      "feature_pred_head.residual_blocks.0.attn.c_qkv.weight": true,
+      "feature_pred_head.residual_blocks.1.attn.c_qkv.weight": true
+    },
+    "checkpoint_files_sha256": {
+      "meta_000002.json": "ef828fcbc2552d0c236ae9b3e070fb110c5ef34ae87960de66ca0d0fd27afcf3",
+      "model_000002.pt": "53b2d9fc8d5d63a3af60f284edcc34da1e7e606eeff6b0913471abfe7a2c0340",
+      "optim_000002_rank0.pt": "c1f179d9875c67b1c4cdec6977cc6dfacde9effb7fa724575595a3c0ed4b29c4"
+    },
+    "sft_consumed": 2,
+    "sft_cursor_semantics": "buffered_v2",
+    "resume_from_step": -1
+  },
+  "resumed": {
+    "checkpoint": "/orcd/data/dylanhm/001/nano-gpt-pretrain-steer/codex-issue1719-20260919/sft-cli-23257899/base/safety_sft_conditioned_checkpoints",
+    "feature_prediction_config": {
+      "weight": 0.1,
+      "layer": -1,
+      "loss_mode": "max_pool",
+      "loss_fn": "bce",
+      "block": "transformer",
+      "head_layers": 2
+    },
+    "all_model_tensors_finite": true,
+    "strict_cpu_reload": true,
+    "learned_head_output_projection_nonzeros": {
+      "residual_blocks.0.attn.c_proj.weight": 4096,
+      "residual_blocks.0.mlp.c_proj.weight": 16384,
+      "residual_blocks.1.attn.c_proj.weight": 4096,
+      "residual_blocks.1.mlp.c_proj.weight": 16384
+    },
+    "head_qkv_changed_after_first_step": {
+      "feature_pred_head.residual_blocks.0.attn.c_qkv.weight": true,
+      "feature_pred_head.residual_blocks.1.attn.c_qkv.weight": true
+    },
+    "checkpoint_files_sha256": {
+      "meta_000002.json": "7f7b500296d01ded5168ac21713391fa4942295e8ea848fbc5ae605b24a0de22",
+      "model_000002.pt": "102d6e2d9e120e20609cac9a70e05a7f11ed7552700509a112198f83fead63e2",
+      "optim_000002_rank0.pt": "5fee055cb20978b73e9c4fb3bfa98f95d9f6ea476b110ae0c6b935966351a07a"
+    },
+    "sft_consumed": 2,
+    "sft_cursor_semantics": "buffered_v2",
+    "resume_from_step": 1
+  },
+  "logged_metrics": {
+    "fresh": [
+      {
+        "step": 1,
+        "logged_smoothed_loss": 10.396087,
+        "logged_smoothed_feature_loss": 0.695554,
+        "step_milliseconds": 59060
+      },
+      {
+        "step": 2,
+        "logged_smoothed_loss": 9.947614,
+        "logged_smoothed_feature_loss": 0.684423,
+        "step_milliseconds": 111
+      }
+    ],
+    "resumed": [
+      {
+        "step": 2,
+        "logged_smoothed_loss": 9.954565,
+        "logged_smoothed_feature_loss": 0.694543,
+        "step_milliseconds": 43440
+      }
+    ]
+  },
+  "timing_seconds": {
+    "fresh_time_to_first_step": 67.09901,
+    "fresh_first_step_warmup": 59.060326,
+    "fresh_second_step": 0.111374,
+    "resumed_time_to_first_step": 50.3651,
+    "resumed_first_step_warmup": 43.439281
+  },
+  "raw_evidence_sha256": {
+    "COMPLETE": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1",
+    "fixture.json": "59bdb7f3054a747d519335a60da0bb9f20c3abdbe23de9b73fd1b3e0d41d715b",
+    "fresh.json": "885ee943e93d3d833d09df8213c69e73c9f1727968c765662bb123afced1e370",
+    "fresh.log": "3ace719310855e2bed5a49fbde952f901611c5ec028523be6aee8b706ed86875",
+    "resumed.json": "e86f6c307aad0977947b47717f851641b5f4cb1b16fa2788419222babd43d87a",
+    "resumed.log": "73b7e05acfc94980b2cdf2bd3c3bd42ccf5a6bd35af9a099d9856b665222dd50",
+    "sft-cli-23257899.log": "1a6c3aefeea0c716a1c4928f97f5f4aff712970a02f44a5ff709a5f633cedcc6"
+  },
+  "producer_sha256": {
+    "out/issue1719/sft-cli-smoke.py": "a85158b6886d0e9f470ec522db29a34b81976426d23570623df85e6ca0147cbe",
+    "out/issue1719/sft-cli-run.sh": "5a9d81c05e994beb3bba473ee2a8c4773c9b5372d4c7da32b7bcc180cfe2bdc1",
+    "out/issue1719/sft-cli-h200.sh": "bd3c64d0c7bf78818ab2598aae1325765d2f86b873eb6bbc57c2dee99e51c53e"
+  },
+  "limitations": [
+    "Tiny one-rank smoke, not the deferred four-H200 production SFT or a scaling qualification.",
+    "No ChatCORE evaluation, publication, or production training was performed.",
+    "Resume was not bitwise identical: final model and optimizer hashes differ. Native FA4 backward and uncheckpointed stochastic feature selection make this unsuitable as a deterministic resume oracle.",
+    "Local CPU/SDPA eager preflight passed artifact admission and stopped at the expected CUDA-only packed-encoder guard; the successful training run used compiled CUDA/FA4.",
+    "Single optimizer shard here; four-rank shard completeness remains a future production canary gate."
+  ]
+}

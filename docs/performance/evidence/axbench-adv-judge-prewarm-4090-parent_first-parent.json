@@ -1,0 +1,113 @@
+{
+  "wall_seconds": 111.47994907945395,
+  "events": [
+    {
+      "method": "SelfConditioning",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "__enter__",
+      "seconds": 5.947248984128237
+    },
+    {
+      "method": "SelfConditioning",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 12.366528861224651
+    },
+    {
+      "method": "SelfConditioning",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 6.344517402350903
+    },
+    {
+      "method": "SelfConditioning",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 6.550289422273636
+    },
+    {
+      "method": "SelfConditioning",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "close",
+      "seconds": 8.478760719299316e-06
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "__enter__",
+      "seconds": 0.008088015019893646
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 6.5258705876767635
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 6.2323261350393295
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 6.37027233466506
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "close",
+      "seconds": 9.316951036453247e-06
+    },
+    {
+      "method": "NLSteering",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "__enter__",
+      "seconds": 0.007871724665164948
+    },
+    {
+      "method": "NLSteering",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 6.20054317265749
+    },
+    {
+      "method": "NLSteering",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 5.97988161817193
+    },
+    {
+      "method": "NLSteering",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 5.976169474422932
+    },
+    {
+      "method": "NLSteering",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "close",
+      "seconds": 4.421919584274292e-06
+    }
+  ],
+  "local_http_calls": 270,
+  "local_http_peak_concurrency": 19,
+  "manifest": "/tmp/axbench-prewarm-all3-baseline-r1/output/manifest.json"
+}

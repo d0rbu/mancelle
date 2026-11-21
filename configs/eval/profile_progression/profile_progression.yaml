@@ -1,0 +1,30 @@
+# Entry point for scripts.profile_progression.
+# Select a path via: path=A | path=C (composed through defaults).
+
+defaults:
+  - _self_
+  - path: A
+
+# Run orchestration
+level: macro          # macro | suite | hotspot
+num_iterations: 3     # Level 1 only; unused when level=suite or level=hotspot
+warmup_iterations: 1  # Level 1 only
+hotspot_name: null    # required when level=hotspot
+hotspot_fixture: null
+hotspot_n_iters: 1
+
+# Output
+run_dir: null         # null = auto <iso_timestamp>_<path>_<level>
+out_root: out/profiling/progressive-eval
+
+# Preflight
+preflight_max_external_mem_mb: 500
+preflight_max_external_util_pct: 10
+preflight_skip: false
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

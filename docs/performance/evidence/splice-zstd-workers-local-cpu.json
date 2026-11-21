@@ -1,0 +1,146 @@
+{
+  "scope": "Complete real-shard local synchronous splice with opposite-percentile pairing. Baseline uses frozen main feature_io module, candidate uses opt-in zstd_threads=2. Imports excluded; comparisons and cleanup outside timing. One warm-cache shard on a shared host, two samples per arm. No GPU/training or async/multiprocess throughput claim.",
+  "baseline_commit": "103f66bfe151afda597955144c5b0ffebf97b49a",
+  "baseline_feature_io_sha256": "31e73e3602b917a7f90a9e4cbd73f1b17aa079dc6cc84b69c2f6474a976ad11b",
+  "candidate_source_sha256": {
+    "steering/feature_io.py": "2094dae1c8e0d8197eab83494e84c5bc44fcffeed041b71be02e68a9d518adad",
+    "scripts/preprocess/splice_feature_shards.py": "a7503d198e1ce3a2f5ebe2e3fe278f6d6d60347fd0e64d84dff6d4325a6f4446",
+    "configs/extraction/splice_feature_shards.yaml": "96b615df9a892af3e903da5229cd9ed73907cbf8bfeefc3fce796fdb88759c86"
+  },
+  "driver_sha256": "d96f6af90d3eead4721fe3e2e0ee87ddc5d32df33e68cd1db571f78a6a1c1809",
+  "raw_comparison_sha256": "e863a0f40589d397bc093a7e31ac92f8f6658300c309c7d9e93fc8d9e6a278f4",
+  "inputs_sha256": {
+    "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos/splice/cut_frac0.15/seed42/feature_statistics.safetensors": "d957803f6da9f53c5307eb1e0d60796249dafef0c053349542973545d720bf93",
+    "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/eval_contexts/gemma3_4bpt_l22_clustered/shard_00000_features.safetensors.zst": "ee4384b86359e5b1a140b0ecd5d532bfff743bd04688ad6a6218f22908923c38",
+    "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/eval_contexts/gemma3_4bpt_l22_clustered/parquet/shard_00000.parquet": "0638ab7f39abce6896c04818cc693cb5f04184e3c930db3970b4f256eeb5593d"
+  },
+  "runtime": {
+    "python": "3.13.2",
+    "torch": "2.13.0+cu130",
+    "zstandard": "0.25.0",
+    "libzstd": [
+      1,
+      5,
+      7
+    ],
+    "threads": 1,
+    "environment": {
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "TOKENIZERS_PARALLELISM": "false",
+      "HF_HUB_OFFLINE": "1"
+    }
+  },
+  "cpu": "AMD Ryzen 9 9950X 16-Core Processor",
+  "order": "ABBA",
+  "settings": {
+    "baseline_zstd_threads": 0,
+    "candidate_zstd_threads": 2,
+    "zstd_level": 12,
+    "pairing_mode": "opposite_percentile",
+    "pairing_candidate_pool_size": 64,
+    "cut_fraction": 0.15,
+    "seed": 42,
+    "context_window": 2048,
+    "async_feature_save_depth": 0,
+    "shard_parallelism": 1
+  },
+  "real_shard": {
+    "n_docs": 8240,
+    "n_segments": 24107,
+    "n_features": 50689690,
+    "n_switches": 2380
+  },
+  "metrics": {
+    "full_splice_seconds": {
+      "samples": {
+        "baseline": [
+          38.15657130628824,
+          35.97315140068531
+        ],
+        "candidate": [
+          35.49643236771226,
+          32.65820652991533
+        ]
+      },
+      "medians": {
+        "baseline": 37.064861353486776,
+        "candidate": 34.077319448813796
+      },
+      "change_percent": -8.060307783646781
+    },
+    "compression_seconds": {
+      "samples": {
+        "baseline": [
+          10.317411866039038,
+          11.442249111831188
+        ],
+        "candidate": [
+          6.374191831797361,
+          5.682406585663557
+        ]
+      },
+      "medians": {
+        "baseline": 10.879830488935113,
+        "candidate": 6.028299208730459
+      },
+      "change_percent": -44.59197489463374
+    },
+    "shard_cpu_seconds": {
+      "samples": {
+        "baseline": [
+          28.790924626,
+          28.52091358299998
+        ],
+        "candidate": [
+          30.95158161500001,
+          28.580529924999993
+        ]
+      },
+      "medians": {
+        "baseline": 28.65591910449999,
+        "candidate": 29.76605577
+      },
+      "change_percent": 3.874022192244686
+    },
+    "feature_bytes": {
+      "samples": {
+        "baseline": [
+          100172342,
+          100172345
+        ],
+        "candidate": [
+          100423115,
+          100423116
+        ]
+      },
+      "medians": {
+        "baseline": 100172343.5,
+        "candidate": 100423115.5
+      },
+      "change_percent": 0.2503405543267556
+    }
+  },
+  "correctness": {
+    "exact_feature_tensor_and_scalar_equality": true,
+    "exact_parquet_bytes": true,
+    "exact_provenance_except_recorded_zstd_threads": true,
+    "comparisons": 3,
+    "source_unchanged": true,
+    "candidate_unchanged_during_experiment": true,
+    "compressed_feature_byte_equality_claimed": false
+  },
+  "cleanup": {
+    "all_generated_shard_outputs_removed": true,
+    "generated_bytes_removed": 434646812
+  },
+  "limits": [
+    "Two samples per arm on one warm-cache real shard on a shared workstation.",
+    "Frozen main writer runs inside the candidate runner with default compression settings; not an untouched-main process.",
+    "Setup within run and output I/O included; imports, equality checks, and cleanup excluded.",
+    "PyTorch/BLAS limited to one thread; candidate enables two native zstd workers.",
+    "CPU times cover synchronous shard processing, not per-run setup. Shared-process HWM is not a per-arm memory comparison.",
+    "No async/multiprocess/GPU/training throughput claim."
+  ]
+}

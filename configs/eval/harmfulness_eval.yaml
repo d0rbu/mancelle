@@ -1,0 +1,84 @@
+# Harmfulness evaluation config
+# Usage:
+#   Generate + judge: uv run python -m scripts.eval.harmfulness_eval source=safety model_tag=d26
+#   Judge only:       uv run python -m scripts.eval.harmfulness_eval source=safety model_tag=d26 judge_only=true
+#   Judge only (file): uv run python -m scripts.eval.harmfulness_eval responses_file=responses.yaml
+
+# Model (for generate+judge mode)
+source: null
+# One concrete local repository HF SFT export (for example step_000123).
+# Mutually exclusive with source; Hub IDs and latest-step discovery are unsupported.
+hf_checkpoint_dir: null
+model_tag: null
+step: null
+feature_configs: null
+# Optional assertion for measured fixed-checkpoint cadence; turn checkpoints
+# require null and use turn_self_cond_segment_size_rustbpe from metadata.
+self_cond_segment_size: null
+self_conditioned:
+  safety_steering: null  # {targets: /path/to/targets.safetensors, strength: 2.5}
+# Encoder-decoder checkpoints always self-condition, require batch_size=1, and
+# reject feature_configs. Strength 0..6 maps to interpolation weight strength/6.
+stats_path: null
+extraction_tokenizer_id: null
+
+# Encdec model path params. These select the checkpoint/report directory only;
+# standalone harmfulness generation does not use fixed-size prompt segment
+# routing. Pinned layouts use segment_size + feature_selection, including
+# threshold-form feature-selection blocks. If feature_selection is null,
+# harmfulness_eval auto-discovers a checkpoint leaf.
+segment_size: null
+feature_selection: null
+# Optional feature blacklist/whitelist: set when evaluating a mask-trained encdec
+# checkpoint (written to bl_<hash>/ or wl_<hash>/ by the SFT training script).
+# null (default) → no mask leaf appended; path is byte-identical to pre-mask layout.
+# Example: feature_mask: {mode: blacklist, ids: [42, 137]}
+feature_mask: null
+# Generation
+max_new_tokens: 512
+temperature: 0.7
+top_k: 50
+batch_size: 8
+# Repository-HF decoder-only generation has a separate, measured-safe default
+# so native and self-conditioned paths retain their existing memory contract.
+repository_hf_batch_size: 64
+seed: 42
+
+# Judge
+judge_model: "openai/gpt-5.6-luna"
+# Client-side throttle; 300 rpm is what our OpenRouter tier sustains.
+# Lower this if your account hits rate limits.
+requests_per_minute: 2000
+cache_path: null
+judge_only: false
+# Publish raw responses and receipts without creating or calling a paid judge.
+generate_only: false
+
+# Data
+num_harmful: null  # null = all harmful prompts; positive int = seeded subsample
+num_benign: 500
+
+# I/O — null means auto-derive from model source's report directory
+responses_file: null
+output_file: null
+
+# Encoder-decoder context conditioning. Encdec generation requires a
+# precomputed context cache for the exact harmfulness prompts.
+conditioning:
+  context_cache_dir: null
+  # Optional exact assertions against the checkpoint-derived cache identity.
+  # Null fields derive from the checkpoint for both fixed and turn runtimes.
+  identity:
+    model_id: null
+    sae_id: null
+    layer: null
+    pooling: null
+    # When supplied, must equal the derived 64-character lowercase hash.
+    feature_selection_hash: null
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

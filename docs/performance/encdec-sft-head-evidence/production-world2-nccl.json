@@ -1,0 +1,128 @@
+{
+  "schema": "production_world2_nccl_independent_receipt_audit_v1",
+  "pass": true,
+  "job": 23373066,
+  "accounting": "23373066|COMPLETED|0:0|00:14:51|node3401-c1|2026-09-21T03:27:40|2026-09-21T03:42:31",
+  "closed_files_downloaded_and_sha_verified": 44,
+  "script_sha256": "1b3688c16bf4e7ee4be06cbcb93608a1ee2a495818a40116700ce1584b4728e6",
+  "source_manifest_sha256": "0e89bf87f2fcbea0e77fe8d3eb43d8c9b5071e9cf45666ecf85c272ea7e9c96f",
+  "production_optimizer_sha256": "d995ec99d9af8d675c6823be30fea15a8977889194dc723dea60be370630384f",
+  "gate_sha256": "929be6578200dd1ca6c174aff5063096eccdc6f48808fe8944a337bd8df986c1",
+  "rank_receipts_sha256": {
+    "parity.ranks/world-2/rank-0.json": "c63742db52190e47c92612d35fa6d0bf8fb54256dc031ac6af4d5b7d9cb7ca00",
+    "parity.ranks/world-2/rank-1.json": "37b29059ca77b961fee4d6c9b82bb7ce91c75a0da807ebe195d19d68141f05f5"
+  },
+  "full_manifest_entries_checked_before_and_after": 3535,
+  "runtime_source_entries": 1005,
+  "executed_helpers": 8,
+  "runtime": {
+    "device": "NVIDIA H200",
+    "capability": [
+      9,
+      0
+    ],
+    "torch": "2.13.0+cu130",
+    "cuda": "13.0",
+    "nccl": [
+      2,
+      29,
+      7
+    ],
+    "matmul_precision": "high",
+    "deterministic_algorithms": false,
+    "cuda_visible_devices": "0,1",
+    "compiled_kernels": true,
+    "collective_backend": "nccl"
+  },
+  "rank_compiled_graphs": [
+    {
+      "before": 0,
+      "after": 7
+    },
+    {
+      "before": 0,
+      "after": 6
+    }
+  ],
+  "ranks": 2,
+  "evolving_steps_per_rank": 4,
+  "completed_rank_steps": 8,
+  "fixture_parameters_per_model": 11,
+  "fixture_parameter_scalars_per_model": 4316,
+  "muon_shapes_counts": [
+    [
+      [
+        4,
+        4
+      ],
+      1
+    ],
+    [
+      [
+        7,
+        3
+      ],
+      3
+    ],
+    [
+      [
+        3,
+        7
+      ],
+      3
+    ]
+  ],
+  "adamw_shapes": [
+    [],
+    [
+      13
+    ],
+    [
+      32,
+      64
+    ],
+    [
+      33,
+      64
+    ]
+  ],
+  "rank1_zero_owned_square_group_exercised": true,
+  "parameter_tensor_update_comparisons": 88,
+  "exact_finite_parameters_updates_state_and_postgradients": true,
+  "maximum_difference_implied_by_torch_equal_gates": 0,
+  "collective_trace_events_per_rank_step": 22,
+  "collective_launches_per_optimizer_step": {
+    "all_reduce_AVG": 3,
+    "reduce_scatter_AVG": 4,
+    "all_gather": 4
+  },
+  "seven_reductions_before_first_wait": true,
+  "gather_waits_final_phase_only": true,
+  "native_nccl_future_wait_no_gloo_work_wait_proxy": true,
+  "disjoint_muon_send_receive": true,
+  "zero_gradient_send_parameter_and_moment_padding": true,
+  "muon_version_increment_per_step": 1,
+  "checkpoint_crossload_after_step": 1,
+  "checkpoint_resumed_steps": [
+    2,
+    3
+  ],
+  "checkpoint_directions": [
+    "packed model+optimizer -> upstream",
+    "upstream model+optimizer -> packed"
+  ],
+  "cross_rank_model_digests_by_step": [
+    "5983cc492cb4dacae23fc44dfb124e97ed4dc4f79459a9c5d25336f0b0e6783c",
+    "802cfac7eb8426db458fd1b639e54779a7bea942b74a6732bc9ac2edf57915c3",
+    "43482014ea6c06a3676d703750219a304b0dd367d21fbc53c3dcad8fc0931ec9",
+    "ee78ab329077d12d9df8e8f8f68593c53b0a787d4129ada02ca704add32728e7"
+  ],
+  "numerical_evidence_basis": "Every pass flag is backed by the SHA-pinned assert-enabled CUDA worker, which checks torch.equal, original shape/dtype, and isfinite on parameters, updates, optimizer state, and expected postgradients; raw tensors are not stored in these JSON receipts.",
+  "scope": "Actual production DistPackedMuonAdamW arithmetic on an FP32 synthetic fixture, original compiled upstream kernels, two H200 CUDA ranks and native NCCL.",
+  "limits": [
+    "No full model forward/backward, SFT opt-in, real gradients/data, DDP training, current full parameter group counts or peak-memory qualification.",
+    "No world4/world8/multi-node/topology-migration qualification; checkpoint continuation retains world2.",
+    "No performance/throughput claim: diagnostic copies and validations execute outside the optimizer three-phase flow.",
+    "AdamW scalar/small/indivisible original gradients intentionally become AVG; only Muon and sharded AdamW source gradients are unchanged."
+  ]
+}

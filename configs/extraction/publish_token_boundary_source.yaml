@@ -1,0 +1,19 @@
+# Publish the immutable compact v1 source required by remote token boundaries.
+# Production must set raw_prefix, staging_dir, and expected_shard_count=1400.
+
+defaults:
+  - _self_
+
+bucket_id: henryac/nano-gpt-pretrain-steer
+raw_prefix: null
+staging_dir: null
+expected_shard_count: null
+retry_timeout_seconds: 900.0
+retry_interval_seconds: 5.0
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

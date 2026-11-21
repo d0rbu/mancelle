@@ -1,0 +1,16 @@
+# Issue #1691: the four-task protocol of W&B control 4zib2dr5.
+# Architecture comes exclusively from the authenticated step-1125 checkpoint.
+defaults:
+  - conditional_encdec_rlvr
+  - _self_
+
+model_step: 1125
+train_feature_head_only: false
+tasks: [ARC-Easy, ARC-Challenge, MMLU, GSM8K]
+global_prompts_per_step: 8
+group_size: 4
+num_iterations: 100
+device_type: cuda
+
+wandb:
+  name: rlvr-depth2-s1125-full-h200

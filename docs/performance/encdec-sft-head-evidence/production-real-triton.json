@@ -1,0 +1,324 @@
+{
+  "schema": "independent_production_real_triton_receipt_audit_v1",
+  "publication_derivation": {
+    "original_audit_sha256": "c12ea970056385cfef0f045968ff9a6e3dd6ca24545858f2e8352e49150fff52",
+    "changes": ["Redacted historical_capture.source_checkpoint.directory; all measured values and source artifact hashes are unchanged."]
+  },
+  "job": 23377981,
+  "status": "passed_scoped_independent_real_model_strict_triton",
+  "pass": true,
+  "command_exit_status": 0,
+  "remote_artifact_hashes_verified": {
+    "real-triton-parity.json": "b54b715278d7064cb4c13173ecd0a7cacb32da239df849b142951edfc57b459e",
+    "real-triton-parity.log": "eb92bdf311274cd884f96f2f7b475ee46fad19b9a6703b379a726507030d3940",
+    "real-triton-parity.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "runtime.json": "ddb6d18464dbdb234b159b1508c0da5693e35afa80a50416712f806f465e40e2",
+    "inputs.sha256": "0e89bf87f2fcbea0e77fe8d3eb43d8c9b5071e9cf45666ecf85c272ea7e9c96f",
+    "submitted-script.sbatch": "b25dd7ee3eca4200e64948c6f2287931b616768226cbe538eebaf036e379c841"
+  },
+  "runtime_helper_sha256": "7a7553000aa3eb8c08c7db89faf319f81f0a5cc28dd9ea1a8e8c5812f63cf6a1",
+  "source_manifest_sha256": "0e89bf87f2fcbea0e77fe8d3eb43d8c9b5071e9cf45666ecf85c272ea7e9c96f",
+  "source_files_verified": 1005,
+  "helper_manifest_entries_verified": 19,
+  "frozen_numerical_utilities_verified": 9,
+  "source_reverified_by_helper": true,
+  "runtime_identical_to_authenticated_prior": true,
+  "runtime_file_hashes_verified": 8,
+  "attention_runtime_file_hashes_verified": 4,
+  "historical_capture": {
+    "source_revision": "de4c6772c11b1a7360897a1f8beb1ee563e40700",
+    "trainer_source_sha256": "80522c52a0e73202584dd4b3bdc64e1a3cbfc0d85f8cb51b8a71c3441012ebb9",
+    "capture_source_sha256": "39197d9c2e7c6e88e096b5bb9dc029e5765df14e8ddb764e0a1bc3eaae7b307f",
+    "payload_sha256": "b2d0b1348e1ab03751957de1e9df31b06db6893c8c6dae5b31099024c52b32f7",
+    "optimizer_class": "MuonAdamW",
+    "source_checkpoint": {
+      "directory": "[cluster checkpoint directory redacted]",
+      "step": 250000,
+      "model_sha256": "562e8e214abd996d8a92051b3bd709263cbac519c9081b9d63181a12cddffbcf",
+      "metadata_sha256": "798de11aa0022c3c1865d89b54170d84b2614f65ee91fa50649e26e067297a71"
+    },
+    "receipt_sha256": "9b099d01c5c7a1bedf76c7f0e51cb188f409a12fec72c299b7217e6e410aae1f",
+    "validation_sha256": "bc4b6c59efc1dcab790d441d2d99f236f3ea01bd10a99d4895883ac81537a719",
+    "head_config": {
+      "weight": 0.1,
+      "layer": -1,
+      "loss_mode": "max_pool",
+      "loss_fn": "bce",
+      "block": "transformer",
+      "head_layers": 10
+    }
+  },
+  "B": 2,
+  "T": 2048,
+  "microbatches_per_step": 2,
+  "tokens_per_step": 8192,
+  "model_structure": {
+    "decoder": {
+      "sequence_len": 2048,
+      "vocab_size": 32768,
+      "n_layer": 27,
+      "n_head": 13,
+      "n_kv_head": 13,
+      "n_embd": 1664,
+      "window_pattern": "SSSL"
+    },
+    "encoder": {
+      "n_sae_features": 65536,
+      "num_buckets": 2,
+      "n_embd": 1664,
+      "n_layer": 27,
+      "n_head": 13,
+      "n_kv_head": 13,
+      "head_dim": 128,
+      "ve_gate_channels": 32
+    },
+    "feature_head": {
+      "weight": 0.1,
+      "layer": -1,
+      "loss_mode": "max_pool",
+      "loss_fn": "bce",
+      "block": "transformer",
+      "head_layers": 10
+    }
+  },
+  "parameter_count": 401,
+  "parameter_dtype_counts": {
+    "torch.float32": 370,
+    "torch.bfloat16": 31
+  },
+  "optimizer_group_counts": {
+    "muon_groups": 6,
+    "muon_matrices": 365,
+    "adamw_groups": 7,
+    "adamw_parameters": 36
+  },
+  "metric_counts": {
+    "exact_integer_state_counters": 216,
+    "exact_finite_tensor_metrics": 12540
+  },
+  "pairs": {
+    "baseline_control": {
+      "optimizer_classes": [
+        "MuonAdamW",
+        "MuonAdamW"
+      ],
+      "steps": [
+        {
+          "step": 0,
+          "all_tensors_exact": true,
+          "tensor_metrics": 2090,
+          "state_entries": 120,
+          "nonzero_head_counts": {
+            "gradients": 20,
+            "updates": 20,
+            "baseline_post_step_gradients": 20,
+            "candidate_post_step_gradients": 20
+          },
+          "nonzero_parameter_updates": 356,
+          "baseline_losses_total_lm_fp": [
+            [
+              1.58320951461792,
+              1.5716546773910522,
+              0.11554782092571259
+            ],
+            [
+              1.657303810119629,
+              1.6467076539993286,
+              0.10596149414777756
+            ]
+          ]
+        },
+        {
+          "step": 1,
+          "all_tensors_exact": true,
+          "tensor_metrics": 2090,
+          "state_entries": 120,
+          "nonzero_head_counts": {
+            "gradients": 40,
+            "updates": 40,
+            "baseline_post_step_gradients": 40,
+            "candidate_post_step_gradients": 40
+          },
+          "nonzero_parameter_updates": 375,
+          "baseline_losses_total_lm_fp": [
+            [
+              1.1738016605377197,
+              0.719556987285614,
+              4.542446136474609
+            ],
+            [
+              1.12574303150177,
+              0.7626423239707947,
+              3.631007432937622
+            ]
+          ]
+        },
+        {
+          "step": 2,
+          "all_tensors_exact": true,
+          "tensor_metrics": 2090,
+          "state_entries": 120,
+          "nonzero_head_counts": {
+            "gradients": 40,
+            "updates": 40,
+            "baseline_post_step_gradients": 40,
+            "candidate_post_step_gradients": 40
+          },
+          "nonzero_parameter_updates": 375,
+          "baseline_losses_total_lm_fp": [
+            [
+              0.6895284652709961,
+              0.3104603588581085,
+              3.7906813621520996
+            ],
+            [
+              0.6343672275543213,
+              0.2728453576564789,
+              3.6152188777923584
+            ]
+          ]
+        }
+      ],
+      "all_40_head_matrices_exercised": true
+    },
+    "candidate": {
+      "optimizer_classes": [
+        "MuonAdamW",
+        "PackedMuonAdamW"
+      ],
+      "steps": [
+        {
+          "step": 0,
+          "all_tensors_exact": true,
+          "tensor_metrics": 2090,
+          "state_entries": 120,
+          "nonzero_head_counts": {
+            "gradients": 20,
+            "updates": 20,
+            "baseline_post_step_gradients": 20,
+            "candidate_post_step_gradients": 20
+          },
+          "nonzero_parameter_updates": 356,
+          "baseline_losses_total_lm_fp": [
+            [
+              1.58320951461792,
+              1.5716546773910522,
+              0.11554782092571259
+            ],
+            [
+              1.657303810119629,
+              1.6467076539993286,
+              0.10596149414777756
+            ]
+          ]
+        },
+        {
+          "step": 1,
+          "all_tensors_exact": true,
+          "tensor_metrics": 2090,
+          "state_entries": 120,
+          "nonzero_head_counts": {
+            "gradients": 40,
+            "updates": 40,
+            "baseline_post_step_gradients": 40,
+            "candidate_post_step_gradients": 40
+          },
+          "nonzero_parameter_updates": 375,
+          "baseline_losses_total_lm_fp": [
+            [
+              1.1738016605377197,
+              0.719556987285614,
+              4.542446136474609
+            ],
+            [
+              1.12574303150177,
+              0.7626423239707947,
+              3.631007432937622
+            ]
+          ]
+        },
+        {
+          "step": 2,
+          "all_tensors_exact": true,
+          "tensor_metrics": 2090,
+          "state_entries": 120,
+          "nonzero_head_counts": {
+            "gradients": 40,
+            "updates": 40,
+            "baseline_post_step_gradients": 40,
+            "candidate_post_step_gradients": 40
+          },
+          "nonzero_parameter_updates": 375,
+          "baseline_losses_total_lm_fp": [
+            [
+              0.6895284652709961,
+              0.3104603588581085,
+              3.7906813621520996
+            ],
+            [
+              0.6343672275543213,
+              0.2728453576564789,
+              3.6152188777923584
+            ]
+          ]
+        }
+      ],
+      "all_40_head_matrices_exercised": true
+    }
+  },
+  "loss_scalar_comparisons": 36,
+  "original_tolerances": {
+    "loss": {
+      "atol": 0.0001,
+      "rtol": 0.001
+    },
+    "gradient": {
+      "atol": 1e-05,
+      "rtol": 0.01,
+      "relative_rms": 0.001
+    },
+    "update": {
+      "atol": 1e-05,
+      "rtol": 0.01,
+      "relative_rms": 0.001
+    },
+    "parameter": {
+      "atol": 1e-05,
+      "rtol": 0.01,
+      "relative_rms": 0.001
+    },
+    "moment": {
+      "atol": 1e-05,
+      "rtol": 0.01,
+      "relative_rms": 0.001
+    }
+  },
+  "baseline_requires_exact": true,
+  "post_step_gradients_require_exact": true,
+  "independent_step_records": 12,
+  "observed_pre_hooks": 12,
+  "observed_post_hooks": 12,
+  "fixed_progress": 0.0,
+  "cuda_seed": 42,
+  "cublas_workspace_config": ":4096:8",
+  "actual_attention_routing": "flex_explicit_TRITON",
+  "strict_determinism": true,
+  "compiled_graphs": {
+    "before": 0,
+    "after": 49
+  },
+  "actual_sft_opt_in_selection": true,
+  "native_independent_forward_backward_qualified": false,
+  "performance_qualified": false,
+  "distributed_qualified": false,
+  "whole_campaign_final_integrity": "pending",
+  "whole_campaign_complete": false,
+  "limits": [
+    "Independent baseline and production packed trajectories on two repeated authenticated captured microbatches for three evolving steps; strict deterministic Triton only.",
+    "Native FLASH independent forward/backward remains unqualified. Historical and earlier production native baseline failures are not superseded.",
+    "Every persisted tensor/counter metric was audited against the fixed pinned comparison code; raw tensors were not retained and no numerical computation was rerun.",
+    "This gate compares total/LM/FP loss scalars and independent gradients/updates/states. Full LM/FP logit arrays are a separate small-model gate, not an output of this full-real helper.",
+    "Large payload/checkpoint/runtime bytes were authenticated by the gate and startup checks remotely; local audit checked their pinned receipt identities without redownloading them.",
+    "Campaign final integrity remains pending while native synthetic timing continues. This receipt alone is not a timing, distributed, long-training or resume claim."
+  ]
+}

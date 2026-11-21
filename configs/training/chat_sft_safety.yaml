@@ -1,0 +1,12 @@
+# Safety SFT mixture config
+# Usage: torchrun ... -m scripts.train.chat_sft -- config_name=chat_sft_safety
+#
+# The safety mixture at its documented defaults. Equivalent to passing
+# `mixture=safety` against the base config; this variant exists so the
+# selection has a named, composable home alongside the sft_d12_* configs.
+
+defaults:
+  - chat_sft
+  - _self_
+
+mixture: safety

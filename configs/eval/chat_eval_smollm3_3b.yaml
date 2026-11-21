@@ -1,0 +1,8 @@
+defaults: [chat_eval, _self_]
+
+source: null
+hf_path: HuggingFaceTB/SmolLM3-3B
+hf_revision: a07cc9a04f16550a088caea529712d1d335b0ac1
+hf_template_date: "2026-09-10"
+# Choose a new output directory on every invocation.
+output_dir: null

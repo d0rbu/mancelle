@@ -1,0 +1,38 @@
+{
+  "resolve_sae": {
+    "count": 1,
+    "seconds": 2.049654722213745e-05
+  },
+  "parse_feature_selection": {
+    "count": 1,
+    "seconds": 0.00014656409621238708
+  },
+  "resolve_checkpoint_feature_contract": {
+    "count": 2,
+    "seconds": 0.018566742539405823
+  },
+  "_load_turn_statistics_snapshot": {
+    "count": 1,
+    "seconds": 11.495493941009045
+  },
+  "_validate_statistics_contract": {
+    "count": 1,
+    "seconds": 7.115304470062256e-06
+  },
+  "build_percentile_table": {
+    "count": 1,
+    "seconds": 1.1418048664927483
+  },
+  "build_feature_pipeline_from_cfg_block": {
+    "count": 1,
+    "seconds": 1.132310926914215
+  },
+  "_build_turn_prompt_selection_context": {
+    "count": 1,
+    "seconds": 0.0006084591150283813
+  },
+  "total": {
+    "count": 1,
+    "seconds": 16.172510098665953
+  }
+}

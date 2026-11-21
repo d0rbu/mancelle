@@ -1,0 +1,85 @@
+# Opt-in sequential self-conditioning GRPO over structured SFT conversations.
+# Runtime geometry is deliberately mandatory until real hardware qualification.
+
+base_checkpoint_dir: ???
+model_step: null
+train_artifact_dir: ???
+validation_artifact_dir: ???
+output_dir: null
+resume_from_step: -1
+
+action_mode: weighted_without_replacement
+action_policy_version: 2
+policy_seed: 42
+initial_conditioning_mode: none
+sae_loaded: false
+segmentation_mode: fixed_length
+segment_length: 256
+reward_mask_mode: assistant_only
+min_reward_tokens: 8
+kl_beta: 0.0
+advantage_std_floor: 1.0e-6
+train_feature_head_only: true  # Freeze the trunk and LM head; requires ntp=null.
+
+# --- Auxiliary next-token-prediction objective (opt-in) ---
+# Null disables it entirely: the objective, parameter manifest, timing rows,
+# optimizer groups, and resume identity are then byte-identical to the
+# policy-only trainer. Supplying the block enables it, and the block must define
+# every field -- this surface keeps its knobs explicit rather than defaulted.
+#
+#   train_feature_head_only: false
+#   ntp:
+#     trajectories_per_group: 1     # rollouts scored differentiably per group
+#     loss_weight: 1.0              # > 0; only its schedule may reach zero
+#     decay_start: 0.8              # fraction of the run at which it starts decaying
+#     fp_head_lr: null              # FP-head LR; null shares unembedding_lr
+ntp: null
+
+# Fraction of the run at which the optimizer's learning rate starts decaying
+# linearly to zero; flat at full rate before that. Always active, with or
+# without `ntp`: this is the RL run's LR decay. 0.8 is the historical shape,
+# 0.0 decays across the whole run, and 1.0 never decays within it.
+lr_decay_start: 0.8
+
+global_conversations_per_step: ???
+group_size: ???
+device_conversation_batch_size: ???
+trajectory_microbatch_size: ???
+cursor_prefetch_conversations: 0
+validation_conversations: 1
+
+num_iterations: ???
+eval_every: 10
+save_every: 10
+grad_clip_max_norm: 1.0
+lr_multiplier: 1.0
+# RL runs cooler than SFT. These two follow `configs/training/chat_rl.yaml`, the
+# repo's existing RL convention, rather than conditioned SFT's defaults:
+#   init_lr_frac 0.05 -- a 20x cut on EVERY optimizer group (SFT uses 1.0)
+#   embedding_lr 0.2  -- chat_rl lowers this from SFT's 0.3
+# Effective LR for a group is base x lr_multiplier x init_lr_frac x schedule,
+# so with the 400M model (d_model 768, AdamW width scale exactly 1.0) the LM
+# head lands at 0.004 x 0.05 = 2.0e-4 against SFT's 4.0e-3.
+init_lr_frac: 0.05
+embedding_lr: 0.2
+unembedding_lr: 0.004
+matrix_lr: 0.02
+encoder_embedding_lr: 0.2
+encoder_matrix_lr: 0.02
+xattn_matrix_lr: 0.02
+weight_decay: 0.0
+
+device_type: ""
+run: dummy
+
+# Attribution-only diagnostics. Timing synchronizes named CUDA regions and is
+# intentionally separate from throughput benchmark arms.
+profile_timing: false
+profile_output_dir: out/profiles/encdec_sft_grpo
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

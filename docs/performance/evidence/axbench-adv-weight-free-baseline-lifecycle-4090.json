@@ -1,0 +1,43 @@
+{
+  "wall_seconds": 111.53445088490844,
+  "events": [
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "__enter__",
+      "seconds": 7.128255672752857
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 15.757901731878519
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 7.500729784369469
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 7.633787222206593
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "close",
+      "seconds": 1.831080675125122
+    }
+  ],
+  "local_http_calls": 90,
+  "local_http_peak_concurrency": 8,
+  "manifest": "/tmp/axbench-startup-profile-pr1769-r1/output/manifest.json"
+}

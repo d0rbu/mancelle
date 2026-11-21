@@ -1,0 +1,129 @@
+{
+  "cadence_evidence": {
+    "cadence": 33,
+    "documents": 3257,
+    "feature_dir": "/orcd/data/dylanhm/001/nano-gpt-pretrain-steer/claude-sft3b-steered-20260905/features/s32/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/standard_steered_sft/context_independent/no_bos/turn_delimited",
+    "maximum": 209,
+    "mean": "448701/13421",
+    "minimum": 17,
+    "original_metadata": "/orcd/data/dylanhm/001/nano-gpt-pretrain-steer/codex-issue1681-depth2-20260918/base/standard_steered_sft_conditioned_checkpoints/meta_001125.json",
+    "original_metadata_sha256": "de5f122bdda2f30ad61c39e06a7cfa325aab4e00ddbc0db6f9e88411be46ff2a",
+    "parquet_dir": "/orcd/data/dylanhm/001/nano-gpt-pretrain-steer/claude-sft3b-steered-20260905/nanochat_cache/sft_data/standard_steered",
+    "windows": 40263
+  },
+  "commit": "50462075083d793d0e9a406fde7e07d08bb9a50c",
+  "common_operator_sha256": "e6f6aa047f95120b0c9e4394d8c64ef13a439247df01a69ba21b5e037d104668",
+  "feature_prediction_mlp_layers": 2,
+  "final_step": 1125,
+  "finite_parameters": true,
+  "forward_executed": false,
+  "fresh_control_measurement_equal_except_original_metadata": true,
+  "inspected_at_utc": "2026-09-18T14:12:28.862170+00:00",
+  "model": "/orcd/data/dylanhm/001/nano-gpt-pretrain-steer/codex-issue1681-depth2-20260918/base/standard_steered_sft_conditioned_checkpoints/model_001125.pt",
+  "model_file_signature": [
+    2097327,
+    2092629,
+    10452204545,
+    1789740394389695586,
+    1789740395197691530
+  ],
+  "model_hash_passes": 1,
+  "model_sha256": "d404424912a03b876cc89a318ac994a606c13f4031986b86b6a997ca327e468a",
+  "optimizer_scope": "all four CPU mmap shards safely decoded; production grouping, four-rank shapes, Adam steps and finite moments verified; no optimizer step executed",
+  "optimizer_shards": {
+    "optim_001125_rank0.pt": {
+      "adam_steps_match": true,
+      "bytes": 3200523587,
+      "file_signature": [
+        2097327,
+        2100449,
+        3200523587,
+        1789740400048667176,
+        1789740400275666036
+      ],
+      "finite_moments": true,
+      "group_count": 13,
+      "grouping_and_shapes_match": true,
+      "safe_deserialization": true,
+      "state_count": 46,
+      "tensor_count": 92,
+      "tensor_numel": 1009864900
+    },
+    "optim_001125_rank1.pt": {
+      "adam_steps_match": true,
+      "bytes": 3200523587,
+      "file_signature": [
+        2097327,
+        2099175,
+        3200523587,
+        1789740386364735874,
+        1789740386677734303
+      ],
+      "finite_moments": true,
+      "group_count": 13,
+      "grouping_and_shapes_match": true,
+      "safe_deserialization": true,
+      "state_count": 46,
+      "tensor_count": 92,
+      "tensor_numel": 1009864900
+    },
+    "optim_001125_rank2.pt": {
+      "adam_steps_match": true,
+      "bytes": 3200523587,
+      "file_signature": [
+        2097327,
+        2092630,
+        3200523587,
+        1789740386578734800,
+        1789740386924733063
+      ],
+      "finite_moments": true,
+      "group_count": 13,
+      "grouping_and_shapes_match": true,
+      "safe_deserialization": true,
+      "state_count": 46,
+      "tensor_count": 92,
+      "tensor_numel": 1009864900
+    },
+    "optim_001125_rank3.pt": {
+      "adam_steps_match": true,
+      "bytes": 3200523587,
+      "file_signature": [
+        2097327,
+        2088695,
+        3200523587,
+        1789740386479735297,
+        1789740386789733740
+      ],
+      "finite_moments": true,
+      "group_count": 13,
+      "grouping_and_shapes_match": true,
+      "safe_deserialization": true,
+      "state_count": 46,
+      "tensor_count": 92,
+      "tensor_numel": 1009864900
+    }
+  },
+  "parameter_numel_by_dtype": {
+    "torch.bfloat16": 838958848,
+    "torch.float32": 2193530626
+  },
+  "parameter_tensors": 365,
+  "parameters": 3032489474,
+  "persistent_buffer_numel": 845,
+  "persistent_buffers": [
+    "encoder.feature_vocab_ids",
+    "encoder.feature_vocab_n_sae"
+  ],
+  "preflight_sha256": "c1d14d07ae3b493c3d426d2a3f9d72d29ef21ab718485372b8b55b8cb89345cd",
+  "production_completion_job": "22958005",
+  "residual_output_nonzero_counts": {
+    "feature_pred_head.residual_blocks.0.c_proj.weight": 11075584,
+    "feature_pred_head.residual_blocks.1.c_proj.weight": 11073920
+  },
+  "status": "checkpoint_inspection_and_view_passed",
+  "strict_state_load": true,
+  "training_metadata": "/orcd/data/dylanhm/001/nano-gpt-pretrain-steer/codex-issue1681-depth2-20260918/base/standard_steered_sft_conditioned_checkpoints/meta_001125.json",
+  "training_metadata_sha256": "de5f122bdda2f30ad61c39e06a7cfa325aab4e00ddbc0db6f9e88411be46ff2a",
+  "view_metadata_sha256": "783853412eaddb5b0d9762093d423e50ec85ae67ab4e996b13444da27447cf4b"
+}

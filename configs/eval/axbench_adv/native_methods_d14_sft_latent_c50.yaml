@@ -1,0 +1,11 @@
+defaults:
+  - native_methods_d14
+  - _self_
+
+# Same D14/W896 SFT step and authenticated standard100 parents as prompt arm.
+# Checkpoint/tokenizer hashes and positive factors come from those parents.
+step: 1001
+methods: [DiffMean, LinearProbe, LoRA]
+pressures: [diffmean_counter, linear_probe_counter]
+# Raw saved-direction units, with the existing shared zero control.
+counter_magnitudes: [64, 256, 512, 1024, 2048, 4096]

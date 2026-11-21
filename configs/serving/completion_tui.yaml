@@ -1,0 +1,27 @@
+# Auto-discovery: when run without explicit overrides, the TUI scans for
+# available encoder-decoder checkpoints and matches them to feature
+# directories automatically. Override model_tag/feature_dir/parquet_dir
+# to bypass discovery.
+source: encdec
+model_tag: null
+step: null
+temperature: 0.6
+top_k: 50
+max_new_tokens: 256
+device_type: ""
+dtype: bfloat16
+feature_dir: ""
+parquet_dir: ""
+neuronpedia_model_id: ""
+neuronpedia_sae_source: ""
+description_cache_path: "out/neuronpedia_cache.yaml"
+num_buckets: 11
+has_negatives: false
+lazy: false
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

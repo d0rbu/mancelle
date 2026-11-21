@@ -1,0 +1,459 @@
+{
+  "gpu": "NVIDIA L40S",
+  "warm_reference_seconds": [
+    10.942526639904827,
+    10.94150400487706,
+    10.993990689050406,
+    11.050654971972108
+  ],
+  "warm_candidate_seconds": [
+    10.089597159065306,
+    10.188305960968137,
+    10.113325118087232,
+    10.139190931804478
+  ],
+  "reference_median_seconds": 10.968258664477617,
+  "candidate_median_seconds": 10.126258024945855,
+  "seconds_saved": 0.8420006395317614,
+  "latency_reduction_percent": 7.6767029780097085,
+  "cold_reference_seconds": [
+    24.955737431999296,
+    17.20226763980463
+  ],
+  "cold_candidate_seconds": [
+    16.31070411624387,
+    16.161070787813514
+  ],
+  "all_scores_and_grades_and_completions_equal": true,
+  "completion_tokens": 42089,
+  "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+  "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+  "scores": {
+    "status": "pass",
+    "chatcore": 0.2867,
+    "per_task_scores": {
+      "ARC-Easy": 0.48,
+      "ARC-Challenge": 0.4,
+      "MMLU": 0.32,
+      "GSM8K": 0.06,
+      "HumanEval": 0.06,
+      "SpellingBee": 1.0
+    },
+    "max_problems": 50,
+    "issues": []
+  },
+  "sampled_logit_values": 1048576,
+  "sampled_decode_calls": [
+    0,
+    64,
+    128,
+    192,
+    256,
+    320,
+    384,
+    448
+  ],
+  "logit_max_abs_delta": 0.0,
+  "gpu_telemetry_samples": 320,
+  "gpu_overlap_samples": 0,
+  "source_sha256": {
+    "scripts/benchmark/benchmark_chatcore.py": "71c4f05dd041fef2079ec222de4d2b8774d896764238c2aaec021d8840ab1b0f",
+    "steering/eval/python_success.py": "06228c9f0ad20d9b2b2bbac393664a7cba8c1c9e0ebb5a2778f2c417170f5e46",
+    "steering/eval/greedy_token_batch.py": "aef895e38ce0c57bc0b77d9aa21f9d669f76d63fbc1902d8c7be97dd7f5b1bfc",
+    "steering/eval/sanity_check/run_all.py": "c460e840d1d2cfe32de5bfc78f2fc637d712d8d69e6c542caf7b692545ecf87e",
+    "tasks/humaneval.py": "bd662201a8a7e22e71d7dfc9d1bbd163fd8c73c3c2cb5ea5ab02dd8e9f0f124e",
+    "nanochat/execution.py": "dc8de4d61bb5663048a2abac3631288daa13ab9c82067148554cd336386e8980"
+  },
+  "input_sha256": {
+    "model_000999.pt": "d3d320a5b4e3985a6915d70d51f63f4500ace6c12bc7bbd867fec74ab50f7371",
+    "meta_000999.json": "342cc82f20dc6b8fb933a955d59ea78db549de32042dfa5ebd61216156ab7dd7",
+    "tokenizer.pkl": "c3945190ac5c38a6ac941480e21895763775619e756cde4d108cafb5a081e185"
+  },
+  "torch": "2.13.0+cu130",
+  "triton": "3.7.1",
+  "raw_runs": {
+    "0": [
+      {
+        "repeat": 0,
+        "seconds": 24.955737431999296,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 24301797376,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50
+      },
+      {
+        "repeat": 1,
+        "seconds": 10.942526639904827,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50
+      },
+      {
+        "repeat": 2,
+        "seconds": 10.94150400487706,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50
+      }
+    ],
+    "1": [
+      {
+        "repeat": 0,
+        "seconds": 16.31070411624387,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 24301797376,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50
+      },
+      {
+        "repeat": 1,
+        "seconds": 10.089597159065306,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50
+      },
+      {
+        "repeat": 2,
+        "seconds": 10.188305960968137,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50
+      }
+    ],
+    "2": [
+      {
+        "repeat": 0,
+        "seconds": 16.161070787813514,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 24301797376,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50
+      },
+      {
+        "repeat": 1,
+        "seconds": 10.113325118087232,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50
+      },
+      {
+        "repeat": 2,
+        "seconds": 10.139190931804478,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50
+      }
+    ],
+    "3": [
+      {
+        "repeat": 0,
+        "seconds": 17.20226763980463,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 24301797376,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50
+      },
+      {
+        "repeat": 1,
+        "seconds": 10.993990689050406,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50
+      },
+      {
+        "repeat": 2,
+        "seconds": 11.050654971972108,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50
+      }
+    ],
+    "4": [
+      {
+        "repeat": 0,
+        "seconds": 17.179048699326813,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 24301797376,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50
+      }
+    ],
+    "5": [
+      {
+        "repeat": 0,
+        "seconds": 16.079836663790047,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 24301797376,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50
+      }
+    ]
+  },
+  "baseline_revision": "967c25dc8c82cde266c2b591ff1d018de06133bf",
+  "job": {
+    "id": 23284891,
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "node": "node3006",
+    "partition": "mit_normal_gpu",
+    "account": "mit_amf_advanced_gpu",
+    "qos": "mit_amf_advanced_gpu",
+    "driver": "590.48.01"
+  },
+  "grading_replay": {
+    "source_sha256": "06228c9f0ad20d9b2b2bbac393664a7cba8c1c9e0ebb5a2778f2c417170f5e46",
+    "generated_programs": 50,
+    "canonical_programs": 164,
+    "mismatches": 0
+  },
+  "validation": {
+    "focused_tests_passed": 66,
+    "changed_file_ruff": "pass",
+    "changed_file_ty": "pass",
+    "vulture": "pass",
+    "baseline_ruff_findings": 2,
+    "baseline_ty_diagnostics": 442,
+    "baseline_caller_findings": 4,
+    "broad_failures_reproduced_on_baseline": true
+  },
+  "discovery_profile": {
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "generation_token_budget": 64,
+    "total_seconds": 7.588,
+    "human_eval_seconds": 5.519,
+    "human_eval_programs": 50,
+    "process_starts": 100
+  }
+}

@@ -1,0 +1,15 @@
+# Synthetic data generation config
+# Usage: python dev/gen_synthetic_data.py
+
+num: 1000
+workers: 4
+output: null
+append: false
+save_metadata: false
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

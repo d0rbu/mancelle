@@ -1,0 +1,38 @@
+{
+  "_context_independent_forward_and_pool_batch": {
+    "count": 373,
+    "seconds": 6.292687084525824
+  },
+  "_get_sae_activations_batched": {
+    "count": 373,
+    "seconds": 6.054846275597811
+  },
+  "_precompute_batch_cpu_work": {
+    "count": 373,
+    "seconds": 0.08573659136891365
+  },
+  "_prepare_context_independent_segment_inputs": {
+    "count": 373,
+    "seconds": 0.0036015845835208893
+  },
+  "_truncate_to_training_window": {
+    "count": 373,
+    "seconds": 0.022134624421596527
+  },
+  "build_extracted_context_entry": {
+    "count": 373,
+    "seconds": 7.762324288487434
+  },
+  "extract_sparse_gpu": {
+    "count": 373,
+    "seconds": 0.10996997728943825
+  },
+  "pool_one_segment": {
+    "count": 1083,
+    "seconds": 0.07406523823738098
+  },
+  "select_conversation_segments": {
+    "count": 373,
+    "seconds": 0.9902242906391621
+  }
+}

@@ -1,0 +1,366 @@
+{
+  "scope": "Complete real-shard local splice including startup, opposite-percentile pairing, safety repairs, derived offsets, provenance, parquet and compressed feature output. One shard, warm OS/cache; no training/GPU throughput claim.",
+  "identity": {
+    "baseline_commit": "a7a664460546d76f5f8ccd601bbd5692689b253c",
+    "driver_sha256": "41b84b8417567b128b867fa04e85ae2899259e7aa5399334a0cbc64a5b77ea86",
+    "candidate_module_sha256": "1b68b4d91d38a01e71b405264c1a06c0651c9ebfaebd75b91be40b9b7bfc2f25",
+    "frozen_function_ast_sha256": "b5073fa01fa9a48d0ff73ff78fcb5ba26a4216f42aa25eeb199d409aaa96a5fa",
+    "python": "3.13.2",
+    "versions": {
+      "torch": "2.13.0+cu130",
+      "numpy": "1.26.4",
+      "transformers": "5.14.1",
+      "tokenizers": "0.22.2"
+    },
+    "cpu": "AMD Ryzen 9 9950X 16-Core Processor",
+    "launch_environment": {
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "TOKENIZERS_PARALLELISM": "false",
+      "HF_HUB_OFFLINE": "1",
+      "PYTHONPATH": "."
+    },
+    "loadavg_during_first_arm": "47.55 36.90 32.45 30/4869 539691",
+    "concurrent_host_workloads": "Shared local workstation; foreign work left running. No per-arm RSS comparison and no cold process startup claim."
+  },
+  "inputs": {
+    "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos/splice/cut_frac0.15/seed42/feature_statistics.safetensors": "d957803f6da9f53c5307eb1e0d60796249dafef0c053349542973545d720bf93",
+    "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/eval_contexts/gemma3_4bpt_l22_clustered/shard_00000_features.safetensors.zst": "ee4384b86359e5b1a140b0ecd5d532bfff743bd04688ad6a6218f22908923c38",
+    "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/eval_contexts/gemma3_4bpt_l22_clustered/parquet/shard_00000.parquet": "0638ab7f39abce6896c04818cc693cb5f04184e3c930db3970b4f256eeb5593d"
+  },
+  "order": "ABBA",
+  "metrics": {
+    "full_run_seconds": {
+      "samples": {
+        "baseline": [
+          79.32220014557242,
+          82.79215922579169
+        ],
+        "candidate": [
+          73.05992883071303,
+          70.06533993408084
+        ]
+      },
+      "medians": {
+        "baseline": 81.05717968568206,
+        "candidate": 71.56263438239694
+      },
+      "reduction_percent": 11.713392126524036
+    },
+    "shard_seconds": {
+      "samples": {
+        "baseline": [
+          64.95084254443645,
+          65.16970467939973
+        ],
+        "candidate": [
+          58.94535659626126,
+          56.37514812499285
+        ]
+      },
+      "medians": {
+        "baseline": 65.06027361191809,
+        "candidate": 57.660252360627055
+      },
+      "reduction_percent": 11.37410103042582
+    },
+    "derived_char_text_seconds": {
+      "samples": {
+        "baseline": [
+          14.15006247535348,
+          11.780285686254501
+        ],
+        "candidate": [
+          7.70959273353219,
+          8.078106336295605
+        ]
+      },
+      "medians": {
+        "baseline": 12.96517408080399,
+        "candidate": 7.8938495349138975
+      },
+      "reduction_percent": 39.114974579466754
+    },
+    "cpu_seconds": {
+      "samples": {
+        "baseline": [
+          62.117395736000006,
+          63.49786269599997
+        ],
+        "candidate": [
+          56.88962214499999,
+          53.524200901
+        ]
+      },
+      "medians": {
+        "baseline": 62.80762921599999,
+        "candidate": 55.206911522999995
+      },
+      "reduction_percent": 12.101583498495982
+    }
+  },
+  "exact_comparisons": {
+    "all_feature_tensors_and_scalar_metadata": true,
+    "parquet_bytes": true,
+    "provenance_json": true,
+    "source_hashes_unchanged": true,
+    "compressed_feature_byte_equality_claim": false
+  },
+  "profile": {
+    "scope": "Separate cProfile diagnostic; overhead included, excluded from speed deltas",
+    "calls": 115582966,
+    "profile_seconds": 85.555,
+    "singleton_and_prefix_decode_calls": 2796774,
+    "token_to_char_offsets_cumulative_seconds": 21.073,
+    "zstd_compress_seconds": 23.684,
+    "pairing_cumulative_seconds": 4.721
+  },
+  "limitations": [
+    "One real evaluation-context shard, two samples per arm, shared busy local CPU",
+    "Warm OS and process caches; per-run setup included but process imports excluded",
+    "No full-training/GPU throughput or per-arm peak-memory claim"
+  ],
+  "raw_repetitions": [
+    {
+      "index": 0,
+      "arm": "baseline",
+      "run_seconds": 79.32220014557242,
+      "totals": {
+        "wall_seconds": 64.95084254443645,
+        "n_ok": 1,
+        "n_failed": 0,
+        "n_skipped": 0,
+        "n_docs": 8240,
+        "n_switches": 2380,
+        "n_segments": 24107,
+        "n_features": 50689690,
+        "input_bytes": 102896255,
+        "output_bytes": 108536314,
+        "cpu_seconds": 62.117395736000006,
+        "max_hwm_mb": 2837.8203125,
+        "phase_seconds": {
+          "load_features": 1.0459791347384453,
+          "read_parquet": 0.05246983468532562,
+          "load_source_segments": 8.955694247037172,
+          "recombine": 12.738667011260986,
+          "build_derived_shard": 14.730600889772177,
+          "build_provenance": 0.6955412216484547,
+          "write_parquet": 0.14576349407434464,
+          "write_provenance": 0.22614901512861252,
+          "save_features": 26.15824567899108,
+          "total": 64.88048400729895
+        },
+        "detail_seconds": {
+          "source.truncate_tokenize": 3.557606991380453,
+          "source.align_attach": 0.5723720081150532,
+          "source.batch_roundtrip": 4.749636843800545,
+          "source.trim_unstable": 0.00027894601225852966,
+          "recombine.prepare": 0.018119581043720245,
+          "recombine.select_cuts": 0.004856124520301819,
+          "recombine.draw_derangement": 0.0006493069231510162,
+          "recombine.opposite_pairing": 6.243139766156673,
+          "recombine.prefilter_seams": 3.5572393611073494,
+          "recombine.read_graph": 0.044845305383205414,
+          "recombine.resolve_loops": 1.1272728443145752e-05,
+          "recombine.split_overflow": 0.12446215003728867,
+          "recombine.full_doc_oracle": 2.7146032117307186,
+          "derived.prepare": 0.011370595544576645,
+          "derived.piece_boundaries": 0.18514926731586456,
+          "derived.char_text": 14.15006247535348,
+          "derived.feature_refs": 0.07630279287695885,
+          "derived.tensor_assembly": 0.21385851502418518,
+          "provenance.placement": 0.024925656616687775,
+          "provenance.docs": 0.6597076132893562,
+          "save.sort_segments": 0.0,
+          "save.delta_encode": 0.1242678090929985,
+          "save.assemble_payload": 0.3490145057439804,
+          "save.safetensors_serialize": 0.2418791800737381,
+          "save.zstd_compress": 23.998502001166344,
+          "save.atomic_write": 1.0847476497292519
+        }
+      },
+      "exact_features_parquet_provenance": null
+    },
+    {
+      "index": 1,
+      "arm": "candidate",
+      "run_seconds": 73.05992883071303,
+      "totals": {
+        "wall_seconds": 58.94535659626126,
+        "n_ok": 1,
+        "n_failed": 0,
+        "n_skipped": 0,
+        "n_docs": 8240,
+        "n_switches": 2380,
+        "n_segments": 24107,
+        "n_features": 50689690,
+        "input_bytes": 102896255,
+        "output_bytes": 108536312,
+        "cpu_seconds": 56.88962214499999,
+        "max_hwm_mb": 2837.8203125,
+        "phase_seconds": {
+          "load_features": 1.671572007238865,
+          "read_parquet": 0.08806576207280159,
+          "load_source_segments": 8.765234787017107,
+          "recombine": 11.812606044113636,
+          "build_derived_shard": 8.136968359351158,
+          "build_provenance": 0.06737730652093887,
+          "write_parquet": 0.06888887286186218,
+          "write_provenance": 0.20789878442883492,
+          "save_features": 27.855219308286905,
+          "total": 58.84322077408433
+        },
+        "detail_seconds": {
+          "source.truncate_tokenize": 3.433476082980633,
+          "source.align_attach": 0.6203976944088936,
+          "source.batch_roundtrip": 4.64488523080945,
+          "source.trim_unstable": 0.00014313310384750366,
+          "recombine.prepare": 0.012365691363811493,
+          "recombine.select_cuts": 0.002412419766187668,
+          "recombine.draw_derangement": 0.00037687644362449646,
+          "recombine.opposite_pairing": 6.264395609498024,
+          "recombine.prefilter_seams": 3.054926685988903,
+          "recombine.read_graph": 0.04741263389587402,
+          "recombine.resolve_loops": 1.2993812561035156e-05,
+          "recombine.split_overflow": 0.09225725010037422,
+          "recombine.full_doc_oracle": 2.2927448451519012,
+          "derived.prepare": 0.008203554898500443,
+          "derived.piece_boundaries": 0.12446916103363037,
+          "derived.char_text": 7.70959273353219,
+          "derived.feature_refs": 0.04670841991901398,
+          "derived.tensor_assembly": 0.20042184367775917,
+          "provenance.placement": 0.016777321696281433,
+          "provenance.docs": 0.04392459616065025,
+          "save.sort_segments": 0.0,
+          "save.delta_encode": 0.13618144765496254,
+          "save.assemble_payload": 0.3431803435087204,
+          "save.safetensors_serialize": 0.15914469957351685,
+          "save.zstd_compress": 25.525857854634523,
+          "save.atomic_write": 1.3516198582947254
+        }
+      },
+      "exact_features_parquet_provenance": true
+    },
+    {
+      "index": 2,
+      "arm": "candidate",
+      "run_seconds": 70.06533993408084,
+      "totals": {
+        "wall_seconds": 56.37514812499285,
+        "n_ok": 1,
+        "n_failed": 0,
+        "n_skipped": 0,
+        "n_docs": 8240,
+        "n_switches": 2380,
+        "n_segments": 24107,
+        "n_features": 50689690,
+        "input_bytes": 102896255,
+        "output_bytes": 108536304,
+        "cpu_seconds": 53.524200901,
+        "max_hwm_mb": 2837.8203125,
+        "phase_seconds": {
+          "load_features": 1.899136271327734,
+          "read_parquet": 0.06365048140287399,
+          "load_source_segments": 8.999992843717337,
+          "recombine": 11.703342571854591,
+          "build_derived_shard": 8.740403480827808,
+          "build_provenance": 0.10792350769042969,
+          "write_parquet": 0.664054598659277,
+          "write_provenance": 0.17796557024121284,
+          "save_features": 23.639622516930103,
+          "total": 56.14036915823817
+        },
+        "detail_seconds": {
+          "source.truncate_tokenize": 3.5744167901575565,
+          "source.align_attach": 0.6400716379284859,
+          "source.batch_roundtrip": 4.733238264918327,
+          "source.trim_unstable": 0.0001456141471862793,
+          "recombine.prepare": 0.01040741428732872,
+          "recombine.select_cuts": 0.0026881732046604156,
+          "recombine.draw_derangement": 0.00038881227374076843,
+          "recombine.opposite_pairing": 6.639159861952066,
+          "recombine.prefilter_seams": 2.5632849633693695,
+          "recombine.read_graph": 0.021878432482481003,
+          "recombine.resolve_loops": 6.794929504394531e-06,
+          "recombine.split_overflow": 0.07882484048604965,
+          "recombine.full_doc_oracle": 2.34764152392745,
+          "derived.prepare": 0.0092872753739357,
+          "derived.piece_boundaries": 0.12642456591129303,
+          "derived.char_text": 8.078106336295605,
+          "derived.feature_refs": 0.046764474362134933,
+          "derived.tensor_assembly": 0.4235910065472126,
+          "provenance.placement": 0.03348596766591072,
+          "provenance.docs": 0.06517482548952103,
+          "save.sort_segments": 0.0,
+          "save.delta_encode": 0.17402585595846176,
+          "save.assemble_payload": 0.5007565021514893,
+          "save.safetensors_serialize": 0.19109662622213364,
+          "save.zstd_compress": 21.059003815054893,
+          "save.atomic_write": 1.2440580017864704
+        }
+      },
+      "exact_features_parquet_provenance": true
+    },
+    {
+      "index": 3,
+      "arm": "baseline",
+      "run_seconds": 82.79215922579169,
+      "totals": {
+        "wall_seconds": 65.16970467939973,
+        "n_ok": 1,
+        "n_failed": 0,
+        "n_skipped": 0,
+        "n_docs": 8240,
+        "n_switches": 2380,
+        "n_segments": 24107,
+        "n_features": 50689690,
+        "input_bytes": 102896255,
+        "output_bytes": 108536315,
+        "cpu_seconds": 63.49786269599997,
+        "max_hwm_mb": 2837.8203125,
+        "phase_seconds": {
+          "load_features": 1.9236933141946793,
+          "read_parquet": 0.0431097112596035,
+          "load_source_segments": 9.296596340835094,
+          "recombine": 13.028421267867088,
+          "build_derived_shard": 12.338300447911024,
+          "build_provenance": 0.06885070353746414,
+          "write_parquet": 0.053866732865571976,
+          "write_provenance": 0.41734690219163895,
+          "save_features": 27.770610753446817,
+          "total": 65.08766393363476
+        },
+        "detail_seconds": {
+          "source.truncate_tokenize": 3.9631168954074383,
+          "source.align_attach": 0.5788588486611843,
+          "source.batch_roundtrip": 4.65226523950696,
+          "source.trim_unstable": 0.0002600550651550293,
+          "recombine.prepare": 0.02268049865961075,
+          "recombine.select_cuts": 0.004895299673080444,
+          "recombine.draw_derangement": 0.0006996765732765198,
+          "recombine.opposite_pairing": 6.998374253511429,
+          "recombine.prefilter_seams": 3.0508656688034534,
+          "recombine.read_graph": 0.07585779577493668,
+          "recombine.resolve_loops": 1.3075768947601318e-05,
+          "recombine.split_overflow": 0.09973074495792389,
+          "recombine.full_doc_oracle": 2.7357488349080086,
+          "derived.prepare": 0.007187101989984512,
+          "derived.piece_boundaries": 0.1552446112036705,
+          "derived.char_text": 11.780285686254501,
+          "derived.feature_refs": 0.0638074278831482,
+          "derived.tensor_assembly": 0.2643553651869297,
+          "provenance.placement": 0.020966608077287674,
+          "provenance.docs": 0.042739830911159515,
+          "save.sort_segments": 0.0,
+          "save.delta_encode": 0.15500615909695625,
+          "save.assemble_payload": 0.3037835583090782,
+          "save.safetensors_serialize": 0.21786952018737793,
+          "save.zstd_compress": 26.220274582505226,
+          "save.atomic_write": 0.4167371019721031
+        }
+      },
+      "exact_features_parquet_provenance": true
+    }
+  ]
+}

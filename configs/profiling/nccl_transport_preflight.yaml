@@ -1,0 +1,17 @@
+# Allocation-local NCCL health gate. NCCL_TIMEOUT_SEC is deliberately required
+# in the environment so broken initialization/collectives are bounded too.
+transport:
+  dtype: bfloat16
+  # A 43 MiB rank shard produces a 2.688 GiB stacked buffer at world size 64,
+  # bracketing the planned model's largest 2.641 GiB padded Muon groups.
+  shard_mib: [1, 43]
+  warmup_steps: 1
+  steps: 3
+  max_buffer_gib: 4
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

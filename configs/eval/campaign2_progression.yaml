@@ -1,0 +1,11 @@
+input_root: ???
+variants: [encdec, pythia, pythia_prompt]
+output_file: ???
+safety_strengths: [0, 3, 6] # collected for encdec_safety only
+plots_dir: null           # render all four metrics when set
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

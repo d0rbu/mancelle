@@ -1,0 +1,30 @@
+# Gemma 3 + gemma-scope-2 default extraction config.
+# See docs/pipelines/gemma-scope-2.md for the full pipeline (extract ->
+# statistics -> percentiles -> token boundaries -> packed rows).
+#
+# Inherits every field from extract_features.yaml and overrides ONLY the
+# deltas needed for Gemma 3 (gemma-3-4b-it) + gemma-scope-2 SAEs.
+#
+# Layer note: valid gemma-scope-2 layers for the 4b model are {9, 17, 22, 29};
+# 22 is the default mid-late residual site.
+#
+# Hardware note: on sm_120 (RTX PRO 6000 Blackwell) the nnterp loader pins
+# attn_implementation="sdpa" automatically (see _build_nnterp_gemma3) because
+# the eager/flash kernels are not yet built for sm_120 — no manual flag needed
+# for the eventual extraction run.
+
+defaults:
+  - extract_features
+  - _self_
+
+# Model
+model: gemma-3-4b-it
+
+# Activation site
+layer: 22
+
+# SAE selection — gemma-scope-2 (v2 release)
+sae:
+  release: gemmascope_2
+  num_features: 16k            # 16k | 32k | 65k | 131k | 262k | 524k | 1m
+  l0: medium                   # L0Tier: small | medium | medium_seed_1 | big (medium_seed_1 is residual/262k only)

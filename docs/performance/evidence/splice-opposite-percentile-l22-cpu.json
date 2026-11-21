@@ -1,0 +1,96 @@
+{
+  "scope": "Pairing component only; real evaluation-context features with matching training statistics. No runner metadata validation, tokenizer/stability gates, or local/remote serialization and output I/O. No production training throughput claim.",
+  "shard_path": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/eval_contexts/gemma3_4bpt_l22_clustered/shard_00000_features.safetensors.zst",
+  "shard_sha256": "ee4384b86359e5b1a140b0ecd5d532bfff743bd04688ad6a6218f22908923c38",
+  "statistics_path": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos/splice/cut_frac0.15/seed42/feature_statistics.safetensors",
+  "statistics_sha256": "d957803f6da9f53c5307eb1e0d60796249dafef0c053349542973545d720bf93",
+  "percentile_checksum": "623c372d3f121b1844f420b976ef964ca3f13de1a3198002cecbf0753eaebe2a",
+  "threads": 1,
+  "torch_version": "2.13.0+cu130",
+  "n_features": 65536,
+  "n_segments": 24107,
+  "n_docs": 8239,
+  "n_nonzero_values": 50689690,
+  "n_cut_candidates": 15868,
+  "n_selected_cuts": 2380,
+  "shard_load_seconds": 0.7203852981328964,
+  "statistics_and_table_seconds": 3.927640952169895,
+  "process_peak_rss_mib": 2196.515625,
+  "baseline": {
+    "l1_sum": 410923920.04897916,
+    "shared_min_sum": 53044725.92464577
+  },
+  "results": [
+    {
+      "pool_size": 16,
+      "construct_seconds": 0.07418297231197357,
+      "cold_seconds": 2.2783801816403866,
+      "warm_seconds": [
+        2.281673703342676,
+        2.2061045840382576,
+        2.357471350580454
+      ],
+      "warm_median_seconds": 2.281673703342676,
+      "cuts_per_second": 1043.093934296247,
+      "changed_partners": 2249,
+      "l1_improvement_percent": 7.208847990547751,
+      "overlap_reduction_percent": 27.92255048618112,
+      "l1_sum": 440546800.8021101,
+      "shared_min_sum": 38233285.54808015
+    },
+    {
+      "pool_size": 64,
+      "construct_seconds": 0.08145180344581604,
+      "cold_seconds": 2.759924564510584,
+      "warm_seconds": [
+        3.496404964476824,
+        3.3129870891571045,
+        3.0720766335725784
+      ],
+      "warm_median_seconds": 3.3129870891571045,
+      "cuts_per_second": 718.3849305629269,
+      "changed_partners": 2351,
+      "l1_improvement_percent": 8.012691386193715,
+      "overlap_reduction_percent": 31.03613504606241,
+      "l1_sum": 443849985.59455323,
+      "shared_min_sum": 36581693.15185903
+    },
+    {
+      "pool_size": 256,
+      "construct_seconds": 0.07454609498381615,
+      "cold_seconds": 3.638338029384613,
+      "warm_seconds": [
+        3.408818442374468,
+        3.4601671919226646,
+        3.978011079132557
+      ],
+      "warm_median_seconds": 3.4601671919226646,
+      "cuts_per_second": 687.8280348868163,
+      "changed_partners": 2372,
+      "l1_improvement_percent": 8.566408476608123,
+      "overlap_reduction_percent": 33.18088736050202,
+      "l1_sum": 446125341.5684653,
+      "shared_min_sum": 35444015.16490204
+    }
+  ],
+  "pairing_module": "steering/feature_shard_pairing.py",
+  "pairing_module_sha256": "f61bc8c1dad122ec529b7412880e960a5f7e90cb2a2bb2fa0e5abe8180c09371",
+  "measured_at": "2026-10-24T16:06:49.434279+00:00",
+  "cpu_model": "AMD Ryzen 9 9950X 16-Core Processor",
+  "python_version": "3.13.2",
+  "numpy_version": "1.26.4",
+  "pairing_algorithm": "bounded_swap_v1",
+  "cut_fraction": 0.15,
+  "global_seed": 42,
+  "shard_index": 0,
+  "process_peak_rss_scope": "High-water mark of the shared process that ran the frozen and current implementations sequentially.",
+  "exact_partner_comparison": {
+    "reference_module_sha256": "b3cf6bd9a86a420bc824766ef406fe779c9f6c484cf0a0a00fc0fff12c8bf0a2",
+    "pool_sizes": [
+      16,
+      64,
+      256
+    ],
+    "all_equal": true
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "feature_id": 999999,
+  "description": "sparse edge",
+  "entries": [{"tokens": ["a"], "values": [12.0], "max_value": 12.0, "max_value_token_index": 0, "bin_min": 10.0, "bin_max": 14.0, "bin_contains": 1e-06}],
+  "freq_hist_bar_heights": [0.999999, 0.000001],
+  "freq_hist_bar_values": [0.0, 14.0],
+  "frac_nonzero": 1e-05,
+  "max_act_approx": 14.0
+}

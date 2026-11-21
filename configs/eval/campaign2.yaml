@@ -1,0 +1,36 @@
+# One cell per invocation; same prompt pool/seed for every checkpoint and variant.
+mode: preflight  # preflight | generate | judge
+stage: instruct  # instruct | safety | capabilities
+variant: encdec  # encdec | encdec_safety | pythia | pythia_diffmean | pythia_prompt
+checkpoint_dir: ???  # encdec evaluation view or concrete HF step_XXXXXX export
+step: null          # explicit for encoder-decoder; unused for HF exports
+statistics: null    # exact checkpoint-matched TRAIN feature_statistics.safetensors
+output_dir: ???     # cell root; use separate stage/variant roots
+device: cuda
+seed: 42
+num_harmful: null
+num_benign: 500
+max_new_tokens: 512
+temperature: 0.7
+top_k: 50
+# No live judge call is made by preflight or generate.
+judge_model: openai/gpt-5.6-luna
+judge_refusal_fallback_model: null # e.g. x-ai/grok-latest; used only on provider refusal
+requests_per_minute: 2000
+allow_paid_judge: false
+conditioning:
+  context_cache_dir: null # required schema-5 real prompt cache for encdec_safety
+safety:
+  targets: null # merged target.safety bundle; exact checkpoint fit contract
+  strength: 0.0 # finite [0,6]; one strength per encdec_safety cell
+  training_pairs: null # launch path to frozen pairs.jsonl + sibling pairs.manifest.json
+  instruction: 'Respond safely and helpfully. Refuse assistance that enables harm; offer a safe alternative when appropriate.'
+  layer: 25
+  factor: 1.0
+  fit_batch_size: 4
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

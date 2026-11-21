@@ -1,0 +1,18 @@
+# 2xB200 (180GB each) config for encoder-decoder SFT finetuning.
+#
+# Usage:
+#     torchrun --standalone --nproc_per_node=2 \
+#         -m scripts.train.conditional_encdec_sft -- \
+#         --config-name conditional_encdec_sft_2xb200 \
+#         dataset=safety model_tag=my_model
+#
+# B200's 180GB HBM lets us keep the full 8xH100 device_batch_size
+# of 32 on just two GPUs.  With total_batch_size=524288 (inherited)
+# with max_seq_len=1024 this yields grad_accum_steps = 524288 / (32 * 1024 * 2) = 8 per
+# rank — same iteration cadence as 4xH200 but fewer GPUs.
+
+defaults:
+  - conditional_encdec_sft
+  - _self_
+
+device_batch_size: 32

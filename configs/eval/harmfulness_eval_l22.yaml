@@ -1,0 +1,64 @@
+# Standalone harmfulness preset for the phase-A compact L22 capabilities-SFT
+# checkpoint and its exact 1,200-prompt clustered context cache.
+
+defaults:
+  - harmfulness_eval
+  - _self_
+
+source: encdec/capabilities_cond
+model_tag: l22_main_h100_8rank_db16_v1
+segment_size: 128
+step: 16
+feature_configs: null
+self_conditioned:
+  safety_steering: null
+self_cond_segment_size: null
+batch_size: 1
+feature_mask:
+  mode: whitelist
+  path: out/autointerp_filter/gemma3_4bpt_l22_f65k_ci_nobos_freqmask_n40x40_root_20260710_145543/manual_feature_filter_with_descriptions.yaml
+
+# Prompt-pool seed. This must match build_harmfulness_context_cache_l22.base_seed;
+# it is independent of the clustered training-preselection seed below.
+seed: 42
+num_harmful: null
+num_benign: 500
+
+conditioning:
+  context_cache_dir: out/data/eval_context_features/gemma3_4bpt_l22_clustered_harmfulness
+  n_sae_features: 65536
+  num_buckets: 2
+  # Clustered identity seed recovered from the parent pretraining metadata.
+  # It is unrelated to the evaluator prompt-pool seed; both happen to be 42.
+  seed: 42
+  feature_selection:
+    distribution: geometric
+    mean: 12.0
+    std: 12.0
+    min_k: 1
+    max_k: 49
+    mode: top_k_percentile
+  # checkpoint_negative_selection resolves this inherited pretraining block;
+  # the SFT metadata's own top-level/user-config values are null.
+  negative_selection:
+    distribution: geometric
+    mean: 12.0
+    min_k: 0
+    max_k: 49
+  feature_mask:
+    mode: whitelist
+    path: out/autointerp_filter/gemma3_4bpt_l22_f65k_ci_nobos_freqmask_n40x40_root_20260710_145543/manual_feature_filter_with_descriptions.yaml
+  feature_clusters:
+    path: out/artifacts/feature_clusters_two_stage_schema_v1.yaml
+  # Prompt caches are delta-free; splice_counterfactual is training metadata.
+  feature_delta: null
+  # Must match the checkpoint's pretraining clustered-selection statistics,
+  # not the capabilities-SFT training statistics.
+  stats_source_sha256: "dadf6d4f8d3b56ba1b40e0f49f4bb92bfb635c64f78a530f04f624b1d5773b5d"
+  identity:
+    model_id: gemma-3-4b-pt
+    sae_id: layer_22_width_65k_l0_medium
+    # Gemma-scope-2 SAE site, not a layer in the 12-block nanochat decoder.
+    layer: 22
+    pooling: max_pool
+    feature_selection_hash: null

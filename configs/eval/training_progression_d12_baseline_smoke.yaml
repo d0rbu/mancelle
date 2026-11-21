@@ -1,0 +1,82 @@
+# Smoke-test progression config for d12_baseline.
+# Tiny per-task sample counts so a full run completes in a few minutes.
+#
+# Usage:
+#   uv run python -m scripts.train.training_progression \
+#     --config-name=training_progression_d12_baseline_smoke
+
+defaults:
+  - training_progression
+  - _self_
+
+mode: both
+
+model_tag: d12_baseline
+model_family: encoder_decoder
+
+# Defaults to <repo>/nanochat_cache via nanochat.common.get_base_dir.
+# When running from a worktree, symlink `nanochat_cache -> ../../nanochat_cache`
+# so this resolves without NANOCHAT_BASE_DIR overrides.
+checkpoints_dir: null
+checkpoint_root: conditional_encdec_checkpoints
+checkpoint_prefix: "s128/dist_geometric/mean_10.0/std_10.0"
+
+# One checkpoint per phase — full pretrain / safety_sft / capabilities_sft chain.
+# Capabilities-sft loading depends on the ancestor-walk recovery added in
+# `_recover_encdec_ancestor_config` (see `nanochat/checkpoint_manager.py`);
+# without it the capabilities meta can't reach the pretrain encoder config.
+phases:
+  - phase: pretrain
+    subdir: ""
+    steps:
+      - 54600
+  - phase: safety_sft
+    subdir: "safety_sft_conditioned_checkpoints"
+    steps:
+      - 886
+  - phase: capabilities_sft
+    subdir: "safety_sft_conditioned_checkpoints/capabilities_sft_conditioned_checkpoints"
+    steps:
+      - 1106
+
+# Smoke config with two full-context conditioned static target-delta configs
+# (safety + capabilities feature sets ranked by mean activation percentile).
+conditioning:
+  # Inline-dict form with `features_file` + `name` so the legend reads
+  # "Conditioned: Safety mean-k" / "Conditioned: Capability mean-k" instead of
+  # colliding on the generic YAML stem "features".
+  conditioned_configs:
+    - name: "Safety mean-k"
+      features_file: out/data/common_features/safety_sft/absolute/dist_geometric/mean_10.0/std_10.0/min_1/max_40/seed_42/r_mean_pct_incl_zeros/m0.5/features.yaml
+    - name: "Capability mean-k"
+      features_file: out/data/common_features/capabilities_sft/absolute/dist_geometric/mean_10.0/std_10.0/min_1/max_40/seed_42/r_mean_pct_incl_zeros/m0.5/features.yaml
+  context_cache_dir: out/data/eval_context_features/d12_baseline_smoke_static_delta
+  target_real_configs: null
+  identity:
+    model_id: gemma-2-2b
+    sae_id: gemmascope-residual-l8-16k
+    layer: 8
+    pooling: max_pool
+    feature_selection_hash: f3cf767903a4d8442dfc3331142dd2f8eeea240eed8eb82d10e77b7a60c5278b
+  n_sae_features: 16384
+  num_buckets: 2
+
+evals: "core,chat,harmfulness"
+
+num_seeds: 1
+base_seed: 1234
+
+# --- Tiny-but-realistic sample counts for a fast dev run -----------------
+# CORE tasks use up to 10-shot context, so max_per_task must be ≥11 to give
+# `random.sample(available, num_fewshot)` room to draw. 25 is safe and still
+# finishes quickly. Chat/harmfulness have no few-shot coupling — 3 works.
+max_per_task: 25       # CORE: 25 examples per task (≥10-shot + self)
+chat_max_problems: 3   # Chat: 3 problems per task
+chat_max_new_tokens: 128
+harm_num_benign: 3
+harm_num_harmful: 3
+harm_max_new_tokens: 128
+# -------------------------------------------------------------------------
+
+results_file: tmp/d12_baseline_progression_smoke/results.json
+fig_dir: tmp/d12_baseline_progression_smoke/fig

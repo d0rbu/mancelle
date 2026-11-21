@@ -1,0 +1,43 @@
+{
+  "wall_seconds": 64.08787348866463,
+  "events": [
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "__enter__",
+      "seconds": 0.01195402443408966
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 12.312161426991224
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 6.158698212355375
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 6.329138599336147
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "close",
+      "seconds": 8.66129994392395e-06
+    }
+  ],
+  "local_http_calls": 90,
+  "local_http_peak_concurrency": 10,
+  "manifest": "/tmp/axbench-prewarm-judge-production-r1/output/manifest.json"
+}

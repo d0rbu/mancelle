@@ -1,0 +1,233 @@
+# Encoder-decoder SFT finetuning config
+# Usage: torchrun --nproc_per_node=8 -m scripts.train.conditional_encdec_sft -- dataset=safety
+#
+# Architecture (encoder, cross-attention, decoder) is read from the pretrained
+# checkpoint metadata — no need to re-specify here.
+
+# Inherit only the loop controls shared with pretraining. Pretraining-only
+# architecture, FP8, schedule, and evaluation knobs are deliberately absent.
+defaults:
+  - _train_common
+  - _self_
+
+# Model checkpoint to finetune from
+model_tag: ???            # required: checkpoint directory name
+model_step: null          # null=latest, int=specific step
+# Override the checkpoint directory path construction.  When set, this
+# path is used directly instead of building it from model_tag +
+# segment_size + feature_selection.  Used by the pipeline script to
+# chain capabilities SFT from a safety SFT checkpoint.
+base_checkpoint_dir: null
+
+# Residual block kind and total depth of the feature-prediction head. Fresh SFT can upgrade
+# a linear head; expanded checkpoints and SFT resume require their saved depth.
+# Checkpoints require explicit block/head_layers metadata. No head is added to
+# a headless checkpoint. The complete model remains trainable during SFT.
+feature_prediction_block: mlp
+feature_prediction_head_layers: 0
+
+# Dataset selection
+dataset: safety           # standard | capabilities | safety | standard_steered | standard_steered_balanced
+# Steered single-turn JSONL spliced into the standard mixture. Required iff
+# dataset is standard_steered / standard_steered_balanced, rejected otherwise.
+# It MUST be the same file the parquet was converted from: the mixture
+# fingerprint gate compares row counts, not content.
+steered_jsonl: null
+
+# Loss-mask modes: full_sequence | completion_only. completion_only supervises
+# assistant text + tool CALLS (<python_start>...<python_end>) and excludes tool
+# OUTPUTS and user turns; validation uses the same mode; checkpoints record it.
+sft_loss_mask: full_sequence
+
+# What to do about a feature the TRAIN percentile statistics never covered.
+# Checked ONCE at startup against the ids the run will actually query (the raw
+# pre-selection ids for the feature-prediction table, the post-feature-mask
+# candidates for the sampling table), so the operator sees the complete
+# uncovered population instead of dying on the first lookup mid-run. The
+# resolved value is recorded in every SFT checkpoint and a resume under a
+# different policy is rejected.
+#   error  (default, production): abort at startup with the full count.
+#   lowest (PILOT, NOT comparable): pin every uncovered feature to the bottom of
+#          every statistics-derived quantity — rank 0.5, normalized rank /
+#          feature-prediction target 0.005, magnitude bucket 0 if selected, and
+#          an infinite per-feature percentile threshold so threshold selectors
+#          agree with the percentile-space ones. val/bpb from such a run is NOT
+#          comparable to a production number.
+missing_percentile_policy: error
+
+# Feature conditioning
+feature_dir: ???          # required for conditioned SFT
+# Regardless of the loss mask, conditioned runs consume features extracted over
+# the full nanochat-rendered conversation. The extraction parquet omits the
+# decoder BOS because the source tokenizer contributes its own BOS. This is the
+# expected decoded length of that source BOS (Gemma-style tokenizers are
+# typically 5). Startup independently derives the value from the first train
+# and active-validation feature/parquet shard pairs and fails on disagreement.
+feature_source_bos_char_len: 5
+
+# SFT conversation parquet directory.
+# - null (default): use ``{base_dir}/sft_data/{dataset}``.
+# - explicit path: override the location (e.g. for shared NFS mounts or
+#   alternate mixtures).  The path is passed through as-is.
+# Used to load the full-sequence SFT parquet aligned with feature_dir.
+sft_parquet_dir: null
+
+# Deterministic, endpoint-spread task/parquet byte comparisons performed once
+# when each train or validation generator starts. 0 explicitly disables only
+# this independent content channel; mixture fingerprint checks still run.
+alignment_probe_samples: 8
+
+# Validation-split artifact locations. Validation conditions on features
+# extracted over the VAL mixture's own parquet — never the train mixture's
+# (issue #1278). null derives:
+#   val_sft_parquet_dir: {base_dir}/sft_data/{dataset}_val
+#   val_feature_dir: cfg.feature_dir with its phase leaf swapped to the
+#     matching *_sft_val phase (parsed and rebuilt via steering.feature_paths;
+#     startup raises if feature_dir does not parse or its phase is not the
+#     dataset's matching *_sft phase).
+val_feature_dir: null
+val_sft_parquet_dir: null
+
+# Batch sizes (match chat_sft.yaml defaults for 8xH100)
+# max_seq_len: null = use checkpoint's sequence_len. Set explicitly to override.
+max_seq_len: null
+device_batch_size: 32
+total_batch_size: 524288
+
+# Minimum supervised loss tokens per conversation.  After truncation to
+# the row capacity (max_seq_len + 1), a conversation with fewer than
+# this many supervised targets is DROPPED from training: full_sequence
+# counts len(ids) - 1, while completion_only counts sum(loss_mask[1:]).
+# The same threshold and loss-mask mode apply to validation.  Interacts with
+# max_seq_len: a small window truncates long conversations harder and
+# can push more of the mixture under the threshold (max_seq_len: null
+# uses the checkpoint's sequence_len).  Must be a positive integer;
+# the first full pass over the dataset logs the realized drop rate.
+min_loss_tokens: 8
+
+# Optimization (MuonAdamW with per-group LRs from pretraining)
+# Keep Muon matrices in persistent contiguous storage; same optimizer math/state.
+# Opt in only after loading and final device/dtype conversion, before training.
+muon_parameter_packing: false
+embedding_lr: 0.3
+unembedding_lr: 0.004
+# Feature-prediction head projection/non-matrix AdamW LR. null shares unembedding_lr,
+# i.e. the lm_head knob; set it to move the projection without moving lm_head.
+fp_head_lr: null
+# Muon LR for 2-D weight matrices in feature-prediction residual blocks.
+fp_head_matrix_lr: 0.02
+matrix_lr: 0.02
+weight_decay: 0.0
+lr_multiplier: 1.0       # scales ALL per-group LRs (for sweeps)
+# Effective initial LR for every optimizer group is its base group LR ×
+# lr_multiplier × init_lr_frac. This is applied before the training loop.
+init_lr_frac: 1.0
+# Linear LR ramp over successful optimizer updates; strict integer, 0 disables.
+# Must finish strictly before the existing 80%-progress decay boundary.
+lr_warmup_steps: 20
+# Encoder & cross-attention LRs (scaled by lr_multiplier like decoder LRs)
+encoder_embedding_lr: 0.2
+encoder_matrix_lr: 0.02
+xattn_matrix_lr: 0.02
+
+# Training horizon
+num_iterations: -1        # -1 = 1 epoch through dataset
+
+# Gradient clipping max norm.  Default ``null`` = clipping DISABLED —
+# the deliberate default, not a NaN-defense opt-out.  Set a positive
+# float to enable torch.nn.utils.clip_grad_norm_ on the full model.
+# Context for enabling: the historical value ``1.0`` came from commit
+# edc101b as a NaN defense against bad SFT batches with garbled U+FFFD
+# tokens (flex_attention's Triton fallback has known NaN issues in the
+# cross-attention backward pass; the clip hides them).  If a run hits
+# NaN losses, ``1.0`` is the empirically chosen value to restore.
+grad_clip_max_norm: null
+
+# Resume support: inherited from base_train.yaml (default: -1 = fresh start).
+# Set to a positive integer to resume from a previously-saved SFT checkpoint
+# at that step. The checkpoint must use the buffered_v2 per-rank cursor schema
+# and the same DDP/batch/sequence/accumulation/filter geometry. See
+# docs/pipelines/encoder-decoder-training.md §"Resuming an interrupted SFT run".
+# resume_from_step: -1
+
+# SFT inherits its feature dictionary from the base checkpoint. This mask must
+# reproduce exactly the one the checkpoint was trained with. Recover it with:
+#   uv run python -m scripts.analysis.dump_feature_mask <checkpoint_dir>
+# Masks require matching canonical checkpoint metadata on a full-width base; clusters always fail.
+feature_mask: null
+# feature_mask:
+#   mode: blacklist        # blacklist | whitelist
+#   ids: [123, 456]        # XOR with `path`
+#   # path: /abs/accepted_feature_ids.txt
+
+# Optional path-only static feature clusters. These must be the SAME clusters
+# the base checkpoint was trained with; SFT can neither add nor drop clustering.
+feature_clusters: null
+# feature_clusters:
+#   path: /abs/path/clusters.yaml
+
+# Feature extraction params.
+# Default matches the d12 pretraining configs (geometric distribution,
+# mean=10, top-k percentile mode).  Override at CLI for other checkpoints.
+feature_selection:
+  distribution: geometric
+  mean: 10.0
+  std: 10.0
+  min_k: 1
+  max_k: 40
+  mode: top_k_percentile
+  delta_weights: null
+num_buckets: null         # null=use checkpoint value, int=override
+segment_size: 128
+
+# Conditioning fidelity vs the base checkpoint's pretraining scheme is HARDCODED
+# policy, not a config knob (see
+# steering/conditional/checkpoint_conditioning.assert_conditioning_supported):
+#   * bucket encoding and negative emission are reproduced;
+#   * feature_delta.mode=splice_counterfactual warns and proceeds;
+#   * feature_delta.mode in {prev_segment, cum_max} raises.
+
+# SAE config (must match feature extraction). Default = the production 3B lineage
+# (configs/training/full3b_clustered_c2048.yaml); the conditioned-SFT trainer refuses a block that
+# disagrees with the canonical feature path, so a stale default here fails every launch that does
+# not override it.
+sae:
+  release: gemmascope_2
+  model: gemma-3-4b-pt
+  activation_type: residual
+  layer: 22
+  width: 65k
+  l0: medium
+
+# Evaluation & checkpointing
+eval_every: 150
+eval_tokens: 10485760
+save_every: 100
+
+# Compilation: "auto" (default) → dynamic=None (torch.compile auto-dynamic).
+# Decoder rows are a fixed (device_batch_size, max_seq_len) shape; the packed
+# encoder / cross-attention tensors that vary per batch are mark_dynamic'd at
+# construction, so only they compile symbolically while decoder dims stay
+# concrete — required by the flex-attention FLASH (CuteDSL) backend on
+# torch >= 2.13 ("NYI: score_mod or mask_mod captures a dynamic scalar").
+# "false" forces whole-graph dynamic=True (crashes FA4 on Hopper under
+# torch >= 2.13); "true" forces dynamic=False (recompiles per packed extent).
+compile_static: auto
+
+# Build each optimizer step's remaining batches in a bounded background thread
+# so CPU feature selection/packing and H2D can overlap GPU compute. The producer
+# never crosses a validation/checkpoint boundary. Zero preserves the legacy
+# synchronous generator path exactly.
+sft_prefetch_batches: 0
+
+# Output
+# Skip checkpoint writes only. Wandb remains enabled, matching chat_sft.py.
+dry_run: false
+
+# Profiling / instrumentation. These are off by default and are intended for
+# short controlled profiling runs, not regular training.
+profile_timing: false              # Write per-region timing CSVs, including delivered prefetch-worker regions.
+profile_timing_sync_cuda: true     # Synchronize main-thread regions; worker phase rows remain unsynchronized CPU wall time.
+profile_trace: null                # First training step to trace; null disables Chrome trace.
+profile_trace_steps: 3             # Number of consecutive train steps to capture.
+profile_output_dir: out/profiles/encdec_sft

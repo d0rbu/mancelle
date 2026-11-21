@@ -1,0 +1,19 @@
+# Step 3/5 — magnitude→percentile uint8 overlays for the gemma-3-4b-it
+# l22 f65k dataset. Writes pct/<checksum>/ (base shards never modified).
+#
+# Inherits precompute_percentiles_gemma3.yaml; pins explicit feature_dir +
+# f65k (parent defaults sae_width=16k). resume=true so an interrupted run
+# fills only missing overlay shards.
+#
+#   uv run python -m scripts.preprocess.precompute_percentiles \
+#       --config-name precompute_percentiles_gemma3_l22_f65k
+
+defaults:
+  - precompute_percentiles_gemma3
+  - _self_
+
+feature_dir: out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-it/base
+sae_width: "65k"
+
+device: cuda
+resume: true

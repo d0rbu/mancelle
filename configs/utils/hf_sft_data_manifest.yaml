@@ -1,0 +1,25 @@
+# CPU-only inventory of the same default standard_steered tasks as HF SFT.
+mode: build  # build | verify
+mixture: standard_steered
+base_dir: ${oc.env:NANOCHAT_BASE_DIR}
+steered_jsonl: ${oc.env:STEERED_JSONL,null}
+output_path: ???
+device_batch_size: 1
+sft_loss_mask: full_sequence
+# Training config whose pinned HF model/revision supplies the recorded tokenizer identity.
+sft_config_name: chat_sft_pythia_2_8b
+# Optional chained-model binding. Leave all three null or supply all three together.
+parent_export: null
+expected_parent_mixture: null
+data_manifest: null
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false
+  job_logging:
+    handlers:
+      file:
+        filename: /dev/null

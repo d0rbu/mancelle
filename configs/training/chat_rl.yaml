@@ -1,0 +1,45 @@
+# Reinforcement learning config (GRPO on GSM8K)
+# Usage: python -m scripts.train.chat_rl
+
+# Logging
+run: dummy
+
+# Runtime
+device_type: ""
+dtype: bfloat16
+
+# Model loading
+model_tag: null
+model_step: null
+
+# Training horizon
+num_epochs: 1
+
+# Batch sizes / sampling
+device_batch_size: 8
+examples_per_step: 16
+num_samples: 16
+
+# Generation
+max_new_tokens: 256
+temperature: 1.0
+top_k: 50
+
+# Optimization
+embedding_lr: 0.2
+unembedding_lr: 0.004
+matrix_lr: 0.02
+weight_decay: 0.0
+init_lr_frac: 0.05
+
+# Evaluation / checkpointing
+eval_every: 60
+eval_examples: 400
+save_every: 60
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

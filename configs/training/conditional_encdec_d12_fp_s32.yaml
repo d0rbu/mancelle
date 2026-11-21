@@ -1,0 +1,50 @@
+# 8x RTX PRO 6000 Blackwell config for d12 encoder-decoder with feature prediction
+# Usage: torchrun --nproc_per_node=8 -m scripts.train.conditional_encdec_train -- config_name=conditional_encdec_d12_fp_s32
+
+defaults:
+  - conditional_encdec_train
+  - _self_
+
+run: d12_fp_s32
+
+depth: 12
+max_seq_len: 1024
+device_batch_size: 32
+fp8: false
+
+num_iterations: -1
+target_param_data_ratio: 100
+
+segment_size: 32
+
+feature_prediction:
+  block: mlp
+  head_layers: 0
+  weight: 1.0
+  layer: -1
+  loss_mode: best_token
+  loss_fn: bce
+
+feature_selection:
+  distribution: geometric
+  mean: 10.0
+  std: 10.0
+  min_k: 1
+  max_k: 40
+  delta_weights: null
+  mode: top_k_percentile
+
+negative_selection:
+  distribution: geometric
+  mean: 10.0
+  min_k: 0
+  max_k: 40
+
+feature_delta: null
+
+# Prefetching disabled to stay within 1.4TB cgroup memory limit
+doc_prefetch_depth: 0
+feature_prefetch: false
+
+# Only use shards that have extracted features
+max_train_shards: 370

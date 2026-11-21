@@ -1,0 +1,325 @@
+{
+  "schema_version": 1,
+  "mechanism": "Existing private feature-ID host lists become owned uint32 row-tagged keys; sort only this array. Unique combined keys skip the legacy per-row loop; any collision runs the unchanged complete block fallback.",
+  "scope": "Complete natural single-shard CPU selection-publication validation component; native16/32 and ownTID19; ordinary allocator. Excluded warmAB and all8ABBABAAB retained; no hooks/profiler/retry/exclusion or training-throughput claim.",
+  "dataset": {
+    "segments": 282343,
+    "compressed_bytes": 13014004,
+    "effective_buckets": 1,
+    "actual_max_features": 94,
+    "family_max_features_bound": 96,
+    "selection_content_sha256": "b35090f0db49a8254860bdf50efc8a9f20307e11ada8a6c67da60ac75a8d3007"
+  },
+  "runtime": {
+    "torch_threads": 16,
+    "torch_interop_threads": 32,
+    "owned_threads_nice": 19,
+    "allocator": "ordinary",
+    "cuda_visible": false
+  },
+  "schedule": [
+    {
+      "slot": "warm_a",
+      "arm": "baseline"
+    },
+    {
+      "slot": "warm_b",
+      "arm": "candidate"
+    },
+    {
+      "slot": "timed_0",
+      "arm": "baseline"
+    },
+    {
+      "slot": "timed_1",
+      "arm": "candidate"
+    },
+    {
+      "slot": "timed_2",
+      "arm": "candidate"
+    },
+    {
+      "slot": "timed_3",
+      "arm": "baseline"
+    },
+    {
+      "slot": "timed_4",
+      "arm": "candidate"
+    },
+    {
+      "slot": "timed_5",
+      "arm": "baseline"
+    },
+    {
+      "slot": "timed_6",
+      "arm": "baseline"
+    },
+    {
+      "slot": "timed_7",
+      "arm": "candidate"
+    }
+  ],
+  "samples": [
+    {
+      "slot": "warm_a",
+      "arm": "baseline",
+      "wall_seconds": 0.576738648,
+      "process_cpu_seconds": 1.146992792
+    },
+    {
+      "slot": "warm_b",
+      "arm": "candidate",
+      "wall_seconds": 0.314308751,
+      "process_cpu_seconds": 0.66127605
+    },
+    {
+      "slot": "timed_0",
+      "arm": "baseline",
+      "wall_seconds": 0.799276006,
+      "process_cpu_seconds": 2.834460297
+    },
+    {
+      "slot": "timed_1",
+      "arm": "candidate",
+      "wall_seconds": 0.326385116,
+      "process_cpu_seconds": 0.797905359
+    },
+    {
+      "slot": "timed_2",
+      "arm": "candidate",
+      "wall_seconds": 0.293689554,
+      "process_cpu_seconds": 0.793384588
+    },
+    {
+      "slot": "timed_3",
+      "arm": "baseline",
+      "wall_seconds": 0.603354581,
+      "process_cpu_seconds": 1.10575049
+    },
+    {
+      "slot": "timed_4",
+      "arm": "candidate",
+      "wall_seconds": 0.377338206,
+      "process_cpu_seconds": 1.010980572
+    },
+    {
+      "slot": "timed_5",
+      "arm": "baseline",
+      "wall_seconds": 0.544891164,
+      "process_cpu_seconds": 0.99974081
+    },
+    {
+      "slot": "timed_6",
+      "arm": "baseline",
+      "wall_seconds": 0.734838647,
+      "process_cpu_seconds": 2.130555856
+    },
+    {
+      "slot": "timed_7",
+      "arm": "candidate",
+      "wall_seconds": 0.326487901,
+      "process_cpu_seconds": 0.799972629
+    }
+  ],
+  "metrics": {
+    "wall_seconds": {
+      "pooled": {
+        "baseline": 0.6705900995,
+        "candidate": 0.33097519425,
+        "improvement_percent": 50.64418718725805
+      },
+      "halves": [
+        {
+          "baseline": 0.7013152935,
+          "candidate": 0.31003733499999997,
+          "improvement_percent": 55.792018529537465
+        },
+        {
+          "baseline": 0.6398649055000001,
+          "candidate": 0.3519130535,
+          "improvement_percent": 45.00197612416173
+        }
+      ],
+      "positions": [
+        {
+          "baseline": 0.7670573265,
+          "candidate": 0.33551388000000004,
+          "improvement_percent": 56.2596081924002
+        },
+        {
+          "baseline": 0.5741228725,
+          "candidate": 0.3264365085,
+          "improvement_percent": 43.14169942776492
+        }
+      ],
+      "report_only_pairs": [
+        {
+          "baseline": 0.799276006,
+          "candidate": 0.326385116,
+          "improvement_percent": 59.164905045329235
+        },
+        {
+          "baseline": 0.603354581,
+          "candidate": 0.293689554,
+          "improvement_percent": 51.32388760300139
+        },
+        {
+          "baseline": 0.544891164,
+          "candidate": 0.377338206,
+          "improvement_percent": 30.74980272574213
+        },
+        {
+          "baseline": 0.734838647,
+          "candidate": 0.326487901,
+          "improvement_percent": 55.5701238179434
+        }
+      ],
+      "pooled_gate": true,
+      "strata_gate": true
+    },
+    "process_cpu_seconds": {
+      "pooled": {
+        "baseline": 1.76762686325,
+        "candidate": 0.850560787,
+        "improvement_percent": 51.88120271966567
+      },
+      "halves": [
+        {
+          "baseline": 1.9701053935,
+          "candidate": 0.7956449735,
+          "improvement_percent": 59.61409089457426
+        },
+        {
+          "baseline": 1.565148333,
+          "candidate": 0.9054766005,
+          "improvement_percent": 42.14755359548404
+        }
+      ],
+      "positions": [
+        {
+          "baseline": 2.4825080765000003,
+          "candidate": 0.9021825800000001,
+          "improvement_percent": 63.658423167269
+        },
+        {
+          "baseline": 1.0527456499999999,
+          "candidate": 0.798938994,
+          "improvement_percent": 24.109019685809187
+        }
+      ],
+      "report_only_pairs": [
+        {
+          "baseline": 2.834460297,
+          "candidate": 0.797905359,
+          "improvement_percent": 71.84983117087563
+        },
+        {
+          "baseline": 1.10575049,
+          "candidate": 0.793384588,
+          "improvement_percent": 28.249221214453176
+        },
+        {
+          "baseline": 0.99974081,
+          "candidate": 1.010980572,
+          "improvement_percent": -1.1242675989189623
+        },
+        {
+          "baseline": 2.130555856,
+          "candidate": 0.799972629,
+          "improvement_percent": 62.45239819706468
+        }
+      ],
+      "pooled_gate": true,
+      "strata_gate": true
+    },
+    "four_fixed_gates": [
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "adverse": "Report-only adjacent CPU pair2 regressed1.1242675989189623%; all8primaryslots included. WarmAB alone excluded by predeclared protocol.",
+  "correctness": {
+    "all_ten_oracles": true,
+    "all_semantic_oracles_equal": true,
+    "all_global_checks": true
+  },
+  "focused": {
+    "direct_cases": 47,
+    "expected_successes": 27,
+    "expected_errors": 20,
+    "pytest_pass_per_arm": 33,
+    "path_controls": 11,
+    "coverage": "Owned uint32 max2**28-1 at localrow4095/fid65535 then block reset; original fallback/error/state/RNG/canonical aliases"
+  },
+  "memory": "O(block ID count): temporary Python concatenated list, owned uint32 keys, channel repeats and adjacent comparison. No memory saving or universal94width bound claimed.",
+  "resources": {
+    "lifecycle_seconds": 110.03528049960732,
+    "max_sampled_owned_group_rss_bytes": 1170677760,
+    "all_ten_children_exit0": true,
+    "no_guard_or_signal": true
+  },
+  "limitations": [
+    "Full natural CPU serialized-selection publication component only; not whole producer, training, GPU, cold-cache, all callers or memory improvement",
+    "Process CPU includes target workers and spin; no pure key-certificate cost claim",
+    "109 Tensor implementation remains rejected; all its negative evidence retained"
+  ],
+  "validation": {
+    "status": "SCOPED_CHECKS_COMPLETED_WITH_TWO_BASELINE_REPRODUCED_FAILURES",
+    "scope": "Five caller regression files; only the exact two failed cases repeated under original canonical whole module b2ad. No clean/full baseline suite, full-repository or GPU claim.",
+    "pytest": {
+      "passed": 471,
+      "failed": 2,
+      "skipped": 3,
+      "deselected": 1,
+      "new_cases_passed": 4,
+      "shared_failures": [
+        "test_strict_packed_cache_invalidates_every_signature_field[dev-lstat]",
+        "test_strict_packed_cache_invalidates_every_signature_field[dev-stat]"
+      ],
+      "failure": "KeyError: 'dev' at tests/steering/test_clustered_selection_validation.py:1726",
+      "original_whole_module_sha256": "b2ad66ec94ae71862ed0b501c82e109848ecd5eb1d30bc1b73ea823665f256f2",
+      "baseline_pytest_returncode": 1,
+      "baseline_expected_failures_reproduced": true
+    },
+    "static": {
+      "ruff_version": "0.16.0",
+      "ty_version": "0.0.65",
+      "ruff_pass": true,
+      "ty_pass": true,
+      "diff_check_pass": true,
+      "scope": [
+        "steering/conditional/feature_clusters.py",
+        "tests/steering/test_feature_clusters_consolidation.py"
+      ]
+    },
+    "receipts": {
+      "out/splice_perf_110/host_block_collision_applied_checks_v1_independent_actual_review.json": "1b5ca15427fb80c900cf4935967c1ff20c39def8774fda44f883af40af4ef18a",
+      "out/splice_perf_110/host_block_collision_applied_checks_v1_independent_extra_actual_review.json": "e34939899ccc21f5946de9ea1193c479cef9e218083afbb245e497b30198c43a",
+      "out/splice_perf_110/host_block_collision_baseline_failure_reproof_v1_independent_actual_review.json": "19d1d21d630e15482e61a8be42172bd2f6888ff3a0e20467ae2e1dc86caad171",
+      "out/splice_perf_110/host_block_collision_baseline_failure_reproof_v1_independent_extra_actual_review.json": "6b48809bb9846c1e887ffd415dcb72f86504359d428cb94f641b51c3e3da3e3b",
+      "out/splice_perf_110/host_block_collision_applied_checks_v1/summary.json": "82d2a1d79996f495883006e65cb8a9614ec7b7a6c45329209fee7ae6b13b40c3",
+      "out/splice_perf_110/host_block_collision_applied_checks_v1/pytest/pytest.xml": "34a203f8144e1e0708192908a803d59721ff916f6c52d1e00beb42318f7cca6a",
+      "out/splice_perf_110/host_block_collision_baseline_failure_reproof_v1/pytest/reproof_result.json": "d7ae35d90c8787b03950ab19fd944306b25c3ef60d1d4ac4689696880e321eab",
+      "out/splice_perf_110/host_block_collision_baseline_failure_reproof_v1/pytest/pytest.xml": "7e151229dbfc7effada56c9e14b3135752ff5309fae48777cf59a448809e9a89"
+    }
+  },
+  "source": {
+    "qualified_prototype_sha256": "c3b50ef2d4bc57845ba0081e70b452b6e9a1aa09c9907de723841a598f1e031f",
+    "production_sha256": "051c5143cc5bcf8098daf0b9cc3ea89eca69a3004df062b21ac31e1e1806d1da",
+    "production_ast_equals_qualified": true,
+    "permanent_test_sha256": "3a80b40391f9769de941cef01174cdc7d4a3fc1aad4b58bb343d86cbb833ff8c"
+  },
+  "receipts": {
+    "out/splice_perf_110/clustered_selection_host_block_collision_benchmark_v1_freeze.json": "ea001fa9f00c8f58420cb48c888fdfbce8150961ed2afc91ccc4c1a441cf6bf8",
+    "out/splice_perf_110/clustered_selection_host_block_collision_benchmark_v1_independent_actual_review.json": "939edab1228f5ad07bc0bfb858eeadc13a6bd40e42a6da68d527c0ff136fe88d",
+    "out/splice_perf_110/clustered_selection_host_block_collision_benchmark_v1_independent_extra_actual_review.json": "a61b59188d8f7387a02d656db4596bc15cc22aca2760277bfa36bbb8744618e1",
+    "out/splice_perf_110/clustered_selection_host_block_collision_benchmark_v1_author_closeout.json": "c52e2471ec9901c8aa8d9042b6674afe6952c4ee63005c0bbb1547433bb81302",
+    "out/splice_perf_110/feature_clusters_host_block_collision_prototype.py": "c3b50ef2d4bc57845ba0081e70b452b6e9a1aa09c9907de723841a598f1e031f",
+    "out/splice_perf_110/feature_clusters_host_block_collision_prototype.patch": "a85473d0c05e3a133831f66c8aa61266f32d5ed45c89f3acb1266eb1fb6974e9",
+    "out/splice_perf_110/clustered_selection_host_block_collision_correctness_v1_independent_actual_review.json": "05e6233f80b51a42e59f240b7ea66d1a5c7c6ed588abc831f13a6e328227f718",
+    "out/splice_perf_110/clustered_selection_host_block_collision_correctness_v1_independent_extra_actual_review.json": "b8032da1615f67ec47401a460b1db7050c72506983272c977b6b1ad3d22a0bbc",
+    "out/splice_perf_109/clustered_selection_block_collision_benchmark_v1_author_closeout.json": "edb608f8fc2db3e854732aca7c5c3bd089acd2780c15e7b49b34312dec2cbd8b"
+  }
+}

@@ -1,0 +1,8 @@
+# Config for scripts/eval/plot_evals.py
+# Usage: uv run python -m scripts.eval.plot_evals base_dir=/path/to/checkpoints output_dir=fig
+
+# Root directory containing checkpoint dirs. Null uses NANOCHAT_BASE_DIR.
+base_dir: null
+
+# Output directory for PNG files.
+output_dir: fig

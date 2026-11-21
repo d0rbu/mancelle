@@ -1,0 +1,25 @@
+# Step 5/5 — packed training rows for the gemma-3-4b-it l22 f65k dataset.
+# Writes pct/<pct>/tok/<tok>/c1024/sall/ (+ val_sall sibling) and mirror
+# symlinks. Requires steps 2-4 done (stats + percentile checksum + token
+# boundary overlay).
+#
+# Inherits precompute_packed_rows_gemma3.yaml; pins explicit feature_dir +
+# f65k. max_shards stays null (parent default) so the val split is parquet
+# shard 369 — which is backed by the freshly extracted feature shard 369.
+# context_len=1024; packed rows always use character-level decoder segments.
+# resume=true skips already-written output shards.
+#
+#   uv run python -m scripts.preprocess.precompute_packed_rows \
+#       --config-name precompute_packed_rows_gemma3_l22_f65k
+
+defaults:
+  - precompute_packed_rows_gemma3
+  - _self_
+
+feature_dir: out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-it/base
+sae_width: "65k"
+
+context_len: 1024
+max_shards: null              # null ⇒ all 370 parquet; val = parquet 369
+resume: true
+resume_from_shard: null       # int = explicit train shard index; ignores local shard count

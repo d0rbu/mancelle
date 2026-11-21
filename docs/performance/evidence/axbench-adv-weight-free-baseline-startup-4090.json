@@ -1,0 +1,62 @@
+{
+  "_cell_rows": {
+    "count": 1,
+    "seconds": 0.003078162670135498
+  },
+  "_publish_manifest": {
+    "count": 1,
+    "seconds": 0.7262280434370041
+  },
+  "_source_prompts": {
+    "count": 1,
+    "seconds": 0.20357883721590042
+  },
+  "_validate_prepared": {
+    "count": 500,
+    "seconds": 0.034457046538591385
+  },
+  "assert_prepared_prompt_matches": {
+    "count": 500,
+    "seconds": 0.011364016681909561
+  },
+  "fit_concept_dense_diffmeans": {
+    "count": 1,
+    "seconds": 5.272132832556963
+  },
+  "get_tokenizer": {
+    "count": 1,
+    "seconds": 0.033126842230558395
+  },
+  "load_counter_direction": {
+    "count": 2,
+    "seconds": 4.87305223941803e-05
+  },
+  "load_extraction_stack": {
+    "count": 1,
+    "seconds": 27.151003569364548
+  },
+  "load_target_model": {
+    "count": 1,
+    "seconds": 0.3454750292003155
+  },
+  "preflight_project_direction_fit": {
+    "count": 1,
+    "seconds": 0.007796429097652435
+  },
+  "prepare_prompt_context": {
+    "count": 373,
+    "seconds": 8.857918329536915
+  },
+  "render_self_conditioning_prompt": {
+    "count": 500,
+    "seconds": 0.018296480178833008
+  },
+  "runtime_init": {
+    "count": 1,
+    "seconds": 41.93713103979826
+  },
+  "validate_source_contract": {
+    "count": 1,
+    "seconds": 15.587055537849665
+  }
+}

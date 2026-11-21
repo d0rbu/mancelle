@@ -1,0 +1,24 @@
+# Step 2/5 — corpus feature statistics for the gemma-3-4b-it l22 f65k dataset.
+#
+# Inherits compute_statistics_gemma3.yaml; pins the explicit feature_dir and
+# the f65k width (the gemma3 parent defaults sae_width=16k, which would
+# auto-construct the WRONG directory). feature_dir is explicit, so path
+# auto-construction is bypassed entirely.
+#
+# The exact reducer allocates its final 65,536-feature count-table shape before
+# loading a shard body. Pinning the width is therefore a correctness/resource
+# contract, not a performance hint.
+#
+#   uv run python -m steering.compute_statistics \
+#       --config-name compute_statistics_gemma3_l22_f65k
+
+defaults:
+  - compute_statistics_gemma3
+  - _self_
+
+feature_dir: out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-it/base
+sae_width: "65k"
+n_sae_features: 65536
+
+device: cuda          # CUDA moments + bounded count reduction; dense table/finalization stay CPU
+exclude_last_shard: true   # shard 369 stays the held-out validation shard

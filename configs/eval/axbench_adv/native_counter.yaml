@@ -1,0 +1,50 @@
+defaults:
+  - _self_
+
+# Authenticated NativeDecoderPromptSteering producer. Magnitude zero reuses it.
+source_manifest: ???
+source_parquet: ???
+
+# Canonical AxBench generate/metadata.jsonl and generate/train_data.parquet root.
+prepared_dir: ???
+
+# The same native decoder-only SFT checkpoint/tokenizer as the source producer.
+# Relocated paths are accepted only when all expected hashes remain exact.
+checkpoint_dir: ???
+step: 1003
+tokenizer_path: ???
+expected:
+  step: 1003
+  model_sha256: 1247ed969508ad8b2449a353c95d6cbc1063a8572dfd4af720c9d81660cb3ffb
+  meta_sha256: 2c8ba8a022889e796bff6c4078f90697903d219f633cafa4c33e698c99a78226
+  tokenizer_sha256: c3945190ac5c38a6ac941480e21895763775619e756cde4d108cafb5a081e185
+  n_layer: 12
+  n_embd: 768
+
+output_dir: ???
+max_concepts: 50
+# Null preserves the complete authenticated source. The only supported subset
+# is 50, meaning the canonical concept-id prefix 0..49 of a standard100 source.
+concept_count: null
+device: cuda:0
+seed: 42
+
+# Historical layer 28/36 depth mapping gives layer 9/12 for this decoder.
+# Capture and intervention use this same decoder block output.
+layer: 9
+methods: [DiffMean, LinearProbe]
+magnitudes: [0.25, 0.5, 1.0, 2.0]
+
+# These fields are placement-only and do not weaken the full semantic identity.
+# Concurrent workers must select disjoint points.
+phase: all
+max_cells: null
+point_methods: null
+point_magnitudes: null
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

@@ -1,0 +1,24 @@
+# Capabilities SFT on top of safety SFT for d12_base_10k (chain:
+# base -> safety -> capabilities).
+# Usage: torchrun --nproc_per_node=4 -m scripts.train.chat_sft -- config_name=sft_d12_10k_capabilities
+
+defaults:
+  - chat_sft
+  - _self_
+
+run: sft_d12_10k_capabilities
+
+# Load from safety SFT checkpoint (chained: base -> safety -> capabilities)
+source: safety
+model_tag: d12_base_10k
+
+# Capabilities mixture
+mixture: capabilities
+
+# 1000 optimizer steps; see sft_d12_10k_safety.yaml for grad_accum math.
+num_iterations: 1000
+
+# Match pretraining context length
+max_seq_len: 1024
+device_batch_size: 32
+total_batch_size: 524288

@@ -1,0 +1,17 @@
+defaults:
+  - validate_eval_context_cache
+  - _self_
+segment_mode: turn_delimited_fixed_tokens
+evals: chat_target
+model_max_seq_len: 2048
+chat_max_problems: null
+checkpoint_meta_path: ???
+contexts_file: ???
+context_parquet_dir: ???
+feature_dir: ???
+identity:
+  model_id: null
+  sae_id: null
+  layer: null
+  pooling: null
+  feature_selection_hash: null

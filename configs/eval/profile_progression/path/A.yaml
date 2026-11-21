@@ -1,0 +1,38 @@
+# @package _global_
+progression:
+  model_family: decoder
+  checkpoint_root: base_checkpoints
+  checkpoint_prefix: ""
+  model_tag: d27
+  step: 13232
+  phase: pretrain
+  subdir: ""
+
+  evals: "core,chat,harmfulness"
+  num_seeds: 1
+  base_seed: 1234
+
+  max_per_task: 20
+  chat_tasks: null
+  chat_batch_size: 8
+  chat_max_new_tokens: 512
+  chat_temperature: 0.0
+  chat_top_k: 50
+  chat_num_samples: 1
+  chat_max_problems: 20
+  harm_temperature: 0.7
+  harm_top_k: 50
+  harm_max_new_tokens: 512
+  harm_num_benign: 10
+  harm_num_harmful: 10
+  harm_judge_model: "openai/gpt-5.6-luna"
+
+  device_type: ""
+  dtype: "bfloat16"
+  checkpoint_source: local
+  checkpoints_dir: null
+  cleanup_after_eval: false
+
+  conditioning:
+    conditioned_configs: null
+    context_cache_dir: null

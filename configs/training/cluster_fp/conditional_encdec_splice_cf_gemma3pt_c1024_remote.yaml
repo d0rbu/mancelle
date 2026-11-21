@@ -1,0 +1,21 @@
+# @package _global_
+# Issues #781/#853: exact clustered L22/Gemma-3 splice-counterfactual c1024 run
+# with strict rank-striped selection-body owners and marker-last checkpoints.
+defaults:
+  - /cluster_fp/conditional_encdec_splice_cf_gemma3pt_8xpro6000@_global_
+  - _self_
+
+run: l22_gemma3pt_clustered_splice_cf_c1024_remote_v1
+model_tag: l22_gemma3pt_clustered_splice_cf_c1024_remote_v1_781
+
+remote_training:
+  bucket_id: d0rb/nano-gpt-pretrain-steer-artifacts
+  body_prefetch:
+    lookahead_shards_per_rank: 2
+  selection_prefix: features
+  checkpoint_prefix: checkpoints/conditional_encdec
+  selection_wait_timeout_seconds: 14400
+  checkpoint_retry_timeout_seconds: 1800
+  retry_interval_seconds: 30
+  resume_latest: true
+  async_checkpoint_upload: true

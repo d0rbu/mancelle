@@ -1,0 +1,87 @@
+{
+  "config": "/tmp/axbench-adv-combined-c529.yaml",
+  "device": "NVIDIA GeForce RTX 4090",
+  "source_seconds": 14.673124998807907,
+  "runtime_startup_seconds": 117.52380460128188,
+  "judge_delay_seconds_per_response_if_sequential": 2.0,
+  "input_count": 10,
+  "magnitude": 256.0,
+  "comparison": "stack",
+  "rows": [
+    {
+      "method": "SelfConditioningMasked",
+      "pressure": "diffmean_counter",
+      "pair_concurrency": 1,
+      "judge_inflight": 1,
+      "reuse_single_token_mask": false,
+      "wall_seconds": 37.353868406265974,
+      "started_unix": 1790241250.5904071,
+      "ended_unix": 1790241287.9442754,
+      "generations_sha256": "ff75de3eb0a54e29d1de0a9f9805a339493d27286ead90204ed261088d8ad05c",
+      "judge_calls": 20,
+      "peak_provider_concurrency": 1,
+      "paid_misses": 20,
+      "peak_cuda_allocated_bytes": 9810873856,
+      "peak_host_rss_kib": 67633040
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "pressure": "diffmean_counter",
+      "pair_concurrency": 2,
+      "judge_inflight": 2,
+      "reuse_single_token_mask": true,
+      "wall_seconds": 11.067223392426968,
+      "started_unix": 1790241291.860038,
+      "ended_unix": 1790241302.9272614,
+      "generations_sha256": "ff75de3eb0a54e29d1de0a9f9805a339493d27286ead90204ed261088d8ad05c",
+      "judge_calls": 20,
+      "peak_provider_concurrency": 2,
+      "paid_misses": 20,
+      "peak_cuda_allocated_bytes": 9811080192,
+      "peak_host_rss_kib": 67633040
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "pressure": "diffmean_counter",
+      "pair_concurrency": 2,
+      "judge_inflight": 2,
+      "reuse_single_token_mask": true,
+      "wall_seconds": 11.055171716958284,
+      "started_unix": 1790241306.788874,
+      "ended_unix": 1790241317.8440454,
+      "generations_sha256": "ff75de3eb0a54e29d1de0a9f9805a339493d27286ead90204ed261088d8ad05c",
+      "judge_calls": 20,
+      "peak_provider_concurrency": 2,
+      "paid_misses": 20,
+      "peak_cuda_allocated_bytes": 9811080192,
+      "peak_host_rss_kib": 67633040
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "pressure": "diffmean_counter",
+      "pair_concurrency": 1,
+      "judge_inflight": 1,
+      "reuse_single_token_mask": false,
+      "wall_seconds": 27.866523876786232,
+      "started_unix": 1790241321.7054143,
+      "ended_unix": 1790241349.571938,
+      "generations_sha256": "ff75de3eb0a54e29d1de0a9f9805a339493d27286ead90204ed261088d8ad05c",
+      "judge_calls": 20,
+      "peak_provider_concurrency": 1,
+      "paid_misses": 20,
+      "peak_cuda_allocated_bytes": 9811080192,
+      "peak_host_rss_kib": 67633040
+    }
+  ],
+  "summary": [
+    {
+      "method": "SelfConditioningMasked",
+      "pressure": "diffmean_counter",
+      "cold_baseline_seconds": 37.353868406265974,
+      "warm_baseline_seconds": 27.866523876786232,
+      "candidate_seconds": 11.061197554692626,
+      "speedup": 2.519304418802653
+    }
+  ],
+  "overall_cell_speedup": 2.519304418802653
+}

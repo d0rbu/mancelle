@@ -1,0 +1,18 @@
+# Stream and certify one existing packed-row shard family for compact FP targets.
+#
+# uv run python -m scripts.preprocess.validate_fp_target_source \
+#   packed_row_dir=out/data/features/.../pct/.../tok/.../c1024/sall \
+#   n_sae_features=65536
+
+defaults:
+  - _self_
+
+packed_row_dir: ???
+n_sae_features: ???
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

@@ -1,0 +1,63 @@
+# Shared real-artifact baseline for the clustered L22/F65K BPB-Adv runs.
+#
+# The robustness presets compose this file so that their source contract,
+# feature vocabulary, cluster definition, and target checkpoints cannot drift
+# independently.  Keep experiment-specific methods, attacks, and run tags in
+# the child presets.
+
+defaults:
+  - axbench_bpb_adv_clustered
+  - _self_
+
+source_run_dir: nanochat_cache/eval/axbench_base/l22_f65k_clustered_std50_m
+
+feature_dir: out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos
+feature_statistics_path: out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos/feature_statistics.safetensors
+feature_mask:
+  mode: whitelist
+  path: out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos/preselection_provenance/l22_clustered_splice_cf/manual_feature_filter_with_descriptions.yaml
+feature_clusters:
+  path: out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos/preselection_provenance/l22_clustered_splice_cf/feature_clusters_two_stage_schema_v1.yaml
+selection_splice_batch_size: 64
+selection_manifest_path: out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos/splice/cut_frac0.15/seed42/pct/623c372d3f121b18/tok/dc6308e6116cbfe0/c1024/sall/sel/e9e395739f1ac4c9498f0935e2e48a407ae9eb13b0134904d70f7ec64a3d5be3/manifest.json
+
+extraction_tokenizer_id: google/gemma-3-4b-pt
+neuronpedia_model_id: gemma-3-4b
+feature_extraction_model_id: google/gemma-3-4b-pt
+neuronpedia_source: 22-gemmascope-2-res-65k
+extraction_max_tokens: 1024
+
+decoder_only_target:
+  source: base
+  model_tag: d12_base
+  step: 54600
+encdec_target:
+  source: encdec
+  model_tag: l22_main_h100_8rank_db16_v1
+  step: 54600
+
+target_models:
+  - decoder_only
+  - encdec
+device_batch_size: 1
+feature_diffmean_extraction_batch_size: 1
+pair_subsample: 1
+offload_between_stages: true
+
+steering_metric: bpb_class_margin
+roundtrip_steering:
+  enabled: false
+scatter_baseline_x: baseline_loss
+general_val_bpb:
+  enabled: false
+  n_documents: 1
+  prefix_tokens: 128
+  output_tokens: 16
+  max_interventions: 0
+  seed: 0
+
+context_cache:
+  extraction_batch_size: 1
+  force_rebuild: false
+  segment_size: 128
+  num_buckets: 2

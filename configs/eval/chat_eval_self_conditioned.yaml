@@ -1,0 +1,12 @@
+defaults:
+  - chat_eval
+  - _self_
+
+evaluation_mode: self_conditioned
+source: encdec
+feature_configs: []
+target_real_configs: []
+batch_size: 1
+num_samples: 1
+temperature: 0
+next_segment_conditioning_offset: false

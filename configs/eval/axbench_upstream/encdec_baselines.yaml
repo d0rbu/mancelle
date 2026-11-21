@@ -1,0 +1,48 @@
+# Encoder-decoder analogs over the exact vendored main and auxiliary frames.
+
+# c2 defaults use the accepted 05f03dede retry baseline artifacts.
+main_path: out/axbench/runs/05f03dede-c2-retry-20260811/main/inference/steering_data.parquet
+aux_path: out/axbench/runs/05f03dede-c2-retry-20260811/aux/inference/steering_data.parquet
+prepared_dir: out/axbench/prepared
+output_main_path: out/axbench/runs/c2/encdec_v1/main/inference/steering_data.parquet
+output_aux_path: out/axbench/runs/c2/encdec_v1/aux/inference/steering_data.parquet
+manifest_path: out/axbench/runs/c2/encdec_v1/run_manifest.json
+train_dir: out/axbench/runs/c2/encdec_v1/train
+
+target_meta_path: nanochat_cache/conditional_encdec_checkpoints/l22_main_h100_8rank_db16_v1/s128/dist_geometric/mean_12.0/std_12.0/wl_9172c540310ba842/fc_5738db84ba00c8b7a84cd28e7a6b5ebbd4d8385bc81262cb63d904265ec95039/meta_054600.json
+feature_statistics_path: out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos/feature_statistics.safetensors
+
+max_concepts: 2
+device: cuda
+seed: 42
+# Generation is fixed at temperature=1.0 and top_k=50 in the adapter.
+# The predicted output feature slot is held for the complete continuation.
+max_new_tokens: 128
+
+force: false
+
+# SFT-phase checkpoints fine-tune weights only; they don't carry their own
+# frozen user_config.conditioning snapshot (context_cache_dir, seed,
+# feature_selection, negative_selection, feature_mask, feature_clusters,
+# stats_source_sha256, identity) because only the clustered pretrain-time
+# training path writes it. Point this at the pretrain checkpoint metadata
+# an SFT target_meta_path started from; load_method_setup cross-checks
+# model_tag and every downstream field against the SFT checkpoint's own
+# top-level user_config, so a mismatched pretrain checkpoint still fails
+# loud. Leave null for an ordinary pretrain-phase target_meta_path.
+pretrain_meta_path: null
+
+# Checkpoints written before steering.stats_io.content_sha256 existed
+# stamped a raw safetensors-file SHA-256, which the safetensors crate's
+# randomized metadata HashMap ordering makes unreproducible across
+# independent saves of identical decoded content -- such a checkpoint can
+# never match a freshly computed content hash even when its statistics file
+# is genuinely unchanged. Set false only after independently confirming the
+# configured feature_statistics_path is correct for such a checkpoint; this
+# logs loudly rather than failing the identity check.
+require_exact_statistics_identity: true
+
+hydra:
+  output_subdir: null
+  run:
+    dir: .

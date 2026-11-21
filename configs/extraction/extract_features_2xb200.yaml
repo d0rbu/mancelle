@@ -1,0 +1,9 @@
+# 2xB200 (180GB each) extraction config
+# Usage: torchrun --nproc_per_node=2 -m steering.extract_features --config-name extract_features_2xb200 num_shards=300
+
+defaults:
+  - extract_features
+  - _self_
+
+gpu_batch_size: 128
+cpu_batch_size: 256

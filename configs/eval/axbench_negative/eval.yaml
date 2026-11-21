@@ -1,0 +1,54 @@
+defaults:
+  - _self_
+
+source_dir: ???
+source_manifest_sha256: null
+output_dir: ???
+split: test
+magnitudes: [1.0, 3.0, 6.0]
+replicates: 1
+seed: 42
+max_new_tokens: 128
+# Placement-only bounded pilot limit. Resume preserves the complete declared grid.
+max_cells: null
+response_cache: ${output_dir}/api_responses.sqlite
+render_tokenizer_path: ???
+render_tokenizer_sha256: ???
+# The complete scoring configuration used to construct the frozen source.
+extractor: ???
+judge:
+  provider: openai
+  model: ???
+  temperature: 0.0
+  top_p: 1.0
+  max_tokens: 384
+  seed: 42
+  requests_per_minute: 60
+  max_retries: 3
+  transport_retry_budget_seconds: 120.0
+target:
+  family: native
+  methods: [DiffMean, LinearProbe]
+  device: cuda:0
+  checkpoint_dir: null
+  step: null
+  tokenizer_path: ${render_tokenizer_path}
+  # Encoder-decoder uses meta_path/statistics instead of checkpoint_dir/step.
+  meta_path: null
+  feature_statistics_path: null
+  pretrain_meta_path: null
+  extraction_batch_size: 8
+  fit_seed: 42
+  fit_dir: ${output_dir}/fits
+  training:
+    prepared_dir: ???
+    metadata_sha256: ???
+    data_sha256: ???
+    ref_prefix: ???
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

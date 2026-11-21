@@ -1,0 +1,294 @@
+# Encoder-decoder conditional pretraining config
+# Usage: torchrun --nproc_per_node=8 -m scripts.train.conditional_encdec_train -- feature_dir=path/to/features
+# Override: python -m scripts.train.conditional_encdec_train depth=12 encoder.depth=2
+
+# Inherit all base training params
+defaults:
+  - base_train
+  - _self_
+  - feature_selection_variant: sampling
+
+num_iterations: 1000
+device_batch_size: 32
+resume_from_step: -1  # -1 = fresh start, positive int = resume from that step
+
+# Opt-in verified remote mode for the exact clustered L22/Gemma-3 c1024
+# splice-counterfactual run. Presence enables it; null preserves the literal
+# all-local loader/checkpoint branches. See the dedicated cluster_fp remote
+# preset and docs/pipelines/encoder-decoder-training.md.
+remote_training: null
+
+# Opt-in producer transport for clustered splice-counterfactual pre-selection.
+# Bucket/prefix/retry identity comes from remote_training; these two fields are
+# resource-only and never enter the selection hash.
+remote_preselection: null
+
+# Encoder architecture (defaults derive from decoder via scaling laws)
+encoder:
+  n_embd: 0.5            # float=ratio of decoder dim (rounded to 128), int=absolute
+  depth: 0.5             # float=ratio of decoder depth, int=absolute
+  n_head: null            # null=enc_dim/head_dim (same scaling as decoder), int=absolute
+  n_kv_head: null         # null=same as n_head (MHA), int=absolute
+  head_dim: 64
+
+# Cross-attention
+cross_attention:
+  frequency: 4            # insert every N-th decoder layer
+  n_head: null            # null=match decoder n_head, int=absolute
+  n_kv_head: null         # null=same as n_head (MHA), int=absolute
+
+# Feature labelling (same as conditional decoder)
+feature_dir: null       # auto-resolved from SAE config params when null
+packed_row_dir: null    # producer-only input for precompute_selected_features;
+                        # training rejects non-null and auto-discovers packed rows
+# Splice-counterfactual producer controls (#740/#758). All controls below are
+# resource-only except selection_splice_batch_size, whose separately documented
+# values >1 identify a different semantic selection artifact family.
+# Source and sidecar capacities bound the private single-process/LRU mode. Spawn
+# workers use compact sidecars; shared-store workers map one source stem each.
+# Resume is the safe default: ordinary shards retain legacy skip behavior;
+# clustered shards are reused only when their exact compressed bytes were
+# atomically certified in the in-progress/complete manifest. Set false only to
+# deliberately recompute all shards after existing identity checks pass; that
+# explicit mode may repair old shard bytes/certificates because none are reused.
+selection_resume: true
+# Semantic splice-selection algorithm control. The production default batches
+# up to 64 consecutive ordinary selection executions. Because batching changes
+# RNG grouping, the resolved size is included in the selection hash/manifest
+# and retained in checkpoint metadata. Set null or 1 explicitly to preserve the
+# legacy one-segment RNG schedule, selection hash, manifest, and exact shard
+# bytes (including discovery/resume of an existing legacy sel/ family).
+selection_splice_batch_size: 64
+selection_source_cache_shards: 5
+selection_sidecar_cache_shards: 16
+# Default 1 preserves the legacy single-process path exactly. >1 uses spawn
+# workers and first runs header-derived host/cgroup/filesystem admission. A
+# request outside the supported point-in-time envelope fails before creating a
+# sel/ manifest or shared store; worker count is never silently reduced.
+selection_num_workers: 1
+# null keeps the eager packed reader. Otherwise this must name an existing
+# disk-backed (not tmpfs/ramfs) scratch directory with room for one decompressed
+# safetensors file per active worker plus reserve. Each mapping and temp file is
+# closed/unlinked at the end of that shard, including exceptional exits.
+selection_packed_spool_dir: null
+# With >1 workers, map one physical source representation through a shared
+# store (NANOCHAT_SHM_DIR, default /dev/shm). Capacity 0 = workers + 4. Capacity
+# is NOT a byte bound: C visible stems, each of W workers' old and in-flight
+# mapped generations, and one publication temporary can coexist. Admission uses
+# exact per-stem tensor sizes and the C+2W+1 union; do not treat a larger tmpfs
+# as additional physical RAM.
+# Exact owner/worker identities, leases, a janitor, and the next-run sweeper
+# provide normal/failure cleanup. Default false preserves the private path.
+selection_shared_store: false
+selection_shared_store_capacity: 0
+data_dir: null           # dataset parquet dir override; null = nanochat default base_data.
+                         # feature_delta.mode=splice_counterfactual auto-derives
+                         # <feature_dir>/_parquets when this is null (issue #596).
+feature_root: out/data/features  # base directory for hierarchical feature paths
+pooling: max_pool       # pooling strategy (needed for path construction)
+dataset_phase: null     # null defaults to "base"
+# Dual validation for feature-shard splice runs. null auto-detects canonical
+# <base>/splice/cut_frac*/seed* feature_dir paths and uses <base> for val/* while the
+# spliced derived val shard logs under val_spliced/*. Set this to the base
+# feature dir when the splicer used a custom output_dir outside that layout.
+# Packed-row splice training supports feature_delta=null and
+# feature_delta.mode=splice_counterfactual when the required preselected sel/
+# shards exist. prev_segment/cum_max remain live-only and raise for packed
+# splice dual validation.
+original_val_feature_dir: null
+original_val_data_dir: null  # text source for the original/base val pass of LIVE dual
+                             # validation (splice_counterfactual); null = nanochat default.
+# Installed by the feature_selection_variant config group after this file is
+# composed. The placeholder preserves the legacy resolved-key order exactly.
+feature_selection: null
+num_buckets: 2
+# Encoder & cross-attention LRs (passed to setup_optimizer, batch-scaled like decoder LRs)
+encoder_embedding_lr: 0.2
+encoder_matrix_lr: 0.02
+xattn_matrix_lr: 0.02
+# Optional feature blacklist/whitelist (selection-layer enforcement; absent/null ⇒ disabled).
+# Mutually exclusive `ids` (inline) | `path` (.txt one int/line, '#' comments ok, or .yaml list).
+# A distinct mask ⇒ distinct sel/<hash>/ + checkpoint leaf (no clobber); no mask ⇒ byte-identical
+# legacy hash/path/RNG (I1/I2/I5). Masked features never become positive, negative, FP-target,
+# or self-cond-feedback conditioning. Base shards/stats/pct/tok/packed-rows are NOT recomputed (I3).
+#
+# Auto activation-frequency blacklist (PRODUCER for the feature_mask below):
+# reads the precomputed feature_statistics.safetensors and blacklists every
+# SAE feature whose per-segment activation frequency falls OUTSIDE the
+# (freq_min, freq_max] interval — i.e. KEEP iff freq_min < freq <= freq_max.
+# The generated id list feeds feature_mask as mode=blacklist. Either bound
+# is independently nullable; both null ⇒ disabled (byte-identical legacy,
+# I1/I2/I5). The train/val split is whatever compute_statistics used
+# (exclude_last_shard: true by default ⇒ validation shard excluded).
+# Ignored (with a warning) if `feature_mask` is set explicitly below.
+#   freq_min ∈ [0, 1)  — default 1e-5 kills dead + too-rare-to-autointerp-score
+#     features (count <= 1e-5 * n_segments); pass 0.0 to kill count==0 dead
+#     features only (matches pre-#702 behavior)
+#   freq_max ∈ (0, 1]  — default 0.5 kills features active in >50% of segments
+#
+# The resolved mask ALSO sizes the encoder's feature-indexed embedding tables (#695):
+# a feature outside the allowed universe gets no embedding row at all. That is free —
+# the remap is one gather — so a band this permissive still pays; it just pays less.
+#
+# Compaction is ALWAYS ON whenever a mask resolves. There is no knob that turns it off,
+# and nulling this band to change model shape is not a compatibility mechanism.
+feature_mask_freq_min: 1.0e-5
+feature_mask_freq_max: 0.5
+feature_mask: null
+# feature_mask:
+#   mode: blacklist        # blacklist | whitelist
+#   ids: [123, 456]        # XOR with `path`
+#   # path: /abs/accepted_feature_ids.txt
+
+# Static clusters consumed only by sel/<hash>/ precomputation and training from
+# those exact precomputed selections. The schema-v1 YAML/JSON file contains
+# disjoint lists of ORIGINAL SAE IDs. Filtering is resolved before representative
+# derivation. For clustered splice-counterfactual selection, current/reference
+# percentiles are independently max-consolidated after filtering and the delta
+# is computed between those representative values.
+# V1 also requires feature_delta=null or mode=splice_counterfactual and
+# steering_eval_every <= 0. CORE/sample cadences are supported only with a
+# clustered, delta-free prompt cache whose identity is derived from this
+# training selection/statistics/mask/cluster state. The shipped defaults do
+# not provide that cache; opt in explicitly rather than setting only the path.
+feature_clusters: null
+# feature_clusters:
+#   path: /absolute/or/cwd-relative/path/feature_clusters.yaml
+
+# Negative (inactive) feature sampling — null disables
+negative_selection:
+  distribution: geometric
+  mean: 3.0
+  min_k: 0
+  max_k: 15  # mean + 4*std (std defaults to mean for geometric)
+# Feature delta conditioning — null disables
+# mode: prev_segment | cum_max | splice_counterfactual
+# neg_delta_ratio: fraction of negatives to sample from delta pool (0-1)
+feature_delta:
+  mode: prev_segment
+  neg_delta_ratio: 1.0
+segment_size: 128
+
+# Feature shard prefetching (hides ~6s shard load behind GPU compute)
+feature_prefetch: true
+
+# Optional execution-only node-local cache for compressed packed/selection
+# shard bytes. A directory requires a positive byte budget and a non-null
+# reserve. Admission pre-counts the new payload only; its ~300 B sidecar first
+# enters the directory total at the next admission, which self-corrects future
+# decisions. Concurrent fills can also transiently overshoot before commits.
+train_node_cache_dir: null
+train_node_cache_max_bytes: null
+train_node_cache_reserve_bytes: 3000000000000
+
+# Background prefetch depth for document batches in the live dataloader.
+# Each slot holds ~tokenizer_batch_size (128) documents.
+# 0 = synchronous (no prefetch thread). 8 = ~1024 docs buffered ahead.
+doc_prefetch_depth: 8
+
+# null: use segment_size (default), int: fixed decoder segment stride
+decoder_segment_size: null
+
+# Probability of dropping all features for a segment during training (CFG-style)
+label_dropout: 0.0
+
+# Opt-in linear conditioning retention over zero-based optimizer updates.
+# Default window: final 20B nominal training tokens, including both endpoints.
+# Explicit start_step/end_step override token-based placement. Requires label_dropout=0.
+conditioning_cooldown:
+  enabled: false
+  start_fraction: 1.0
+  end_fraction: 0.5
+  start_step: null
+  end_step: null
+  cooldown_tokens: 20000000000
+  granularity: segment  # segment | document
+
+# Optional one-shot initialization for encoder.feature_embed.weight after random
+# model init and before optimizer setup. null preserves the existing random init.
+# random = project SAE decoder directions through a deterministic random matrix.
+# svd = project SAE decoder directions onto their top right-singular directions.
+# Both non-null modes rescale the result to match the random feature_embed average row norm.
+initialize_encoder_embeddings_from_sae: null
+
+# How active static clusters initialize their representative rows. mean (the
+# default) averages all mask-surviving members at each init mode's fixed stage:
+# random after full-table projection/rescaling and before its final vocab gather;
+# svd in oriented W_dec before its initial vocab subset/covariance. Without
+# clusters it has nothing to average and is bitwise the pre-key path.
+# representative explicitly selects the representative's own direction instead.
+initialize_encoder_embeddings_cluster_vectors: mean
+
+# Use precomputed packed row shards if available (auto-detects in feature dir)
+use_precomputed_batches: true
+
+# Feature prediction auxiliary loss. Disabled by default because the PR #697 d12_fp
+# (weight 1.0) / d12_fp10 (weight 10.0) ablations did not improve steering, and
+# best_token cannot run at inference because it needs the next-segment target.
+#
+# The head is feature-vocabulary-indexed: full-width runs project to n_sae_features;
+# masked/clustered runs project directly to V_effective. Compact targets are built from
+# raw packed CSR features, so they require use_precomputed_batches=true and a completed
+# fp_target_source_integrity certificate in the packed-row manifest. Run
+# scripts.preprocess.validate_fp_target_source for existing packed artifacts.
+#
+# Opt in per run to ablate it:
+#   feature_prediction: {weight: 1.0, layer: -1, loss_mode: best_token, loss_fn: bce}
+feature_prediction: null
+
+# Random seed for stochastic feature sampling RNG
+seed: 42
+
+# torch.compile: mode is always default (no CUDA graphs); dynamic controlled by compile_static
+compile: true
+# Static shape compilation: auto | true | false
+# auto: dynamic=False when dataloader shapes are static; packed CUDA work has its own dynamic graph
+compile_static: auto
+
+# Chrome trace profiling: null=disabled, N=capture steps N through N+2
+profile_trace: null
+
+# SAE
+sae:
+  release: gemmascope
+  model: gemma-2-2b
+  activation_type: residual
+  layer: 8
+  width: 16k
+  l0: null
+
+# Sample-generation prompts used by mid-training sample logging.
+# These are also enumerated as the "samples" suite in
+# scripts.eval.build_eval_context_cache when building the context cache
+# that conditional_encdec_train.py uses for cached-mode CORE/sample evals.
+# Editing this list shifts token_context_keys -> next training step's
+# CORE/sample call will KeyError until the cache is rebuilt.
+sample_prompts:
+  - "The capital of France is"
+  - "The chemical symbol of gold is"
+  - "If yesterday was Friday, then tomorrow will be"
+  - "The opposite of hot is"
+  - "The planets of the solar system are:"
+  - "My favorite color is"
+  - "If 5*x + 3 = 13, then x is"
+
+# Steering eval (periodic, in-loop)
+steering_eval_every: 250  # 0 = disabled, positive int = step interval
+steering_eval:
+  n_eval_docs: 10
+  samples_per_condition: 2
+  temperature: 0.7
+  top_k_sampling: 50
+  seed: 42
+offload_steering_eval_feature_model: false  # move probe model to CPU between evals
+
+# Next-segment conditioning: when true, segment i is conditioned on features
+# from segment i+1 instead of segment i. The last segment gets empty conditioning.
+next_segment_conditioning_offset: false
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

@@ -1,0 +1,818 @@
+{
+  "gpu": "NVIDIA L40S",
+  "gpu_uuid": "2efb5423-7ce3-5007-9ca5-8d7c23e1adb5",
+  "warm_process_medians_seconds": [
+    10.028603777638637,
+    9.677378660067916,
+    9.714937138487585,
+    10.517450885963626
+  ],
+  "warm_reference_seconds": [
+    10.026563767110929,
+    10.034592804964632,
+    10.010817521018907,
+    10.030643788166344,
+    10.509223122149706,
+    10.545941676013172,
+    10.501467371825129,
+    10.525678649777547
+  ],
+  "warm_candidate_seconds": [
+    9.672241579042748,
+    9.690908247837797,
+    9.670165657997131,
+    9.682515741093084,
+    9.694585046963766,
+    9.691116009838879,
+    9.735289230011404,
+    9.929292696993798
+  ],
+  "reference_median_seconds": 10.26803008839488,
+  "candidate_median_seconds": 9.691012128838338,
+  "seconds_saved": 0.5770179595565423,
+  "latency_reduction_percent": 5.619558518909084,
+  "cold_reference_seconds": [
+    19.45676700398326,
+    16.531161034014076
+  ],
+  "cold_candidate_seconds": [
+    15.837601592997089,
+    15.821852397872135
+  ],
+  "all_scores_and_grades_and_completions_equal": true,
+  "completion_tokens": 42089,
+  "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+  "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+  "scores": {
+    "status": "pass",
+    "chatcore": 0.2867,
+    "per_task_scores": {
+      "ARC-Easy": 0.48,
+      "ARC-Challenge": 0.4,
+      "MMLU": 0.32,
+      "GSM8K": 0.06,
+      "HumanEval": 0.06,
+      "SpellingBee": 1.0
+    },
+    "max_problems": 50,
+    "issues": []
+  },
+  "sampled_logit_values": 1048576,
+  "sampled_decode_calls": [
+    0,
+    64,
+    128,
+    192,
+    256,
+    320,
+    384,
+    448
+  ],
+  "logit_max_abs_delta": 0.0,
+  "gpu_telemetry_samples": 380,
+  "observed_max_sum_process_rss_bytes": 4879056896,
+  "host_rss_caveat": "One-second tree snapshots; summed RSS double-counts shared pages and may miss short workers. Not an exact aggregate peak.",
+  "cpu_affinity": [
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    72,
+    74,
+    76,
+    78,
+    80,
+    82,
+    84,
+    86
+  ],
+  "slurm_cpus_per_task": "8",
+  "gpu_overlap_samples": 0,
+  "source_sha256": {
+    "reference": {
+      "scripts/benchmark/benchmark_chatcore.py": "8e9dcd2dd5922411fc3fffe332f4fc6e4918184f6f022f3954ffb9043d7a0d6a",
+      "steering/eval/python_success.py": "06228c9f0ad20d9b2b2bbac393664a7cba8c1c9e0ebb5a2778f2c417170f5e46",
+      "steering/eval/greedy_token_batch.py": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "steering/eval/triton_qk_rope_norm.py": "8be4378ebc194dead546e16bd134adbb90252e887da89580b2b2074a906ce778",
+      "steering/eval/triton_ragged_attention.py": "6a9762a91ebdb7eb03461703f47bbc3f246393939c95c76b0a05ac0e525cec96",
+      "steering/eval/triton_relu_squared.py": "3842008f163b60bcbfd06214127fa09d908c75182621ba9d1ce0ce76ba04a91f",
+      "steering/eval/triton_residual_blend.py": "61043bc319c6b662ba60675008794ae7ad373fd66288a352a5aca46f47cd8b21",
+      "steering/eval/sanity_check/run_all.py": "c460e840d1d2cfe32de5bfc78f2fc637d712d8d69e6c542caf7b692545ecf87e",
+      "tasks/humaneval.py": "bd662201a8a7e22e71d7dfc9d1bbd163fd8c73c3c2cb5ea5ab02dd8e9f0f124e",
+      "nanochat/execution.py": "dc8de4d61bb5663048a2abac3631288daa13ab9c82067148554cd336386e8980"
+    },
+    "candidate": {
+      "scripts/benchmark/benchmark_chatcore.py": "8e9dcd2dd5922411fc3fffe332f4fc6e4918184f6f022f3954ffb9043d7a0d6a",
+      "steering/eval/python_success.py": "95dd57ef6fa31f22ca66a53774a5cd0eb81d1ee7fade26bf160f13a1c8d6d8fb",
+      "steering/eval/greedy_token_batch.py": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "steering/eval/triton_qk_rope_norm.py": "8be4378ebc194dead546e16bd134adbb90252e887da89580b2b2074a906ce778",
+      "steering/eval/triton_ragged_attention.py": "6a9762a91ebdb7eb03461703f47bbc3f246393939c95c76b0a05ac0e525cec96",
+      "steering/eval/triton_relu_squared.py": "3842008f163b60bcbfd06214127fa09d908c75182621ba9d1ce0ce76ba04a91f",
+      "steering/eval/triton_residual_blend.py": "61043bc319c6b662ba60675008794ae7ad373fd66288a352a5aca46f47cd8b21",
+      "steering/eval/sanity_check/run_all.py": "46f6569f99c0ad3ba627ba286fe9a872e60313d98832529c663e460b6afa3a90",
+      "tasks/humaneval.py": "ac21c2f45c961ae8d73a8dd36990bf3f67e254ecad27d26ce57fdb9aa5e275b2",
+      "nanochat/execution.py": "dc8de4d61bb5663048a2abac3631288daa13ab9c82067148554cd336386e8980"
+    }
+  },
+  "input_sha256": {
+    "/tmp/chatcore-0920-23295288-q3YPZc/checkpoint/model_000999.pt": "d3d320a5b4e3985a6915d70d51f63f4500ace6c12bc7bbd867fec74ab50f7371",
+    "/tmp/chatcore-0920-23295288-q3YPZc/checkpoint/meta_000999.json": "342cc82f20dc6b8fb933a955d59ea78db549de32042dfa5ebd61216156ab7dd7",
+    "/home/henryac/chatcore-loop7-assets-home-direct/tokenizer/tokenizer.pkl": "c3945190ac5c38a6ac941480e21895763775619e756cde4d108cafb5a081e185"
+  },
+  "torch": "2.13.0+cu130",
+  "triton": "3.7.1",
+  "raw_runs": {
+    "0": [
+      {
+        "repeat": 0,
+        "seconds": 19.45676700398326,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 26533167104,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50,
+        "grade_batches": [],
+        "scalar_graded_programs": 50,
+        "max_parent_rss_kib": 2187844,
+        "max_single_child_rss_kib": 2187844
+      },
+      {
+        "repeat": 1,
+        "seconds": 10.026563767110929,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50,
+        "grade_batches": [],
+        "scalar_graded_programs": 50,
+        "max_parent_rss_kib": 2187844,
+        "max_single_child_rss_kib": 2187844
+      },
+      {
+        "repeat": 2,
+        "seconds": 10.034592804964632,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50,
+        "grade_batches": [],
+        "scalar_graded_programs": 50,
+        "max_parent_rss_kib": 2187844,
+        "max_single_child_rss_kib": 2187844
+      },
+      {
+        "repeat": 3,
+        "seconds": 10.010817521018907,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50,
+        "grade_batches": [],
+        "scalar_graded_programs": 50,
+        "max_parent_rss_kib": 2187844,
+        "max_single_child_rss_kib": 2187844
+      },
+      {
+        "repeat": 4,
+        "seconds": 10.030643788166344,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50,
+        "grade_batches": [],
+        "scalar_graded_programs": 50,
+        "max_parent_rss_kib": 2187844,
+        "max_single_child_rss_kib": 2187844
+      }
+    ],
+    "1": [
+      {
+        "repeat": 0,
+        "seconds": 15.837601592997089,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 24301797376,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50,
+        "grade_batches": [
+          {
+            "programs": 50,
+            "max_workers": 2
+          }
+        ],
+        "scalar_graded_programs": 0,
+        "max_parent_rss_kib": 2165172,
+        "max_single_child_rss_kib": 2165172
+      },
+      {
+        "repeat": 1,
+        "seconds": 9.672241579042748,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50,
+        "grade_batches": [
+          {
+            "programs": 50,
+            "max_workers": 2
+          }
+        ],
+        "scalar_graded_programs": 0,
+        "max_parent_rss_kib": 2165172,
+        "max_single_child_rss_kib": 2165172
+      },
+      {
+        "repeat": 2,
+        "seconds": 9.690908247837797,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50,
+        "grade_batches": [
+          {
+            "programs": 50,
+            "max_workers": 2
+          }
+        ],
+        "scalar_graded_programs": 0,
+        "max_parent_rss_kib": 2165172,
+        "max_single_child_rss_kib": 2165172
+      },
+      {
+        "repeat": 3,
+        "seconds": 9.670165657997131,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50,
+        "grade_batches": [
+          {
+            "programs": 50,
+            "max_workers": 2
+          }
+        ],
+        "scalar_graded_programs": 0,
+        "max_parent_rss_kib": 2165172,
+        "max_single_child_rss_kib": 2165172
+      },
+      {
+        "repeat": 4,
+        "seconds": 9.682515741093084,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50,
+        "grade_batches": [
+          {
+            "programs": 50,
+            "max_workers": 2
+          }
+        ],
+        "scalar_graded_programs": 0,
+        "max_parent_rss_kib": 2165172,
+        "max_single_child_rss_kib": 2165172
+      }
+    ],
+    "2": [
+      {
+        "repeat": 0,
+        "seconds": 15.821852397872135,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 24301797376,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50,
+        "grade_batches": [
+          {
+            "programs": 50,
+            "max_workers": 2
+          }
+        ],
+        "scalar_graded_programs": 0,
+        "max_parent_rss_kib": 2163236,
+        "max_single_child_rss_kib": 2163236
+      },
+      {
+        "repeat": 1,
+        "seconds": 9.694585046963766,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50,
+        "grade_batches": [
+          {
+            "programs": 50,
+            "max_workers": 2
+          }
+        ],
+        "scalar_graded_programs": 0,
+        "max_parent_rss_kib": 2163236,
+        "max_single_child_rss_kib": 2163236
+      },
+      {
+        "repeat": 2,
+        "seconds": 9.691116009838879,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50,
+        "grade_batches": [
+          {
+            "programs": 50,
+            "max_workers": 2
+          }
+        ],
+        "scalar_graded_programs": 0,
+        "max_parent_rss_kib": 2163236,
+        "max_single_child_rss_kib": 2163236
+      },
+      {
+        "repeat": 3,
+        "seconds": 9.735289230011404,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50,
+        "grade_batches": [
+          {
+            "programs": 50,
+            "max_workers": 2
+          }
+        ],
+        "scalar_graded_programs": 0,
+        "max_parent_rss_kib": 2163236,
+        "max_single_child_rss_kib": 2163236
+      },
+      {
+        "repeat": 4,
+        "seconds": 9.929292696993798,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50,
+        "grade_batches": [
+          {
+            "programs": 50,
+            "max_workers": 2
+          }
+        ],
+        "scalar_graded_programs": 0,
+        "max_parent_rss_kib": 2163236,
+        "max_single_child_rss_kib": 2163236
+      }
+    ],
+    "3": [
+      {
+        "repeat": 0,
+        "seconds": 16.531161034014076,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 24301797376,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50,
+        "grade_batches": [],
+        "scalar_graded_programs": 50,
+        "max_parent_rss_kib": 2169812,
+        "max_single_child_rss_kib": 2169812
+      },
+      {
+        "repeat": 1,
+        "seconds": 10.509223122149706,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50,
+        "grade_batches": [],
+        "scalar_graded_programs": 50,
+        "max_parent_rss_kib": 2169812,
+        "max_single_child_rss_kib": 2169812
+      },
+      {
+        "repeat": 2,
+        "seconds": 10.545941676013172,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50,
+        "grade_batches": [],
+        "scalar_graded_programs": 50,
+        "max_parent_rss_kib": 2169812,
+        "max_single_child_rss_kib": 2169812
+      },
+      {
+        "repeat": 3,
+        "seconds": 10.501467371825129,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50,
+        "grade_batches": [],
+        "scalar_graded_programs": 50,
+        "max_parent_rss_kib": 2169812,
+        "max_single_child_rss_kib": 2169812
+      },
+      {
+        "repeat": 4,
+        "seconds": 10.525678649777547,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50,
+        "grade_batches": [],
+        "scalar_graded_programs": 50,
+        "max_parent_rss_kib": 2169812,
+        "max_single_child_rss_kib": 2169812
+      }
+    ],
+    "4": [
+      {
+        "repeat": 0,
+        "seconds": 16.772286783903837,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 24301797376,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50,
+        "grade_batches": [],
+        "scalar_graded_programs": 50,
+        "max_parent_rss_kib": 2182672,
+        "max_single_child_rss_kib": 2182672
+      }
+    ],
+    "5": [
+      {
+        "repeat": 0,
+        "seconds": 16.084391621872783,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 24301797376,
+        "scores": {
+          "status": "pass",
+          "chatcore": 0.2867,
+          "per_task_scores": {
+            "ARC-Easy": 0.48,
+            "ARC-Challenge": 0.4,
+            "MMLU": 0.32,
+            "GSM8K": 0.06,
+            "HumanEval": 0.06,
+            "SpellingBee": 1.0
+          },
+          "max_problems": 50,
+          "issues": []
+        },
+        "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+        "completion_tokens": 42089,
+        "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+        "graded_programs": 50,
+        "grade_batches": [
+          {
+            "programs": 50,
+            "max_workers": 2
+          }
+        ],
+        "scalar_graded_programs": 0,
+        "max_parent_rss_kib": 2186072,
+        "max_single_child_rss_kib": 2186072
+      }
+    ]
+  },
+  "remote_tests": {
+    "preflight_passed": 88,
+    "supplemental_admission_passed": 2,
+    "default_nonfork_positive_cases_excluded": 4
+  }
+}

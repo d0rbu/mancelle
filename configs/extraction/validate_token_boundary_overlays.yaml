@@ -1,0 +1,38 @@
+# Validate already-computed nanochat token-boundary overlays.
+# Usage:
+#   uv run python -m scripts.utils.validate_token_boundary_overlays
+#   uv run python -m scripts.utils.validate_token_boundary_overlays segment_size=32 layer=8
+#   uv run python -m scripts.utils.validate_token_boundary_overlays feature_dir=path/to/features deep=false
+#   uv run python -m scripts.utils.validate_token_boundary_overlays max_shards=5
+
+defaults:
+  - _self_
+
+# Structured feature path params (used when feature_dir is null)
+model: gemma-2-2b
+activation_type: residual      # residual | mlp | attention
+layer: 8
+pooling: max_pool
+segment_size: 128
+sae_width: "16k"               # 16k | 32k | 65k | 131k | 262k | 524k | 1m
+dataset_phase: null             # null = base, or: standard_sft | safety_sft | capabilities_sft
+feature_root: out/data/features
+
+feature_dir: null  # null = auto-construct from structured params above; set explicitly to override
+data_dir: null     # null = default DATA_DIR from nanochat; set explicitly to override
+
+# Validation options
+deep: true         # if true, re-tokenize each doc and compare boundaries exactly
+                   # against the overlay; if false, only structural checks run
+shard_start: 0     # first shard index (inclusive) to validate
+shard_end: -1      # last shard index (exclusive); -1 = all
+max_shards: null   # null = all; set an int to limit for spot-checks
+fail_fast: false   # stop on first shard with issues
+max_issues_per_shard: 20  # truncate per-shard issue printing for large shards
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

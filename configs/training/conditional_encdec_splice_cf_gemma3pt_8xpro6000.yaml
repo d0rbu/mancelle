@@ -1,0 +1,146 @@
+# QUEUED RUN — gemma-3-4b-pt / layer 22 / 65k splice-counterfactual conditioning,
+# 8x RTX PRO 6000 Blackwell. This is the config we intend to launch, not a demo;
+# conditional_encdec_splice_cf_gemma3pt_4090.yaml remains the small-scale splice-CF example.
+#
+# What makes this run different from the completed d12 runs:
+#   SAE       gemma-2-2b / l8|l12 / 16k     ->  gemma-3-4b-pt / l22 / 65k (ctx-independent, no_bos)
+#   Encoder   depth 0.5, x-attn every 4     ->  depth 1.0, x-attn at EVERY decoder layer
+#                                               (~752M params; ~732M after this parent's broad mask)
+#   Features  10 pos / 10 neg per segment   ->  12 / 12, capped at 48
+#   Signal    top-k by percentile           ->  top-k / bottom-k by percentile DELTA at splices
+#   Init      random-normal encoder embeds  ->  JL down-projection of the SAE decoder matrix
+#   Filter    none                          ->  activation-frequency band (see feature_mask below)
+#   FP head   weight 0.1 (leaked default)   ->  none
+#
+# Requires a SPLICED derived feature dir:
+#   uv run -m scripts.preprocess.splice_feature_shards \
+#     feature_dir=out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos \
+#     cut_fraction=0.15
+# Usage: torchrun --nproc_per_node=8 -m scripts.train.conditional_encdec_train \
+#          -- config_name=conditional_encdec_splice_cf_gemma3pt_8xpro6000 feature_dir=<derived>
+# data_dir auto-derives to <feature_dir>/_parquets (D8). original_val_data_dir (inherited from
+# the parent, not redeclared) is the text source for the original/base pass of D12 live dual
+# validation; null = nanochat default corpus.
+
+defaults:
+  - conditional_encdec_train
+  - _self_
+
+run: splice_cf_gemma3pt_8xpro6000
+
+depth: 12
+max_seq_len: 1024
+device_batch_size: 32
+fp8: false
+
+# ~30B tokens (2.3 epochs over the 13B-token corpus). target_param_data_ratio scales off the
+# DECODER params only — get_scaling_params excludes the encoder and cross-attention — so the
+# larger conditioning side below does not move the token budget: 54,600 x 524,288 = ~28.6B.
+num_iterations: -1
+target_param_data_ratio: 100
+
+segment_size: 128
+
+# --- SAE ---------------------------------------------------------------------------------
+# Mirrors the extraction config extract_features_gemma3_4bpt_l22_f65k_ci_nobos.yaml.
+# BOS-feature exclusion is frozen always-on in the producer, and context-independence is a
+# property of the feature dir (the /context_independent/no_bos leaves), not a knob here.
+sae:
+  release: gemmascope_2
+  model: gemma-3-4b-pt
+  activation_type: residual
+  layer: 22
+  width: 65k
+  l0: medium
+
+# --- Conditioning signal -----------------------------------------------------------------
+# Counterfactual conditioning. At a post-splice segment we know both what actually follows and
+# what WOULD have followed, so we rank features by the percentile delta between the spliced
+# segment and the original one: top-k become positives (what the new continuation has that the
+# old one did not), bottom-k become negatives (what would have fired had the text not been
+# spliced). Segments not following a splice keep top-k-by-percentile positives and
+# inactive-sampled negatives, as in the d12 runs.
+feature_delta:
+  mode: splice_counterfactual
+  neg_delta_ratio: 1.0
+
+feature_selection:
+  distribution: geometric
+  mean: 12.0
+  std: 12.0
+  min_k: 1
+  max_k: 49
+  mode: top_k_percentile
+  delta_weights: percentile_delta
+
+negative_selection:
+  distribution: geometric
+  mean: 12.0
+  min_k: 0
+  max_k: 49
+
+# --- Feature filtering -------------------------------------------------------------------
+# Activation-frequency band, read from the precomputed feature_statistics: KEEP iff
+# freq_min < freq <= freq_max, i.e. drop features firing on <0.001% or >50% of segments.
+# freq_min=1e-5 is the loosest floor measured to leave zero features with <300 activations
+# on the gemma-3-4b-pt/l22/65k statistics (130,534,655 segments; #702) — looser than the
+# 0.001 (0.1%) this config used to pin, which discarded far more signal than necessary.
+#
+# CAVEAT — the autointerpretability stage cannot be chained on top of this in-config.
+# maybe_apply_frequency_blacklist() is a no-op whenever an explicit `feature_mask` is set, so
+# the frequency band and an autointerp top-n whitelist are mutually exclusive. To land the full
+# freq -> autointerp-score -> keep-top-n chain (n chosen to leave ~200 mean active features per
+# segment), bake all three stages into ONE accepted-ids list offline via
+# scripts.preprocess.precompute_autointerp_filter, then swap the two lines below for the
+# whitelist block. That list must already be frequency-filtered, because these bounds go unread.
+feature_mask_freq_min: 1.0e-5
+feature_mask_freq_max: 0.5
+# feature_mask:
+#   mode: whitelist
+#   path: /abs/path/to/accepted_feature_ids.txt
+
+# --- Model -------------------------------------------------------------------------------
+# Maximal conditioning side: a full-depth encoder (1.0 x 12 = 12 layers) and cross-attention at
+# EVERY decoder layer (12 sites, up from 3). The decoder is untouched at 286M; all of the growth
+# is on the conditioning side, which is the point — we want to know whether the fair-vs-roofline
+# gap is bandwidth-limited before we conclude it is a feature-selection problem.
+#
+# Parameter counts (verified via build_encdec_meta_model_from_training_cfg):
+#   encoder 437,258,880 + cross-attn 28,311,552 + decoder 286,262,424
+#   = 751,832,856 at the full 65k dictionary, without an FP head.
+# 352,321,536 of that encoder is feature-indexed: SEVEN 768-wide tables carry
+# one row per SAE feature (feature_embed plus one value embedding at every other
+# encoder layer).
+# Encoder compaction is now always applied whenever a mask resolves. On the
+# audited statistics, this parent's broad frequency mask retains 61,835 rows
+# and yields 731,936,280 parameters with no FP head. The canonical `cluster_fp/`
+# child instead supplies the audited whitelist, schema-v1 clusters, full-width
+# encoder geometry, and compact FP head; its exact V=2,074 model has 412,256,050
+# parameters.
+encoder:
+  depth: 1.0
+
+cross_attention:
+  frequency: 1
+
+# Johnson-Lindenstrauss: project the SAE decoder directions through a deterministic random
+# matrix into the encoder dim, then rescale to the random table's average row norm.
+initialize_encoder_embeddings_from_sae: random
+
+# No feature-prediction head. This is the base default now too, but pinned explicitly: the head
+# did not help steering at weight 1.0 (d12_fp) or 10.0 (d12_fp10), and we do not want it back
+# by inheritance.
+feature_prediction: null
+
+# --- Data --------------------------------------------------------------------------------
+# Live route for splice-counterfactual. Set true only after precomputing packed rows +
+# delta-aware sel/ shards for train/derived-val and a delta-free sel/ shard for original/base val.
+use_precomputed_batches: false
+
+doc_prefetch_depth: 0
+feature_prefetch: false
+
+# feature_dir MUST be a spliced derived dir (…/splice/cut_frac*/seed*);
+# training fails fast at startup otherwise.
+feature_dir: null
+data_dir: null

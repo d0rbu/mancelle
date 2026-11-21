@@ -1,0 +1,78 @@
+{
+  "schema": "encdec_sft_packing_integrated_source_evidence_v1",
+  "integrated_base_revision": "224264680a62d7216ee57bad63ae3ea68a4c7e41",
+  "gpu_evidence_base_revision": "de4c6772c11b1a7360897a1f8beb1ee563e40700",
+  "gpu_evidence_source_manifest_sha256": "0e89bf87f2fcbea0e77fe8d3eb43d8c9b5071e9cf45666ecf85c272ea7e9c96f",
+  "integrated_runtime_manifest": "integrated-runtime.sha256",
+  "integrated_runtime_manifest_sha256": "c0d0d920174e7e4dd1feeb75d89f6dc36f5543236568078a887c4be696fb46b7",
+  "integrated_runtime_file_count": 1010,
+  "exact_v2_overlay_files": {
+    "configs/profiling/encdec_l22_training.yaml": "5c5869e793125d4db95b2409675453e361a1945c7f7d8a964979b9644168209c",
+    "configs/training/conditional_encdec_sft.yaml": "80a844f378cffcd4de88cecb7a93a4743918ee72117b9aad94598a1d69bfe442",
+    "scripts/benchmark/profile_encdec_l22_training.py": "5a8cf492a699062e368f1c56623d7d2cbb18e32b6da5a14aa76f65efcc1108cd",
+    "scripts/train/conditional_encdec_sft.py": "6c2e9bd4d53e695503cb83f92ec1064b86ddf247a82aaaceaf29c1f23aeb19f1",
+    "steering/conditional/encoder_decoder/model.py": "dc49f1e59cca8d01e2379d389b19c11c3f15f942c7a717090cb60fda14f278bb",
+    "steering/conditional/encoder_decoder/packed_optimizer.py": "d995ec99d9af8d675c6823be30fea15a8977889194dc723dea60be370630384f",
+    "tests/scripts/test_encdec_sft_config_surface.py": "059a633fa0ee01e6feda81f5995a435d6ee153f5cf70b4bc33c3ea2ba116934e",
+    "tests/scripts/test_profile_encdec_l22_training.py": "e22c1ca27a65d8b5c5941c44d0600ac1982aa0a8a4868966abfe0ab8d99bddd5",
+    "tests/steering/test_packed_encoder_decoder_optimizer.py": "44956cd88ad69bcbb4312a6336ade6fca2fe16d60fb217b410074ae48dae02e7",
+    "tests/steering/test_packed_optimizer_integration.py": "7dc52854e94e0aa533ea9fb525b3895e85cb406ca175368b0b075364a792087a"
+  },
+  "exercised_paths_exactly_v2": {
+    "nanochat/optim.py": "3aed3cc16baf172d11b02a26983e0d9f3e9465d2b3363ff2f185ea9dbac8ea7c",
+    "nanochat/gpt.py": "d590cb0c284ff36396508f713fef4ded10b3e5e49d24535010d6d3c9e1d20717",
+    "nanochat/flash_attention.py": "423fa9cdebde1fe0cedfbfd336c5685fdf6f243e58f64cdf8de6c1ea6a119a37",
+    "scripts/benchmark/profile_encdec_l22_training.py": "5a8cf492a699062e368f1c56623d7d2cbb18e32b6da5a14aa76f65efcc1108cd",
+    "scripts/benchmark/bench_encoder_vocab_compaction.py": "364953cb86da7cb5c9d80d9dce8d0e221aea65cb3ebd3360ca46015832396e34",
+    "scripts/train/conditional_encdec_sft.py": "6c2e9bd4d53e695503cb83f92ec1064b86ddf247a82aaaceaf29c1f23aeb19f1",
+    "steering/conditional/encoder_decoder/model.py": "dc49f1e59cca8d01e2379d389b19c11c3f15f942c7a717090cb60fda14f278bb",
+    "steering/conditional/encoder_decoder/packed_optimizer.py": "d995ec99d9af8d675c6823be30fea15a8977889194dc723dea60be370630384f",
+    "steering/conditional/encoder_decoder/feature_prediction_head.py": "45ccc1d94beaae6a6c17c4f63b3abf46bc4dd2289fd08093ca56e2d158387bc6",
+    "steering/conditional/encoder_decoder/encoder.py": "3a33d406afc2714559ca509eaa8b7875ab609e2826d60edb4b6509663199cf87",
+    "steering/conditional/encoder_decoder/cross_attention.py": "71bf81b619200762d987cdc72832d095c1cd803610d81a8f37b2586aa185c35c",
+    "configs/profiling/encdec_l22_training.yaml": "5c5869e793125d4db95b2409675453e361a1945c7f7d8a964979b9644168209c",
+    "configs/training/conditional_encdec_sft.yaml": "80a844f378cffcd4de88cecb7a93a4743918ee72117b9aad94598a1d69bfe442",
+    "pyproject.toml": "117526555af1c065d4eb7f25d4ff0470cb507b15d172c76d0a8ba319b1fe158b",
+    "uv.lock": "56f7fcbf29e933bbe31f2ed6e3e34dc23be294ab85eb382db2320ded5bb0095e"
+  },
+  "upstream_runtime_diff_vs_v2": {
+    "added": [
+      "configs/profiling/chatcore.yaml",
+      "scripts/benchmark/benchmark_chatcore.py",
+      "steering/eval/python_success.py",
+      "steering/eval/triton_kv_cache_compaction.py",
+      "steering/eval/triton_residual_blend.py"
+    ],
+    "removed": [],
+    "changed": [
+      "steering/eval/greedy_token_batch.py",
+      "steering/eval/sanity_check/run_all.py",
+      "tasks/humaneval.py"
+    ]
+  },
+  "scope_of_upstream_changes": "ChatCORE evaluation, grading and standalone benchmark; these changed functions are outside the exercised SFT training/profiler route. Existing upstream docs and code retained.",
+  "final_integrated_cpu_checks": {
+    "pytest": {
+      "tests": 160,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "cuda_visible_devices": "",
+    "junit_sha256": "4524b75b34bd8da5f3d7dba4630e27e4874791b1526ca2244ac410a81979bd68",
+    "ruff": "passed across8 changed Python files",
+    "ty": "passed across8 changed Python files",
+    "diff_check": "passed"
+  },
+  "gpu_checks_reexecuted_after_integration": false,
+  "evidence_reuse_basis": "Exact tested implementation/config/test overlay and exercised dependency bytes are unchanged. Earlier GPU artifacts keep their original manifest/runtime and limited scopes; this is not a new full-source GPU qualification.",
+  "throughput_qualified": false,
+  "native_independent_forward_backward_qualified": false,
+  "full_model_distributed_qualified": false,
+  "deferred_job": {
+    "job_id": 23403364,
+    "state": "held before allocation",
+    "gpu_runtime_seconds": 0,
+    "reason": "User reserved GPUs for deadline experiments; use existing evidence."
+  }
+}

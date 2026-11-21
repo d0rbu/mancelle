@@ -1,0 +1,18 @@
+# Interactive chat CLI config
+# Usage: python -m scripts.chat.chat_cli
+
+source: sft
+model_tag: null
+step: null
+prompt: ""
+temperature: 0.6
+top_k: 50
+device_type: ""
+dtype: bfloat16
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

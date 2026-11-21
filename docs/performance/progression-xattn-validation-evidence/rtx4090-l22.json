@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "measured_at": "2026-08-28",
+  "base_commit": "9ae5d80aaeb9a9fcf87fb734e3c0771a4ca28b29",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "torch": "2.13.0+cu130",
+  "checkpoint": {
+    "step": 54600,
+    "model_sha256": "153d29c0e813036539f71cad8058e47051131d458b21513641f05994471a278d",
+    "metadata_sha256": "03e2f1ead1b3fe48712d9d8ab7fc12c17f04d61db2cc1d6416d959ba5d74cb0f",
+    "feature_vocab_sha256": "8c183369ce4a8ff1e5f153a749e9eb71f9def65283d0a22b4d33bf5ff2d6f16c",
+    "feature_vocab_size": 2074
+  },
+  "workload": {
+    "suite": "core",
+    "seed": 1234,
+    "max_per_task": 5,
+    "core_example_batch_size": 5,
+    "task_count": 22,
+    "selected_examples": 110,
+    "wrapper_forward_calls": 22,
+    "cross_attention_layers": 12,
+    "conditioned_feature_id": 8,
+    "conditioned_bucket": 1,
+    "context_cache_manifest_sha256": "5f3aa7ed6637bab0b6162b147e590cf84da4390b0d4225aca18217cecdb694ac"
+  },
+  "implementation": {
+    "shared_eager_cuda_guards": [
+      "seg_map minimum is non-negative",
+      "seg_map maximum is below the packed segment count",
+      "non-zero seg_map values are monotonically non-decreasing"
+    ],
+    "model_validation_scope": "once before the decoder-layer loop",
+    "direct_layer_validation_scope": "once per public CrossAttentionLayer.forward call",
+    "removed_repeated_guards": 726,
+    "removed_repeated_guards_formula": "3 guards * (12 layers - 1 shared validation) * 22 wrapper calls"
+  },
+  "correctness": {
+    "checked_per_layer_oracle": "the same model and inputs with all three routing guards rerun before every cross-attention layer",
+    "optimized_logits_exact_equal_to_checked_per_layer": true,
+    "optimized_logits_rtol": 0.0,
+    "optimized_logits_atol": 0.0,
+    "shared_validation_calls_per_model_forward": 1,
+    "focused_relevant_tests_passed": 282,
+    "focused_relevant_tests_deselected": 1,
+    "known_base_failures": 3,
+    "known_base_failure_scope": "stale source-inspection assertions in tests/nanochat/test_nan_to_num_order.py",
+    "ruff": "passed",
+    "ty": "passed"
+  },
+  "baseline_trace": {
+    "run_dir": "out/profiling/progression-loop10-post-loader/suite-profile",
+    "key_averages_sha256": "f7c928e0e25736594d0909cad781432f9637f963225083c8e7ee31728fec1a67",
+    "record_function_summary_sha256": "43e004f98148e33543a8e977c0db7c2f67cb887544348ba714cef4c64a76553b",
+    "trace_sha256": "2aea352858f18468546338dc721196406d8446806829491df39ed196ffb7047b",
+    "evaluate_single_checkpoint_total_seconds": 2.701,
+    "run_core_eval_total_seconds": 1.231,
+    "encdec_eval_wrapper_forward_total_seconds": 0.875635,
+    "encdec_eval_wrapper_forward_cuda_seconds": 0.477173,
+    "encdec_build_conditioning_total_seconds": 0.342238,
+    "cuda_stream_synchronize_calls": 4389,
+    "cuda_memcpy_async_calls": 7369,
+    "cuda_launch_kernel_calls": 27244,
+    "aten_item_calls": 20131,
+    "aten_is_nonzero_calls": 18558
+  },
+  "candidate_trace": {
+    "run_dir": "out/profiling/progression-loop10-hoisted-xattn-validation/suite-profile",
+    "key_averages_sha256": "100b0cf093eef9feea526f64f40c62a39af94000cf54d9d5e85c287ee9ea0138",
+    "record_function_summary_sha256": "e41e5c7127ac580b87cd9fdb0e61ca1e39740e1d9062d28bb239673e4e4100f9",
+    "trace_sha256": "8275f18283c01e21ac8986bf8d95bada93d7f77ea43664f3cc8188ebfbae3454",
+    "evaluate_single_checkpoint_total_seconds": 2.569,
+    "run_core_eval_total_seconds": 1.110,
+    "encdec_eval_wrapper_forward_total_seconds": 0.615800,
+    "encdec_eval_wrapper_forward_cuda_seconds": 0.471601,
+    "encdec_build_conditioning_total_seconds": 0.320612,
+    "cuda_stream_synchronize_calls": 3663,
+    "cuda_memcpy_async_calls": 6643,
+    "cuda_launch_kernel_calls": 24340,
+    "aten_item_calls": 19405,
+    "aten_is_nonzero_calls": 17832
+  },
+  "trace_comparison": {
+    "cuda_stream_synchronize_reduction": 726,
+    "cuda_stream_synchronize_reduction_percent": 16.541353383,
+    "cuda_memcpy_async_reduction": 726,
+    "cuda_memcpy_async_reduction_percent": 9.852083051,
+    "cuda_launch_kernel_reduction": 2904,
+    "cuda_launch_kernel_reduction_percent": 10.659227720,
+    "aten_item_reduction": 726,
+    "aten_is_nonzero_reduction": 726,
+    "wrapper_cuda_time_effectively_unchanged": true
+  },
+  "baseline_macro": {
+    "evidence": "docs/performance/progression-core-loader-evidence/rtx4090-l22.json",
+    "macro_csv_sha256": "1b07c36ded6994c96dc1f6a5ae03a54509247d7782d55793c59bec30ca35474d",
+    "run_total_median_seconds": 2.357631,
+    "suite_total_median_seconds": 0.960697,
+    "context_coverage_median_seconds": 0.181800,
+    "checkpoint_load_median_seconds": 0.536041,
+    "conditioning_build_median_total_seconds": 0.218220,
+    "wrapper_forward_median_total_seconds": 0.736530
+  },
+  "candidate_macro": {
+    "warmup_iterations": 1,
+    "measured_iterations": 3,
+    "macro_csv_sha256": "d466985b7449aab89a988895cdd48f7017c11fd996ea3f891f0e395f65f45982",
+    "run_total_seconds": [
+      2.336488,
+      2.255630,
+      2.257408
+    ],
+    "run_total_median_seconds": 2.257408,
+    "suite_total_seconds": [
+      0.919734,
+      0.916355,
+      0.916907
+    ],
+    "suite_total_median_seconds": 0.916907,
+    "context_coverage_seconds": [
+      0.183558,
+      0.179841,
+      0.181183
+    ],
+    "context_coverage_median_seconds": 0.181183,
+    "checkpoint_load_median_seconds": 0.487204,
+    "conditioning_build_median_total_seconds": 0.220440,
+    "wrapper_forward_median_total_seconds": 0.691882,
+    "wrapper_forward_includes_conditioning_build": true
+  },
+  "macro_comparison": {
+    "wrapper_forward_speedup": 1.064531235,
+    "wrapper_forward_reduction_percent": 6.061939093,
+    "suite_total_speedup": 1.047758388,
+    "suite_total_reduction_percent": 4.558148927,
+    "run_total_speedup": 1.044397380,
+    "run_total_reduction_percent": 4.251004504
+  },
+  "unrun_boundary": "No paid judge calls, harmfulness suite, full uncapped CORE suite, multi-GPU run, H200 qualification, or production training-throughput run was performed."
+}

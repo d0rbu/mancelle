@@ -1,0 +1,130 @@
+{
+  "all_other_fields_types_keys_and_values_exact_equal": true,
+  "all_six_depth2_full_identities_exact_equal": true,
+  "all_six_identity_admission": "HumanEval and GSM8K full identities independently equal the previously reviewed ARC-Easy reference exactly; all six now share the same authenticated identity. Root owns the complete depth2 merge.",
+  "architecture_digest_scope": {
+    "excludes_feature_prediction_config_and_head_parameters": true,
+    "head_configuration_evidence": {
+      "control": "Both head mirrors omit mlp_layers; FeaturePredictionConfig default0 is explicit at config.py:110.",
+      "depth2": "Both head mirrors explicitly set mlp_layers=2; all other head-config fields equal control."
+    },
+    "inputs": {
+      "cross_attention": "asdict(model.xattn_config)",
+      "decoder": "asdict(model.dec_config)",
+      "encoder": "asdict(model.enc_config)"
+    },
+    "interpretation": "Equality binds the decoder, encoder and cross-attention configuration specification; it does not imply equal feature-head depth. Distinct metadata and model digests bind the two heads separately.",
+    "recomputed_from_each_archived_metadata_configuration": true,
+    "serialization": "json.dumps(architecture, sort_keys=True, allow_nan=False), then UTF-8 SHA256; default JSON separators.",
+    "shared_sha256": "9e5f6f4e177cd93aa1e07812efbe9b64ee833ed19862ccd224e21ffd008f430d",
+    "source_pointer": "steering/eval/chat_eval_result_identity.py:173-188"
+  },
+  "control_aggregate_sha256": "508935014fdc5306f67ef65d3186d2c740e8543e7e492d37e604b10fa6c0cefa",
+  "control_run_identity_sha256": "ef89a4f69ede1e1f2aa24867be5ef3d8bb6a071502bc1a7aae329b4e8bf725a2",
+  "depth2_reference_run_identity_sha256": "208194de5814ad1c060974114ac1a0fc49505376420b6efc72a2430175f74a7e",
+  "depth2_reference_task": "ARC-Easy",
+  "final_two_task_counts_authenticated": {
+    "GSM8K": {
+      "num_passed": 10,
+      "problem_start": 0,
+      "task_size": 1319,
+      "total": 500
+    },
+    "HumanEval": {
+      "num_passed": 17,
+      "problem_start": 0,
+      "task_size": 164,
+      "total": 164
+    }
+  },
+  "frozen_source_commit": "50462075083d793d0e9a406fde7e07d08bb9a50c",
+  "frozen_source_sha256": {
+    "steering/conditional/encoder_decoder/config.py": "79963eeb7b26877bc0d6a63149a62e4819269b809c138cd75fac626ed9c36e73",
+    "steering/eval/chat_eval_result_identity.py": "34a2969fa905b01bee9a2287a48fd8fa9f79fac9df277fe652a9e8acbcf864b4",
+    "steering/eval/turn_context_contract.py": "418b403111ff0a1517a88bd77b458f1344264012e35318d2f6e1961af7f450e7"
+  },
+  "initial_reviewed_at_utc": "2026-09-18T17:24:50.950094+00:00",
+  "input_artifact_sha256": {
+    "chatcore-control/ARC-Easy/runtime.json": "5ed15f4c1e3d83880226884dbbb55d8d8ff5a6c562ab0a9b40e9052b5ac01deb",
+    "chatcore-control/chatcore.yaml": "508935014fdc5306f67ef65d3186d2c740e8543e7e492d37e604b10fa6c0cefa",
+    "chatcore-control/merge-review.json": "2f283ba49064e6fcd1245083ca6f9c22a1a23002cc3c97e7673280300b263fae",
+    "chatcore-depth2/ARC-Challenge/result.yaml": "994b1d3f6dba7b17e2e7bd785a49c5c785836fe8872a6f0c2bf821633d3603ff",
+    "chatcore-depth2/ARC-Challenge/runtime.json": "e23d15374d00397e9329f55d1b8d1b6b04c653f90c896a7ddf8714e0a1eaaf71",
+    "chatcore-depth2/ARC-Easy/result.yaml": "4385a0ca9e860eeb921af3b2315b5c7c777f8a4f6fd624c6b41cdd9c4178aeb3",
+    "chatcore-depth2/ARC-Easy/runtime.json": "6caa0d2bf8d931fb99c5521774879f7a62f946b416ba45ffd5d92ce682061466",
+    "chatcore-depth2/GSM8K/result.yaml": "b7130705e4713566885d622c788005f87785f3bd5ce9d1a049c45f8a900c727d",
+    "chatcore-depth2/GSM8K/runtime.json": "629efa38e8b10c22d378e14f40d7095aab6dd407f4362a7338255155ff3aad78",
+    "chatcore-depth2/HumanEval/result.yaml": "be36fbfde80cd504a155b3ac561147a123ff3e77ea1b2bd153f8b5a3a569649c",
+    "chatcore-depth2/HumanEval/runtime.json": "0ec5e89582402dcec317e89802564375af3d5ac722281dc2c24b8727107b04c3",
+    "chatcore-depth2/MMLU/result.yaml": "c094d2f36b1cc8a15913196237a6067946c187c41827229d85d8228b209fbada",
+    "chatcore-depth2/MMLU/runtime.json": "811e2fa7327cd3fda1cd640d9bbf4c7fb4f989df6ff1f2585ab386c1591a37c7",
+    "chatcore-depth2/SpellingBee/result.yaml": "f59b624c10e30d327262e83669d3a3f87277234de3c68d44190fb873a3438aa6",
+    "chatcore-depth2/SpellingBee/runtime.json": "e6f473bef42e603707dedf4491239cdbc303ced29f74f9e02a57e9e5a058b4b9",
+    "control_campaign2_cadence.json": "df45218dfa908471c75077c1931e8530e63f40c1758de25db73702351cdc8cad",
+    "head-final-inspection-22983241/depth2-campaign2_cadence.json": "ff2b7f8b9d8023370eac1be0126ee655e9a508fff8d3b177b881c524dd29ed12",
+    "head-final-inspection-22983241/depth2-meta_001125.json": "783853412eaddb5b0d9762093d423e50ec85ae67ab4e996b13444da27447cf4b",
+    "head-final-inspection-22983241/inspection-and-view.json": "1b1f4f465bec2e4ba6ceee66e9cd78024eb9ec770bab36933a9dad2b6644fc7e",
+    "head-final-inspection-22983241/source-preservation-observation.json": "de63253ce8e0219f519dd8ed97dbcc7e023ebe44fcf9233491a79b6fcaa0ae44",
+    "historical-control-meta-001125.json": "fe13541e383db19ecfc2c1ae96ebc808b99ec3d1f3686cb7a615d9a8eb7c4727",
+    "production-22958005-final-meta.json": "de5f122bdda2f30ad61c39e06a7cfa325aab4e00ddbc0db6f9e88411be46ff2a"
+  },
+  "limits": "This is an identity/provenance audit, not a claim of model-quality improvement or bitwise replay of the historical SFT training trajectory.",
+  "measurement_exception": {
+    "both_witness_digests_recomputed_from_metadata": true,
+    "common_measurement": {
+      "cadence": 33,
+      "documents": 3257,
+      "maximum": 209,
+      "mean": "448701/13421",
+      "minimum": 17,
+      "windows": 40263
+    },
+    "control_sha256": "43cf888b83a7f965e25d5601899c1739f7991258cc7613595b45fe71c9dc0226",
+    "control_view_authentication": "Reserializing the archived original metadata with sorted keys, indent2 and final newline reproduces the exact receipt view-metadata hash; metadata values are unchanged.",
+    "control_view_metadata_sha256": "f16935eb4c5372bc321d7fb6cc1be736c89f3480445ac037014725ea3d3d2874",
+    "depth2_original_to_view_difference_paths": [
+      "turn_self_cond_segment_size_rustbpe"
+    ],
+    "depth2_sha256": "9127aaddbbb7016a188528448299343315fcbbdb35254e6a4fad8494f3592a29",
+    "depth2_source_preservation_and_inspection_receipts_match": true,
+    "depth2_view_metadata_sha256": "783853412eaddb5b0d9762093d423e50ec85ae67ab4e996b13444da27447cf4b",
+    "exact_witness_extraction": "Every top-level metadata key containing cadence or self_cond_segment_size_rustbpe; canonical sorted compact JSON, allow_nan=False.",
+    "field": "conditioning.measurement_provenance_sha256",
+    "fresh_report_difference_paths": [
+      "original_metadata",
+      "original_metadata_sha256"
+    ],
+    "fresh_report_original_metadata_hashes_recomputed_from_archived_originals": true,
+    "original_control_metadata_sha256": "fe13541e383db19ecfc2c1ae96ebc808b99ec3d1f3686cb7a615d9a8eb7c4727",
+    "original_depth2_metadata_sha256": "de5f122bdda2f30ad61c39e06a7cfa325aab4e00ddbc0db6f9e88411be46ff2a",
+    "reason": "The control view preserves its original historical copied-cadence provenance object; the depth2 view adds only the freshly measured scalar33. Both fresh measurement reports independently establish the same data paths and geometry. No witness was rewritten to force equality.",
+    "runtime_cadence_reports_equal_saved_fresh_reports": true,
+    "source_pointer": "steering/eval/chat_eval_result_identity.py:260,328,347; steering/eval/turn_context_contract.py:69",
+    "witness_difference_paths": [
+      "turn_self_cond_cadence_provenance"
+    ]
+  },
+  "noncheckpoint_identity_normalized_sha256": "95ca6e87b8df565be6b9d18ae66b4a882f41fa200bef045c42121033652bb1df",
+  "normalization_removes_exactly": [
+    "checkpoint",
+    "conditioning.measurement_provenance_sha256"
+  ],
+  "only_cross_model_difference_paths": [
+    "checkpoint.metadata_sha256",
+    "checkpoint.model_sha256",
+    "checkpoint.resolved_tag",
+    "conditioning.measurement_provenance_sha256"
+  ],
+  "previous_four_task_review_sha256": "3a4b516d10007ac5ee17d911b8d868722a96f0e77d1ceefc8d0dfe60d30c9efe",
+  "reviewed_at_utc": "2026-09-18T17:43:24.690411+00:00",
+  "reviewed_depth2_tasks": [
+    "ARC-Easy",
+    "ARC-Challenge",
+    "MMLU",
+    "GSM8K",
+    "HumanEval",
+    "SpellingBee"
+  ],
+  "scope": "Local existing JSON/YAML artifacts and frozen source inspection only; no tests, model reads, network, scheduler actions, evaluations or aggregate computation.",
+  "status": "PASS_ALL_SIX"
+}

@@ -1,0 +1,43 @@
+{
+  "wall_seconds": 81.99665680155158,
+  "events": [
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "__enter__",
+      "seconds": 6.021197501569986
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 14.621331207454205
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 7.084127444773912
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 7.177305374294519
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "close",
+      "seconds": 1.7308268919587135
+    }
+  ],
+  "local_http_calls": 90,
+  "local_http_peak_concurrency": 7,
+  "manifest": "/tmp/axbench-prefix-pair-baseline-pr1771-r1/output/manifest.json"
+}

@@ -1,0 +1,387 @@
+{
+  "schema_version": 1,
+  "status": "Qualified complete public CPU component; focused normal-namespace validation passed; projectwide typing reproduces retained parent diagnostics.",
+  "component": "Complete public CPU absolute common-feature extraction; one real shard, top_k64 output, all activations scanned",
+  "change": "Reuse one unweighted CPU rank-one bincount per shard for sorted active-ID coverage and exact I64 active counts. Percentile lookup, F64 sum scatter, parsing, chunks, ranking, buckets and YAML are unchanged. Other ranks/devices retain the previous unique/scatter path.",
+  "inputs": {
+    "raw": {
+      "sha256": "ee4384b86359e5b1a140b0ecd5d532bfff743bd04688ad6a6218f22908923c38",
+      "bytes": 98347010,
+      "documents": 8239,
+      "segments": 24107,
+      "activations": 50689690
+    },
+    "statistics": {
+      "sha256": "4f2d68b903d0182665aa498b79a519d32adc00e92fc28b83eff96f42530091f6",
+      "bytes": 55827776,
+      "dictionary_features": 65536,
+      "active_feature_rows": 44441
+    }
+  },
+  "source": {
+    "parent_head": "83db22a68184ff556251b981ee377c378785b003",
+    "parent_tree": "af7544c2de418e36b959843f7550fbb2990f9609",
+    "baseline_sha256": "d73f87aed3cb483862d4b65b0bb615fb03c5903fdd19b47de987a9294d778872",
+    "measured_candidate_sha256": "a09614e0b48e60100e13ac31de0c76a02b01638d77ff840f126204ec24048fdc",
+    "production_sha256": "a09614e0b48e60100e13ac31de0c76a02b01638d77ff840f126204ec24048fdc",
+    "production_byte_identical_to_measured_candidate": true
+  },
+  "method": {
+    "warmups": "AB",
+    "primary": "ABBABAAB",
+    "all_samples_preserved": true,
+    "timed_operation": "Full original public unwrapped main including both full stats loads, table construction, full raw load and occurrence scan, ranking, buckets, logging and unique YAML output. Same read-only inputs; each call rebuilds results.",
+    "observers": "Equivalent delegating mean/selection observers retain dense results in both arms; overhead is inside clocks.",
+    "outside_clocks": "Imports/config, explicit gc.collect, result destruction, dense serialization and all verification",
+    "warm_only_route": "Native bincount0 baseline versus1 candidate; all eight primary calls unprofiled",
+    "runtime": {
+      "environment": {
+        "OMP_NUM_THREADS": null,
+        "MKL_NUM_THREADS": null,
+        "OPENBLAS_NUM_THREADS": null,
+        "TOKENIZERS_PARALLELISM": null,
+        "RAYON_NUM_THREADS": null
+      },
+      "cuda_visible_devices": "",
+      "cuda_available": false,
+      "torch_threads": 16,
+      "torch_interop_threads": 32,
+      "dtype": "torch.float32",
+      "device": "cpu",
+      "affinity": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "nice": 6
+    },
+    "GC": {
+      "enabled": true,
+      "threshold": [
+        2000,
+        10,
+        10
+      ],
+      "callbacks": []
+    },
+    "config": {
+      "feature_dir": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-7b181cac/out/splice_perf_85/work",
+      "stats_dir": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-7b181cac/out/splice_perf_85/work",
+      "baseline_dir": null,
+      "negative_selection": null,
+      "num_buckets": 10,
+      "feature_selection": {
+        "distribution": "geometric",
+        "mean": 10.0,
+        "std": 10.0,
+        "min_k": 1,
+        "max_k": 40,
+        "mode": "top_k_percentile",
+        "delta_weights": null
+      },
+      "rank_metric": "mean_pct_incl_zeros",
+      "seed": 42,
+      "magnitude_percentile": 0.5,
+      "top_k": 64,
+      "output": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-7b181cac/out/splice_perf_85/common_features_baseline.yaml"
+    }
+  },
+  "samples": [
+    {
+      "index": 0,
+      "arm": "baseline",
+      "wall_seconds": 8.046579528599977,
+      "cpu_seconds": 45.050186134
+    },
+    {
+      "index": 1,
+      "arm": "candidate",
+      "wall_seconds": 7.014572955667973,
+      "cpu_seconds": 35.17727066200001
+    },
+    {
+      "index": 2,
+      "arm": "candidate",
+      "wall_seconds": 6.07307356223464,
+      "cpu_seconds": 31.35180662000002
+    },
+    {
+      "index": 3,
+      "arm": "baseline",
+      "wall_seconds": 7.47164897993207,
+      "cpu_seconds": 46.784973683000004
+    },
+    {
+      "index": 4,
+      "arm": "candidate",
+      "wall_seconds": 6.052126847207546,
+      "cpu_seconds": 31.759092174999978
+    },
+    {
+      "index": 5,
+      "arm": "baseline",
+      "wall_seconds": 6.937276609241962,
+      "cpu_seconds": 42.97998879299996
+    },
+    {
+      "index": 6,
+      "arm": "baseline",
+      "wall_seconds": 7.071592900902033,
+      "cpu_seconds": 45.29537525100005
+    },
+    {
+      "index": 7,
+      "arm": "candidate",
+      "wall_seconds": 7.103711619973183,
+      "cpu_seconds": 34.94429913900001
+    }
+  ],
+  "metrics": {
+    "wall_seconds": {
+      "overall": {
+        "baseline_mean": 7.381774504669011,
+        "candidate_mean": 6.560871246270835,
+        "improvement_percent": 11.120676442757086,
+        "favorable": true
+      },
+      "halves": [
+        {
+          "baseline_mean": 7.759114254266024,
+          "candidate_mean": 6.543823258951306,
+          "improvement_percent": 15.66275422025833,
+          "favorable": true
+        },
+        {
+          "baseline_mean": 7.004434755071998,
+          "candidate_mean": 6.5779192335903645,
+          "improvement_percent": 6.08922113483587,
+          "favorable": true
+        }
+      ],
+      "positions": [
+        {
+          "baseline_mean": 7.559086214751005,
+          "candidate_mean": 6.062600204721093,
+          "improvement_percent": 19.797181398852533,
+          "favorable": true
+        },
+        {
+          "baseline_mean": 7.204462794587016,
+          "candidate_mean": 7.059142287820578,
+          "improvement_percent": 2.0170901135838086,
+          "favorable": true
+        }
+      ],
+      "adjacent_pairs_report_only": [
+        {
+          "baseline_mean": 8.046579528599977,
+          "candidate_mean": 7.014572955667973,
+          "improvement_percent": 12.825406985215785,
+          "favorable": true
+        },
+        {
+          "baseline_mean": 7.47164897993207,
+          "candidate_mean": 6.07307356223464,
+          "improvement_percent": 18.718430448938797,
+          "favorable": true
+        },
+        {
+          "baseline_mean": 6.937276609241962,
+          "candidate_mean": 6.052126847207546,
+          "improvement_percent": 12.759326345084814,
+          "favorable": true
+        },
+        {
+          "baseline_mean": 7.071592900902033,
+          "candidate_mean": 7.103711619973183,
+          "improvement_percent": -0.4541935532948008,
+          "favorable": false
+        }
+      ]
+    },
+    "cpu_seconds": {
+      "overall": {
+        "baseline_mean": 45.027630965250005,
+        "candidate_mean": 33.308117149000005,
+        "improvement_percent": 26.027382664867524,
+        "favorable": true
+      },
+      "halves": [
+        {
+          "baseline_mean": 45.9175799085,
+          "candidate_mean": 33.264538641000016,
+          "improvement_percent": 27.555984641859855,
+          "favorable": true
+        },
+        {
+          "baseline_mean": 44.13768202200001,
+          "candidate_mean": 33.35169565699999,
+          "improvement_percent": 24.437138224938593,
+          "favorable": true
+        }
+      ],
+      "positions": [
+        {
+          "baseline_mean": 45.17278069250003,
+          "candidate_mean": 31.5554493975,
+          "improvement_percent": 30.14499237427041,
+          "favorable": true
+        },
+        {
+          "baseline_mean": 44.88248123799998,
+          "candidate_mean": 35.06078490050001,
+          "improvement_percent": 21.883140295693774,
+          "favorable": true
+        }
+      ],
+      "adjacent_pairs_report_only": [
+        {
+          "baseline_mean": 45.050186134,
+          "candidate_mean": 35.17727066200001,
+          "improvement_percent": 21.91537109887491,
+          "favorable": true
+        },
+        {
+          "baseline_mean": 46.784973683000004,
+          "candidate_mean": 31.35180662000002,
+          "improvement_percent": 32.98744414728152,
+          "favorable": true
+        },
+        {
+          "baseline_mean": 42.97998879299996,
+          "candidate_mean": 31.759092174999978,
+          "improvement_percent": 26.107258128991187,
+          "favorable": true
+        },
+        {
+          "baseline_mean": 45.29537525100005,
+          "candidate_mean": 34.94429913900001,
+          "improvement_percent": 22.852390679270304,
+          "favorable": true
+        }
+      ]
+    }
+  },
+  "gates": {
+    "wall_at_least_3_percent": true,
+    "cpu_at_least_3_percent": true,
+    "wall_halves_positions_favorable": true,
+    "cpu_halves_positions_favorable": true
+  },
+  "all_fixed_gates_pass": true,
+  "adverse_report_only_pair": "Fourth wall pair -0.4541935532948008 percent; retained and not excluded. Adjacent pair summaries were report-only, not extra gates.",
+  "correctness": {
+    "all_ten_full_dense_sum_count_payloads_bit_exact": true,
+    "all_ten_ordered_selection_and_yaml_bytes_exact": true,
+    "all_ten_full_44441_candidate_ranking_and_independent_round6_buckets": true,
+    "all_22_statistics_payloads_and_metadata_unchanged": true,
+    "all_inputs_and_fixture_identities_unchanged": true,
+    "paired_controls": 22,
+    "controls_warnings": 21,
+    "controls_scope": "Exact dense bits/counts/gradients, expected errors/messages, input state, deterministic CPU, empty/repeated/multishard IDs, reference coverage, noncontiguous inputs, rank fallback and absolute/delta public YAML.",
+    "candidate_namespace_total_tests_passed": 134,
+    "existing_suite_tests_passed_in_candidate_namespace": 112
+  },
+  "repository_validation": {
+    "normal_namespace_tests_passed": 120,
+    "new_persistent_tests": 8,
+    "existing_suite_tests": 112,
+    "warnings": 18,
+    "failures": 0,
+    "skips": 0,
+    "Ruff": "Passed on runtime and test files",
+    "scoped_ty": "Passed on runtime and test files",
+    "projectwide_ty": {
+      "returncode": 1,
+      "diagnostics": 607,
+      "errors": 484,
+      "warnings": 123,
+      "current_log_sha256": "06f477ede7a9ad34c3acb08da633cbd17f0b8063824e5db73a2c38a846e6b25e",
+      "retained_parent83db_log": "out/splice_perf_82/production_snapshot_current_projectwide.log",
+      "retained_parent_log_sha256": "06f477ede7a9ad34c3acb08da633cbd17f0b8063824e5db73a2c38a846e6b25e",
+      "raw_bytes_exact": true,
+      "PYTHONPATH": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-7b181cac",
+      "current_tool_version": "ty0.0.91",
+      "historical_tool_version": "Unrecorded; no tool-version identity claim",
+      "unmatched_603_attempt_retained": true
+    },
+    "initial_test_failure": {
+      "passed": 118,
+      "failed": 2,
+      "warnings": 19,
+      "cause": "New test fixtures attempted to serialize empty base segments, forbidden by issue522; both failed before entering the changed scanner.",
+      "repair": "Real multishard fixture uses four nonempty segments with unchanged count/sum assertions; empty loaded-input helper contract remains n_segments2 through loader seam.",
+      "runtime_unchanged": true,
+      "raw_evidence_retained": true
+    }
+  },
+  "scope": "Complete warm-filesystem same-process CPU component only. No end-to-end training/pipeline, GPU, memory or GC-causality claim.",
+  "receipt_pins": {
+    "out/splice_perf_85/common_feature_bincount_benchmark_freeze_final.json": "f37aee7cb17cf4c37ee7d02ddd6461eda47af6b8d9078a10b5ff07bbede61956",
+    "out/splice_perf_85/common_feature_bincount_benchmark.json": "450c1a684f7bd095ee5a5e2503bd142bd2b416dd9f5b0cf783261b3219c560d7",
+    "out/splice_perf_85/common_feature_bincount_benchmark_metrics.json": "12f9ee370a0a8bf5eb5e6808c1f1a24533932f4576d8075c487d5cb0c4b1414a",
+    "out/splice_perf_85/common_feature_bincount_benchmark_resources.json": "af9351bf2a7ae5bd8ed311a17cc9de17b6475d0836c3621409cb82b9a0eca647",
+    "out/splice_perf_85/producer_common_feature_bincount_benchmark_terminal_review.json": "66d8ed977e05124cb0a31e58d9ee8835f76bc46b1e28a6589f1c9ab983a329ec",
+    "out/splice_perf_85/terminal_common_feature_bincount_benchmark_terminal_review.json": "07dfed6a43f442e4f00585ed989dd27bd3fe0c3774a2bd9e9cd716797fb68fb3",
+    "out/splice_perf_85/offset_common_feature_bincount_benchmark_terminal_custody_review.json": "a017e9092eef49d581d737de5e9c095cecc4f70dbc6baf88689be031cf98d475",
+    "out/splice_perf_85/producer_bincount_controls_terminal_review.json": "853a4b2783ffc63ee46ec340e077e6493fd8179a28be6ebabf1d8a321a207522",
+    "out/splice_perf_85/terminal_bincount_controls_terminal_review.json": "bee299f550f2e9ac53dccd3a1934ec4b033c3f7aeaf4c827304aaaa1cb1f7f68",
+    "out/splice_perf_85/offset_bincount_controls_terminal_review.json": "0af6a9495fdf236c2a31d8489fd699c4e58a927d7b74d9160a74edd0d564b23f",
+    "out/splice_perf_85/producer_production_bincount_validation_terminal_review.json": "830483f296cbc22feb263d7a6c3deab70307ab56b81202cef451f5b59627c5a9",
+    "out/splice_perf_85/production_pytest_v3.log": "5ca80b32f7da2396348d2492bb47424f23aaa86279921e2babdcc0ba6c9e485e",
+    "out/splice_perf_85/production_pytest_v3.xml": "40ab2636692405affadd64acfff6c61bb61567f0217cc9d4a855f88db2a6e860",
+    "out/splice_perf_85/production_pytest_v3_exit.json": "a49922af34e9411934fdc5f17e5d3ca7dc687b9ac0fb843c49d7d95337c3da44",
+    "out/splice_perf_85/production_ruff_v3.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "out/splice_perf_85/production_ruff_v3_exit.json": "0124ec13ef8243dbbd6d3e2084558d0ab36b6597abcd11ab527f1ee4456ea8e7",
+    "out/splice_perf_85/production_ty_scoped_v3.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "out/splice_perf_85/production_ty_scoped_v3_exit.json": "532efc95d3ef175a9d3d60383292046467f3f771dac91f7f4a920c1236384ac6",
+    "out/splice_perf_85/production_ty_full_matched.log": "06f477ede7a9ad34c3acb08da633cbd17f0b8063824e5db73a2c38a846e6b25e",
+    "out/splice_perf_85/production_ty_full_matched_exit.json": "fc7da5f0f9256790709c42261110fee72a021863dcec330b1112aef76376aec8",
+    "out/splice_perf_85/production_ty_full.log": "0b8133b0adf7cf54457b9fa46e068462730ae150b1d5a9f706d2d86fe5625ba7",
+    "out/splice_perf_85/production_ty_full_exit.json": "28927b311c3863feb106e93361ac7d5fd01d6004c3b8ae97dcd2d5931526216c",
+    "out/splice_perf_85/production_pytest.log": "1a42ff71d601ac2e4d68b5e3c69d11cb6d642e6d4cb5a198c502c3c423418928",
+    "out/splice_perf_85/production_pytest.xml": "e20f5b29dc1802dcb3c0397687c06e0c96cb96de52169ad19cfa6c3b21261f75",
+    "out/splice_perf_85/production_pytest_exit.json": "8ac2abef8b51f190109464b423524c5c3569f13f7ff0d82caf42a0c8a53b5db3"
+  },
+  "raw_sample_pins": {
+    "out/splice_perf_85/common_feature_bincount_benchmark_raw_0.json": "695781030cec8f4252a0c71be8e236ebc80e569d5025902ae259f7755bfe7873",
+    "out/splice_perf_85/common_feature_bincount_benchmark_raw_1.json": "07b7e9ccc971c4b80553b80613bdb7341cdcb09c3835a50651d078acec3903ec",
+    "out/splice_perf_85/common_feature_bincount_benchmark_raw_2.json": "4260870fffc5880d3533436b73e093cdeaa7aab41583bda095d8dc473615b760",
+    "out/splice_perf_85/common_feature_bincount_benchmark_raw_3.json": "7f54e8e1a5a923b834fafe79e4adc9a785f0d4d0ae3947133c1a9262a940f196",
+    "out/splice_perf_85/common_feature_bincount_benchmark_raw_4.json": "b584da778a9a361cf4afc25c3ffc92ea4e7089a3225ffac07aa20e4ccb4688ce",
+    "out/splice_perf_85/common_feature_bincount_benchmark_raw_5.json": "556e659563edde3155de1a84c09e3a3bb5371adf93e61a3c6514c5fb4193e659",
+    "out/splice_perf_85/common_feature_bincount_benchmark_raw_6.json": "ee7bc9f1a3e9186090f8c45d3900680b05fd1e8921435581fcf436c40c18cbaa",
+    "out/splice_perf_85/common_feature_bincount_benchmark_raw_7.json": "c03cde9c1fc3eb46b1d96c65c39d21906f6c553a339a8afafcdf736bfbe32486",
+    "out/splice_perf_85/common_feature_bincount_benchmark_raw_8.json": "d7d4d53e2dac1caae9758636cb9a60c6ee90338ca07682933764ba0103d1a849",
+    "out/splice_perf_85/common_feature_bincount_benchmark_raw_9.json": "4917e6fe18d879d4ed3f085f60f34cd39f10c27c496017adb070fd11db932723"
+  }
+}

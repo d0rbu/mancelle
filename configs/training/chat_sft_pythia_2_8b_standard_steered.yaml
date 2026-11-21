@@ -1,0 +1,24 @@
+# One dataset epoch of decoder-only SFT, matching the evaluated s32 loss mask.
+defaults:
+  - chat_sft_pythia_2_8b
+  - _self_
+
+mixture: standard_steered
+steered_jsonl: ${oc.env:STEERED_JSONL}
+max_seq_len: 2048
+device_batch_size: 1
+total_batch_size: 524288
+# Distributed HF rejects -1. CPU snapshot replay: max(1099, 1102, 1100, 1100).
+num_iterations: 1102
+eval_every: 150
+save_every: 100
+sft_loss_mask: full_sequence
+dry_run: false
+
+huggingface:
+  gradient_checkpointing: true
+  attention_implementation: sdpa
+  # HF uses one AdamW group; this shards its state without applying Muon.
+  distributed_implementation: dist_muon_adamw
+  restart_save_every: ${save_every}
+  validate_export: true

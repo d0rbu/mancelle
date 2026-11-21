@@ -1,0 +1,274 @@
+{
+  "source_commit": "5292182210cf9cad6a26d7e59811dacede5db296",
+  "baseline_commit": "91a7604ecf28500fcf2b0df6ccaeb96d901e57b7",
+  "final_gpu_source_commit": "9cb4b9418e54d0f2d39d322ec73ebb99fc251cec",
+  "method": "Count added executable lines and arcs originating on added lines. Separately anchor changed multiline expression fragments to their smallest executable statement owner. CPU and final GPU reports require identical statement inventories; final GPU environment receipts must match the current source manifest hash. Older GPU evidence contributes only equal source lines and arcs with equal endpoints; this is supplementary historical execution, not final-source GPU qualification.",
+  "summary": {
+    "changed_executable_lines": 432,
+    "cpu_covered_changed_lines": 421,
+    "additional_final_gpu_changed_lines": 3,
+    "additional_mapped_gpu_changed_lines": 0,
+    "missing_changed_lines": 8,
+    "changed_or_fragment_anchored_statements": 441,
+    "missing_changed_or_anchored_statements": 8,
+    "changed_branch_arcs": 190,
+    "cpu_missing_changed_branch_arcs": 16,
+    "missing_changed_branch_arcs_after_final_gpu": 12,
+    "missing_changed_branch_arcs_after_mapped_gpu": 12
+  },
+  "detailed_report_sha256": "6826b17b7f742c0af3229cfe8b1356c66dc9094a13ef50dc44c781946cfb738c",
+  "files": {
+    "nanochat/checkpoint_manager.py": {
+      "source_sha256": "cc1fbc1f8a3c1356bc25a0bb1812a44b9d8d00087ebff01e51833cf330e56d8b",
+      "added_executable_lines": 3,
+      "missing_added_executable_lines": [],
+      "changed_origin_branch_arcs": 2,
+      "missing_changed_origin_branch_arcs": [],
+      "missing_changed_or_fragment_anchored_statements": []
+    },
+    "scripts/chat_tui/session.py": {
+      "source_sha256": "2298918096bac42588eeb009ff387cb8818f3726337b0e876a149da9191112d0",
+      "added_executable_lines": 0,
+      "missing_added_executable_lines": [],
+      "changed_origin_branch_arcs": 0,
+      "missing_changed_origin_branch_arcs": [],
+      "missing_changed_or_fragment_anchored_statements": []
+    },
+    "scripts/train/conditional_encdec_rlvr.py": {
+      "source_sha256": "1aeb3edb96c81c2c15e0234610ba9df34d5ebf287545a90cf0a021bd4e066c89",
+      "added_executable_lines": 6,
+      "missing_added_executable_lines": [],
+      "changed_origin_branch_arcs": 0,
+      "missing_changed_origin_branch_arcs": [],
+      "missing_changed_or_fragment_anchored_statements": []
+    },
+    "scripts/train/conditional_encdec_selfcond.py": {
+      "source_sha256": "e90f9f8ceaea500f1c1bf6ce0eb69f31bbb4f5ccbd376b9905ac8acc8f7b5c3b",
+      "added_executable_lines": 5,
+      "missing_added_executable_lines": [],
+      "changed_origin_branch_arcs": 2,
+      "missing_changed_origin_branch_arcs": [],
+      "missing_changed_or_fragment_anchored_statements": []
+    },
+    "scripts/train/conditional_encdec_sft.py": {
+      "source_sha256": "8a8b79e34cb82d51af62b3caa4242861092941240f72e8f26fd7aab5198804a0",
+      "added_executable_lines": 14,
+      "missing_added_executable_lines": [
+        {
+          "line": 3901,
+          "text": "admit_project_attention()"
+        }
+      ],
+      "changed_origin_branch_arcs": 6,
+      "missing_changed_origin_branch_arcs": [
+        [
+          3900,
+          3901
+        ]
+      ],
+      "missing_changed_or_fragment_anchored_statements": [
+        3901
+      ]
+    },
+    "scripts/train/conditional_encdec_sft_grpo.py": {
+      "source_sha256": "b79df0a7123baa5bd8ae389301d2bdf7e125bff61c02dae1abc55063404e53e4",
+      "added_executable_lines": 14,
+      "missing_added_executable_lines": [],
+      "changed_origin_branch_arcs": 4,
+      "missing_changed_origin_branch_arcs": [
+        [
+          589,
+          592
+        ]
+      ],
+      "missing_changed_or_fragment_anchored_statements": []
+    },
+    "scripts/train/conditional_encdec_train.py": {
+      "source_sha256": "82ebfa6918c4919284fdced28f068769ca000ab87b1934dbd4a127bd59bc1aca",
+      "added_executable_lines": 13,
+      "missing_added_executable_lines": [
+        {
+          "line": 2738,
+          "text": "if device_type == \"cuda\":"
+        },
+        {
+          "line": 2739,
+          "text": "admit_project_attention()"
+        }
+      ],
+      "changed_origin_branch_arcs": 6,
+      "missing_changed_origin_branch_arcs": [
+        [
+          2738,
+          2739
+        ],
+        [
+          2738,
+          2742
+        ],
+        [
+          4999,
+          5005
+        ]
+      ],
+      "missing_changed_or_fragment_anchored_statements": [
+        2738,
+        2739
+      ]
+    },
+    "steering/conditional/encoder_decoder/config.py": {
+      "source_sha256": "f8b554685ab75f4a9630409128f4675bbf7b349965f6a30a121cde84949c6bcb",
+      "added_executable_lines": 61,
+      "missing_added_executable_lines": [],
+      "changed_origin_branch_arcs": 32,
+      "missing_changed_origin_branch_arcs": [],
+      "missing_changed_or_fragment_anchored_statements": []
+    },
+    "steering/conditional/encoder_decoder/eval_adapter.py": {
+      "source_sha256": "b41b65eeebc0b94c95f5677e81305042a6269fc56cbb4826a1265e6cebae2b9a",
+      "added_executable_lines": 3,
+      "missing_added_executable_lines": [],
+      "changed_origin_branch_arcs": 0,
+      "missing_changed_origin_branch_arcs": [],
+      "missing_changed_or_fragment_anchored_statements": []
+    },
+    "steering/conditional/encoder_decoder/feature_prediction_head.py": {
+      "source_sha256": "45ccc1d94beaae6a6c17c4f63b3abf46bc4dd2289fd08093ca56e2d158387bc6",
+      "added_executable_lines": 31,
+      "missing_added_executable_lines": [],
+      "changed_origin_branch_arcs": 14,
+      "missing_changed_origin_branch_arcs": [],
+      "missing_changed_or_fragment_anchored_statements": []
+    },
+    "steering/conditional/encoder_decoder/model.py": {
+      "source_sha256": "e104dd62fa72ba7cdbf4abf778de3ce44c0a10cc673cd53028ddf1e360809d81",
+      "added_executable_lines": 154,
+      "missing_added_executable_lines": [
+        {
+          "line": 912,
+          "text": "raise RuntimeError("
+        },
+        {
+          "line": 916,
+          "text": "raise RuntimeError("
+        },
+        {
+          "line": 1016,
+          "text": "raise ValueError("
+        },
+        {
+          "line": 1028,
+          "text": "raise ValueError("
+        }
+      ],
+      "changed_origin_branch_arcs": 64,
+      "missing_changed_origin_branch_arcs": [
+        [
+          875,
+          886
+        ],
+        [
+          894,
+          908
+        ],
+        [
+          911,
+          912
+        ],
+        [
+          915,
+          916
+        ],
+        [
+          1015,
+          1016
+        ],
+        [
+          1027,
+          1028
+        ],
+        [
+          1104,
+          1109
+        ]
+      ],
+      "missing_changed_or_fragment_anchored_statements": [
+        912,
+        916,
+        1016,
+        1028
+      ]
+    },
+    "steering/conditional/encoder_decoder/rlvr_policy.py": {
+      "source_sha256": "267a0539c29a0351d14932786e850964e040e53232967843fd6d04735fa5637b",
+      "added_executable_lines": 1,
+      "missing_added_executable_lines": [],
+      "changed_origin_branch_arcs": 0,
+      "missing_changed_origin_branch_arcs": [],
+      "missing_changed_or_fragment_anchored_statements": []
+    },
+    "steering/conditional/encoder_decoder/sm12_fa4.py": {
+      "source_sha256": "afeaf4ba80e3a348b685bb0b5cb7aacf87dcea054990ee55fd1edfbebbf13db7",
+      "added_executable_lines": 21,
+      "missing_added_executable_lines": [],
+      "changed_origin_branch_arcs": 12,
+      "missing_changed_origin_branch_arcs": [],
+      "missing_changed_or_fragment_anchored_statements": []
+    },
+    "steering/eval/axbench_adv/self_conditioning.py": {
+      "source_sha256": "03af91f15c2ccdc1e8d8ffb2ca23d49e1fb8b467c358b7429e704129e3c617b2",
+      "added_executable_lines": 0,
+      "missing_added_executable_lines": [],
+      "changed_origin_branch_arcs": 0,
+      "missing_changed_origin_branch_arcs": [],
+      "missing_changed_or_fragment_anchored_statements": []
+    },
+    "steering/eval/inference_engine.py": {
+      "source_sha256": "d49dd1545995d780c9a38aab3f02e4bb1ef51f7a211c510484c3b4e532e57bed",
+      "added_executable_lines": 0,
+      "missing_added_executable_lines": [],
+      "changed_origin_branch_arcs": 0,
+      "missing_changed_origin_branch_arcs": [],
+      "missing_changed_or_fragment_anchored_statements": []
+    },
+    "steering/eval/multiseg_generator.py": {
+      "source_sha256": "a74e3e7adea97c9ef2971bc1f8263224e31efda651c6ab4c3579a0d2394cdd65",
+      "added_executable_lines": 0,
+      "missing_added_executable_lines": [],
+      "changed_origin_branch_arcs": 0,
+      "missing_changed_origin_branch_arcs": [],
+      "missing_changed_or_fragment_anchored_statements": []
+    },
+    "steering/remote_training.py": {
+      "source_sha256": "3a11fcdce558d2c48df6e3efc2562c552b552f0de661b1cebc110c5c530d0298",
+      "added_executable_lines": 0,
+      "missing_added_executable_lines": [],
+      "changed_origin_branch_arcs": 0,
+      "missing_changed_origin_branch_arcs": [],
+      "missing_changed_or_fragment_anchored_statements": []
+    },
+    "steering/tools/migrate_encdec_train_state.py": {
+      "source_sha256": "b5aaa1d711a6470a1a80014157d507674c92466eeb481639ef0120f35e11196b",
+      "added_executable_lines": 4,
+      "missing_added_executable_lines": [],
+      "changed_origin_branch_arcs": 2,
+      "missing_changed_origin_branch_arcs": [],
+      "missing_changed_or_fragment_anchored_statements": []
+    },
+    "steering/tools/migrate_feature_head_metadata.py": {
+      "source_sha256": "f7baa4b9fe3c8f68c20af699b0a180c47324e71ec31f421fec9f069d518aa8db",
+      "added_executable_lines": 102,
+      "missing_added_executable_lines": [
+        {
+          "line": 130,
+          "text": "migrate_feature_head_metadata(Path(cfg.source_metadata), Path(cfg.weights), Path(cfg.output_metadata))"
+        }
+      ],
+      "changed_origin_branch_arcs": 46,
+      "missing_changed_origin_branch_arcs": [],
+      "missing_changed_or_fragment_anchored_statements": [
+        130
+      ]
+    }
+  }
+}

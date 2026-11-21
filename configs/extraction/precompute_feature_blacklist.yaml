@@ -1,0 +1,48 @@
+# Pre-generate the activation-frequency blacklist for a feature directory.
+# Producer for PR 471's feature_mask (see docs/pipelines/feature-extraction.md).
+# Reads the precomputed feature_statistics.safetensors — run compute_statistics
+# first. The blacklist's train/val split is inherited from how statistics were
+# computed (compute_statistics excludes the validation shard by default,
+# exclude_last_shard: true).
+# Usage:
+#   uv run -m scripts.preprocess.precompute_feature_blacklist \
+#     feature_dir=path/to/features feature_mask_freq_min=1e-5 feature_mask_freq_max=0.5
+feature_dir: null            # explicit leaf dir; or compose from the params below
+feature_root: out/data/features
+segment_size: 128
+pooling: max_pool
+dataset_phase: null          # null -> "base"
+sae:
+  model: gemma-2-2b
+  activation_type: residual
+  layer: 8
+  width: 16k
+# SAE dictionary width override. null -> read from feature_statistics.safetensors
+# in feature_dir, else infer from the f{width} path component.
+n_sae_features: null
+# Activation-frequency blacklist bounds (per feature_statistics). KEEP iff
+#   freq_min < count/n_segments <= freq_max
+# Either bound is independently nullable. Both null ⇒ feature disabled
+# (byte-identical legacy behavior, I1/I2/I5). Constraints:
+#   feature_mask_freq_min ∈ [0, 1)  — 0 kills count==0 dead features only;
+#     the default below (1e-5) additionally kills too-rare-to-score features
+#   feature_mask_freq_max ∈ (0, 1]  — 1 disables the upper bound effectively
+#   freq_min < freq_max (else the kept interval is empty)
+#
+# The values below MUST stay in LOCKSTEP with DEFAULT_FREQ_MIN / DEFAULT_FREQ_MAX in
+# steering/conditional/freq_blacklist.py and with the training configs
+# (conditional_encdec_train.yaml, conditional_encdec_sft.yaml). Those module constants are
+# only a FALLBACK for an ABSENT key, so the values shipped here WIN — a stale pair would
+# make this producer generate a DIFFERENT blacklist than a default training run does, and
+# since #695 the blacklist also SIZES the encoder's feature-indexed embedding tables, so a
+# stale pair means a DIFFERENT MODEL SHAPE, not merely a different id list.
+feature_mask_freq_min: 1.0e-5
+feature_mask_freq_max: 0.5
+force: false                  # rewrite even if an up-to-date artifact exists
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false              # relative feature_dir must resolve from CWD

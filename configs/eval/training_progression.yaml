@@ -1,0 +1,154 @@
+# Training progression evaluation config
+# Usage: uv run python -m scripts.train.training_progression mode=collect
+#        uv run python -m scripts.train.training_progression mode=plot
+
+# Mode: "collect" to run evals, "plot" to generate charts, "both" for both
+mode: both
+
+# Model config
+model_tag: d27
+model_family: auto  # auto | decoder | encoder_decoder
+
+# Checkpoint family root and optional prefix under {root}/{model_tag}
+checkpoint_root: base_checkpoints
+checkpoint_prefix: ""
+
+# Checkpoint source — "local" (default) or "remote"
+#   local:  reads from {checkpoints_dir}/base_checkpoints/{model_tag}/...
+#   remote: SCP each checkpoint on demand, cleans up after eval
+checkpoint_source: local
+
+# Local checkpoint root (null = NANOCHAT_BASE_DIR / nanochat_cache)
+checkpoints_dir: null
+
+# Delete .pt file after evaluation (saves disk, but requires re-download)
+cleanup_after_eval: false
+
+# Internal: full Hydra snapshot used by torchrun relaunch so nested configs
+# propagate exactly.
+config_snapshot: null
+
+# Encoder-decoder target conditioning. Progression only runs fully conditioned
+# encoder-decoder variants: prompt/context features come from the cache, and
+# conditioned_configs or target_real_configs provide optional target deltas.
+conditioning:
+  conditioned_configs: null
+  context_cache_dir: null
+  # Built-in target_real entries: pooled + lockstep target_real (cache_dir
+  # auto-resolved per suite when these entries are enabled).
+  # Operators without a target cache built must set target_real_configs=null
+  # on the CLI (or override conditioning.target_real_configs entirely).
+  target_real_configs:
+    - {name: pooled, mode: pooled}      # cache_dir auto-resolved (suite=<eval>_target)
+    - {name: lockstep, mode: lockstep}  # cache_dir auto-resolved
+
+# Remote machine (only used when checkpoint_source=remote)
+remote:
+  host: "root@38.80.152.72"
+  port: 30822
+  ssh_key: "~/.ssh/id_ed25519"
+  base_path: "/workspace/nano-gpt-pretrain-steer/nanochat_cache/base_checkpoints"
+  local_temp_dir: "/tmp/training_progression"
+
+# Phases to evaluate — list of {phase, subdir, steps}
+phases:
+  - phase: pretrain
+    subdir: ""
+    steps:
+      - 1000
+      - 2000
+      - 3000
+      - 4000
+      - 5000
+      - 6000
+      - 7000
+      - 8000
+      - 9000
+      - 10000
+      - 11000
+      - 12000
+      - 13000
+      - 13232
+  - phase: safety_sft
+    subdir: "safety_sft_checkpoints"
+    steps:
+      - 998
+  - phase: capabilities_sft
+    subdir: "safety_sft_checkpoints/capabilities_sft_checkpoints"
+    steps:
+      - 1240
+
+# Which eval suites to run (comma-separated)
+evals: "core,chat,harmfulness"
+
+# Seeding
+num_seeds: 3
+base_seed: 1234
+
+# CORE eval settings
+max_per_task: 100
+# Batch 1 preserves pre-batching BF16 numerics and the active decoder backend.
+core_example_batch_size: 1
+
+# Chat eval settings
+chat_tasks: null  # null = all 6 tasks
+chat_batch_size: 8
+chat_max_new_tokens: 512
+chat_temperature: 0.0
+chat_top_k: 50
+chat_num_samples: 1
+chat_max_problems: 100
+
+# Harmfulness eval settings
+harm_temperature: 0.7
+harm_top_k: 50
+harm_max_new_tokens: 512
+harm_num_benign: 50
+harm_num_harmful: 50
+harm_judge_model: "openai/gpt-5.6-luna"
+
+# Encoder-decoder harmfulness uses the shared self-conditioned runtime. Set
+# self_conditioned={safety_steering: {targets: PATH, strength: 2.5}} and provide
+# conditioning.context_cache_dir; null safety_steering gives pure FP feedback.
+# Static conditioned_configs remain supported only for CORE/chat.
+self_conditioned: null
+stats_path: null
+self_cond_segment_size: null  # fixed-token assertion only; turn cadence comes from metadata
+extraction_tokenizer_id: null
+# Optional [{phase, step, config: {self_conditioned: ..., stats_path: ...,
+# conditioning: {context_cache_dir: ...}}}]. Merge each override before scheduling
+# and validate the resulting target/cache against that checkpoint independently.
+self_conditioned_overrides: []
+
+# Device
+device_type: ""
+dtype: "bfloat16"
+# Number of GPUs for parallel checkpoint evaluation (null = auto-detect)
+num_gpus: 1
+
+# Output (null = auto-derived from model_tag)
+results_file: null
+fig_dir: null
+
+# Encoder-decoder conditioning. Set conditioning.conditioned_configs to add
+# static target-delta variants. Static configs must contain at least one target
+# feature; omit conditioned_configs when you only want target_real variants.
+#
+# Example:
+# conditioning:
+#   # Directory or list of YAML files; each file holds {feature_id: bucket_index}
+#   conditioned_configs:
+#     - name: safety_top32_mean
+#       features_file: out/data/common_features/safety_sft/absolute/k32/seed_42/r_mean_pct_incl_zeros/m0.5/features.yaml
+#     - name: capability_top32_mean
+#       features_file: out/data/common_features/capabilities_sft/absolute/k32/seed_42/r_mean_pct_incl_zeros/m0.5/features.yaml
+#   # Root of the safetensors context cache. Progression resolves
+#   # conditioning.context_cache_dir / c{model.max_seq_len} per checkpoint.
+#   context_cache_dir: out/data/eval_context_features/my_cache
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

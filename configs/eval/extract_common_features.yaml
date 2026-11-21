@@ -1,0 +1,71 @@
+# Extract absolute or differential features for eval conditioning.
+#
+# Usage:
+#   # Default absolute mode: sample k from geometric, rank by mean activation percentile
+#   python -m scripts.preprocess.extract_common_features feature_dir=.../safety_sft
+#
+#   # Larger sampled count and p90 magnitudes
+#   python -m scripts.preprocess.extract_common_features feature_dir=.../safety_sft \
+#       feature_selection.mean=20 feature_selection.max_k=80 magnitude_percentile=0.9
+#
+#   # Normal-distributed k using the same sampling parser as training
+#   python -m scripts.preprocess.extract_common_features feature_dir=.../safety_sft \
+#       feature_selection.distribution=normal feature_selection.mean=32 feature_selection.std=4
+#
+#   # Explicit top-k override with custom boundary source
+#   python -m scripts.preprocess.extract_common_features feature_dir=.../safety_sft \
+#       stats_dir=.../base top_k=64
+#
+#   # Differential selection against a baseline, using percentile-mean deltas
+#   python -m scripts.preprocess.extract_common_features feature_dir=.../safety_sft \
+#       baseline_dir=.../base top_k=64
+#
+#   # Mixed positive/negative delta selection (inactive bucket reserved)
+#   python -m scripts.preprocess.extract_common_features feature_dir=.../safety_sft \
+#       baseline_dir=.../base top_k=32 \
+#       negative_selection.distribution=geometric negative_selection.mean=8
+#
+#   # Output auto-generates under:
+#   # out/data/common_features/{phase}/absolute/{selection}/seed_{seed}/r_{rank_metric}/m{mp}/features.yaml
+#   # out/data/common_features/{phase}/delta_{baseline}/{selection}/seed_{seed}/r_{rank_metric}/m{mp}/features.yaml
+#   # out/data/common_features/{phase}/delta_{baseline}/{selection}/neg_dist_{...}/.../seed_{seed}/r_{rank_metric}/m{mp}/features.yaml
+
+feature_dir: ???              # required: SFT feature dir with feature_statistics.safetensors
+stats_dir: null               # boundary source dir (default: base/ sibling of feature_dir)
+baseline_dir: null            # null => absolute selection; path => delta selection against this baseline
+num_buckets: 10               # must match the training config
+
+# Count selection. By default k is sampled from this config using the shared
+# SamplingSelection parser and _sample_k implementation. ``top_k`` overrides it.
+feature_selection:
+  distribution: geometric
+  mean: 10.0
+  std: 10.0
+  min_k: 1
+  max_k: 40
+  mode: top_k_percentile
+  delta_weights: null
+
+# Negative pool for delta extraction. Set to null to force positive-only delta
+# outputs. Reuses the same NegativeSamplingSelection schema as training/eval
+# context-cache conversion. When enabled, negatives are emitted at bucket
+# (num_buckets - 1) and positives are discretized against
+# (num_buckets - 1) effective buckets.
+negative_selection:
+  distribution: geometric
+  mean: 10.0
+  min_k: 0
+  max_k: 40
+
+rank_metric: mean_pct_incl_zeros  # mean_pct_incl_zeros | mean_pct
+seed: 42                      # seed for sampled k
+magnitude_percentile: 0.5     # per-feature magnitude percentile (0.5=p50, 0.9=p90)
+top_k: null                   # override: if set, ignores feature_selection
+output: null                  # override: if set, ignores auto-generated path
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

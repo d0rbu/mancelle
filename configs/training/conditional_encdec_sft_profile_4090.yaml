@@ -1,0 +1,33 @@
+# 1x RTX 4090 profiling config for d8 encoder-decoder SFT.
+#
+# Usage:
+#     python -m scripts.train.conditional_encdec_sft \
+#         config_name=conditional_encdec_sft_profile_4090 \
+#         dataset=safety feature_dir=/path/to/safety_sft_features
+#
+# This keeps the 4090 memory envelope from conditional_encdec_sft_4090,
+# shortens the run, disables periodic saves, and enables timing CSV +
+# Chrome trace output under out/profiles/encdec_sft_d8_4090.
+
+defaults:
+  - conditional_encdec_sft_4090
+  - _self_
+
+model_tag: d8
+run: dummy
+
+# Keep enough micro-batches to expose grad-accum costs without making a
+# profiling iteration as long as the production 524288-token SFT batch.
+total_batch_size: 32768
+num_iterations: 6
+lr_warmup_steps: 0  # Preserve the short profiling run's full-rate updates.
+
+# Final validation still runs for datasets with val splits; keep it small.
+eval_every: -1
+eval_tokens: 8192
+save_every: -1
+
+profile_timing: true
+profile_trace: 2
+profile_trace_steps: 2
+profile_output_dir: out/profiles/encdec_sft_d8_4090

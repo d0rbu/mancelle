@@ -1,0 +1,27 @@
+# Encoder-decoder hyperparameter sweep (launches torchrun subprocesses)
+# Usage:
+#   uv run python -m scripts.train.run_encdec_sweep                        # run all
+#   uv run python -m scripts.train.run_encdec_sweep mode=dry_run            # list configs
+#   uv run python -m scripts.train.run_encdec_sweep mode=42                 # run config 42
+#   uv run python -m scripts.train.run_encdec_sweep mode=[0,10]             # run configs [0,10)
+#   uv run python -m scripts.train.run_encdec_sweep gpus=8
+
+# Execution mode:
+#   null      — run all configs
+#   "dry_run" — list configs without executing
+#   <int>     — run single config at this index
+#   [s, e]    — run configs in range [s, e)
+mode: null
+
+# Resources (null = auto-detect GPU count)
+gpus: null
+
+# Export
+dump_json: null
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

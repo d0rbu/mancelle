@@ -1,0 +1,37 @@
+# Shared training-loop surface for pretraining and conditioned SFT.
+# Architecture, pretraining schedules, and pretraining-only evaluation knobs
+# belong in base_train.yaml instead of this common fragment.
+
+# Logging
+run: dummy
+
+# Runtime
+device_type: ""
+
+# Training horizon
+num_iterations: -1
+
+# Optimization
+device_batch_size: 32
+total_batch_size: -1
+embedding_lr: 0.3
+unembedding_lr: 0.004
+matrix_lr: 0.02
+weight_decay: 0.2
+
+# Evaluation and checkpointing
+eval_every: 250
+eval_tokens: 20971520  # 40 * 524288
+save_every: 100
+resume_from_step: -1
+
+# Model/checkpoint identity
+model_tag: null
+max_seq_len: 1024
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

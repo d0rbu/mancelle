@@ -1,0 +1,116 @@
+# Chat model evaluation config
+# Usage:
+#   Decoder-only:   python -m scripts.eval.chat_eval source=sft
+#   Encoder-dec:    python -m scripts.eval.chat_eval source=encdec target_real_configs=[...]
+#
+# Native results are written to {checkpoint_dir}/chat_eval/{config_name}.yaml
+# e.g. chat_eval/safety_delta.yaml, chat_eval/common.yaml
+# HF results/evidence use a fresh output_dir (see the two chat_eval HF presets).
+
+source: null  # native mode: base | sft | safety | capabilities | encdec | safety/rl | encdec/safety | etc.
+evaluation_mode: null  # omission preserves legacy dispatch; unconditioned | target_real | self_conditioned
+self_conditioned:
+  cache_dir: null
+  benchmark_steering: null  # optional {targets: path, strength: 0..6}; offline-fitted per-task targets
+  seed: 1234
+  fixed_segment_size_assertion: null  # equality assertion only; never sets cadence
+self_conditioned_output_dir: null  # writes <root>/self_conditioned/result.yaml
+# Select exactly one source or hf_path. Public HF mode uses a pinned revision.
+# A local repository HF export must be one concrete step_NNNNNN directory and
+# uses hf_revision=null. Both modes require a fresh output directory.
+hf_path: null
+hf_revision: null
+hf_template_date: null  # required YYYY-MM-DD for non-thinking SmolLM3 only
+output_dir: null        # HF only: must not already exist
+task_name: null
+dtype: bfloat16
+temperature: 0.0
+max_new_tokens: 512
+num_samples: 1
+top_k: 50
+batch_size: 8
+model_tag: null
+step: null
+max_problems: null
+problem_start: null  # turn or fixed self-conditioned: null means 0; max_problems counts from this index
+device_type: ""
+
+# Resolve all checkpoint mode witnesses. A non-null value is an assertion.
+# Turn execution requires static target-real configs; use --config-name=chat_eval_turn.
+segment_mode: null
+# Turn metadata comes from the loaded checkpoint. These inputs only identify
+# its extraction tokenizer and optionally relocate the exact training stats bytes.
+extraction_tokenizer_id: null
+stats_path: null
+
+# Feature conditioning: null/[] skips static target deltas. Standalone static
+# feature_configs do not carry prompt/context features and are rejected for
+# encoder-decoder chat_eval; use target_real_configs below so prompt tokens are
+# conditioned from a full chat context cache.
+#
+# Empty feature_configs means no static target-delta pass. Set explicit YAMLs
+# here for safety/capability deltas, or use target_real_configs below.
+feature_configs: []
+# Phase 2 PR-C: target-real conditioning configs (best-case upper-bound eval).
+# Each entry consumes a target cache built from full-conversation tokens plus
+# the exact prompt/context prefix rows used by generation. Full rows carry
+# target_char_* metadata. Modes:
+#   - lockstep: per-token segment routing matching full-sequence SFT routing.
+#   - pooled: single-segment pooled features (BUCKET_MAX or BUCKET_MEAN).
+#
+# target_real is opt-in. Leave target_real_configs empty for normal evals.
+# To run target-real, pass explicit entries on the CLI/config; cache_dir may be
+# a concrete path or null for identity-based auto-resolution.
+#
+# cache_dir auto-resolution (PR-C Task 2): if you explicitly set an entry's
+# cache_dir to null, it is auto-resolved via
+# steering.eval.eval_cache_paths.default_target_cache_dir from the
+# conditioning identity + model_max_seq_len + suite ('chat_target' for
+# chat_eval). Path layout:
+#   {nanochat_cache}/eval_caches/chat_target/m_{model}/l{layer}/a_{act}/p_{pool}/f{width}/c{T}/{hash[:16]}
+#
+# To build the cache: run
+#   uv run python -m scripts.eval.build_eval_context_cache stage=enumerate evals=chat_target ...
+# (or another suite-specific build pipeline), then pass entries such as:
+#   target_real_configs=[{name:pooled,mode:pooled,cache_dir:null},{name:lockstep,mode:lockstep,cache_dir:null}]
+# with a pinned/effective conditioning.identity.feature_selection_hash for
+# auto-resolution, or replace null cache_dir values with concrete paths.
+# See steering/eval/target_conditioning.py::target_real_cache_generation_instructions
+# for the full operator workflow.
+target_real_configs: []
+# Optional result root; writes <root>/target_real/<name>.yaml. Null preserves
+# {checkpoint_dir}/chat_eval/target_real/<name>.yaml. Use a distinct root per task.
+target_real_output_dir: null
+
+# Cache-identity bundle used when target_real_configs is non-empty. Mirrors
+# base_eval / dclm_eval's conditioning block. The provider validates this
+# against the cache manifest at startup.
+#
+# feature_selection_hash resolution:
+#   1. Explicit 64-char hex value here pins the cache identity.
+#   2. If null AND feature_selection + stats_source_sha256 are present, the
+#      canonical hash is auto-computed.
+#   3. If both are present and disagree, startup fails. Otherwise null is invalid.
+conditioning:
+  identity:
+    model_id: gemma-2-2b
+    sae_id: gemmascope-residual-l8-16k
+    layer: 8
+    pooling: max_pool
+    feature_selection_hash: null
+  n_sae_features: 16384
+  num_buckets: 2
+  source_segment_size: null  # optional turn-lineage assertion; not a decoder/cadence width
+  source_context_window: null  # optional authenticated training-statistics assertion
+
+# model_max_seq_len picks the c{N}/ subdirectory of the cache. Override on CLI
+# if your model uses a different sequence_len.
+model_max_seq_len: 1024
+next_segment_conditioning_offset: auto
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

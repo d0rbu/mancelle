@@ -1,0 +1,3 @@
+# @package _global_
+# Standard tier: 50 concepts, matches the AxBench-Base paper figures.
+max_concepts: 50

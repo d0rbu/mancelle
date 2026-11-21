@@ -1,0 +1,29 @@
+checkpoint_meta_path: ???
+stats_path: null
+output_dir: ???
+dry_run: true
+device: cuda
+extraction_batch_size: 1
+positive_cap: 1024
+background_count: 1024
+partition_seed: 42
+revisions:
+  mmlu: c30699e8356da336a370243923dbaf21066bb9fe
+  arc: 210d026faf9955653af8916fad021475a3f00453
+  gsm8k: 740312add88f781978c0658806c59bc2815b9866
+  humaneval: 7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544
+  mbpp: 4bb6404fdc6cacfda99d4ac4205087b89d32030c
+  background: f73fe857d519ff6ac5af2ea67c4d3834da7b8bcc
+# Reviewed coding overlaps; extend only with an explicit input-based reason.
+coding_exclusions:
+  "605": "Primality task overlaps HumanEval/31."
+  "557": "Case-toggle task overlaps HumanEval/27."
+  "771": "Balanced brackets overlaps HumanEval/61; conservatively exclude the broader expression variant."
+  "763": "Minimum pair difference overlaps the closest-pair problem HumanEval/20."
+  "622": "Median of two sorted lists is a restricted-input variant of HumanEval/47."
+  "567": "Sorted-list predicate overlaps HumanEval/57 and HumanEval/126; their edge rules differ."
+  "802": "Rotations to sort an array overlaps HumanEval/109; count versus feasibility differs."
+  "599": "Sum and average through n includes the sum-to-n task HumanEval/60."
+  "566": "Digit sum overlaps HumanEval/84; the latter additionally renders the result in binary."
+  "631": "Whitespace-to-underscore replacement overlaps HumanEval/140; consecutive-space rules differ."
+  "628": "Space replacement is a close variant of HumanEval/140 with a different replacement string."

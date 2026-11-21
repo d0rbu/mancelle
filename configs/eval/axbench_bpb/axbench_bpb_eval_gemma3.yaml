@@ -1,0 +1,28 @@
+# configs/eval/axbench_bpb/axbench_bpb_eval_gemma3.yaml
+# Gemma 3 + gemma-scope-2 axbench-BPB eval config. Inherits the v1
+# axbench_bpb_eval.yaml (same dir) and overrides ONLY the model/tokenizer
+# and Neuronpedia coordinates for Gemma-3-4b-it + gemma-scope-2.
+#
+# axbench_bpb_eval.yaml has flat model-bearing fields (no nested identity):
+#   extraction_tokenizer_id / neuronpedia_model_id / neuronpedia_source.
+# Published v2 Neuronpedia medium sources omit the tier, so layer-22 residual
+# 16k medium →
+# `22-gemmascope-2-res-16k`. That 22 is the Gemma SAE extraction site; it
+# is unrelated to the residual-hook index in the nanochat target model.
+#
+# Layer note: valid gemma-scope-2 layers for the 4b model are {9, 17, 22, 29};
+# 22 is the default mid-late residual site.
+# See docs/pipelines/gemma-scope-2.md.
+
+defaults:
+  - axbench_bpb_eval
+  - _self_
+
+extraction_tokenizer_id: google/gemma-3-4b-it
+neuronpedia_model_id: gemma-3-4b-it
+neuronpedia_source: 22-gemmascope-2-res-16k
+
+# DiffMean/probe directions for this target were trained at block 6 of the
+# nanochat decoder / encoder-decoder residual stack. Direction artifacts stamp
+# this coordinate and every consumer now requires an exact match.
+diffmean_and_probe_layer: 6

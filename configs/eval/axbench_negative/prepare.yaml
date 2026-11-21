@@ -1,0 +1,14 @@
+defaults:
+  - _self_
+
+output_dir: out/eval/axbench_negative/ultrachat_test
+row_count: 64
+snapshot_dir: null
+revision: 8049631c405ae6576f93f445c6b8166f76f5505a
+expected_parquet_sha256: c18fd6e77395577652bdefbc5a87044ea799e989451ecfca5c6cf977ae5c6f70
+
+hydra:
+  job:
+    chdir: false
+  run:
+    dir: ${output_dir}/hydra_prepare

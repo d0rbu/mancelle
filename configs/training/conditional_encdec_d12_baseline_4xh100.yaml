@@ -1,0 +1,63 @@
+# 4xH100 config for depth-12 full-sequence conditioning baseline
+# Usage: torchrun --nproc_per_node=4 -m scripts.train.conditional_encdec_train -- config_name=conditional_encdec_d12_baseline_4xh100
+
+defaults:
+  - conditional_encdec_train
+  - _self_
+
+# WandB run name
+run: encdec_d12_baseline_4xh100
+
+# depth=12 gives 768 dim, 6 heads
+depth: 12
+
+# 1024 context length
+max_seq_len: 1024
+
+# Larger device batch (smaller model + shorter context)
+device_batch_size: 32
+
+# Dynamic compilation
+compile_static: false
+
+# BF16 training (no FP8)
+fp8: false
+
+# Training duration via data ratio (100x params)
+num_iterations: -1
+target_param_data_ratio: 100
+
+# Use all 370 feature shards
+max_train_shards: null
+
+# No precomputed packed rows for c1024, using live dataloader
+
+# Feature selection: geometric, mean=10, max=40, top-k percentile
+feature_selection:
+  distribution: geometric
+  mean: 10.0
+  std: 10.0
+  min_k: 1
+  max_k: 40
+  mode: top_k_percentile
+  delta_weights: null
+
+# Negative feature sampling: geometric, mean=10, max=40
+negative_selection:
+  distribution: geometric
+  mean: 10.0
+  min_k: 0
+  max_k: 40
+
+# Checkpoints every 1000 steps
+save_every: 1000
+
+# Steering eval every 250 steps
+steering_eval_every: 250
+offload_steering_eval_feature_model: true
+
+# Feature delta conditioning disabled
+feature_delta: null
+
+# No feature prediction head
+feature_prediction: null

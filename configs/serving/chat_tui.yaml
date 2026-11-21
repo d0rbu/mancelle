@@ -1,0 +1,55 @@
+# Target checkpoint metadata; a launch-time override is mandatory.
+target_meta_path: ???
+# Turn SFT/post-training leaves with missing conditioning or stale SAE defaults:
+# metadata of the exact pretraining checkpoint (shared loader validates identity).
+# Fixed Chat keeps its existing ancestor recovery and rejects non-null overrides.
+pretrain_meta_path: null
+# Feature statistics bound to the target checkpoint's conditioning contract.
+feature_statistics_path: out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos/feature_statistics.safetensors
+# Prepared AxBench metadata and training-text directory.
+prepared_dir: out/axbench/prepared
+# Content-addressed fitted steering-signal cache directory.
+signal_cache_dir: out/chat_tui/signal_cache
+# Offline feature-description JSON ({feature_id: text}) built by
+# scripts/preprocess/build_chat_tui_descriptions.py; overrides Neuronpedia when set.
+descriptions_json_path: ""
+# Persistent Neuronpedia description cache path.
+description_cache_path: out/neuronpedia_cache.yaml
+# Neuronpedia model id; empty disables descriptions.
+neuronpedia_model_id: ""
+# Neuronpedia SAE source; empty disables descriptions.
+neuronpedia_sae_source: ""
+# Fixed-token checkpoints only: caller-owned cadence in RustBPE tokens.
+# Turn checkpoints ignore this value and use their post-training metadata's
+# strict positive turn_self_cond_segment_size_rustbpe (never Gemma segment_size).
+self_cond_segment_size: 256
+# Maximum generated tokens allowed for one assistant turn.
+max_new_tokens_per_turn: 256
+# Token-sampling temperature for chat generation.
+temperature: 0.6
+# Token-sampling top-k cutoff.
+top_k: 50
+# Session token and feature-selection RNG seed.
+seed: 42
+# Restore recorded RNG states when rewinding if enabled.
+deterministic_rewind: false
+# Target-model and extraction device.
+device: cuda
+# Target-model inference dtype. BF16 halves the resident weight footprint of
+# checkpoints whose training master weights are stored in FP32.
+dtype: bfloat16
+# Load the Gemma extraction stack during startup when enabled.
+eager_extraction: false
+
+# Keep Hydra output in the caller's working directory without changing cwd.
+hydra:
+  # Pin the Hydra run directory.
+  run:
+    # Use the current directory for each run.
+    dir: .
+  # Disable Hydra's per-run output subdirectory.
+  output_subdir: null
+  # Preserve the launch working directory.
+  job:
+    # Do not chdir into the run directory.
+    chdir: false

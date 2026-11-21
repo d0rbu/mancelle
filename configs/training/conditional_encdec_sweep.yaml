@@ -1,0 +1,86 @@
+# Hyperparameter sweep config for encoder-decoder conditional pretraining
+# Usage: launched by sweep script which overrides feature_selection, negative_selection,
+#        feature_delta, and feature_prediction per run
+# Base: depth=12 model for fast iteration on H100s
+
+defaults:
+  - conditional_encdec_train
+  - _self_
+
+# depth=12 gives 768 dim, ~342M params
+depth: 12
+
+# Cross-attention every 3rd decoder layer
+cross_attention:
+  frequency: 3
+
+# Binary bucketing: positive=bucket 0, negative=bucket 1
+num_buckets: 2
+
+# H200 acceleration
+fp8: true
+
+# Enable torch.compile for speed
+compile: true
+
+# Sequence length (matches the shared training default and packed rows)
+max_seq_len: 1024
+
+# Limit to first 10 shards (train=0-8, val=9)
+max_train_shards: 10
+
+# Fixed iteration count for sweeps
+num_iterations: 1000
+
+# Per-GPU batch size (H200 default)
+device_batch_size: 32
+
+# Faster eval for sweeps (20M tokens is 7+ min uncompiled; reduce to 2M for ~40s)
+eval_tokens: 2097152
+
+# Only save final checkpoint (save_every=0 skips intermediates, last_step always saves)
+save_every: 0
+# Validation: last shard of max_train_shards is the val split (shard N-1)
+eval_every: 250
+# Disable slow evals for sweep speed (CORE ~10min, sampling ~2min per config)
+sample_every: 0
+core_metric_every: 0
+steering_eval_every: 250
+
+# Feature selection defaults (overridden per sweep run)
+# No delta_weights since feature_delta defaults to null for safety
+feature_selection:
+  distribution: geometric
+  mean: 8.0
+  std: 8.0
+  min_k: 1
+  max_k: null
+  delta_weights: null
+  mode: top_k_percentile
+
+# Negative (inactive) feature sampling defaults
+negative_selection:
+  distribution: geometric
+  mean: 8.0
+  min_k: 0
+  max_k: null
+
+# Feature delta conditioning disabled by default
+feature_delta: null
+
+# Feature prediction auxiliary loss
+feature_prediction:
+  block: mlp
+  head_layers: 0
+  weight: 0.1
+  layer: -1
+  loss_mode: best_token
+  loss_fn: bce
+
+# SAE settings (same as base)
+sae:
+  release: gemmascope
+  model: gemma-2-2b
+  activation_type: residual
+  layer: 8
+  width: 16k

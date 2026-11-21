@@ -1,0 +1,48 @@
+# Local AxBench configuration; see ../../../VENDORED.md.
+train:
+  model_name: Qwen/Qwen2.5-3B-Instruct
+  layer: 28
+  component: res
+  seed: 42
+  use_bf16: true
+  output_length: 128
+  models:
+    LoRA:
+      batch_size: 6
+      gradient_accumulation_steps: 6
+      n_epochs: 24
+      lr: 0.0009
+      weight_decay: 0.0
+      low_rank_dimension: 4
+      lora_layers: [7, 14, 21, 28]
+      lora_components: [o_proj]
+      lora_alpha: 32
+      binarize_dataset: false
+      train_on_negative: false
+      exclude_bos: true
+
+generate:
+  lm_model: openai/gpt-5.6-luna
+  output_length: 128
+  num_of_examples: 144
+  dataset_category: instruction
+  lm_use_cache: true
+  seed: 42
+
+inference:
+  models: [PromptSteering, LoRA]
+  model_name: Qwen/Qwen2.5-3B-Instruct
+  steering_model_name: Qwen/Qwen2.5-3B-Instruct
+  use_bf16: true
+  seed: 42
+  lm_model: openai/gpt-5.6-luna
+  steering_intervention_type: addition
+  steering_datasets: [AlpacaEval]
+  steering_batch_size: 10
+  steering_output_length: 128
+  steering_layer: 28
+  steering_layers: [28]
+  steering_num_of_examples: 10
+  steering_factors: [1.0]
+  temperature: 1.0
+  intervene_on_prompt: true

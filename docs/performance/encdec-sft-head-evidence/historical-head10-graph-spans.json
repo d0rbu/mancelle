@@ -1,0 +1,813 @@
+{
+  "schema": "historical_h200_depth10_trace_timing_audit_v1",
+  "source_revision": "77baf2a3cbc7baf834b76869e59e6b0d264e2a34",
+  "profile_harness_sha256": "31538e286e0f98225efe5fa4264672e36b39e855a228704d2561ba728d158cee",
+  "trial_receipt_sha256": "f3e18872f80b4554882389cbf93ab0f6de598fe8927b5b8710a218c8f0053012",
+  "geometry": {
+    "decoder_depth": 27,
+    "encoder_depth": 27,
+    "width": 1664,
+    "head_dim": 128,
+    "sequence_length": 2048,
+    "feature_vocab_size": 844,
+    "window_pattern": "SSSL",
+    "feature_prediction_block": "transformer",
+    "feature_prediction_head_layers": 10
+  },
+  "device_batch_size": 2,
+  "grad_accum_steps": 1,
+  "units": "Chrome trace ts/dur microseconds; displayTimeUnit is ms; reported range durations below divide dur by1000.",
+  "new_gpu_execution": false,
+  "files": {
+    "forward_rank0.json": {
+      "sha256": "e005b6927b7990f70ad5faf2f4590954726b283d80f448048089d3ffa5d5bd38",
+      "event_count": 13215,
+      "host": "node4002",
+      "device": "NVIDIA H200 NVL",
+      "cuda_runtime_version": 13000,
+      "cuda_driver_version": 13010,
+      "cupti_version": 130001,
+      "categories": {
+        "Trace": {
+          "count": 1,
+          "phases": {
+            "X": 1
+          },
+          "timestamp": {
+            "present": 1,
+            "zero": 0,
+            "positive": 1,
+            "negative": 0
+          },
+          "duration": {
+            "present": 1,
+            "zero": 0,
+            "positive": 1,
+            "negative": 0
+          }
+        },
+        "ac2g": {
+          "count": 4277,
+          "phases": {
+            "f": 2178,
+            "s": 2099
+          },
+          "timestamp": {
+            "present": 4277,
+            "zero": 4277,
+            "positive": 0,
+            "negative": 0
+          },
+          "duration": {
+            "present": 0,
+            "zero": 0,
+            "positive": 0,
+            "negative": 0
+          }
+        },
+        "cpu_op": {
+          "count": 4421,
+          "phases": {
+            "X": 4421
+          },
+          "timestamp": {
+            "present": 4421,
+            "zero": 0,
+            "positive": 4421,
+            "negative": 0
+          },
+          "duration": {
+            "present": 4421,
+            "zero": 0,
+            "positive": 4421,
+            "negative": 0
+          }
+        },
+        "cuda_driver": {
+          "count": 1415,
+          "phases": {
+            "X": 1415
+          },
+          "timestamp": {
+            "present": 1415,
+            "zero": 1415,
+            "positive": 0,
+            "negative": 0
+          },
+          "duration": {
+            "present": 1415,
+            "zero": 1415,
+            "positive": 0,
+            "negative": 0
+          }
+        },
+        "cuda_runtime": {
+          "count": 766,
+          "phases": {
+            "X": 766
+          },
+          "timestamp": {
+            "present": 766,
+            "zero": 766,
+            "positive": 0,
+            "negative": 0
+          },
+          "duration": {
+            "present": 766,
+            "zero": 766,
+            "positive": 0,
+            "negative": 0
+          }
+        },
+        "gpu_memcpy": {
+          "count": 20,
+          "phases": {
+            "X": 20
+          },
+          "timestamp": {
+            "present": 20,
+            "zero": 20,
+            "positive": 0,
+            "negative": 0
+          },
+          "duration": {
+            "present": 20,
+            "zero": 20,
+            "positive": 0,
+            "negative": 0
+          }
+        },
+        "gpu_memset": {
+          "count": 257,
+          "phases": {
+            "X": 257
+          },
+          "timestamp": {
+            "present": 257,
+            "zero": 257,
+            "positive": 0,
+            "negative": 0
+          },
+          "duration": {
+            "present": 257,
+            "zero": 257,
+            "positive": 0,
+            "negative": 0
+          }
+        },
+        "gpu_user_annotation": {
+          "count": 89,
+          "phases": {
+            "X": 89
+          },
+          "timestamp": {
+            "present": 89,
+            "zero": 0,
+            "positive": 89,
+            "negative": 0
+          },
+          "duration": {
+            "present": 89,
+            "zero": 0,
+            "positive": 89,
+            "negative": 0
+          }
+        },
+        "kernel": {
+          "count": 1819,
+          "phases": {
+            "X": 1819
+          },
+          "timestamp": {
+            "present": 1819,
+            "zero": 1819,
+            "positive": 0,
+            "negative": 0
+          },
+          "duration": {
+            "present": 1819,
+            "zero": 1819,
+            "positive": 0,
+            "negative": 0
+          }
+        },
+        "metadata": {
+          "count": 60,
+          "phases": {
+            "M": 58,
+            "i": 2
+          },
+          "timestamp": {
+            "present": 60,
+            "zero": 0,
+            "positive": 60,
+            "negative": 0
+          },
+          "duration": {
+            "present": 0,
+            "zero": 0,
+            "positive": 0,
+            "negative": 0
+          }
+        },
+        "overhead": {
+          "count": 1,
+          "phases": {
+            "X": 1
+          },
+          "timestamp": {
+            "present": 1,
+            "zero": 1,
+            "positive": 0,
+            "negative": 0
+          },
+          "duration": {
+            "present": 1,
+            "zero": 1,
+            "positive": 0,
+            "negative": 0
+          }
+        },
+        "user_annotation": {
+          "count": 89,
+          "phases": {
+            "X": 89
+          },
+          "timestamp": {
+            "present": 89,
+            "zero": 0,
+            "positive": 89,
+            "negative": 0
+          },
+          "duration": {
+            "present": 89,
+            "zero": 0,
+            "positive": 89,
+            "negative": 0
+          }
+        }
+      },
+      "gpu_annotation_validation": {
+        "count": 89,
+        "matching_cpu_names_and_external_ids": 89,
+        "contained_in_profiler_span": 89,
+        "streams": {
+          "7": 89
+        },
+        "overlapping_pairs": 0,
+        "nested_pairs": 0,
+        "duration_sum_ms_not_additive_if_nested": 56.107854999999994
+      },
+      "device_activity_count": 2096,
+      "device_activities_with_cuda_api_correlation": 2096,
+      "cuda_graph_launch_events": 0,
+      "all_device_graph_ids_zero": true,
+      "all_kernel_queued_fields_zero": true,
+      "alternate_timing_fields": "No tts/tdur/start/end/elapsed fields on events; CUDA args contain only queued=0, IDs and launch/occupancy metadata. Memcpy/memset bandwidth is N/A when duration is zero.",
+      "head_graph": {
+        "name": "## Call CompiledFxGraph fblpvy327rp6xjfawmyppue36srgk43q5wvjc23midw2iusgtfww ##",
+        "cpu_annotation_external_id": 4178,
+        "gpu_annotation_external_id": 4178,
+        "cpu_annotation_duration_ms": 4.420538,
+        "gpu_annotation_duration_ms": 6.83116,
+        "gpu_annotation_ts_us": 6997535953991.14,
+        "enclosing_cpu_function": {
+          "name": "CompiledFunction",
+          "external_id": 4177,
+          "duration_ms": 4.567729999999999
+        },
+        "matrix_operator_shapes": {
+          "aten::mm [[4096, 1664], [1664, 4992], [4096, 4992]]": 10,
+          "aten::mm [[4096, 1664], [1664, 1664], [4096, 1664]]": 10,
+          "aten::mm [[4096, 1664], [1664, 6656], [4096, 6656]]": 10,
+          "aten::mm [[4096, 6656], [6656, 1664], [4096, 1664]]": 10,
+          "aten::addmm [[848], [4096, 1664], [1664, 848], [], [], [4096, 848]]": 1
+        },
+        "correlated_device_activities": {
+          "kernel": 135,
+          "gpu_memset": 40
+        },
+        "flash_kernel_count": 10,
+        "all_correlated_device_timestamps_and_durations_zero": true,
+        "interpretation": "Recorded GPU annotation range associated with the ten-block feature head; not exclusive kernel time, host wall time, or a complete-step contribution."
+      }
+    },
+    "backward_rank0.json": {
+      "sha256": "3684455169953cacd97f13cada430a1ec52f8af31698d98d60fc60ec302d75e8",
+      "event_count": 19602,
+      "host": "node4002",
+      "device": "NVIDIA H200 NVL",
+      "cuda_runtime_version": 13000,
+      "cuda_driver_version": 13010,
+      "cupti_version": 130001,
+      "categories": {
+        "Trace": {
+          "count": 1,
+          "phases": {
+            "X": 1
+          },
+          "timestamp": {
+            "present": 1,
+            "zero": 0,
+            "positive": 1,
+            "negative": 0
+          },
+          "duration": {
+            "present": 1,
+            "zero": 0,
+            "positive": 1,
+            "negative": 0
+          }
+        },
+        "ac2g": {
+          "count": 6422,
+          "phases": {
+            "f": 3344,
+            "s": 3078
+          },
+          "timestamp": {
+            "present": 6422,
+            "zero": 6422,
+            "positive": 0,
+            "negative": 0
+          },
+          "duration": {
+            "present": 0,
+            "zero": 0,
+            "positive": 0,
+            "negative": 0
+          }
+        },
+        "cpu_op": {
+          "count": 6518,
+          "phases": {
+            "X": 6518
+          },
+          "timestamp": {
+            "present": 6518,
+            "zero": 0,
+            "positive": 6518,
+            "negative": 0
+          },
+          "duration": {
+            "present": 6518,
+            "zero": 0,
+            "positive": 6518,
+            "negative": 0
+          }
+        },
+        "cuda_driver": {
+          "count": 1886,
+          "phases": {
+            "X": 1886
+          },
+          "timestamp": {
+            "present": 1886,
+            "zero": 1886,
+            "positive": 0,
+            "negative": 0
+          },
+          "duration": {
+            "present": 1886,
+            "zero": 1886,
+            "positive": 0,
+            "negative": 0
+          }
+        },
+        "cuda_runtime": {
+          "count": 1460,
+          "phases": {
+            "X": 1460
+          },
+          "timestamp": {
+            "present": 1460,
+            "zero": 1460,
+            "positive": 0,
+            "negative": 0
+          },
+          "duration": {
+            "present": 1460,
+            "zero": 1460,
+            "positive": 0,
+            "negative": 0
+          }
+        },
+        "gpu_memcpy": {
+          "count": 54,
+          "phases": {
+            "X": 54
+          },
+          "timestamp": {
+            "present": 54,
+            "zero": 54,
+            "positive": 0,
+            "negative": 0
+          },
+          "duration": {
+            "present": 54,
+            "zero": 54,
+            "positive": 0,
+            "negative": 0
+          }
+        },
+        "gpu_memset": {
+          "count": 307,
+          "phases": {
+            "X": 307
+          },
+          "timestamp": {
+            "present": 307,
+            "zero": 307,
+            "positive": 0,
+            "negative": 0
+          },
+          "duration": {
+            "present": 307,
+            "zero": 307,
+            "positive": 0,
+            "negative": 0
+          }
+        },
+        "gpu_user_annotation": {
+          "count": 88,
+          "phases": {
+            "X": 88
+          },
+          "timestamp": {
+            "present": 88,
+            "zero": 0,
+            "positive": 88,
+            "negative": 0
+          },
+          "duration": {
+            "present": 88,
+            "zero": 0,
+            "positive": 88,
+            "negative": 0
+          }
+        },
+        "kernel": {
+          "count": 2715,
+          "phases": {
+            "X": 2715
+          },
+          "timestamp": {
+            "present": 2715,
+            "zero": 2715,
+            "positive": 0,
+            "negative": 0
+          },
+          "duration": {
+            "present": 2715,
+            "zero": 2715,
+            "positive": 0,
+            "negative": 0
+          }
+        },
+        "metadata": {
+          "count": 62,
+          "phases": {
+            "M": 60,
+            "i": 2
+          },
+          "timestamp": {
+            "present": 62,
+            "zero": 0,
+            "positive": 62,
+            "negative": 0
+          },
+          "duration": {
+            "present": 0,
+            "zero": 0,
+            "positive": 0,
+            "negative": 0
+          }
+        },
+        "overhead": {
+          "count": 1,
+          "phases": {
+            "X": 1
+          },
+          "timestamp": {
+            "present": 1,
+            "zero": 1,
+            "positive": 0,
+            "negative": 0
+          },
+          "duration": {
+            "present": 1,
+            "zero": 1,
+            "positive": 0,
+            "negative": 0
+          }
+        },
+        "user_annotation": {
+          "count": 88,
+          "phases": {
+            "X": 88
+          },
+          "timestamp": {
+            "present": 88,
+            "zero": 0,
+            "positive": 88,
+            "negative": 0
+          },
+          "duration": {
+            "present": 88,
+            "zero": 0,
+            "positive": 88,
+            "negative": 0
+          }
+        }
+      },
+      "gpu_annotation_validation": {
+        "count": 88,
+        "matching_cpu_names_and_external_ids": 88,
+        "contained_in_profiler_span": 88,
+        "streams": {
+          "7": 88
+        },
+        "overlapping_pairs": 0,
+        "nested_pairs": 0,
+        "duration_sum_ms_not_additive_if_nested": 93.48030299999995
+      },
+      "device_activity_count": 3076,
+      "device_activities_with_cuda_api_correlation": 3076,
+      "cuda_graph_launch_events": 0,
+      "all_device_graph_ids_zero": true,
+      "all_kernel_queued_fields_zero": true,
+      "alternate_timing_fields": "No tts/tdur/start/end/elapsed fields on events; CUDA args contain only queued=0, IDs and launch/occupancy metadata. Memcpy/memset bandwidth is N/A when duration is zero.",
+      "head_graph": {
+        "name": "## Call CompiledFxGraph fsygonzifrhxjigs7asu2sb6qmj46ru56yjqjaplgaeqluin53n2 ##",
+        "cpu_annotation_external_id": 5134,
+        "gpu_annotation_external_id": 5134,
+        "cpu_annotation_duration_ms": 6.191086,
+        "gpu_annotation_duration_ms": 13.828145000000001,
+        "gpu_annotation_ts_us": 6997536480857.572,
+        "enclosing_cpu_function": {
+          "name": "CompiledFunctionBackward",
+          "external_id": 5133,
+          "duration_ms": 6.313365
+        },
+        "matrix_operator_shapes": {
+          "aten::mm [[4096, 848], [848, 1664], [4096, 1664]]": 1,
+          "aten::mm [[848, 4096], [4096, 1664], [848, 1664]]": 1,
+          "aten::mm [[1664, 4096], [4096, 6656], [1664, 6656]]": 10,
+          "aten::mm [[4096, 1664], [1664, 6656], [4096, 6656]]": 10,
+          "aten::mm [[6656, 4096], [4096, 1664], [6656, 1664]]": 10,
+          "aten::mm [[4096, 6656], [6656, 1664], [4096, 1664]]": 10,
+          "aten::mm [[1664, 4096], [4096, 1664], [1664, 1664]]": 10,
+          "aten::mm [[4096, 1664], [1664, 1664], [4096, 1664]]": 10,
+          "aten::mm [[4992, 4096], [4096, 1664], [4992, 1664]]": 10,
+          "aten::mm [[4096, 4992], [4992, 1664], [4096, 1664]]": 10
+        },
+        "correlated_device_activities": {
+          "kernel": 208,
+          "gpu_memset": 30
+        },
+        "flash_kernel_count": 30,
+        "all_correlated_device_timestamps_and_durations_zero": true,
+        "interpretation": "Recorded GPU annotation range associated with the ten-block feature head; not exclusive kernel time, host wall time, or a complete-step contribution."
+      }
+    },
+    "optimizer_rank0.json": {
+      "sha256": "8b65dbcd3e0db79c19475765e65dd6d25d583b90aa57e12343d0746e3989738c",
+      "event_count": 4438,
+      "host": "node4002",
+      "device": "NVIDIA H200 NVL",
+      "cuda_runtime_version": 13000,
+      "cuda_driver_version": 13010,
+      "cupti_version": 130001,
+      "categories": {
+        "Trace": {
+          "count": 1,
+          "phases": {
+            "X": 1
+          },
+          "timestamp": {
+            "present": 1,
+            "zero": 0,
+            "positive": 1,
+            "negative": 0
+          },
+          "duration": {
+            "present": 1,
+            "zero": 0,
+            "positive": 1,
+            "negative": 0
+          }
+        },
+        "ac2g": {
+          "count": 739,
+          "phases": {
+            "f": 376,
+            "s": 363
+          },
+          "timestamp": {
+            "present": 739,
+            "zero": 0,
+            "positive": 739,
+            "negative": 0
+          },
+          "duration": {
+            "present": 0,
+            "zero": 0,
+            "positive": 0,
+            "negative": 0
+          }
+        },
+        "cpu_op": {
+          "count": 2730,
+          "phases": {
+            "X": 2730
+          },
+          "timestamp": {
+            "present": 2730,
+            "zero": 0,
+            "positive": 2730,
+            "negative": 0
+          },
+          "duration": {
+            "present": 2730,
+            "zero": 0,
+            "positive": 2730,
+            "negative": 0
+          }
+        },
+        "cuda_driver": {
+          "count": 254,
+          "phases": {
+            "X": 254
+          },
+          "timestamp": {
+            "present": 254,
+            "zero": 0,
+            "positive": 254,
+            "negative": 0
+          },
+          "duration": {
+            "present": 254,
+            "zero": 0,
+            "positive": 254,
+            "negative": 0
+          }
+        },
+        "cuda_runtime": {
+          "count": 124,
+          "phases": {
+            "X": 124
+          },
+          "timestamp": {
+            "present": 124,
+            "zero": 0,
+            "positive": 124,
+            "negative": 0
+          },
+          "duration": {
+            "present": 124,
+            "zero": 0,
+            "positive": 124,
+            "negative": 0
+          }
+        },
+        "gpu_memset": {
+          "count": 75,
+          "phases": {
+            "X": 75
+          },
+          "timestamp": {
+            "present": 75,
+            "zero": 0,
+            "positive": 75,
+            "negative": 0
+          },
+          "duration": {
+            "present": 75,
+            "zero": 0,
+            "positive": 75,
+            "negative": 0
+          }
+        },
+        "gpu_user_annotation": {
+          "count": 83,
+          "phases": {
+            "X": 83
+          },
+          "timestamp": {
+            "present": 83,
+            "zero": 0,
+            "positive": 83,
+            "negative": 0
+          },
+          "duration": {
+            "present": 83,
+            "zero": 0,
+            "positive": 83,
+            "negative": 0
+          }
+        },
+        "kernel": {
+          "count": 286,
+          "phases": {
+            "X": 286
+          },
+          "timestamp": {
+            "present": 286,
+            "zero": 0,
+            "positive": 286,
+            "negative": 0
+          },
+          "duration": {
+            "present": 286,
+            "zero": 0,
+            "positive": 286,
+            "negative": 0
+          }
+        },
+        "metadata": {
+          "count": 62,
+          "phases": {
+            "M": 60,
+            "i": 2
+          },
+          "timestamp": {
+            "present": 62,
+            "zero": 0,
+            "positive": 62,
+            "negative": 0
+          },
+          "duration": {
+            "present": 0,
+            "zero": 0,
+            "positive": 0,
+            "negative": 0
+          }
+        },
+        "overhead": {
+          "count": 1,
+          "phases": {
+            "X": 1
+          },
+          "timestamp": {
+            "present": 1,
+            "zero": 0,
+            "positive": 1,
+            "negative": 0
+          },
+          "duration": {
+            "present": 1,
+            "zero": 0,
+            "positive": 1,
+            "negative": 0
+          }
+        },
+        "user_annotation": {
+          "count": 83,
+          "phases": {
+            "X": 83
+          },
+          "timestamp": {
+            "present": 83,
+            "zero": 0,
+            "positive": 83,
+            "negative": 0
+          },
+          "duration": {
+            "present": 83,
+            "zero": 0,
+            "positive": 83,
+            "negative": 0
+          }
+        }
+      },
+      "gpu_annotation_validation": {
+        "count": 83,
+        "matching_cpu_names_and_external_ids": 83,
+        "contained_in_profiler_span": 83,
+        "streams": {
+          "7": 83
+        },
+        "overlapping_pairs": 6,
+        "nested_pairs": 6,
+        "duration_sum_ms_not_additive_if_nested": 369.3907689999999
+      },
+      "device_activity_count": 361,
+      "device_activities_with_cuda_api_correlation": 361,
+      "cuda_graph_launch_events": 0,
+      "all_device_graph_ids_zero": true,
+      "all_kernel_queued_fields_zero": true,
+      "alternate_timing_fields": "No tts/tdur/start/end/elapsed fields on events; CUDA args contain only queued=0, IDs and launch/occupancy metadata. Memcpy/memset bandwidth is N/A when duration is zero."
+    }
+  },
+  "findings": [
+    "Not all GPU events are zero: all177 forward/backward GPU user-annotation ranges retain nonzero timestamps and durations with matching CPU identities and valid containing profiler spans.",
+    "Every forward/backward kernel, memcpy, memset, CUDA runtime/driver and ac2g timestamp is zero; all corresponding duration fields are zero where present. Treat per-activity timing as unavailable, never zero compute cost.",
+    "Forward/backward ranges are disjoint on stream7; optimizer annotations include six nested pairs, so annotation sums are not a generic exclusive-cost estimator.",
+    "Correlation IDs preserve operation identities/counts and connect head GEMMs plus10 forward/30 backward FLASH kernels to enclosing CPU functions; they cannot reconstruct the erased per-activity timestamps.",
+    "Historical head GPU graph ranges are6.831160ms forward and13.828145ms backward. CPU annotation ranges4.420538ms/6.191086ms measure different host spans and must not replace GPU or synchronized wall time.",
+    "Optimizer individual CUDA timing is intact:286 kernels plus75 memsets,378 CUDA API events and739 flow records all nonzero. This does not recover timing in the two other exports.",
+    "No CUDA graph-launch events; graph/node IDs are zero. CompiledFxGraph labels do not establish CUDA graph replay.",
+    "Cannot attribute exclusive head attention/MLP/GEMM time or complete-step wall share. Do not extrapolate this historical B2/GA1/head-AdamW trace to current-mainB8/GA8 or combine with eager hook durations.",
+    "Exact cause is unresolved from raw files. The last-session-only intact-activity pattern is consistent with an export-lifetime issue, but does not establish it. Next measurement needs positive per-activity CUDA timestamps/durations plus correlation/containment checks in each exported profiler phase before kernel attribution."
+  ]
+}

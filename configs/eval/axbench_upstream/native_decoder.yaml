@@ -1,0 +1,19 @@
+# Native decoder-only SFT; one natural-language prompt condition, no SAE.
+source_path: ???
+source_sha256: ???
+checkpoint_dir: ???
+step: 1003
+tokenizer_path: ???
+output_dir: out/axbench/native_decoder
+max_concepts: 50
+device: cuda
+seed: 42
+max_new_tokens: 128
+temperature: 1.0
+top_k: 50
+# Pilot cell budget is placement-only: remove it to resume the exact same run.
+max_cells: null
+hydra:
+  output_subdir: null
+  run:
+    dir: .

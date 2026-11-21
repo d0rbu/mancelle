@@ -1,0 +1,117 @@
+{
+  "schema": "production_small_triton_closed_receipt_audit_v1",
+  "audited_at_utc": "2026-09-21T09:26:49.129796+00:00",
+  "job_id": 23377981,
+  "audit_pass": true,
+  "artifact": "out/sft_performance/packed-production-triton-v1-23377981/model-triton-parity.json",
+  "artifact_sha256": "c8a58a665d272aa946d5e032b2db627bf33d0e133a04f22b9c22063a30931970",
+  "remote_hash_matched": true,
+  "closed_process_exit": 0,
+  "exit_file_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+  "source_files_verified_against_sealed_v2": 1005,
+  "frozen_utility_hashes_verified": 10,
+  "source_manifest_sha256": "0e89bf87f2fcbea0e77fe8d3eb43d8c9b5071e9cf45666ecf85c272ea7e9c96f",
+  "helper_sha256": "b04a6620a601a28d36f514ab2ac3f3aabf1fc06c39bffbb30cace1ab3baa6110",
+  "frozen_numerical_gate_sha256": "77c3a38924b6330ae1ef99629b61588d9c6c92f8798f03c1acf801f50240a6c8",
+  "parameter_tensors_per_model": 100,
+  "steps_per_comparison": 3,
+  "comparison_count": 2,
+  "metric_counts": {
+    "losses": 6,
+    "additional_full_outputs": 24,
+    "gradients": 600,
+    "parameters": 600,
+    "updates": 600,
+    "optimizer_state": 288,
+    "baseline_gradients_unchanged": 600,
+    "candidate_gradients_unchanged": 600
+  },
+  "total_metrics": 3318,
+  "tensor_metrics": 3246,
+  "scalar_metrics": 72,
+  "total_tensor_elements_compared_including_repeated_categories": 5494431468,
+  "maximum_absolute_difference": 0.0,
+  "maximum_relative_rms_difference": 0.0,
+  "nonzero_difference_metrics": 0,
+  "all_tensor_metrics_finite": true,
+  "all_tensors_exact": true,
+  "step_records": [
+    {
+      "arm": "baseline_control",
+      "step": 0,
+      "metric_count": 553,
+      "nonzero_head_gradient_tensors": 20,
+      "nonzero_head_update_tensors": 40,
+      "scheduled_group_count": 13
+    },
+    {
+      "arm": "baseline_control",
+      "step": 1,
+      "metric_count": 553,
+      "nonzero_head_gradient_tensors": 40,
+      "nonzero_head_update_tensors": 40,
+      "scheduled_group_count": 13
+    },
+    {
+      "arm": "baseline_control",
+      "step": 2,
+      "metric_count": 553,
+      "nonzero_head_gradient_tensors": 40,
+      "nonzero_head_update_tensors": 40,
+      "scheduled_group_count": 13
+    },
+    {
+      "arm": "candidate",
+      "step": 0,
+      "metric_count": 553,
+      "nonzero_head_gradient_tensors": 20,
+      "nonzero_head_update_tensors": 40,
+      "scheduled_group_count": 13
+    },
+    {
+      "arm": "candidate",
+      "step": 1,
+      "metric_count": 553,
+      "nonzero_head_gradient_tensors": 40,
+      "nonzero_head_update_tensors": 40,
+      "scheduled_group_count": 13
+    },
+    {
+      "arm": "candidate",
+      "step": 2,
+      "metric_count": 553,
+      "nonzero_head_gradient_tensors": 40,
+      "nonzero_head_update_tensors": 40,
+      "scheduled_group_count": 13
+    }
+  ],
+  "route_check_counts": {
+    "admit_optimizer": 28,
+    "build": 4,
+    "full_outputs": 12,
+    "forward_backward": 12
+  },
+  "dynamo_unique_graphs": {
+    "before": 0,
+    "after": 65
+  },
+  "scope": {
+    "diagnostic_only": true,
+    "candidate": "production PackedMuonAdamW selected by the actual SFT opt-in",
+    "effective_decoder_head_flex_backend": "TRITON",
+    "deterministic_algorithms": true,
+    "deterministic_warn_only": false,
+    "native_flash_independent_forward_backward_qualified": false,
+    "real_data_qualified": false,
+    "full_model_qualified": false,
+    "distributed_qualified": false,
+    "performance_qualified": false
+  },
+  "limits": [
+    "Tiny synthetic width512 depth4 sequence512 batch2 accumulation2 head10; not real data or full production geometry.",
+    "Forty head matrices exercised cumulatively: nonzero pre-step gradients 20/40/40 per trajectory, nonzero updates 40/40/40.",
+    "Strict deterministic Triton attention; native FLASH independent forward/backward not qualified by this gate.",
+    "No distributed or performance qualification.",
+    "Job still running real-data gate; no terminal job-integrity or timing conclusion."
+  ]
+}

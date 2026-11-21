@@ -1,0 +1,15 @@
+sanity_check:
+  sft:
+    model_step: 999
+    chatcore:
+      status: pass
+      chatcore: 0.3311
+      per_task_scores:
+        ARC-Easy: 0.56
+        ARC-Challenge: 0.46
+        MMLU: 0.32
+        GSM8K: 0.08
+        HumanEval: 0.12
+        SpellingBee: 1.0
+      max_problems: 50
+      issues: []

@@ -1,0 +1,53 @@
+defaults:
+  - axbench_adv
+  - _self_
+
+# 400M encoder-decoder, full-model SFT step 1013, one MLP FP-head block.
+# Restore the authenticated six-method source and the separate NL attachment.
+# These are source identities, not new baseline evaluations.
+source:
+  prepared_dir: ???
+  main_parquet: ???
+  aux_parquet: ???
+  evaluated_jsonl: ???
+  project_parquet: ???
+  target_meta: ???
+  target_receipt: ???
+  feature_statistics: ???
+  hashes:
+    evaluated_jsonl: 465d09b7cff2e0dac92cd6c2b62fa79e4c275dfd67489a755a57f4ba76266160
+    project_parquet: 317d664ab1d634442743dbcbdc201df502a03bc0fc4a306f71038aad7ed9f660
+    project_manifest: e621c84557151ac23a8574701295eb13c029010e995d34594bdc59b6c741993e
+    target_receipt: 207be14786ba6225d8c30046b716df92029db98b7d91273e7fd1b32052ea91ed
+  expectations:
+    max_concepts: 50
+    project_target_step: 1013
+    project_target_model_tag: encdec400m-l22-s32-mlp1-full-sft-20260921
+    project_repository_git_commit: 3291503b31b17d18d5943bbc13a008f639263c7d
+  nl_attachment:
+    paths:
+      project_parquet: ???
+      project_manifest: ???
+      evaluated_jsonl: ???
+    expectations:
+      max_concepts: 100
+
+pressures: [diffmean_counter, linear_probe_counter]
+# Raw saved-direction units. Zero is the shared control, not a list entry.
+# The upper points measure coherence collapse; they are not attack successes.
+counter_magnitudes: [256, 1024, 4096, 8192, 16384, 32768, 65536]
+project_counter_direction_root: ???
+project_counter_layer: 9
+project_counter_fit_seed: 42
+factor_overrides:
+  SelfConditioning: 6.0
+  SelfConditioningMasked: 6.0
+  NLSteering: 6.0
+reflection:
+  model: openai/gpt-5.6-luna
+
+hydra:
+  job:
+    env_set:
+      AXBENCH_ADV_METHODS: SelfConditioning,SelfConditioningMasked,NLSteering
+      AXBENCH_ADV_PRESSURES: diffmean_counter,linear_probe_counter

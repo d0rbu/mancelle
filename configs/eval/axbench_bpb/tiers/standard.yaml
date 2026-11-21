@@ -1,0 +1,4 @@
+# @package _global_
+# Standard tier: 50 concepts, full samples, default thresholds.
+aggregation:
+  min_rows_per_side: 10

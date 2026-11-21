@@ -1,0 +1,53 @@
+# Precompute percentile values in feature shards
+# Usage:
+#   uv run python -m scripts.preprocess.precompute_percentiles
+#   uv run python -m scripts.preprocess.precompute_percentiles layer=12 sae_width=32k
+#   uv run python -m scripts.preprocess.precompute_percentiles feature_dir=path/to/features
+#   uv run python -m scripts.preprocess.precompute_percentiles device=cuda resume=true
+
+defaults:
+  - _self_
+
+# Structured feature path params (used when feature_dir is null)
+model: gemma-2-2b
+activation_type: residual      # residual | mlp | attention
+layer: 8
+pooling: max_pool
+segment_size: 128
+sae_width: "16k"               # 16k | 32k | 65k | 131k | 262k | 524k | 1m
+dataset_phase: null             # null = base, or: standard_sft | safety_sft | capabilities_sft
+feature_root: out/data/features
+
+feature_dir: null  # null = auto-construct from structured params above; set explicitly to override
+
+# Processing options
+device: auto       # auto (use GPU if available), cpu, or cuda
+resume: false      # skip shards that already have a matching percentile checksum
+force: false       # reprocess ALL shards even if checksums match (overrides resume)
+dry_run: false     # compute percentiles but do not overwrite shard files
+zstd_level: 12     # zstd compression level (1-22) for output shards
+profile: false     # write a percentile timing sidecar
+profile_summary_output: null  # null = out/traces/pct_profile.json. Multi-rank runs
+                              # always suffix .rank{N} (explicit paths included) so
+                              # ranks never overwrite each other's stripe.
+
+# Opt-in bounded, identity-sealed HF source and immutable remote publication.
+# Disabled mode reads only remote.enabled and preserves the local producer.
+remote:
+  enabled: false
+  bucket_id: henryac/nano-gpt-pretrain-steer
+  local_features_root: out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos
+  remote_features_root: l22_ci_nobos_raw
+  staging_dir: null
+  expected_shard_count: null
+  max_output_shard_bytes: null
+  max_decompressed_shard_bytes: null  # required for CUDA; bounds one plain lookahead
+  retry_timeout_seconds: 900.0
+  retry_interval_seconds: 5.0
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

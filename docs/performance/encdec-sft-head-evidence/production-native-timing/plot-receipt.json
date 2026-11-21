@@ -1,0 +1,29 @@
+{
+  "schema": "production_packed_abba_plot_v1",
+  "test_fixture": false,
+  "analysis_path": "analysis.json",
+  "analysis_sha256": "2ab3b7c5bb3275867dd322b656ed7c58ccd234844d425b3aebd1897f7dfee70c",
+  "analyzer_sha256": "c23b1b4787bd8ca432b4642ee4a8b54e44182dae98345d22a61229530a82feee",
+  "plot_helper_sha256": "0e61bfec9eb3ff6bb722df15da99075ed2b3abb76bddf0b7e46ec1d294f247d6",
+  "matplotlib_version": "3.10.8",
+  "plotted_points": 640,
+  "samples_per_trial_and_phase": 40,
+  "sample_filtering": "none",
+  "caption": "Single H200; synthetic W1664 / D27 / T2048 / head10; 2 ABBA pairs per workload; 20 warmup steps per trial.\nAll 40 samples per trial; bars mark medians. No filtering, confidence intervals, or automatic performance claim.\nNo native independent real forward/backward qualification. Within each trial, points run left to right from sample 1 to 40.",
+  "performance_claim": false,
+  "artifacts_sha256": {
+    "samples.png": "1799b29a83c74ae04fbbb63b2f24eb44dcd118f8e2c52b22845fbaa6a242c2fa",
+    "samples.svg": "048a6759bf23383e3e37ebcf33f626e37ba4dd256feccee960ba41b415a31f23"
+  },
+  "publication_derivation": {
+    "original_plot_receipt_sha256": "290a0c8ba30a4a4148611e7370a67dfb35617ee1d271bea905a6059bf86682e9",
+    "changes": [
+      "Replaced absolute analysis_path with the published relative path. PNG remains in the original archive; only SVG is published here.",
+      "Removed generated SVG line-end whitespace only; XML structure, normalized attributes and text are identical. Original SVG bytes remain in the archived campaign."
+    ],
+    "published_artifacts": [
+      "samples.svg"
+    ],
+    "original_svg_sha256": "f2767d0c5f08a10ad2adcffe903fe446bac5481c4c60be7684ca90af0ab4627c"
+  }
+}

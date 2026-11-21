@@ -1,0 +1,26 @@
+{
+  "baseline_head": "1a1685d8ebf4e7efd8482c395563619281be1b67",
+  "candidate_base_head": "1a1685d8ebf4e7efd8482c395563619281be1b67",
+  "device": "NVIDIA GeForce RTX 4090",
+  "workload": "400M SFT step1013; concept36 SelfConditioningMasked; shared zero and DiffMean/LinearProbe counter magnitude256; ten inputs per point; deterministic local HTTP judge",
+  "provider": "localhost fake; no paid calls",
+  "baseline_wall_seconds": 81.99665680155158,
+  "candidate_wall_seconds": 79.81668277084827,
+  "seconds_saved": 2.179974030703306,
+  "speedup": 1.0273122604827107,
+  "baseline_http_calls": 90,
+  "candidate_http_calls": 90,
+  "baseline_files": 49,
+  "candidate_files": 49,
+  "identical_file_count": 46,
+  "different_files": [
+    "logs/SelfConditioningMasked/c36.worker0.log",
+    "logs/final-worker.log",
+    "manifest.json"
+  ],
+  "manifest_field_differences": [
+    "project_bf16_decoder_linears"
+  ],
+  "baseline_manifest_sha256": "74988df83216ba45980f8ca30e87d7b1dd2f08fc23f11279605ad5765b8a5243",
+  "candidate_manifest_sha256": "5fbe513e25b08484273e7c9719aab048f6b39d4d26936c6313cb1e33acc5b410"
+}

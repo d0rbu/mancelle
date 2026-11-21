@@ -1,0 +1,110 @@
+{
+  "baseline_commit": "91a7604ecf28500fcf2b0df6ccaeb96d901e57b7",
+  "backend": "cpu/sdpa",
+  "results": [
+    {
+      "dtype": "float32",
+      "compile_backend": null,
+      "depth": 0,
+      "exact_tensors": 131,
+      "files": {
+        "old-depth0.pt": "0f8b8aa4248d3782f1752e0c716492d0d35162d90f3655e3f83b386769ee360b",
+        "candidate-depth0.pt": "36f90b1491305bbd458e026c7eb44e5195ce23dcf4670f249ea5e22d72fd0667",
+        "old-depth0.json": "7822c7cde2d820826b28930e0bf1a265577f506290388f649695c5189603a360",
+        "converted-depth0.json": "275b9040546348e97feea00435e041056c4774d21c00669f0fabb832de4377c3",
+        "converted-depth0.pt": "35d6575410bf45c222fac1ae7e21d168b020677b548488b5ed76e7cb652600f9"
+      }
+    },
+    {
+      "dtype": "float32",
+      "compile_backend": null,
+      "depth": 2,
+      "exact_tensors": 151,
+      "files": {
+        "old-depth2.pt": "ec34791fc81db838c960d34142cf6b3f3b30ef2ec047e3db3fbd579b77738d8b",
+        "candidate-depth2.pt": "541756ac55e25cec4cbe92491a77469fac420115f4c6ca23fd7ca1ac6759a545",
+        "old-depth2.json": "beb53da37b0d06308e277f3cca66f34739b51462cd95a37ab6c7b4d63a5e061c",
+        "converted-depth2.json": "379319bd14f55ff335c3c7a6e38c0bb348fccddfb6782f3c718cb7d5384aac3a",
+        "converted-depth2.pt": "8076b69ee0d28175621d1026c6a9c0bca2bbd860cdfe223e9a3e356327649112"
+      }
+    },
+    {
+      "dtype": "bfloat16",
+      "compile_backend": null,
+      "depth": 0,
+      "exact_tensors": 131,
+      "files": {
+        "old-depth0.pt": "6234fa86a19e045715a22f9bbe63071f1fe71317d9545349eae2abd7d075e513",
+        "candidate-depth0.pt": "1a1666f1afdefaa354c25ac1b4d851be823250b44d880111279dd7e1cb907233",
+        "old-depth0.json": "7822c7cde2d820826b28930e0bf1a265577f506290388f649695c5189603a360",
+        "converted-depth0.json": "275b9040546348e97feea00435e041056c4774d21c00669f0fabb832de4377c3",
+        "converted-depth0.pt": "35d6575410bf45c222fac1ae7e21d168b020677b548488b5ed76e7cb652600f9"
+      }
+    },
+    {
+      "dtype": "bfloat16",
+      "compile_backend": null,
+      "depth": 2,
+      "exact_tensors": 151,
+      "files": {
+        "old-depth2.pt": "a49fc11f2200387234d83a35648efb8fa5a99c62d6b0eee3fc941db511cc0e88",
+        "candidate-depth2.pt": "c7258f3e91818106ea014d07a58d4f10b7798a900e3fc2d22e815ca238972be8",
+        "old-depth2.json": "beb53da37b0d06308e277f3cca66f34739b51462cd95a37ab6c7b4d63a5e061c",
+        "converted-depth2.json": "379319bd14f55ff335c3c7a6e38c0bb348fccddfb6782f3c718cb7d5384aac3a",
+        "converted-depth2.pt": "8076b69ee0d28175621d1026c6a9c0bca2bbd860cdfe223e9a3e356327649112"
+      }
+    },
+    {
+      "dtype": "float32",
+      "compile_backend": "aot_eager",
+      "depth": 0,
+      "exact_tensors": 131,
+      "files": {
+        "old-depth0.pt": "a961778fabe3fb088545b2501262ef29f67b908757e6fce7020a8c5fc66bda58",
+        "candidate-depth0.pt": "d491e3e14df08856e89c9a73f9aae5f8f9a0e1dd65552e2e047ee59530e00aab",
+        "old-depth0.json": "7822c7cde2d820826b28930e0bf1a265577f506290388f649695c5189603a360",
+        "converted-depth0.json": "275b9040546348e97feea00435e041056c4774d21c00669f0fabb832de4377c3",
+        "converted-depth0.pt": "35d6575410bf45c222fac1ae7e21d168b020677b548488b5ed76e7cb652600f9"
+      }
+    },
+    {
+      "dtype": "float32",
+      "compile_backend": "aot_eager",
+      "depth": 2,
+      "exact_tensors": 151,
+      "files": {
+        "old-depth2.pt": "ef9e23c071cde6853d92d013d66e1701fd4aee99d86fc272a46ec4cd637679d4",
+        "candidate-depth2.pt": "2b153e73fb74ea3bf8f165788aa4e02abe75dddec6d0526f752fcd058e121b13",
+        "old-depth2.json": "beb53da37b0d06308e277f3cca66f34739b51462cd95a37ab6c7b4d63a5e061c",
+        "converted-depth2.json": "379319bd14f55ff335c3c7a6e38c0bb348fccddfb6782f3c718cb7d5384aac3a",
+        "converted-depth2.pt": "8076b69ee0d28175621d1026c6a9c0bca2bbd860cdfe223e9a3e356327649112"
+      }
+    },
+    {
+      "dtype": "bfloat16",
+      "compile_backend": "aot_eager",
+      "depth": 0,
+      "exact_tensors": 131,
+      "files": {
+        "old-depth0.pt": "3b7eddf22ab99e09e45e819e23a4bebd4f03fafe19122fca3995b2f771a23639",
+        "candidate-depth0.pt": "d32d36387ca9dcb8741f19cdcae03c5638db25a7c6bf613b1504501dd1d9740a",
+        "old-depth0.json": "7822c7cde2d820826b28930e0bf1a265577f506290388f649695c5189603a360",
+        "converted-depth0.json": "275b9040546348e97feea00435e041056c4774d21c00669f0fabb832de4377c3",
+        "converted-depth0.pt": "35d6575410bf45c222fac1ae7e21d168b020677b548488b5ed76e7cb652600f9"
+      }
+    },
+    {
+      "dtype": "bfloat16",
+      "compile_backend": "aot_eager",
+      "depth": 2,
+      "exact_tensors": 151,
+      "files": {
+        "old-depth2.pt": "c63390a42a509057fed255ab2ce0d7ecdadb0714fe73f894092131aac5998db0",
+        "candidate-depth2.pt": "e318681e16eab5905be836ec88ccf7bb9bbdfb4de668fd2b4e3f238ece50f052",
+        "old-depth2.json": "beb53da37b0d06308e277f3cca66f34739b51462cd95a37ab6c7b4d63a5e061c",
+        "converted-depth2.json": "379319bd14f55ff335c3c7a6e38c0bb348fccddfb6782f3c718cb7d5384aac3a",
+        "converted-depth2.pt": "8076b69ee0d28175621d1026c6a9c0bca2bbd860cdfe223e9a3e356327649112"
+      }
+    }
+  ]
+}

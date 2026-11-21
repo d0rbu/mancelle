@@ -1,0 +1,11 @@
+# WildGuard v2: safe harmful-prompt responses + safe benign non-refusals.
+# Natural seed-42 shuffle; no stratification. Shared ChatCORE SmolTalk background.
+# Dataset revisions are fixed in the producer and recorded in preparation.json.
+checkpoint_meta_path: ???
+stats_path: null
+output_dir: ???
+dry_run: true
+device: cuda
+extraction_batch_size: 1
+positive_cap: 128
+background_count: 1024

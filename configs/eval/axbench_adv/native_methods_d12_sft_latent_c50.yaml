@@ -1,0 +1,12 @@
+defaults:
+  - native_methods
+  - _self_
+
+# Native D12/W768 SFT step 1003. Authenticate the D12 standard100 union and
+# retain its c0..49-selected positive factors and saved fits.
+step: 1003
+methods: [DiffMean, LinearProbe, LoRA]
+pressures: [diffmean_counter, linear_probe_counter]
+# Same raw saved-direction grid as the PromptSteering arm. The archived shared
+# zero remains the default; set zero_control_source=runtime for a fresh cohort.
+counter_magnitudes: [64, 256, 512, 1024, 2048, 4096]

@@ -1,0 +1,49 @@
+{
+  "scope": "Instrumented real RTX 4090 discovery profile: separate 64-token generative pass; eager residual blend inside ragged decode only. Not complete-suite latency or a measured candidate speedup.",
+  "trace_sha256": "acc64bd0e57875bdc0987442eeddfe5096b7f4db1a754b361cfdcad9ba33b88d",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "torch": "2.13.0+cu130",
+  "triton": "3.7.1",
+  "method": [
+    "Count CPU user_annotation and GPU gpu_user_annotation ranges separately.",
+    "Select nested cpu_op events by same host PID/TID and full interval containment in a chatcore_residual_blend CPU range.",
+    "Attribute cat=kernel GPU events using External id of the nested CPU operator.",
+    "Independently join nested cudaLaunchKernel runtime events to kernels by CUDA correlation id; require identical kernel event sets.",
+    "Group kernels by parent CPU range; require exactly four kernels per range and one matching GPU annotation External id.",
+    "Sum actual kernel durations once. Separately sum first-kernel-start to last-kernel-end spans and GPU annotation durations."
+  ],
+  "host_annotation_count": 3276,
+  "host_annotation_duration_ms": 161.44178599999998,
+  "host_cuda_launch_count": 13104,
+  "host_cuda_launch_runtime_duration_ms": 32.67134099999957,
+  "gpu_annotation_count": 3276,
+  "gpu_annotation_duration_ms": 77.27891500000001,
+  "actual_kernel_count": 13104,
+  "actual_kernel_duration_ms": 30.596814000000137,
+  "actual_kernels_per_blend": 4,
+  "kernel_duration_by_cpu_operator": {
+    "aten::mul": {
+      "kernel_count": 6552,
+      "kernel_duration_ms": 18.305903999999785
+    },
+    "aten::add": {
+      "kernel_count": 3276,
+      "kernel_duration_ms": 8.692703000000021
+    },
+    "aten::copy_": {
+      "kernel_count": 3276,
+      "kernel_duration_ms": 3.59820700000024
+    }
+  },
+  "sum_first_to_last_kernel_spans_ms": 77.272732421875,
+  "sum_intra_blend_kernel_gaps_ms": 46.67591842187486,
+  "max_annotation_vs_kernel_span_discrepancy_us": 0.0033124999999998295,
+  "external_id_and_correlation_joins_identical": true,
+  "interpretation": [
+    "The roughly 77.28 ms GPU annotation includes inter-kernel gaps; actual attributed CUDA kernel duration is about 30.60 ms.",
+    "Host range duration includes Python/ATen dispatch and allocation as well as CUDA launch calls; CUDA runtime launch time is a nested subset and must not be added to host range duration.",
+    "CPU operator CUDA totals, kernel-name rows, and GPU annotations are overlapping representations; do not sum them.",
+    "The operators.txt 8.52 percent is not the fraction of complete ChatCORE evaluation time.",
+    "Profiler overhead and asynchronous overlap prevent interpreting these durations as an achievable end-to-end saving; require the uninstrumented full-suite matched comparison."
+  ]
+}

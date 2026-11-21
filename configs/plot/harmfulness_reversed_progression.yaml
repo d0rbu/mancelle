@@ -1,0 +1,21 @@
+# Reverse-order harmfulness progression plots (capabilities -> safety).
+# Usage: uv run python -m scripts.eval.plot_harmfulness_reversed_progression
+
+model_tag: d12_baseline
+base_dir: nanochat_cache
+output_dir: null    # null => fig/harmfulness_reversed_progression/${model_tag}
+# num_harmful matches harm_num_harmful in the reversed training_progression
+# config (configs/eval/training_progression_d12_baseline_reversed.yaml).
+# The forward d12_baseline config uses 700; reverse-order eval uses 50.
+num_harmful: 50
+
+# Optional exact {targets_sha256: SHA256, strength: NUMBER} receipt filter.
+# Null includes each observed safety strength as a separate plotted signal.
+safety_steering: null
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

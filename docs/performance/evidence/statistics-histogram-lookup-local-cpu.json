@@ -1,0 +1,366 @@
+{
+  "operation": "Complete public CPU streaming compute_statistics, full genuine cohort",
+  "mechanism": "Lazy per-finalize lookup of exact histogram-bin IDs over all31743 positive finite float16 values; shared unrounded edges/clamps/right=False ties. Quantiles, count audits and producer allocator/admission unchanged.",
+  "regime": "LOW_RAM_NUMPY_CONTROLLED_NICE19: identical benchmark-only NumPy zero-backed count allocator and count_table_nbytes shape/type validation in both arms; all owned threads normalized to nice19 before clocks. Not production allocator/admission, anonymous eager backing, cold-cache, GPU or training throughput qualification.",
+  "population": {
+    "documents": 8239,
+    "segments": 24107,
+    "activations": 50689690,
+    "compressed_input_bytes": 98347010,
+    "n_sae_features": 65536
+  },
+  "input": {
+    "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/eval_contexts/gemma3_4bpt_l22_clustered/shard_00000_features.safetensors.zst": {
+      "identity": {
+        "device": 66307,
+        "inode": 153227283,
+        "st_mode": 33204,
+        "uid": 1000,
+        "gid": 1000,
+        "nlink": 1,
+        "bytes": 98347010,
+        "mtime_ns": 1789959179234561067,
+        "ctime_ns": 1789959179546564419
+      },
+      "sha256": "ee4384b86359e5b1a140b0ecd5d532bfff743bd04688ad6a6218f22908923c38"
+    },
+    "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-7b181cac/out/splice_perf_91/statistics_output/feature_statistics.safetensors": {
+      "identity": {
+        "device": 66307,
+        "inode": 160979737,
+        "st_mode": 33152,
+        "uid": 1000,
+        "gid": 1000,
+        "nlink": 1,
+        "bytes": 55827776,
+        "mtime_ns": 1793008405093297127,
+        "ctime_ns": 1793008405219298394
+      },
+      "sha256": "f290e598f89dd265ed6674bb760553fd87eb7adc4f1e39da7a38e400221f83d8"
+    }
+  },
+  "source_sha256": {
+    "baseline": "1a4c7646461236e3b3213b6d1b94d4b0f007dc112b887a41faa761158cadd74c",
+    "candidate": "c8bed1436f4b2a35aa58663d53e51cc9c5a9181d50cbeed1c65ddf20350a816a",
+    "regression_tests": "69fdd27ab5049739d5e2736782e53e537f5c09b23b3c0d22c18f315ae98f96a9"
+  },
+  "config": {
+    "feature_dir": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-7b181cac/out/splice_perf_91/work/s128/features",
+    "n_sae_features": null,
+    "activation_percentile": 0.0,
+    "skip_per_feature_detail": false,
+    "streaming": true,
+    "device": "cpu",
+    "gpu_chunk_size": 500000000,
+    "exclude_last_shard": true,
+    "allow_degenerate_statistics": false,
+    "checkpoint_dir": null,
+    "checkpoint_interval_shards": 50,
+    "remote_config": null
+  },
+  "runtime": {
+    "thread_nice_values": [
+      19
+    ],
+    "intra": 16,
+    "inter": 32,
+    "default_dtype": "torch.float32",
+    "default_device": "cpu",
+    "deterministic": false,
+    "nice": 19,
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "gc_enabled": true,
+    "gc_threshold": [
+      2000,
+      10,
+      10
+    ],
+    "profile_is_none": true,
+    "trace_is_none": true,
+    "thread_environment": {
+      "OMP_NUM_THREADS": null,
+      "MKL_NUM_THREADS": null,
+      "OPENBLAS_NUM_THREADS": null,
+      "TOKENIZERS_PARALLELISM": null,
+      "RAYON_NUM_THREADS": null
+    }
+  },
+  "limits": {
+    "seconds": 600,
+    "owned_group_rss_cap_bytes": 8589934592,
+    "fresh_effective_available_min_bytes": 12884901888,
+    "runtime_effective_available_floor_bytes": 4294967296,
+    "fresh_disk_min_bytes": 3221225472,
+    "poll_seconds": 0.25,
+    "total_seconds": 600
+  },
+  "clock_scope": "Fresh serial processes; complete public body includes allocation/update/finalization/save. Imports, owned-thread control, bindings checks and full output oracles outside clocks. No diagnostic wrappers/profiler/GC mutation. Process CPU includes all threads/spin, not operator attribution. Live thread endpoints cannot exclude unobserved transients.",
+  "samples": [
+    {
+      "slot": "warm_a",
+      "arm": "baseline",
+      "wall_seconds": 16.674576494842768,
+      "process_cpu_seconds": 172.009665768
+    },
+    {
+      "slot": "warm_b",
+      "arm": "candidate",
+      "wall_seconds": 12.371738206595182,
+      "process_cpu_seconds": 45.16655939
+    },
+    {
+      "slot": "timed_0",
+      "arm": "baseline",
+      "wall_seconds": 17.903511751443148,
+      "process_cpu_seconds": 181.828506523
+    },
+    {
+      "slot": "timed_1",
+      "arm": "candidate",
+      "wall_seconds": 18.6053882278502,
+      "process_cpu_seconds": 64.40685418999999
+    },
+    {
+      "slot": "timed_2",
+      "arm": "candidate",
+      "wall_seconds": 16.59683684632182,
+      "process_cpu_seconds": 59.892860505
+    },
+    {
+      "slot": "timed_3",
+      "arm": "baseline",
+      "wall_seconds": 35.178003013134,
+      "process_cpu_seconds": 325.63116776699997
+    },
+    {
+      "slot": "timed_4",
+      "arm": "candidate",
+      "wall_seconds": 12.044766366481781,
+      "process_cpu_seconds": 42.643120889
+    },
+    {
+      "slot": "timed_5",
+      "arm": "baseline",
+      "wall_seconds": 16.281044274568558,
+      "process_cpu_seconds": 164.18009894300002
+    },
+    {
+      "slot": "timed_6",
+      "arm": "baseline",
+      "wall_seconds": 16.694102715700865,
+      "process_cpu_seconds": 160.98713277800002
+    },
+    {
+      "slot": "timed_7",
+      "arm": "candidate",
+      "wall_seconds": 13.012800049036741,
+      "process_cpu_seconds": 41.161966128
+    }
+  ],
+  "metrics": {
+    "wall_seconds": {
+      "pooled": {
+        "baseline": 21.514165438711643,
+        "candidate": 15.064947872422636,
+        "improvement_percent": 29.976610455381966
+      },
+      "halves": [
+        {
+          "baseline": 26.540757382288575,
+          "candidate": 17.60111253708601,
+          "improvement_percent": 33.68270436460209
+        },
+        {
+          "baseline": 16.48757349513471,
+          "candidate": 12.528783207759261,
+          "improvement_percent": 24.010751421630616
+        }
+      ],
+      "positions": [
+        {
+          "baseline": 17.298807233572006,
+          "candidate": 14.320801606401801,
+          "improvement_percent": 17.215092271742026
+        },
+        {
+          "baseline": 25.72952364385128,
+          "candidate": 15.80909413844347,
+          "improvement_percent": 38.55659996946173
+        }
+      ],
+      "report_only_pairs": [
+        {
+          "baseline": 17.903511751443148,
+          "candidate": 18.6053882278502,
+          "improvement_percent": -3.9203285151611387
+        },
+        {
+          "baseline": 35.178003013134,
+          "candidate": 16.59683684632182,
+          "improvement_percent": 52.82041211911531
+        },
+        {
+          "baseline": 16.281044274568558,
+          "candidate": 12.044766366481781,
+          "improvement_percent": 26.0196940481512
+        },
+        {
+          "baseline": 16.694102715700865,
+          "candidate": 13.012800049036741,
+          "improvement_percent": 22.05151561216791
+        }
+      ],
+      "pooled_gate": true,
+      "strata_gate": true
+    },
+    "process_cpu_seconds": {
+      "pooled": {
+        "baseline": 208.15672650275,
+        "candidate": 52.026200427999996,
+        "improvement_percent": 75.00623626144856
+      },
+      "halves": [
+        {
+          "baseline": 253.72983714499998,
+          "candidate": 62.149857347499996,
+          "improvement_percent": 75.50549905883439
+        },
+        {
+          "baseline": 162.5836158605,
+          "candidate": 41.9025435085,
+          "improvement_percent": 74.22708107042396
+        }
+      ],
+      "positions": [
+        {
+          "baseline": 171.40781965050002,
+          "candidate": 51.267990697,
+          "improvement_percent": 70.09005143316375
+        },
+        {
+          "baseline": 244.905633355,
+          "candidate": 52.784410159,
+          "improvement_percent": 78.447041239559
+        }
+      ],
+      "report_only_pairs": [
+        {
+          "baseline": 181.828506523,
+          "candidate": 64.40685418999999,
+          "improvement_percent": 64.57824165109501
+        },
+        {
+          "baseline": 325.63116776699997,
+          "candidate": 59.892860505,
+          "improvement_percent": 81.60714746204658
+        },
+        {
+          "baseline": 164.18009894300002,
+          "candidate": 42.643120889,
+          "improvement_percent": 74.02662005715757
+        },
+        {
+          "baseline": 160.98713277800002,
+          "candidate": 41.161966128,
+          "improvement_percent": 74.43151796189697
+        }
+      ],
+      "pooled_gate": true,
+      "strata_gate": true
+    },
+    "four_fixed_gates": [
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "decision": "PASS",
+  "oracle": "All ten complete outputs matched all22 tensor payloads/dtypes/shapes and static metadata of original91 f290 golden; only generated_at and extrap_estimated_wall_time_hours volatile. Null-width discovery and full population checks passed each run. All runtimes before==after==first warmA.",
+  "adverse_case": "First adjacent timed pair (timed0 baseline/timed1 candidate) wall regressed3.920328515%; all8 primary rows retained, no exclusions/retry. All CPU adjacent pairs improved.",
+  "peak_observed_owned_group_rss_bytes": 3577970688,
+  "resource_outcomes": "All10 child exits0; no watchdog violation/signals/live process-group tails. Peak applies only explicit lowRAM regime.",
+  "correctness": {
+    "bounded_differential": {
+      "cases": 56,
+      "matching_materialized_successes": 36,
+      "matching_errors": 20,
+      "full_domain_successes": 6
+    },
+    "prototype_existing_pytest": {
+      "passed": 307,
+      "skipped": 16
+    },
+    "applied_nine_file_validation": {
+      "passed": 519,
+      "failed": 3,
+      "skipped": 42,
+      "deselected": 4,
+      "warnings": 18,
+      "all_three_added_cases_passed": true,
+      "baseline_reproduction": "Exactly the3 failing TestVectorizedPass2 cases were rerun with whole1a4 baseline installed canonically before pytest/consumers; all3 failed with identical JUnit message RuntimeError: No CUDA GPUs are available at unchanged reference CUDA path. No entire9file baseline run or clean-suite pass is claimed. No cases excluded or fixed.",
+      "failure_cases": [
+        "test_vectorized_matches_merge",
+        "test_vectorized_histograms_match",
+        "test_vectorized_single_shard"
+      ],
+      "static_checks": "Scoped installed Ruff/ty and git diff --check passed."
+    }
+  },
+  "evidence_pins": {
+    "out/splice_perf_99/histogram_bin_lookup_benchmark_v1.json": "8a2fdc12560fbfc91dd1d6287e6dc95a652594095d12637d79041f9d7fbfb8a5",
+    "out/splice_perf_99/histogram_bin_lookup_benchmark_v1_freeze_final.json": "f3c9d3af4f7c419c61a474542caa756f1812178b159945fdc20866bee20d29e3",
+    "out/splice_perf_99/histogram_bin_lookup_benchmark_v1.py": "86df3118454c7dde7a0e793ddc314653592511f057c292daa8b690207ec9bd8c",
+    "out/splice_perf_99/histogram_bin_lookup_benchmark_v1_child.py": "b0451d1aae6998e49c22cf0237d1844b2487e211361d85d0de7e177554559262",
+    "out/splice_perf_99/histogram_bin_lookup_benchmark_v1_independent_actual_review.json": "7abd73205f55cacde91b598609d6669ab3f23a41cde5331529755343f174e42e",
+    "out/splice_perf_99/histogram_bin_lookup_benchmark_v1_independent_extra_actual_review.json": "b500f04394dcdcab43b2c10fbd7eaf1ec1cf4a691db4aa48a49ce1678eefea0e",
+    "out/splice_perf_99/histogram_lut_correctness_v1/result.json": "40cd7e7e78ee7acd7c8450158f43703337f3520b3a5ab23b7fbac1a172659a4f",
+    "out/splice_perf_99/histogram_lut_correctness_v1/differential.json": "9b28d47dec083c8aad8fc5bd5e5b122fb1d1f43fdd3b9fe1cbc3eb4b72eadfaa",
+    "out/splice_perf_99/histogram_lut_correctness_v1_independent_actual_review.json": "812081be7c609dbe2efb47eaad96bce185a9e88c9d3ffbb00826772cd7854a07",
+    "out/splice_perf_99/histogram_lut_correctness_v1_independent_extra_actual_review.json": "70f16af2fe8cafa0de31d50ccdf6f01b4f423713a1c7914b84065531392b4d7c",
+    "out/splice_perf_99/histogram_lut_applied_checks_v1/pytest.xml": "141166e5c475372c2adcc79f69e59ae285a58c247d90c2fef94fbb1056e3e944",
+    "out/splice_perf_99/histogram_lut_applied_checks_v1/resources.json": "0ee59f2e97554705e135aacd4fc6c98c8f6ba916cb5ba6cebaa1273b90ff9528",
+    "out/splice_perf_99/histogram_lut_applied_checks_v1/terminal.json": "5719e40c57ae68677fdd03a9a823a5a60f13d11723bf8bf2e4dc026ee8934735",
+    "out/splice_perf_99/histogram_lut_applied_checks_v1/stdout.log": "0bedea6090f1f44e3248d5970f5ad0d5eee927a323d2334fd86af45bffd5c3f7",
+    "out/splice_perf_99/histogram_lut_applied_checks_v1/stderr.log": "ee649220d15160ba4535a7786250af6d7977bbefe63aade254a3850aee272f43",
+    "out/splice_perf_99/histogram_lut_baseline_failure_reproduction_v1/pytest.xml": "0f0305a59a21ef61fcaf85fbf9b71bfd6a806ed5981e4ec0962d7f45ca7aeee8",
+    "out/splice_perf_99/histogram_lut_baseline_failure_reproduction_v1/resources.json": "206d73d1d1ea6dcf325522837c1eac1ecd19489e5c22c6392e73e88dc2359b04",
+    "out/splice_perf_99/histogram_lut_baseline_failure_reproduction_v1/terminal.json": "e00b59a82cb1c046c84b8a1de4ddc483ea2cce1edf6eeddf2758d8058a5910e7",
+    "out/splice_perf_99/histogram_lut_baseline_failure_reproduction_v1/stdout.log": "7bb6d7844e575c41b9235ff1f37c03eb10d0f936697516c9220c249d5da97a9f",
+    "out/splice_perf_99/histogram_lut_baseline_failure_reproduction_v1/stderr.log": "b31335a7a8c2cd4b7f92fe4e97365863c3f7eaa05d1a300ea0023ac6f92cd941",
+    "out/splice_perf_99/histogram_lut_baseline_failure_reproduction_v1/baseline_binding.json": "13759e9bf8e0a3bb9070d1a91445dad20263b9b81e7ea80c1035fca20085f199"
+  }
+}

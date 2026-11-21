@@ -1,0 +1,12 @@
+# Model-free AxBench input grid for project-only SelfConditioning evaluation.
+
+prepared_dir: out/axbench/prepared
+output_path: out/axbench/runs/c5/project_input/steering_input.parquet
+manifest_path: out/axbench/runs/c5/project_input/manifest.json
+max_concepts: 5
+force: false
+
+hydra:
+  output_subdir: null
+  run:
+    dir: .

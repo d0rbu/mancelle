@@ -1,0 +1,79 @@
+# Steering ROBUSTNESS: the additive families under a counter-steering sweep.
+#
+# This is the current-model counterpart of
+# `out/eval/axbench_bpb_adv_additive_current/additive_bpb_l12_current_20260711_retry`,
+# whose `plots/<mode>/steerability_vs_baseline.png` traces each family across
+# counter-steering strengths.
+#
+# The distinction that matters: every other clustered run here pins
+# `magnitudes: [0.0]`, which measures steerability with NO adversary and
+# collapses each family to a single point. Robustness is the TRAJECTORY -- how
+# fast a family's margin degrades as the counter-direction grows -- so it needs
+# the sweep. The 11 magnitudes below are copied verbatim from the l12 reference
+# run's `adversarial_strength` values so the two are directly comparable.
+#
+# GCG is deliberately absent. `ours_gcg_encdec` measures ~7 min per fair group
+# over 100 groups plus ~693 roofline bags (#1245), i.e. days; the additive arm
+# is the bounded part of that picture and is what this run delivers.
+
+defaults:
+  - axbench_bpb_adv_gemma3_4bpt_l22_f65k_clustered_baseline_encdec_rf
+  - _self_
+
+# Decoder-only families, plus control.
+#
+# Control is not a third method -- it is the null direction, and without it a
+# reader cannot tell how much of a family's margin is the direction versus the
+# act of perturbing activations at all.
+#
+# `feature_diffmean_encdec` is DELIBERATELY ABSENT, and not for want of asking.
+# Counter-steering a target requires the counter-direction in THAT target's own
+# coordinates (direction_requirements.py:145-160 requests
+# `target_model=<the row's target>` whenever `adversarial_strength != 0`), so an
+# encdec-target row at non-zero strength needs `diffmean/encdec/<mode>/`.
+# axbench_base never trains it on a clustered source:
+#
+#   targets=(("decoder_only",) if state.cluster_contract is not None
+#            else ("decoder_only", "encdec"))     # axbench_base_eval.py:1176-1181
+#
+# The l12 reference run has `baselines/diffmean/encdec/` precisely because it was
+# UNCLUSTERED. Our source (l22_f65k_clustered_std50_m) has decoder_only only, so
+# the preflight fails closed -- correctly. Note this is invisible at
+# `magnitudes: [0.0]` (the requirement is gated on strength != 0), which is why
+# every prior clustered run was fine.
+#
+# The ROOFLINE arm is dropped too (the parent supplies it): it is the privileged
+# upper bound for feature-DiffMean, not a steering method anyone can run.
+base_methods:
+  - diffmean_decoder_only
+  - neg_diffmean_decoder_only
+  - linear_probe_decoder_only
+  - neg_linear_probe_decoder_only
+  - control_decoder_only
+  - neg_control_decoder_only
+
+# `ours` is omitted because no ours-family method remains in base_methods.
+# It WOULD be required the moment `feature_diffmean_encdec` is added back:
+#
+# attack_rows.py:883-891 emits an additive row only when the spec's
+# `baseline_family` is in `families` (or is "control"). Both feature-DiffMean
+# methods carry `baseline = "ours"`. Drop it and the fair arm still squeaks
+# through on the `_is_fair_feature_diffmean_target_spec` control-only special
+# case, while the ROOFLINE arm matches neither branch and emits ZERO rows with
+# no error -- which is exactly how 693 derived roofline bags went unscored
+# once already. The sibling `..._nogcg.yaml` has `[diffmean, linear_probe]`
+# and would silently lose the encoder-space families for this reason.
+#
+# Unlike the parent, `ours` is NOT content-neutral here: with a real magnitude
+# grid it is what gives the encdec families their counter-steering trajectory.
+adversarial_methods:
+  - method: additive_direction
+    families: [diffmean, linear_probe]
+    magnitudes: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, 4.0, 6.0]
+
+# Class margin, not roundtrip: no sample generation, so scoring is BPB only.
+steering_metric: bpb_class_margin
+
+# Separate tag: this is a different attack-rows set (11 strengths, not 1) and
+# must not overwrite the single-magnitude `..._m_full` run or its plots.
+run_tag: l22_f65k_clustered_std50_m_robustness

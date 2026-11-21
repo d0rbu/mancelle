@@ -1,0 +1,38 @@
+# Interactive chat CLI for encoder-decoder models with SAE feature conditioning
+# Usage: python -m scripts.chat.steer_chat_cli
+# Usage: python -m scripts.chat.steer_chat_cli source=encdec feature_conditions='{0: 1, 5: 2}'
+# Usage: python -m scripts.chat.steer_chat_cli source=sft  # also works with decoder-only
+
+source: encdec
+mode: chat
+model_tag: null
+step: null
+prompt: ""
+temperature: 0.6
+top_k: 50
+max_new_tokens: 256
+device_type: ""
+dtype: bfloat16
+feature_conditions: {}
+
+# Required for encoder-decoder sources. The cache must contain the exact
+# prompt/conversation token sequences used during the chat session.
+conditioning:
+  context_cache_dir: null
+  n_sae_features: 16384
+  num_buckets: 2
+  identity:
+    model_id: null
+    sae_id: null
+    layer: null
+    pooling: null
+    feature_selection_hash: null
+  feature_selection: null
+  negative_selection: null
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

@@ -1,0 +1,23 @@
+features:
+  - id: 0
+    description: "toxic/offensive language"
+    confidence: 5
+  - id: 1
+    description: "formal/academic writing style"
+    confidence: 4
+
+generation:
+  max_new_tokens: 128
+  temperature: 0.7
+  top_k: 50
+  samples_per_condition: 5
+
+judge:
+  model: "openai/gpt-5-nano"
+
+magnitude_levels: [0, 5, 9]
+
+prompts:
+  - "The following is a discussion about"
+  - "In recent years, the topic of"
+  - "When considering the implications of"

@@ -1,0 +1,44 @@
+# Token counting config
+# Usage: python -m scripts.preprocess.count_tokens
+
+# Model architecture (must match base_train.yaml defaults)
+depth: 26
+aspect_ratio: 64
+head_dim: 128
+max_seq_len: 1024
+window_pattern: "SSSL"
+
+# Training horizon (must match base_train.yaml defaults)
+target_param_data_ratio: 8.25
+
+# Mixture selection (standard, capabilities, safety, chatcore, standard_steered,
+# or standard_steered_balanced)
+mixture: standard
+
+# Standard SFT mixture (must match chat_sft.yaml defaults)
+mmlu_epochs: 1
+gsm8k_epochs: 1
+# Steered single-turn JSONL (only used by the steered mixtures)
+steered_jsonl: null
+
+# Capabilities mixture params (must match chat_sft.yaml defaults)
+smoltalk_limit: 120000
+opencoder_limit: 50000
+capabilities_mmlu_epochs: 2
+orca_math_limit: null
+metamath_limit: null
+simple_spelling_size: 200000
+spelling_bee_size: 80000
+
+# Safety mixture params (must match chat_sft.yaml defaults)
+wildjailbreak_epochs: 2
+wildguardmix_epochs: 3
+coconot_epochs: 2
+smoltalk_safety_limit: 120000
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

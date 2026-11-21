@@ -1,0 +1,8 @@
+# Standard SFT of the immutable final EleutherAI Pythia 2.8B checkpoint.
+defaults:
+  - chat_sft_huggingface
+  - _self_
+
+huggingface:
+  model_id: EleutherAI/pythia-2.8b
+  revision: 2a259cdd96a4beb1cdf467512e3904197345f6a9

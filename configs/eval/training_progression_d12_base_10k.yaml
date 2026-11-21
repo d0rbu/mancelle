@@ -1,0 +1,55 @@
+# Progression eval for the d12_base_10k decoder-only run (10k steps).
+# The specific step numbers below are observational — they reflect the
+# checkpoints produced by runs/sft_d12_10k.sh with save_every=500 and
+# num_iterations=1000 in each SFT stage. Safety SFT's last observed
+# step may differ from num_iterations when per-rank dataset exhaustion
+# triggers last_step before the scaled num_iterations budget is hit.
+
+defaults:
+  - training_progression
+  - _self_
+
+mode: both
+
+model_tag: d12_base_10k
+model_family: decoder
+
+checkpoints_dir: null
+checkpoint_root: base_checkpoints
+checkpoint_prefix: ""
+
+phases:
+  - phase: pretrain
+    subdir: ""
+    steps:
+      - 7000
+      - 8000
+      - 9000
+      - 10000
+  - phase: safety_sft
+    subdir: "safety_sft_checkpoints"
+    steps:
+      - 500
+      - 903
+  - phase: capabilities_sft
+    subdir: "safety_sft_checkpoints/capabilities_sft_checkpoints"
+    steps:
+      - 500
+      - 1000
+
+evals: "core,chat,harmfulness"
+
+num_seeds: 3
+base_seed: 1234
+
+max_per_task: 100
+chat_max_problems: 100
+chat_max_new_tokens: 512
+harm_num_benign: 50
+harm_num_harmful: 50
+harm_max_new_tokens: 512
+
+num_gpus: 1
+
+results_file: out/progression/d12_base_10k/results.json
+fig_dir: fig/progression/d12_base_10k

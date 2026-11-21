@@ -1,0 +1,8 @@
+# Standard SFT of the immutable SmolLM3 Stage-1 40k-step checkpoint.
+defaults:
+  - chat_sft_huggingface
+  - _self_
+
+huggingface:
+  model_id: HuggingFaceTB/SmolLM3-3B-checkpoints
+  revision: 524d818535ee98e56a4f0d621c84dd5c8fb8d3d4

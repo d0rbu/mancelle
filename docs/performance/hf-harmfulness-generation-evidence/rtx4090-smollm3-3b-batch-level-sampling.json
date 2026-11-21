@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "measured_at": "2026-08-28",
+  "base_commit": "be09d2a72cc4f77cac993f3412136b790a2753eb",
+  "checkpoint_identity": {
+    "architecture": "SmolLM3ForCausalLM",
+    "backend": "smollm3",
+    "checkpoint_sha256": "4349c25e204053e469df05bfa3fb310df8cac7c34d3cd129b3a9febb7ec3497a",
+    "format": "repository_hf_sft",
+    "model_type": "smollm3",
+    "step": 0,
+    "tokenizer_sha256": "e54f356e498b36d717dbcf688f317278b9e9644322b565076d6be6c52b60b7a6"
+  },
+  "device": "cuda:0",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "torch": "2.13.0+cu130",
+  "generation": {
+    "max_new_tokens": 512,
+    "seed": 4242,
+    "temperature": 0.7,
+    "top_k": 50
+  },
+  "batch_level_sampler": {
+    "prompt_count": 32,
+    "prompt_sha256": "f4a008852771d645d912d90b18d768de32edddbc9c8950bbf9c8d8f286cda364",
+    "batch_size": 32,
+    "rowwise_median_seconds": 12.974592994898558,
+    "batch_level_latency_seconds": [
+      12.000282682478428,
+      11.994640726596117
+    ],
+    "batch_level_median_seconds": 11.997461704537272,
+    "speedup": 1.0814448351180606,
+    "latency_reduction_percent": 7.531113236041243,
+    "rowwise_peak_allocated_mib": 7693.306640625,
+    "batch_level_peak_allocated_mib": 7583.556640625,
+    "algorithmic_sampling_calls_per_decode_step": {
+      "rowwise_multinomial": 32,
+      "batch_level_multinomial": 1
+    },
+    "rowwise_output_sha256": "940accd5a34aa906cf3040d505f0b6694db9cc748c97087d489a3e3c8753c13e",
+    "batch_level_output_sha256": "08eba1d243f76ddcc89f1d89a32c3d658fca3ae2fd8b1d02c8fee1059b2463b1",
+    "batch_level_repeatable": true
+  },
+  "production_batch_scaling": {
+    "prompt_count": 64,
+    "prompt_sha256": "fddd8e824f5c82156963690e4cec4ad52828c9810f4d6aef7d44d0f8588a1daf",
+    "iterations": 2,
+    "batch_32": {
+      "latency_seconds": [
+        23.105451110750437,
+        23.102385263890028
+      ],
+      "median_seconds": 23.103918187320232,
+      "prompts_per_second": 2.7700929115618202,
+      "peak_allocated_mib": 7721.14794921875,
+      "output_sha256": "4ae733091d4f2d82f8a8eabe0c57c8caeb6b41ae2eefa7204e35527920637582",
+      "repeatable": true
+    },
+    "batch_64": {
+      "latency_seconds": [
+        20.80877609923482,
+        20.81919613853097
+      ],
+      "median_seconds": 20.813986118882895,
+      "prompts_per_second": 3.074855514674233,
+      "peak_allocated_mib": 9568.87158203125,
+      "output_sha256": "ff56f4c703169282a2a7e2a1320fb77f00e930cc9afe026fe7582de55fd4e933",
+      "repeatable": true
+    },
+    "batch_64_speedup": 1.1100189101384987,
+    "batch_64_latency_reduction_percent": 9.91144467302557
+  },
+  "short_decode_occupancy_sweep": {
+    "max_new_tokens": 32,
+    "prompt_count": 128,
+    "prompt_sha256": "b98da2f7b8c12992472e3870278cba11c48f13bf117266a752a332402d9ffd95",
+    "iterations": 3,
+    "measurements": {
+      "32": {
+        "median_seconds": 3.163906794041395,
+        "prompts_per_second": 40.456311873998054,
+        "peak_allocated_mib": 7781.60205078125,
+        "repeatable": true
+      },
+      "64": {
+        "median_seconds": 2.9776600562036037,
+        "prompts_per_second": 42.98677403867077,
+        "peak_allocated_mib": 9689.78515625,
+        "repeatable": true
+      },
+      "128": {
+        "median_seconds": 4.383949089795351,
+        "prompts_per_second": 29.197419353694006,
+        "peak_allocated_mib": 13506.13720703125,
+        "repeatable": true
+      }
+    }
+  },
+  "decision": {
+    "repository_hf_batch_size_default": 64,
+    "native_batch_size_unchanged": 8,
+    "self_conditioned_batch_size_unchanged": 1,
+    "seed_schedule": "base_plus_batch_start_hf_batch_v2"
+  },
+  "raw_artifacts": {
+    "global_sampler_scaling_32_sha256": "42d8c0a31fea88ef6f52571db5eb642aa40dc918c2b07f6a0ca12495bc5ccd77",
+    "global_sampler_scaling_512_sha256": "cdf4b2c62ffd53f4f533074238d9e12cb314a6312da944a2dad843c65d2a235a",
+    "global_sampler_32p_512_sha256": "412e815b92c43dad44c60e66fe143f71e7fafd2fbce889adc092677858853d4c",
+    "rowwise_reference_evidence_sha256": "d4fb8034fdefa67cb0534e78e49946aa757e6da8dc9d40696b67803ae3a2a0f9"
+  },
+  "unrun_boundary": "No OpenRouter judge calls and no full 1200-prompt evaluation were run."
+}

@@ -1,0 +1,25 @@
+# Tiny pretraining run for validating your install on a single GPU.
+# Trains a depth-6 model for 100 iterations (~5-10 min on a single H100).
+#
+# Usage:
+#   torchrun --standalone --nproc_per_node=1 -m scripts.train.base_train -- config_name=base_train_tiny_1gpu
+# Or single-process:
+#   python -m scripts.train.base_train config_name=base_train_tiny_1gpu
+
+defaults:
+  - base_train
+  - _self_
+
+depth: 6
+head_dim: 64
+window_pattern: L
+max_seq_len: 512
+device_batch_size: 16
+total_batch_size: 8192
+num_iterations: 100
+eval_every: 25
+eval_tokens: 524288       # 1 * 524288
+core_metric_every: -1     # disabled (CORE eval is slow)
+sample_every: 50
+save_every: -1            # don't checkpoint a smoke run
+run: tiny_smoke

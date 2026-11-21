@@ -1,0 +1,21 @@
+# Gemma 3 + gemma-scope-2 chat evaluation config. Inherits the v1
+# chat_eval.yaml and overrides ONLY the conditioning identity coordinates
+# (Gemma-3-4b-it + gemma-scope-2 layer 22, 16k width).
+#
+# chat_eval.yaml has no top-level `model:` key — the cache-identity bundle
+# lives under `conditioning.identity`. We override only model_id / layer /
+# sae_id; n_sae_features (16384) stays unchanged.
+#
+# Layer note: valid gemma-scope-2 layers for the 4b model are {9, 17, 22, 29};
+# 22 is the default mid-late residual site.
+# See docs/pipelines/gemma-scope-2.md.
+
+defaults:
+  - chat_eval
+  - _self_
+
+conditioning:
+  identity:
+    model_id: gemma-3-4b-it
+    sae_id: gemmascope-residual-l22-16k
+    layer: 22

@@ -1,0 +1,23 @@
+# Capabilities SFT on top of safety SFT for d13 decoder-only (parameter-matched)
+# Usage: torchrun --nproc_per_node=4 -m scripts.train.chat_sft config_name=sft_d13_capabilities
+
+defaults:
+  - chat_sft
+  - _self_
+
+run: sft_d13_capabilities
+
+# Load from safety SFT checkpoint (chained: base -> safety -> capabilities)
+source: safety
+model_tag: d13_base
+
+# Capabilities mixture
+mixture: capabilities
+
+# 2500 iterations
+num_iterations: 2500
+
+# Match pretraining context length
+max_seq_len: 1024
+device_batch_size: 32
+total_batch_size: 524288

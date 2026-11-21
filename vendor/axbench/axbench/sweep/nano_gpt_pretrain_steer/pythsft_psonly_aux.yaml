@@ -1,0 +1,57 @@
+# PromptSteering-only rerun of c100_adv/pythsft/aux (config pythia_sft_aux.yaml @ 252e6cf67), copied from its
+# run_manifest.json with inference.models reduced to [PromptSteering]: the original run loaded each concept's
+# LoRA into the shared model, so PromptSteering for concept k>=1 ran with concept k-1's adapter active.
+generate:
+  dataset_category: instruction
+  lm_model: openai/gpt-5.6-luna
+  lm_use_cache: true
+  num_of_examples: 144
+  output_length: 128
+  seed: 42
+inference:
+  intervene_on_prompt: true
+  lm_model: openai/gpt-5.6-luna
+  model_name: /orcd/pool/008/ychenliu/nanochat_cache/sft_baselines/pythia_sft
+  models:
+  - PromptSteering
+  seed: 42
+  steering_batch_size: 10
+  steering_datasets:
+  - AlpacaEval
+  steering_factors:
+  - 1.0
+  steering_intervention_type: addition
+  steering_layer: 25
+  steering_layers:
+  - 25
+  steering_model_name: /orcd/pool/008/ychenliu/nanochat_cache/sft_baselines/pythia_sft
+  steering_num_of_examples: 10
+  steering_output_length: 128
+  temperature: 1.0
+  use_bf16: true
+train:
+  component: res
+  layer: 25
+  model_name: /orcd/pool/008/ychenliu/nanochat_cache/sft_baselines/pythia_sft
+  models:
+    LoRA:
+      batch_size: 6
+      binarize_dataset: false
+      exclude_bos: true
+      gradient_accumulation_steps: 6
+      lora_alpha: 32
+      lora_components:
+      - dense
+      lora_layers:
+      - 6
+      - 12
+      - 19
+      - 25
+      low_rank_dimension: 4
+      lr: 0.0009
+      n_epochs: 24
+      train_on_negative: false
+      weight_decay: 0.0
+  output_length: 128
+  seed: 42
+  use_bf16: true

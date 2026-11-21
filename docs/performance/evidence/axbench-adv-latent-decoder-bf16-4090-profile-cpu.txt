@@ -1,0 +1,66 @@
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------
+                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------
+                           selfcond/turn_decode/forward        20.06%     238.546ms        88.11%        1.048s       8.382ms       0.000us         0.00%     250.732ms       2.006ms           125
+                                       cudaLaunchKernel        14.18%     168.576ms        14.22%     169.048ms       2.201us       0.000us         0.00%      10.657us       0.000us         76808
+## Call CompiledFxGraph ffnyk5mcyhkr7h7h4vp6nguu73mc...         8.12%      96.560ms        16.40%     195.045ms     126.982us       0.000us         0.00%      59.771ms      38.914us          1536
+                                               aten::mm         5.75%      68.397ms         8.54%     101.534ms       8.277us      53.747ms        19.45%      53.763ms       4.383us         12267
+                                              aten::mul         4.29%      51.075ms         7.44%      88.470ms       5.109us      30.165ms        10.92%      30.171ms       1.742us         17315
+                                            aten::empty         3.20%      38.007ms         3.20%      38.007ms       1.501us       0.000us         0.00%       0.000us       0.000us         25315
+                                              aten::add         3.11%      37.041ms         5.45%      64.825ms       4.815us      14.124ms         5.11%      14.125ms       1.049us         13462
+                             Torch-Compiled Region: 1/1         3.10%      36.832ms        20.65%     245.543ms     159.859us       0.000us         0.00%      59.771ms      38.914us          1536
+                               TorchDynamo Cache Lookup         3.08%      36.667ms         3.08%      36.667ms      23.611us       0.000us         0.00%       0.000us       0.000us          1553
+                                         cuLaunchKernel         2.40%      28.534ms         2.40%      28.534ms       2.113us       0.000us         0.00%       0.000us       0.000us         13504
+                                  aten::_fused_rms_norm         2.05%      24.365ms         5.81%      69.087ms       8.368us      11.624ms         4.21%      11.628ms       1.408us          8256
+                                            aten::copy_         1.82%      21.643ms         4.63%      55.044ms       4.412us      81.068ms        29.34%      81.079ms       6.498us         12477
+                                        cudaMemcpyAsync         1.64%      19.527ms         1.64%      19.527ms       4.071us       0.000us         0.00%       0.000us       0.000us          4797
+                                    aten::empty_strided         1.46%      17.372ms         1.46%      17.372ms       1.690us       0.000us         0.00%       0.000us       0.000us         10278
+                                         aten::rms_norm         1.03%      12.234ms         6.84%      81.321ms       9.850us       0.000us         0.00%      11.628ms       1.408us          8256
+                                              aten::cat         0.98%      11.627ms         1.59%      18.883ms       6.054us       4.444ms         1.61%       4.449ms       1.426us          3119
+triton_tem_fused__fused_rms_norm__unsafe_view_flex_a...         0.97%      11.543ms         1.23%      14.608ms       9.437us      17.610ms         6.37%      17.610ms      11.376us          1548
+                                      Pregraph bytecode         0.91%      10.821ms         0.91%      10.821ms       6.968us       0.000us         0.00%       0.000us       0.000us          1553
+                            triton_poi_fused__to_copy_0         0.84%      10.002ms         1.23%      14.622ms       9.446us       9.760ms         3.53%       9.760ms       6.305us          1548
+                            triton_poi_fused__to_copy_1         0.83%       9.875ms         1.33%      15.873ms       5.127us      11.499ms         4.16%      11.499ms       3.714us          3096
+                         aten::_flash_attention_forward         0.82%       9.732ms         2.53%      30.055ms      19.416us      11.872ms         4.30%      11.872ms       7.669us          1548
+                                           aten::matmul         0.75%       8.922ms         6.19%      73.572ms      10.006us       0.000us         0.00%      34.745ms       4.725us          7353
+                            encdec_eval_wrapper_forward         0.73%       8.648ms        96.10%        1.143s       8.928ms       0.000us         0.00%     267.471ms       2.090ms           128
+                                              aten::neg         0.72%       8.516ms         1.27%      15.084ms       4.835us       3.060ms         1.11%       3.061ms       0.981us          3120
+                                       aten::as_strided         0.70%       8.384ms         0.70%       8.384ms       0.167us       0.000us         0.00%       0.000us       0.000us         50233
+                                        aten::transpose         0.69%       8.253ms         0.97%      11.549ms       0.572us       0.000us         0.00%       0.000us       0.000us         20204
+                                              aten::pow         0.64%       7.642ms         1.02%      12.083ms       7.205us       1.664ms         0.60%       1.664ms       0.992us          1677
+                                         aten::_to_copy         0.64%       7.579ms         4.87%      57.878ms       6.693us       0.000us         0.00%      77.927ms       9.012us          8647
+                                           aten::select         0.60%       7.140ms         0.75%       8.977ms       1.023us       0.000us         0.00%       0.000us       0.000us          8776
+                     aten::scaled_dot_product_attention         0.55%       6.548ms         3.68%      43.762ms      28.270us       0.000us         0.00%      11.872ms       7.669us          1548
+                                            aten::slice         0.52%       6.157ms         0.71%       8.425ms       0.613us       0.000us         0.00%       0.000us       0.000us         13752
+                                        aten::clamp_min         0.49%       5.851ms         0.83%       9.821ms       5.856us       1.815ms         0.66%       1.817ms       1.083us          1677
+                  selfcond/turn_decode/boundary_forward         0.47%       5.614ms         2.09%      24.894ms       8.298ms       0.000us         0.00%       5.997ms       1.999ms             3
+                           generation/sample_next_token         0.47%       5.571ms         3.43%      40.783ms     318.618us       0.000us         0.00%       8.783ms      68.616us           128
+                                  cudaStreamSynchronize         0.44%       5.249ms         0.44%       5.249ms       3.691us       0.000us         0.00%       0.000us       0.000us          1422
+                                           aten::linear         0.42%       4.946ms         7.32%      87.017ms      11.630us       0.000us         0.00%      35.253ms       4.712us          7482
+triton_per_fused__fused_rms_norm__unsafe_view_nan_to...         0.41%       4.853ms         0.66%       7.867ms       5.082us       2.055ms         0.74%       2.055ms       1.327us          1548
+## Call CompiledFxGraph ffljiujiq4vagxf76jlclkrgxan6...         0.39%       4.666ms         0.91%      10.851ms       2.170ms       0.000us         0.00%       4.564ms     912.781us             5
+                                    cudaLaunchKernelExC         0.39%       4.637ms         0.40%       4.716ms       2.593us       0.000us         0.00%       4.992us       0.003us          1819
+                                     aten::index_select         0.37%       4.377ms         0.79%       9.395ms      10.404us       1.679ms         0.61%       1.681ms       1.862us           903
+triton_per_fused__fused_rms_norm__unsafe_view_nan_to...         0.37%       4.361ms         0.62%       7.429ms       4.799us       1.661ms         0.60%       1.661ms       1.073us          1548
+                                             aten::view         0.36%       4.282ms         0.36%       4.282ms       0.167us       0.000us         0.00%       0.000us       0.000us         25576
+                                          aten::nonzero         0.35%       4.123ms         0.82%       9.758ms      28.533us       1.308ms         0.47%       1.308ms       3.826us           342
+                                             aten::topk         0.34%       4.074ms         0.92%      10.912ms      85.253us       4.554ms         1.65%       4.554ms      35.581us           128
+              aten::_scaled_dot_product_flash_attention         0.34%       4.004ms         3.13%      37.214ms      24.040us       0.000us         0.00%      11.872ms       7.669us          1548
+                                               aten::to         0.33%       3.925ms         5.20%      61.804ms       3.745us       0.000us         0.00%      77.927ms       4.721us         16505
+                 AOTDispatcher Runtime Wrapper Prologue         0.26%       3.107ms         0.26%       3.107ms       2.000us       0.000us         0.00%       0.000us       0.000us          1553
+                                                aten::t         0.24%       2.843ms         0.65%       7.704ms       0.988us       0.000us         0.00%       0.000us       0.000us          7800
+                        selfcond/prefill/prefix_forward         0.24%       2.820ms         0.97%      11.587ms      11.587ms       0.000us         0.00%       2.183ms       2.183ms             1
+                                          aten::reshape         0.23%       2.748ms         0.35%       4.121ms       0.479us       0.000us         0.00%       0.000us       0.000us          8602
+                       selfcond/provider/encode_segment         0.23%       2.685ms         1.36%      16.147ms       4.037ms       0.000us         0.00%       4.108ms       1.027ms             4
+                                          aten::sigmoid         0.22%       2.675ms         0.37%       4.444ms       5.742us     948.125us         0.34%     949.405us       1.227us           774
+                                 aten::split_with_sizes         0.20%       2.376ms         0.25%       2.915ms       1.883us       0.000us         0.00%       0.000us       0.000us          1548
+                                          aten::resize_         0.19%       2.218ms         0.19%       2.218ms       1.312us       0.000us         0.00%       0.000us       0.000us          1691
+                              aten::_local_scalar_dense         0.18%       2.197ms         0.75%       8.874ms       2.571us     775.339us         0.28%     775.339us       0.225us          3452
+                        generation/decode_model_forward         0.17%       2.031ms        93.47%        1.112s       8.752ms       0.000us         0.00%     261.050ms       2.056ms           127
+                                          aten::aminmax         0.17%       2.019ms         0.23%       2.708ms      10.104us     626.438us         0.23%     626.438us       2.337us           268
+                                             aten::relu         0.16%       1.877ms         0.98%      11.698ms       6.976us       0.000us         0.00%       1.817ms       1.083us          1677
+                                   cudaFuncSetAttribute         0.15%       1.831ms         0.15%       1.831ms       1.183us       0.000us         0.00%       0.000us       0.000us          1548
+                      selfcond/provider/select_features         0.15%       1.804ms         1.95%      23.230ms       5.808ms       0.000us         0.00%       4.609ms       1.152ms             4
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------
+Self CPU time total: 1.189s
+Self CUDA time total: 276.308ms

@@ -1,0 +1,7 @@
+defaults:
+  - methods
+  - _self_
+
+output_path: out/axbench/runs/c2/project_nl_v1/inference/steering_data.parquet
+manifest_path: out/axbench/runs/c2/project_nl_v1/run_manifest.json
+nl_target_source_manifest_path: out/axbench/nl_target_source_manifest.json

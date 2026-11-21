@@ -1,0 +1,46 @@
+defaults:
+  - _self_
+
+# Complete authenticated standard100 prompt carrier. Generation consumes only
+# original_prompt; the boosted PromptSteering instruction is never rendered.
+source_path: ???
+source_sha256: ???
+prepared_dir: ???
+
+checkpoint_dir: ???
+step: 1003
+tokenizer_path: ???
+expected:
+  step: 1003
+  model_sha256: 1247ed969508ad8b2449a353c95d6cbc1063a8572dfd4af720c9d81660cb3ffb
+  meta_sha256: 2c8ba8a022889e796bff6c4078f90697903d219f633cafa4c33e698c99a78226
+  tokenizer_sha256: c3945190ac5c38a6ac941480e21895763775619e756cde4d108cafb5a081e185
+  n_layer: 12
+  n_embd: 768
+
+output_dir: ???
+max_concepts: 100
+concept_lo: 0
+concept_hi: 100
+device: cuda:0
+seed: 42
+
+# Architecture adaptation of Qwen-36 layers 28 and [7,14,21,28] onto d12.
+layer: 9
+lora_layers: [2, 5, 7, 9]
+methods: [DiffMean, LinearProbe, LoRA]
+
+max_new_tokens: 128
+temperature: 1.0
+top_k: 50
+
+phase: all
+# Placement-only bounded pilot/resume limit; excluded from semantic identity.
+max_cells: null
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

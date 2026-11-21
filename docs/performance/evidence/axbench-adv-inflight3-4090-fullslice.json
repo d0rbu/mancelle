@@ -1,0 +1,61 @@
+{
+  "device": "NVIDIA GeForce RTX 4090",
+  "method": "SelfConditioning,SelfConditioningMasked,NLSteering",
+  "concept_ids": [
+    36
+  ],
+  "pressures": [
+    "diffmean_counter",
+    "linear_probe_counter"
+  ],
+  "counter_magnitudes": [
+    256,
+    1024
+  ],
+  "input_count_per_point": 10,
+  "judge_delay_seconds_per_response_if_sequential": 2.0,
+  "comparison": "inflight_depth",
+  "order": [
+    "inflight3",
+    "inflight2"
+  ],
+  "runs": {
+    "inflight3": {
+      "wall_seconds": 255.23086799308658,
+      "provider_calls": 450,
+      "peak_provider_concurrency": 22,
+      "call_accounting": {
+        "actual_evaluator_calls": 120,
+        "actual_generation_calls": 120,
+        "control_generation_calls": 30,
+        "control_paid_judge_cache_misses": 60,
+        "final_actual_evaluator_calls": 450,
+        "final_paid_judge_cache_misses": 150,
+        "gepa_nominal_metric_calls": 0,
+        "paid_judge_cache_misses": 240,
+        "paid_reflection_cache_misses": 0
+      }
+    },
+    "inflight2": {
+      "wall_seconds": 273.6246070712805,
+      "provider_calls": 450,
+      "peak_provider_concurrency": 17,
+      "call_accounting": {
+        "actual_evaluator_calls": 120,
+        "actual_generation_calls": 120,
+        "control_generation_calls": 30,
+        "control_paid_judge_cache_misses": 60,
+        "final_actual_evaluator_calls": 450,
+        "final_paid_judge_cache_misses": 150,
+        "gepa_nominal_metric_calls": 0,
+        "paid_judge_cache_misses": 240,
+        "paid_reflection_cache_misses": 0
+      }
+    }
+  },
+  "same_manifest_inventory": true,
+  "same_call_accounting": true,
+  "same_published_files_excluding_manifest": true,
+  "published_file_count": 78,
+  "speedup": 1.0720670631370972
+}

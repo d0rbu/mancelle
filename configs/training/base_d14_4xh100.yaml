@@ -1,0 +1,39 @@
+# 4xH100/PRO6000 config for depth-14 decoder-only (parameter-matched to enc-dec d12 327M)
+# d14 = 399M is closest valid depth to 327M (d12=286M is further away)
+# Usage: torchrun --nproc_per_node=4 -m scripts.train.base_train config_name=base_d14_4xh100
+
+defaults:
+  - base_train
+  - _self_
+
+# WandB run name
+run: base_d14_4xh100
+
+# Checkpoint directory tag
+model_tag: d14_base
+
+# depth=14 gives 896 dim, 7 heads (~399M params)
+depth: 14
+
+# 1024 context length (matches enc-dec runs)
+max_seq_len: 1024
+
+# Match enc-dec batch settings
+device_batch_size: 32
+total_batch_size: 524288
+
+# Fixed step count (matches enc-dec d12 runs)
+num_iterations: 54600
+target_param_data_ratio: -1
+target_flops: -1.0
+
+# BF16 training (no FP8)
+fp8: false
+
+# Checkpoints every 1000 steps
+save_every: 1000
+
+# Eval settings
+eval_every: 250
+core_metric_every: 2000
+sample_every: 2000

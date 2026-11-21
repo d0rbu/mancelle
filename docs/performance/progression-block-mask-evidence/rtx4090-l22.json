@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "measured_at": "2026-08-28",
+  "base_commit": "e6074ec6c3f8868e9151aef855b6c82d11ab4c96",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "torch": "2.13.0+cu130",
+  "checkpoint": {
+    "step": 54600,
+    "model_sha256": "153d29c0e813036539f71cad8058e47051131d458b21513641f05994471a278d",
+    "metadata_sha256": "03e2f1ead1b3fe48712d9d8ab7fc12c17f04d61db2cc1d6416d959ba5d74cb0f",
+    "feature_vocab_sha256": "8c183369ce4a8ff1e5f153a749e9eb71f9def65283d0a22b4d33bf5ff2d6f16c",
+    "feature_vocab_size": 2074
+  },
+  "workload": {
+    "suite": "core",
+    "seed": 1234,
+    "max_per_task": 5,
+    "core_example_batch_size": 5,
+    "task_count": 22,
+    "scored_examples": 110,
+    "wrapper_calls_per_iteration": 22,
+    "conditioned_feature_id": 8,
+    "conditioned_bucket": 1,
+    "unique_contexts": 120,
+    "context_cache_manifest_sha256": "5f3aa7ed6637bab0b6162b147e590cf84da4390b0d4225aca18217cecdb694ac"
+  },
+  "implementation": {
+    "routing_matrix": "vectorized exact boolean owner comparison",
+    "tile_size": [128, 128],
+    "tile_classification": "exact partial and full tile sums",
+    "sparse_constructor": "BlockMask.from_kv_blocks",
+    "mask_mod": "unchanged exact per-token routing predicate",
+    "compile_startup": "none"
+  },
+  "correctness": {
+    "blockmask_differential_cases": [
+      "empty routing with safe aligned tail",
+      "full 128-token tiles",
+      "irregular partial tiles and padded extents"
+    ],
+    "compared_fields": "every BlockMask tensor attribute plus sequence lengths and block size",
+    "exact_equal": true,
+    "focused_cuda_fp8_flex_tests_passed": 92,
+    "additional_compile_model_tests_passed": 131
+  },
+  "broad_regression": {
+    "selection": "all test_encdec, test_packed_encoder, test_fp8_alignment, test_fa4_score_mod_compat, and test_cross_attention files",
+    "candidate": {
+      "passed": 1169,
+      "skipped": 21,
+      "deselected": 22,
+      "failed": 26
+    },
+    "base_commit_failure_reproduction": {
+      "isolated_failed_files": 3,
+      "passed": 28,
+      "deselected": 2,
+      "failed": 26,
+      "same_failure_counts_and_signatures": true,
+      "failure_groups": {
+        "stale_static_pad_expectations": 2,
+        "torch_cuda_current_stream_mock_signature": 1,
+        "missing_sft_feature_pipeline_seed_eval_namespace": 23
+      }
+    }
+  },
+  "microbenchmark": {
+    "raw_sha256": "14dcc204c3833c996a8dfdd8cfa812400cb78c2b51b8cfbb93de5e3d94ee5b97",
+    "batch_size": 5,
+    "sequence_length": 512,
+    "n_segments": 4,
+    "feature_count": 32,
+    "real_feature_count": 301,
+    "packed_feature_count": 512,
+    "create_block_mask_median_seconds": 0.00885964184999466,
+    "vectorized_median_seconds": 0.0012812353670597076,
+    "speedup": 6.914921393659738,
+    "exact_blockmask_tensor_payload": true
+  },
+  "baseline_macro": {
+    "evidence": "docs/performance/progression-core-batching-evidence/rtx4090-l22.json",
+    "macro_csv_sha256": "0d1a9e83273dd6b68de140059e40afdd385b4d112fe6450b2a1def7145c35cf6",
+    "run_total_seconds": [3.322538, 2.848599, 2.84925],
+    "run_total_median_seconds": 2.84925,
+    "suite_total_seconds": [1.817245, 1.346814, 1.337437],
+    "suite_total_median_seconds": 1.346814,
+    "conditioning_build_median_total_seconds": 0.342896,
+    "wrapper_forward_median_total_seconds": 0.951699
+  },
+  "candidate_macro": {
+    "warmup_iterations": 1,
+    "measured_iterations": 3,
+    "macro_csv_sha256": "6da5b37bdbf222412bde462f2d83eca4812731bf4d2b25a2ffe4f49c330d6d15",
+    "run_total_seconds": [3.133554, 2.64434, 2.662173],
+    "run_total_median_seconds": 2.662173,
+    "suite_total_seconds": [1.585792, 1.132324, 1.122933],
+    "suite_total_median_seconds": 1.132324,
+    "checkpoint_load_median_seconds": 0.534937,
+    "context_coverage_median_seconds": 0.345708,
+    "conditioning_build_total_seconds": [0.221576, 0.224661, 0.218006],
+    "conditioning_build_median_total_seconds": 0.221576,
+    "wrapper_forward_total_seconds": [0.741743, 0.743139, 0.734257],
+    "wrapper_forward_median_total_seconds": 0.741743,
+    "wrapper_forward_includes_conditioning_build": true
+  },
+  "suite_trace": {
+    "baseline_key_averages_sha256": "e5cd87a0a78634dd3e0e04ac622cadb7845e46f95340e051a8da3eb600c3eba1",
+    "candidate_key_averages_sha256": "8273e056f3f46dd23b260b70ceb5a094ec1b1d7022a9a30147db48f22feabe1a",
+    "baseline_record_function_summary_sha256": "558beb50707004314b39e9f3fa324a01f6b205d7cece3259a161fa693bf6da19",
+    "candidate_record_function_summary_sha256": "6a05afbf233360f6e21b4c9ee90ac3a5823829db7014b8ed87e1b0cc03af6b6f",
+    "nested_vmap_calls_before": 264,
+    "nested_vmap_self_cpu_milliseconds_before": 541.811,
+    "nested_vmap_calls_after": 0,
+    "conditioning_self_cpu_milliseconds_before": 222.664,
+    "conditioning_self_cpu_milliseconds_after": 151.02,
+    "wrapper_self_cpu_milliseconds_before": 126.592,
+    "wrapper_self_cpu_milliseconds_after": 66.343,
+    "conditioning_cuda_milliseconds_before": 47.83,
+    "conditioning_cuda_milliseconds_after": 46.43,
+    "wrapper_cuda_milliseconds_before": 485.957,
+    "wrapper_cuda_milliseconds_after": 480.639
+  },
+  "comparison": {
+    "suite_total_speedup": 1.18942458165684,
+    "suite_total_reduction_percent": 15.925732877739607,
+    "run_total_speedup": 1.0702722925970627,
+    "run_total_reduction_percent": 6.56583311397736,
+    "conditioning_build_reduction_percent": 35.38099015444915,
+    "wrapper_forward_reduction_percent": 22.061176905723336
+  },
+  "unrun_boundary": "No paid judge calls, harmfulness suite, full standalone eval, multi-GPU run, H200 qualification, or production training-throughput run was performed."
+}

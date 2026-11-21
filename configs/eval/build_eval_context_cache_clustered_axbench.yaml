@@ -1,0 +1,44 @@
+# Clustered AxBench Stage-3e context-cache conversion.
+#
+# Preset over build_eval_context_cache for a clustered AxBench cache. The cache
+# is a pure function of (feature_mask, feature_clusters, seed) + the context set
+# + SAE: its identity hash (steering/eval/cache_identity.py) is derived from
+# exactly those, so ANY compacted checkpoint trained with the same
+# mask/clusters/seed finds and reuses it at the same hash leaf.
+#
+# It needs NO checkpoint reference. Build it directly from this config --
+# concurrently with (or before) the training run that produces the consuming
+# checkpoint. Producer and consumer rendezvous at the content-addressed path,
+# with no sequential train -> build -> eval dependency (which would cost real
+# wall-clock). The mask/clusters/seed are all known from the training config at
+# launch, so the AxBench cache can be produced in parallel with training.
+#
+# The operator fills every `???` here plus the base config's own mandatory
+# fields (contexts_file, context_parquet_dir, feature_dir, output_dir,
+# n_sae_features, num_buckets, stats_path, identity.*, model_max_seq_len).
+# seed and stats_source_sha256 are additionally HARD-REQUIRED at runtime for
+# any clustered build -- they fail loud when null (steering/eval/cache_identity
+# .py's clustered-seed guard; _resolve_clustered_cache_contract's stats guard)
+# -- so an omitted/malformed value cannot silently produce a wrong cache.
+#
+# The optional D-contract seed cross-check (the base's checkpoint_dir /
+# checkpoint_source fields, left null here) stays available for a post-training
+# operator who wants to double-check a hand-supplied seed against a specific
+# existing checkpoint -- but it is deliberately NOT required, so it never
+# serializes the concurrent build above.
+
+defaults:
+  - build_eval_context_cache
+  - _self_
+
+required_contexts_manifest: ???
+# The inherited feature_dir must be a canonical structured leaf whose identity
+# and every shard header match the source feature contract.
+feature_mask:
+  mode: whitelist
+  path: ???
+feature_clusters:
+  path: ???
+seed: ???
+feature_delta: null
+stats_source_sha256: ???

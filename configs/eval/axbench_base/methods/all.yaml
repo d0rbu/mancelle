@@ -1,0 +1,4 @@
+# @package _global_
+# Run every intervention method in the registry.
+# null == ``method_registry.filter_methods`` returns all 33 methods.
+enabled_methods: null

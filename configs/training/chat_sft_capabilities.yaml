@@ -1,0 +1,21 @@
+# Capabilities SFT mixture config
+# Usage: torchrun ... -m scripts.train.chat_sft -- config_name=chat_sft_capabilities
+#
+# Capabilities-focused mixture with a bounded general-chat component and
+# two identity passes for the shared personality context.
+# Focused on model abilities and knowledge (math, coding, spelling, general chat).
+# Passing `mixture=capabilities` against the base config selects the same mixture
+# but leaves the sizing overrides below at their defaults.
+
+defaults:
+  - chat_sft
+  - _self_
+
+mixture: capabilities
+smoltalk_limit: 120000
+opencoder_limit: 50000
+capabilities_mmlu_epochs: 2
+orca_math_limit: null
+metamath_limit: null  # calibrate after measuring tokens
+simple_spelling_size: 300000
+spelling_bee_size: 120000

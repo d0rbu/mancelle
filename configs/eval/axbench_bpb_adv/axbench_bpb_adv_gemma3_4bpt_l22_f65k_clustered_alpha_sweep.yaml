@@ -1,0 +1,53 @@
+# Class-margin ALPHA sweep: the new encoder-space steering family.
+#
+# The feature-GCG search minimizes `loss_desired - alpha * loss_contrast`, i.e.
+# it maximizes `alpha * unsteered - steered`. alpha = 1 is the plain class
+# margin every previous run used. LOWERING alpha discounts the reward for
+# inflating the unsteered loss, so the search buys steering strength by pushing
+# `loss_desired` down rather than by degrading the model off-target -- which is
+# what "care less about the base BPB term" means concretely.
+#
+# alpha is this family's STRENGTH AXIS, exactly as `magnitudes` is for additive
+# counter-steering and `optimized_token_counts` is for faster_gcg: each alpha is
+# one point on the plotted curve. That is why the methods are the dedicated
+# `ours_gcg_alpha*` pair rather than `ours_gcg_encdec` -- a method's coefficient
+# must mean exactly one thing, and `ours_gcg_encdec`'s already means reg_lambda.
+#
+# COST NOTE: alpha = 1.0 is FREE. It is bit-for-bit the plain-margin objective,
+# so its bag path and identity carry no alpha component and the existing fair
+# bags derived under `..._m_gcg2` are REUSED (hardlink them in, as the other
+# runs do). Only the four non-unit alphas below derive new bags.
+#
+# reg_lambda_grid MUST stay [0.0]: these methods spend their single coefficient
+# on alpha and resolve their bags at reg_lambda 0, so any other grid derives
+# bags the score stage never loads. `_validate_alpha_family_reg_lambda` rejects
+# that at config time rather than letting it fail deep in a scoring run.
+
+# PARENT IS LOCAL: `..._clustered_ours_gcg` (and the l22 chain beneath it) is an
+# untracked working config, like the rest of the l22_f65k experiment configs.
+# This file therefore composes only on a checkout that has them; it is committed
+# for the alpha grid and the method selection, which is the part worth reviewing.
+defaults:
+  - axbench_bpb_adv_gemma3_4bpt_l22_f65k_clustered_ours_gcg
+  - _self_
+
+base_methods:
+  - diffmean_decoder_only
+  - neg_diffmean_decoder_only
+  - linear_probe_decoder_only
+  - neg_linear_probe_decoder_only
+  - control_decoder_only
+  - neg_control_decoder_only
+  - feature_diffmean_encdec
+  - neg_feature_diffmean_encdec
+  - ours_gcg_alpha_encdec
+  - neg_ours_gcg_alpha_encdec
+
+ours_gcg:
+  # 1.0 first: the plain-margin anchor the other points are read against (and
+  # the one that costs nothing). Descending from there trades margin for base
+  # BPB; 0.0 is the endpoint that ignores the unsteered class entirely.
+  objective_alpha_grid: [1.0, 0.75, 0.5, 0.25, 0.0]
+  reg_lambda_grid: [0.0]
+
+run_tag: l22_f65k_clustered_std50_m_alpha

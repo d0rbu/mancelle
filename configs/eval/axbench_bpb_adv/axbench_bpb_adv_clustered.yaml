@@ -1,0 +1,30 @@
+# Cluster-safe BPB-Adv fair/roofline evaluation.
+#
+# The mask and cluster paths are deliberately required: a clustered acceptance
+# must never silently fall back to the unclustered matrix.
+
+defaults:
+  - axbench_bpb_adv_eval
+  - _self_
+
+feature_mask:
+  mode: whitelist
+  path: ???
+feature_clusters:
+  path: ???
+
+base_methods:
+  - diffmean_decoder_only
+  - neg_diffmean_decoder_only
+  - linear_probe_decoder_only
+  - neg_linear_probe_decoder_only
+  - control_decoder_only
+  - neg_control_decoder_only
+  - feature_diffmean_encdec
+  - neg_feature_diffmean_encdec
+  - feature_diffmean_roofline_encdec
+  - neg_feature_diffmean_roofline_encdec
+  - ours_gcg_encdec
+  - neg_ours_gcg_encdec
+  - ours_gcg_roofline_encdec
+  - neg_ours_gcg_roofline_encdec

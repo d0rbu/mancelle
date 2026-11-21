@@ -1,0 +1,27 @@
+# @package _global_
+# Complete one-worker RLVR updates using authenticated production inputs.
+defaults:
+  - /training/conditional_encdec_rlvr@_global_
+  - _self_
+
+train_feature_head_only: true
+global_prompts_per_step: 1
+group_size: 2
+num_iterations: 1
+device_type: cuda
+wandb:
+  enabled: false
+
+# All listed rows form one optimizer update; repeat them in this exact order.
+row_indices: [0]
+warmup_steps: 2
+measure_steps: 5
+# Null matches the trainer: retain kernels for head-only, reset for full-policy.
+# Set true to measure the historical head-only implementation as the control.
+compiler_reset: null
+# Whole-step samples have no internal synchronization. Run separately for attribution.
+measure_phases: false
+profile: false
+# Zero-based measured steps whose trajectories, clipped gradients, optimizer and
+# updated trainable parameters are serialized outside the timing window.
+parity_steps: [0]

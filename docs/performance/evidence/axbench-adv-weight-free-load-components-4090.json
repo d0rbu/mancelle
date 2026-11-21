@@ -1,0 +1,33 @@
+{
+  "validate_source_contract": {
+    "count": 1,
+    "seconds": 15.468586690723896
+  },
+  "HookedTransformer.from_pretrained": {
+    "count": 1,
+    "seconds": 19.481098674237728
+  },
+  "SAE.from_pretrained": {
+    "count": 1,
+    "seconds": 0.875189196318388
+  },
+  "load_sae_and_model": {
+    "count": 1,
+    "seconds": 20.356472861021757
+  },
+  "build_nnterp_model": {
+    "count": 1,
+    "seconds": 6.997132111340761
+  },
+  "load_extraction_stack": {
+    "count": 1,
+    "seconds": 27.523398891091347
+  },
+  "attributes": {
+    "model_type": "HookedTransformer",
+    "sae_type": "JumpReLUSAE",
+    "n_ctx": 8192,
+    "model_name": "gemma-3-4b-pt",
+    "tokenizer_type": "GemmaTokenizer"
+  }
+}

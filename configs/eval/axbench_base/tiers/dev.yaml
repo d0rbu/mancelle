@@ -1,0 +1,3 @@
+# @package _global_
+# Dev tier: 5 concepts, suitable for local smoke tests.
+max_concepts: 5

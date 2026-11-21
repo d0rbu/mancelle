@@ -1,0 +1,28 @@
+# gemma-3-4b-pt, layer 22, residual, max_pool, segment 128, gemma-scope-2 65k,
+# medium L0 — context-independent (contextless) + BOS-filtered features.
+#
+# Inherits the 65k / medium / bf16 setup from extract_features_gemma3_l22_f65k
+# and overrides model -> gemma-3-4b-pt.
+#
+#   - context_independent_features: true -> each segment encoded in isolation
+#                                           (output leaf .../context_independent)
+#   - BOS-feature exclusion is producer always-on -> leaf .../no_bos
+# Canonical output dir:
+#   out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos
+#
+# backend defaults to auto (nnterp). To opt into native, pass backend=native.
+# Native row-packing now uses a production-shaped hard gate: context-independent
+# segment inputs, injected-BOS outside the pooled span, natural-BOS filtering,
+# and configured pooling. A row-pack gate failure still aborts with
+# RowPackGateError and does not fall back to the unpacked path. The previous
+# all-token/BOS-heavy gate rejection was not evidence of Gemma-3 cross-document
+# leakage; the packed Gemma-3 mask locality is covered by focused tests.
+defaults:
+  - extract_features_gemma3_l22_f65k
+  - _self_
+model: gemma-3-4b-pt
+context_window: 1024
+context_independent_features: true
+backend: auto
+start_shard: 0
+num_shards: 1

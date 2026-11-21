@@ -1,0 +1,24 @@
+# Exact weights-only continuation of the public SmolLM3-3B step-200k checkpoint.
+source:
+  model_id: HuggingFaceTB/SmolLM3-3B-checkpoints
+  revision: 8089bf9b71ead724010855dd6fabd1deb90b70ff
+  local_files_only: true
+
+data:
+  parquet_dir: /orcd/pool/005/henryac/nano-gpt-pretrain-steer/full3b-clustered-c2048-20260823T194759Z/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos/splice/cut_frac0.15/seed42/_parquets
+  prepared_dir: ???
+  tokenizer_batch_size: 256
+  verify_hashes: true
+  dataloader_workers: 2
+
+output_dir: ???
+logging_steps: 10
+save_steps: 2000
+canary_steps: null
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

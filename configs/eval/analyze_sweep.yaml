@@ -1,0 +1,19 @@
+# Analyze encoder-decoder sweep results from JSONL
+# Usage:
+#   uv run python -m scripts.eval.analyze_sweep results=path/to/sweep_results.jsonl
+#   uv run python -m scripts.eval.analyze_sweep results=... output_dir=fig/sweep
+
+results: ???
+output_dir: null
+expected_total: null
+# Optional kind filter. Set to one of:
+#   static_yaml | target_real_lockstep | target_real_pooled
+# Leave null to include all kinds.
+kind: null
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

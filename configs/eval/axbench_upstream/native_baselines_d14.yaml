@@ -1,0 +1,18 @@
+defaults:
+  - native_baselines
+  - _self_
+
+# D14/896 is reviewed, but every SFT output identity is run-specific. Root must
+# supply the actual final checkpoint step and all three hashes after SFT.
+step: ???
+expected:
+  step: ${step}
+  model_sha256: ???
+  meta_sha256: ???
+  tokenizer_sha256: ???
+  n_layer: 14
+  n_embd: 896
+
+# Round-half-up depth adaptation of Qwen-36 layer 28 and [7,14,21,28].
+layer: 11
+lora_layers: [3, 5, 8, 11]

@@ -1,0 +1,29 @@
+# Local AxBench evaluation configuration for a baseline-only (no
+# project/encoder-decoder methods) comparison, e.g. Pythia-2.8B; see
+# ../../../VENDORED.md.
+evaluate:
+  models:
+    - DiffMean
+    - LinearProbe
+    - PromptSteering
+    - LoRA
+  latent_evaluators: []
+  steering_evaluators: [LMJudgeEvaluator]
+  report_to: []
+  rotation_freq: 1000
+  data_dir: null
+  dump_dir: null
+  num_of_workers: 8
+  lm_model: openai/gpt-5.6-luna
+  run_winrate: false
+  winrate_baseline: null
+  wandb_entity: null
+  wandb_name: null
+  run_name: false
+  winrate_split_ratio: null
+  master_data_dir: null
+  prompt_steering_data_dir: null
+  overwrite_inference_dump_dir: null
+  overwrite_evaluate_dump_dir: null
+  steer_data_type: concept
+  defense: null

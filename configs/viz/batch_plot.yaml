@@ -1,0 +1,15 @@
+# Batch generate charts for grid results
+# Usage:
+#   uv run python -m viz.batch_plot
+#   uv run python -m viz.batch_plot grid_dir=out/data/my_grid dpi=300
+
+grid_dir: out/data/grid
+output_dir: fig/per_combo
+dpi: 150
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

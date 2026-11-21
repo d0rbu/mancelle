@@ -1,0 +1,26 @@
+# Run in the AxBench Python 3.12 environment; see docs/performance/axbench-adv-gcg.md.
+input: ???
+output: ???
+method: DiffMean
+objectives: [response_margin, activation_l2]
+token_counts: [1, 32]
+model_name: HuggingFaceTB/SmolLM3-3B-checkpoints
+model_revision: it-soup-APO
+concept_id: 0
+max_concepts: 50
+layer: 28
+factor: 1.0
+members: 4
+batch_size: 4
+repeats: 5
+warmups: 5  # per arm when paired_state=true
+paired_state: false  # compare with the frozen original GCG state guard
+seed: 20260918
+deterministic: true
+profile: false
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

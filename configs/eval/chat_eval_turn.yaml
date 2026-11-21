@@ -1,0 +1,32 @@
+# Static reference-feature ChatCORE; no self-conditioning cadence is required.
+defaults:
+  - chat_eval
+  - _self_
+
+# Verified SFT-only production layout (no checkpoint files at the parent tag):
+# source=encdec
+# model_tag=full3b_clustered_c2048_long_w32_bf16_b14_fp/standard_sft_conditioned_checkpoints
+# step=1116
+# Do not use source=encdec/standard_cond: it appends the SFT leaf twice.
+source: encdec
+segment_mode: turn_delimited_fixed_tokens
+model_max_seq_len: 2048
+temperature: 0.0
+num_samples: 1
+feature_configs: []
+target_real_configs:
+  - name: pooled
+    mode: pooled
+    cache_dir: null  # checkpoint-derived identity; may also point to an explicit cache root
+
+# Clear fixed SAE defaults. The loaded checkpoint is the identity authority;
+# non-null overrides are assertions and must match it exactly.
+conditioning:
+  identity:
+    model_id: null
+    sae_id: null
+    layer: null
+    pooling: null
+    feature_selection_hash: null
+  n_sae_features: null
+  num_buckets: null

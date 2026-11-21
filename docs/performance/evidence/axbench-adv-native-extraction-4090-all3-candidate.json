@@ -1,0 +1,113 @@
+{
+  "wall_seconds": 127.6176973991096,
+  "events": [
+    {
+      "method": "SelfConditioning",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "__enter__",
+      "seconds": 5.8839496821165085
+    },
+    {
+      "method": "SelfConditioning",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 12.181618697941303
+    },
+    {
+      "method": "SelfConditioning",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 6.300158582627773
+    },
+    {
+      "method": "SelfConditioning",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 6.53882185742259
+    },
+    {
+      "method": "SelfConditioning",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "close",
+      "seconds": 1.6301019228994846
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "__enter__",
+      "seconds": 5.86026968434453
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 6.497617229819298
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 6.184386312961578
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 6.340362414717674
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "close",
+      "seconds": 1.6801764741539955
+    },
+    {
+      "method": "NLSteering",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "__enter__",
+      "seconds": 5.839755818247795
+    },
+    {
+      "method": "NLSteering",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 6.192109353840351
+    },
+    {
+      "method": "NLSteering",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 5.997425679117441
+    },
+    {
+      "method": "NLSteering",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 5.977557688951492
+    },
+    {
+      "method": "NLSteering",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "close",
+      "seconds": 1.6310495361685753
+    }
+  ],
+  "local_http_calls": 270,
+  "local_http_peak_concurrency": 16,
+  "manifest": "/tmp/axbench-native-all3-candidate-pr1773-r1/output/manifest.json"
+}

@@ -1,0 +1,99 @@
+# AxBench-BPB-Adv: faster-GCG timing-probe / spot-check config.
+#
+# The full default grid (7 token-counts x 10 coefficients x prefixes x
+# methods) explodes the optimizable-row count into weeks-to-months of wall-clock
+# (see docs/evaluation/axbench-bpb-adv.md "faster-GCG cost"). Per-row GCG is
+# cheap (~70 s at production knobs, batched on GPU), so the practical lever is
+# the ROW COUNT, not per-row time. This config applies the measured grid
+# reductions for a focused, hours-scale faster-GCG spot-check:
+#   - token-counts 7 -> 3         (optimized_token_counts = [0, 1, 2])
+#   - max_steps 256 -> 2          (cheap real-loop probe)
+#   - candidate_batch_size 64 -> 4, top_k 32 -> 8
+#   - one optimized decoder-only base method
+#   - one target-only fair Feature-DiffMean encdec row for representative selection
+#   - faster_gcg ONLY (no additive_direction control sweep)
+#
+# It is intentionally NOT a research run: it measures cost and verifies the GCG
+# loop makes monotone progress. Scale the knobs back up for real results.
+
+source_run_dir: ???
+output_root: out/eval/axbench_bpb_adv_timing_probe
+run_tag: null
+device: cuda
+
+stage: all
+target_models:
+  - decoder_only
+  - encdec
+
+# Subsample the AxBench-Base steering rows to a single base method so the
+# optimizable-row count stays in the hours-scale spot-check regime.
+base_methods:
+  - diffmean_decoder_only
+
+# Scored only at the no-adversary control strength; not optimized at k=1/2.
+representative_target_methods:
+  - feature_diffmean_encdec
+
+adversarial_methods:
+  - method: faster_gcg
+    optimized_token_counts: [0, 1, 2]
+    max_steps: 2                  # budget; full-batch exact exhaustion may stop earlier
+    candidate_batch_size: 4
+    top_k: 8
+    distance_weight: 10.0
+    temperature: 0.1
+    master_seed: 0
+    universal_minibatch_size: 16  # full groups reuse one proposal pool per accepted target
+    candidate_eval_device_batch_size: null  # inherit top-level device_batch_size
+
+feature_dir: ???
+feature_statistics_path: ???
+extraction_tokenizer_id: google/gemma-2-2b
+neuronpedia_model_id: gemma-2-2b
+neuronpedia_source: 8-gemmascope-res-16k
+extraction_max_tokens: 1024
+extraction_threshold: 0.0
+
+# Target bundle config blocks are passed through to the AxBench-BPB runtime.
+decoder_only_target: {}
+encdec_target: {}
+lora_adapter: {}
+
+filter_unaccepted_samples: true
+next_segment_conditioning_offset: false
+diffmean_and_probe_layer: 6
+device_batch_size: 16
+
+# Keep the prefix-pairing cheap: cap each prefix to a single rich x avoid pair
+# so the row count does not explode. Incomplete prefixes are hard source errors.
+pair_subsample: 1
+scatter_baseline_x: baseline_loss
+
+scores_path: null
+log_progress_every: 1000
+offload_between_stages: true
+
+context_cache:
+  extraction_batch_size: 32
+  force_rebuild: false
+  segment_size: 256
+  num_buckets: 2
+
+# Exercise the general_val_bpb path in the spot-check at tiny scale. Under the
+# universal per-concept trigger, general_val_bpb is ATTACK-AWARE: each k
+# substitutes its own trigger into the last-k tokens of every (BOS-prefixed,
+# decoder-only) validation doc, so the metric is NON-FLAT across the GCG axis
+# (k=0 is the clean baseline). This just verifies the attacked stage runs.
+general_val_bpb:
+  enabled: true
+  n_documents: 8
+  prefix_tokens: 128
+  output_tokens: 64
+  max_interventions: 0
+  seed: 0
+
+hydra:
+  output_subdir: null
+  run:
+    dir: .

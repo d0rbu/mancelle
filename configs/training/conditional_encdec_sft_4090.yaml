@@ -1,0 +1,22 @@
+# RTX 4090 (24GB HBM) config for encoder-decoder SFT finetuning.
+#
+# Usage:
+#     python -m scripts.train.conditional_encdec_sft \
+#         --config-name conditional_encdec_sft_4090 \
+#         dataset=safety model_tag=my_model
+#
+# Shrinks device_batch_size and max_seq_len from the 8xH100 defaults
+# (32 / 2048) to fit a single 4090's 24GB HBM budget.  The inherited
+# total_batch_size (524288 tokens) is unchanged, so the SFT script
+# computes grad_accum_steps = 524288 / (4 * 1024 * 1) = 128
+# automatically.  All other SFT-specific knobs (sft_parquet_dir,
+# val_sft_parquet_dir, val_feature_dir, grad_clip_max_norm, resume_from_step) inherit from
+# conditional_encdec_sft.yaml.
+
+defaults:
+  - conditional_encdec_sft
+  - _self_
+
+# Smaller batch to fit 24GB HBM
+device_batch_size: 4
+max_seq_len: 1024

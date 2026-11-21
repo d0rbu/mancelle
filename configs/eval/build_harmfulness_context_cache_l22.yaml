@@ -1,0 +1,73 @@
+# Exact 1,200-prompt harmfulness cache for the phase-A compact L22 checkpoint.
+#
+# Operator-supplied paths inherited as `???` from build_eval_context_cache:
+#   contexts_file, context_parquet_dir, feature_dir, output_dir
+#
+# The pool is all 700 BeaverTails harmful prompts plus 500 WildGuard benign
+# prompts. `num_seeds: 1` and `base_seed: 42` are load-bearing: the standalone
+# evaluator uses cfg.seed=42, and cache keys are the exact rendered prompts.
+# Enumerating any other seed set would build a cache the evaluator cannot hit.
+
+defaults:
+  - build_eval_context_cache
+  - _self_
+
+evals: "harmfulness"
+num_seeds: 1
+# This selects the prompt pool and must match harmfulness_eval_l22.seed. It is
+# independent of the clustered identity seed below; both happen to equal 42.
+base_seed: 42
+harm_num_harmful: null
+harm_num_benign: 500
+
+n_sae_features: 65536
+num_buckets: 2
+model_max_seq_len: 1024
+
+# Keep the sampling block behind an interpolation so Hydra replaces the base
+# threshold-shaped mapping instead of recursively merging the two schemas.
+_harmfulness_feature_selection:
+  distribution: geometric
+  mean: 12.0
+  std: 12.0
+  min_k: 1
+  max_k: 49
+  mode: top_k_percentile
+feature_selection: ${_harmfulness_feature_selection}
+# The SFT metadata's own value is null, but checkpoint_negative_selection
+# resolves this inherited pretraining contract from pretrain_conditioning.
+negative_selection:
+  distribution: geometric
+  mean: 12.0
+  min_k: 0
+  max_k: 49
+feature_mask:
+  mode: whitelist
+  path: out/autointerp_filter/gemma3_4bpt_l22_f65k_ci_nobos_freqmask_n40x40_root_20260710_145543/manual_feature_filter_with_descriptions.yaml
+feature_clusters:
+  path: out/artifacts/feature_clusters_two_stage_schema_v1.yaml
+# Prompt contexts have no current/reference pair. This cache is delta-free even
+# though the checkpoint inherited splice_counterfactual training metadata.
+feature_delta: null
+# Percentile statistics are part of the checkpoint's pretraining clustered-
+# selection contract. The SFT corpus stats are not interchangeable: they omit
+# features that can activate in evaluation prompts and therefore cannot score
+# every raw feature before mask/cluster selection.
+stats_path: out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos/feature_statistics.safetensors
+# This production checkpoint predates decoded-content statistics hashes. The
+# value below is its exact original safetensors file digest; the builder checks
+# those bytes through the explicit legacy compatibility path.
+stats_source_sha256: "dadf6d4f8d3b56ba1b40e0f49f4bb92bfb635c64f78a530f04f624b1d5773b5d"
+
+# Clustered cache identity seed recovered from the parent pretraining metadata
+# (meta_054600.json), not from the SFT checkpoint. This is unrelated to
+# base_seed above; the two independent quantities happen to equal 42.
+seed: 42
+
+identity:
+  model_id: gemma-3-4b-pt
+  sae_id: layer_22_width_65k_l0_medium
+  # Gemma-scope-2 SAE site, not a layer in the 12-block nanochat decoder.
+  layer: 22
+  pooling: max_pool
+  feature_selection_hash: null

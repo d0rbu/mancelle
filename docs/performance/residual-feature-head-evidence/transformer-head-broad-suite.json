@@ -1,0 +1,312 @@
+{
+  "schema_version": 1,
+  "scope": "Default CPU suite observation and bounded failure triage for issue1719. This is not an all-green suite or a single uninterrupted final-revision run.",
+  "revisions": {
+    "baseline": "91a7604ecf28500fcf2b0df6ccaeb96d901e57b7",
+    "initial_candidate": "6c829644c179e6622c0b8ee8229a2f74b03d7114",
+    "remainder_and_paired_candidate": "9cb4b9418e54d0f2d39d322ec73ebb99fc251cec",
+    "fixture_repairs": "Subsequent test-only working-tree changes, separately checked; no production changes by broad-suite triage."
+  },
+  "environment": {
+    "engaging_python": "3.13.14",
+    "torch": "2.13.0+cu130",
+    "device": "CPU",
+    "dtype": "float32",
+    "offline": true,
+    "slurm_partition": "mit_normal",
+    "slurm_account_and_qos": "mit_amf_advanced_cpu",
+    "local_tail_baseline_python": "3.13.2; local shared environment, exact first errors/static sets compared"
+  },
+  "inventory": {
+    "initial_job": "23162104",
+    "initial_collected": 50623,
+    "initial_selected": 49914,
+    "initial_deselected": 709,
+    "initial_outcomes_observed": 24565,
+    "initial_job_limit": "3-hour timeout",
+    "remainder_job": "23193845",
+    "remainder_collected": 50704,
+    "remainder_selected": 25445,
+    "remainder_deselected": 25259,
+    "recorded_initial_exclusion_manifest": 24557,
+    "remainder_outcomes_observed": 24384,
+    "remainder_job_limit": "4-hour timeout in Textual shutdown",
+    "cardinality_reconciliation": "25445 remainder selections +24557 prior exclusion node IDs =50002 observed unique outcomes;8 initial outcomes missed by the original exclusion parser reappeared in remainder and are deduplicated. Collection grew81 items; observed non-exclusion deselection count differs by7. No per-node explanation of those7 is claimed.",
+    "observed_unique_outcomes": {
+      "PASSED": 49178,
+      "FAILED": 333,
+      "SKIPPED": 393,
+      "ERROR": 91,
+      "XFAIL": 7
+    },
+    "observed_unique_count": 50002,
+    "full_selected_inventory_membership_certified": false,
+    "limitation": "Neither interrupted outer run persisted a complete selected-node inventory. The50002 figure is a deduplicated verbose-log/journal observation union reconciled by counts, not a certified final-source selected-node census. Logs each have one outer session header and no failure-summary/captured nested pytest sections, but count equality alone does not certify every original selected node.",
+    "tail_job": "23259277",
+    "tail_selected_manifest_cases": 1060,
+    "tail_cases_with_complete_outer_journal": 1060,
+    "tail_outcomes": {
+      "passed": 1027,
+      "failed": 25,
+      "setup_errors": 8
+    },
+    "isolated_hanging_candidate_case": "23256711 passed",
+    "all_final_revision_default_tests_passed": false
+  },
+  "first_failure_batch": {
+    "selected": 78,
+    "baseline_job": "23193758",
+    "candidate_job": "23193759",
+    "failures_reproduced_on_baseline_after_isolation": 75,
+    "passed_on_both": 3,
+    "initial_shared_same_normalized_first_error": 72,
+    "other_shared_failure_limit": "Two8-rankGloo failures have different terminal communication/timeout messages; universal-GCG SIGKILL case reproduced separately with identical marker timeout in23201150/23201151.",
+    "shutdown_limit": "Both full78 pytest sessions wrote complete JUnit but process shutdown hung; own allocations cancelled after evidence collection."
+  },
+  "remaining_failure_batch": {
+    "selected_candidate": 266,
+    "first5_valid_vendor_cases": "Taken before any nested pytest invocation from23256858/23256708; both revisions fail these same five worker-vendor cases. Later results from those two attempts discarded.",
+    "baseline_job": "23259278",
+    "candidate_job": "23259279",
+    "baseline_selected": 259,
+    "baseline_outcomes": {
+      "failed": 225,
+      "passed": 34
+    },
+    "candidate_selected": 261,
+    "candidate_outcomes": {
+      "failed": 228,
+      "passed": 33
+    },
+    "both_runners_exited_normally_with_failure": true,
+    "common_cases": 259,
+    "same_outcome": 256,
+    "exact_first_error_after_path_address_normalization": 239,
+    "different_first_errors_reviewed": 20,
+    "common_outcome_comparison": {
+      "both_failed": 224,
+      "both_passed": 32,
+      "baseline_only_failure": 1,
+      "candidate_only_failure": 2
+    },
+    "candidate_only_failure_resolution": "Two literal torch.no_grad AST checks repaired to recognize actual torch aliases. Decorators remained correctly bound in production.",
+    "new_candidate_only_parameterizations": [
+      "tests/steering/test_all_training_configs_build.py::TestTheSftFamilyIsNotBuiltHere::test_it_carries_no_encoder_architecture[conditional_encdec_sft_3b_transformer_head]",
+      "tests/steering/test_all_training_configs_build.py::TestTheSftFamilyIsNotBuiltHere::test_its_frequency_band_still_resolves_a_valid_mask[conditional_encdec_sft_3b_transformer_head]"
+    ],
+    "new_parameterization_resolution": "Generic matched MLP/transformer preset fixtures repaired; all4 matched preset cases pass. Full matrix65pass/8baseline failures; pinned baseline61pass/10fail before inherited-preset repair.",
+    "clean_vendor_replacements": [
+      {
+        "job_id": "23265606",
+        "outcome": "failed",
+        "failure": "subprocess.TimeoutExpired after180seconds",
+        "runner_returncode": 1,
+        "forced_termination": false
+      },
+      {
+        "job_id": "23265607",
+        "outcome": "failed",
+        "failure": "subprocess.TimeoutExpired after180seconds",
+        "runner_returncode": 1,
+        "forced_termination": false
+      }
+    ],
+    "first_error_variations": [
+      {
+        "nodeid": "tests/axbench_adv/integration/test_vendor_suite.py::test_vendored_axbench_suites",
+        "baseline": "failed",
+        "candidate": "failed",
+        "assessment": "Discard diagnostic-plugin import error; clean jobs23265606/23265607 both reproduce the same180-second subprocess timeout."
+      },
+      {
+        "nodeid": "tests/steering/test_all_training_configs_build.py::TestTheSftFamilyIsNotBuiltHere::test_it_carries_no_encoder_architecture[conditional_encdec_sft_3b_residual_head]",
+        "baseline": "failed",
+        "candidate": "failed",
+        "assessment": "Same underlying num_buckets2-is-None assertion; config repr differs by canonical head fields. Generic matched-preset fixture repaired; inherited and transformer4cases pass."
+      },
+      {
+        "nodeid": "tests/steering/test_encdec_sft_clusters.py::test_clustered_compact_fp_checkpoint_reaches_post_contract_startup",
+        "baseline": "failed",
+        "candidate": "failed",
+        "assessment": "Pre-existing startup fixture omitted old depth; candidate omitted canonical block/depth. Fixtures repaired to reach intended startup guard. Owning suites67passes and61passes."
+      },
+      {
+        "nodeid": "tests/steering/test_encdec_sft_clusters.py::test_clustered_percentile_segment_topk_reaches_compute_init",
+        "baseline": "failed",
+        "candidate": "failed",
+        "assessment": "Pre-existing startup fixture omitted old depth; candidate omitted canonical block/depth. Fixtures repaired to reach intended startup guard. Owning suites67passes and61passes."
+      },
+      {
+        "nodeid": "tests/steering/test_encdec_sft_clusters.py::test_clustered_raw_magnitude_threshold_rejected_at_startup",
+        "baseline": "failed",
+        "candidate": "failed",
+        "assessment": "Pre-existing startup fixture omitted old depth; candidate omitted canonical block/depth. Fixtures repaired to reach intended startup guard. Owning suites67passes and61passes."
+      },
+      {
+        "nodeid": "tests/steering/test_encdec_sft_clusters.py::test_unclustered_checkpoint_user_config_keys_keep_only_the_intentional_delta",
+        "baseline": "failed",
+        "candidate": "failed",
+        "assessment": "Pre-existing stale override golden; candidate additionally needs canonical two-field contract. Updated expected head keys; owning3-file suite67passes."
+      },
+      {
+        "nodeid": "tests/steering/test_encdec_sft_clusters.py::test_unclustered_main_resume_rejects_clustered_sft_metadata",
+        "baseline": "failed",
+        "candidate": "failed",
+        "assessment": "Pre-existing startup fixture omitted old depth; candidate omitted canonical block/depth. Fixtures repaired to reach intended startup guard. Owning suites67passes and61passes."
+      },
+      {
+        "nodeid": "tests/steering/test_encdec_sft_compact_fp_targets.py::test_precompaction_masked_fp_base_keeps_legacy_full_width_targets",
+        "baseline": "failed",
+        "candidate": "failed",
+        "assessment": "Pre-existing startup fixture omitted old depth; candidate omitted canonical block/depth. Fixtures repaired to reach intended startup guard. Owning suites67passes and61passes."
+      },
+      {
+        "nodeid": "tests/steering/test_encoder_feature_vocab.py::TestNoGradDecoratorsAreNotSILENTLYSTOLEN::test_the_buffer_writing_method_still_carries_no_grad[EncoderDecoderGPT-init_buffers]",
+        "baseline": "passed",
+        "candidate": "failed",
+        "assessment": "Introduced AST fixture alias assumption, repaired: resolve actual torch module aliases while retaining the source decorator assertion. Full file120pass/1baseline failure/1deselected."
+      },
+      {
+        "nodeid": "tests/steering/test_encoder_feature_vocab.py::TestNoGradDecoratorsAreNotSILENTLYSTOLEN::test_the_buffer_writing_method_still_carries_no_grad[EncoderDecoderGPT-init_weights]",
+        "baseline": "passed",
+        "candidate": "failed",
+        "assessment": "Introduced AST fixture alias assumption, repaired: resolve actual torch module aliases while retaining the source decorator assertion. Full file120pass/1baseline failure/1deselected."
+      },
+      {
+        "nodeid": "tests/steering/test_feature_clusters_unsupported_surfaces.py::test_sft_agreeing_cluster_contract_reaches_vocab_guard_before_external_work",
+        "baseline": "failed",
+        "candidate": "failed",
+        "assessment": "Pre-existing startup fixture omitted old depth; candidate omitted canonical block/depth. Fixtures repaired to reach intended startup guard. Owning suites67passes and61passes."
+      },
+      {
+        "nodeid": "tests/steering/test_feature_clusters_unsupported_surfaces.py::test_sft_checkpoint_rejects_before_wandb_profile_or_dataset_work",
+        "baseline": "failed",
+        "candidate": "failed",
+        "assessment": "Pre-existing startup fixture omitted old depth; candidate omitted canonical block/depth. Fixtures repaired to reach intended startup guard. Owning suites67passes and61passes."
+      },
+      {
+        "nodeid": "tests/steering/test_missing_percentile_sft_wiring.py::TestMainReadsTheConfigKnob::test_unknown_policy_aborts_at_startup",
+        "baseline": "failed",
+        "candidate": "failed",
+        "assessment": "Pre-existing startup fixture omitted old depth; candidate omitted canonical block/depth. Fixtures repaired to reach intended startup guard. Owning suites67passes and61passes."
+      },
+      {
+        "nodeid": "tests/steering/test_neuronpedia_client_concurrent.py::TestProcessSafeCachePersistence::test_two_real_processes_preserve_simultaneous_disjoint_updates",
+        "baseline": "failed",
+        "candidate": "passed",
+        "assessment": "Baseline-only process shutdown timeout; candidate passes. No candidate defect inferred."
+      },
+      {
+        "nodeid": "tests/steering/test_no_disable_compaction_advice.py::TestTheTrainingConfigsDoNotDodge::test_the_comment_still_TELLS_the_operator_compaction_is_always_on[conditional_encdec_sft.yaml]",
+        "baseline": "failed",
+        "candidate": "failed",
+        "assessment": "Same missing compaction wording assertion on both revisions; entire YAML assertion repr differs by expected head schema change."
+      },
+      {
+        "nodeid": "tests/steering/test_segmentation_turn_delimited.py::test_turn_span_modules_import_without_cycle",
+        "baseline": "failed",
+        "candidate": "failed",
+        "assessment": "Same subprocess assertion that steering.eval.axbench_base.profiler must not be imported; timestamps/PIDs in captured warning text differ."
+      },
+      {
+        "nodeid": "tests/steering/test_sft_patch_isolation.py::test_all_sft_feature_patches_release_before_any_yield",
+        "baseline": "failed",
+        "candidate": "failed",
+        "assessment": "Same existing patch_load_sft_features block contains Yield; source line numbers moved733/811 to742/820."
+      },
+      {
+        "nodeid": "tests/steering/test_shared_store_lifecycle.py::test_owner_death_cleanup_terminates_only_registered_exact_worker",
+        "baseline": "failed",
+        "candidate": "failed",
+        "assessment": "Same pidfd_open errno38 Function not implemented; worker PIDs differ."
+      },
+      {
+        "nodeid": "tests/steering/test_shared_store_lifecycle.py::test_parent_lifecycle_abort_terminates_registered_worker_only",
+        "baseline": "failed",
+        "candidate": "failed",
+        "assessment": "Same pidfd_open errno38 Function not implemented; worker PIDs differ."
+      },
+      {
+        "nodeid": "tests/steering/test_splice_parallel_byte_identity.py::test_shared_store_worker_write_failure_cleans_and_resumes_exactly",
+        "baseline": "failed",
+        "candidate": "failed",
+        "assessment": "Same leaked single shared-store temporary directory assertion; worker PIDs and random directory suffix differ."
+      }
+    ]
+  },
+  "tail_failure_batch": {
+    "candidate_job": "23259277",
+    "failed_or_errored": 33,
+    "local_pinned_baseline_failed_or_errored": 33,
+    "same_normalized_first_error": 31,
+    "same_complete_static_offender_sets": 2,
+    "groups": {
+      "no_running_event_loop": 3,
+      "invalid_geometric_std_mean": 26,
+      "test_structure_assertions": 4
+    }
+  },
+  "tui_hang": {
+    "nodeid": "tests/test_chat_tui/test_steer_menu.py::test_steering_pending_blocks_reentrant_apply_and_escape[asyncio]",
+    "baseline_job": "23256710",
+    "baseline": "Same Textual.call_from_thread versus ModelThread.shutdown.join deadlock, bounded6-minute termination",
+    "candidate_job": "23256711",
+    "candidate": "isolated case passed in6.94seconds"
+  },
+  "fixture_repairs": {
+    "startup_and_override_golden_files": [
+      "tests/steering/test_encdec_sft_clusters.py",
+      "tests/steering/test_encdec_sft_compact_fp_targets.py",
+      "tests/steering/test_missing_percentile_sft_wiring.py"
+    ],
+    "startup_and_golden_verification": "67passed; canonical config/metadata fields added so intended guards execute. No production loader relaxation.",
+    "root_owned_cluster_fixture_verification": "61passed",
+    "matrix_verification": "65passed/8same baseline failures; four matched MLP/transformer cases pass",
+    "decorator_fixture_file": "tests/steering/test_encoder_feature_vocab.py",
+    "decorator_verification": "120passed/1failed/1deselected; remaining compiled negative-index guard fails identically on both pinned revisions; Ruff passed"
+  },
+  "limits": [
+    "Offline cache/provider-key, CPU/CUDA, float32/BF16, shallow Git history, shared-filesystem/process/runtime, and unrelated existing test failures remain; no all-green default-suite claim.",
+    "The old and new failed-node batches are diagnostic comparisons, not additional disjoint full-suite pass counts.",
+    "Full-source final-revision hardware and focused acceptance are recorded by their separate qualification receipts.",
+    "No production SFT runs or live provider calls were launched by this triage."
+  ],
+  "evidence": [
+    {
+      "path": "out/issue1719/full-default-final-complete-ledger.json",
+      "sha256": "4d22718e9711e53ce27cdcf8dbd5ad2031beff57633aedfb4bd3617f2bbbb595"
+    },
+    {
+      "path": "out/issue1719/completed-default-nodes.json",
+      "sha256": "5ca5f5d2f0a88596e709f19154ab860e66f4055abc841da780abaf83843b45f4"
+    },
+    {
+      "path": "out/issue1719/full-default-final-v4-paired.json",
+      "sha256": "c2429221350e13561afdcb85caa31efe28dded68e1f0492c31c5afc44d5c7ce3"
+    },
+    {
+      "path": "out/issue1719/full-default-final-tail-paired.json",
+      "sha256": "6d392f172931f58071536093bb392707480a414c506747dc49bf1c2eb14bee7d"
+    },
+    {
+      "path": "out/issue1719/full-default-final-structure-offenders.json",
+      "sha256": "2a07f6bd5e02e7501be7cd86cef759428c7a1e0ea6cc8d044253f4b04aeb931f"
+    },
+    {
+      "path": "out/issue1719/broad-triage-paired-results.json",
+      "sha256": "9796d809929356cf7c6a87be2e78d1526e77a6fef456b98aa9b873aab5005f23"
+    },
+    {
+      "path": "out/issue1719/full-default-final-attempt-history.json",
+      "sha256": "e0665f9b40abf918829b24c2ea661e3c1c09a38af084a642ebd018d57a4a378a"
+    },
+    {
+      "path": "out/issue1719/full-default-final-decorator-fixture.xml",
+      "sha256": "ddce03a16b28ae21a5412909eeac369417564168109b0942a0564f89d9160219"
+    },
+    {
+      "path": "out/issue1719/full-default-final-startup-fixtures-fixed.xml",
+      "sha256": "6fdbbbfead4e420f1151b50a66ebb4d86c045ff03b417cfb758fe506a3bf4460"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+# Gemma 3 + gemma-scope-2 overlay-validation config. Inherits the v1
+# validate_token_boundary_overlays.yaml; overrides only the Gemma-3 model
+# coordinates. The v1 parent already defaults sae_width: "16k" (matches the
+# extract_features_gemma3.yaml default), so no sae override is needed.
+# See docs/pipelines/gemma-scope-2.md.
+
+defaults:
+  - validate_token_boundary_overlays
+  - _self_
+
+model: gemma-3-4b-it
+layer: 22

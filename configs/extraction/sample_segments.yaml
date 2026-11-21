@@ -1,0 +1,26 @@
+# Sample segments for fine-grained interpretability inspection
+# Usage:
+#   uv run python -m viz.sample_segments
+#   uv run python -m viz.sample_segments n_samples=50 top_k=100
+#   uv run python -m viz.sample_segments shard_index=1
+
+defaults:
+  - _self_
+  - optional local@_global_: sample_segments
+
+feature_dir: out/data/features
+data_dir: null  # null = use nanochat's default DATA_DIR
+output_dir: out/data/features
+output_filename: sampled_segments.yaml
+shard_index: 0
+n_samples: 100
+top_k: 50
+seed: 42
+context_window: 1024
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

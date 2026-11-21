@@ -1,0 +1,43 @@
+{
+  "hardware": "local RTX 4090",
+  "workload": {
+    "checkpoint": "400M encoder-decoder full SFT step 1013",
+    "concept_id": 36,
+    "methods": [
+      "SelfConditioningMasked"
+    ],
+    "pressures": [
+      "diffmean_counter",
+      "linear_probe_counter"
+    ],
+    "magnitudes": [
+      0,
+      256
+    ],
+    "responses_per_point": 10,
+    "judge": "deterministic local HTTP endpoint; no paid provider"
+  },
+  "baseline_seconds": 78.42721393704414,
+  "candidate_seconds": 70.97412471473217,
+  "seconds_saved": 7.453089222311974,
+  "speedup": 1.1050113580444751,
+  "baseline_files": 49,
+  "candidate_files": 49,
+  "only_baseline": [],
+  "only_candidate": [],
+  "different_files": [
+    "logs/SelfConditioningMasked/c36.worker0.log",
+    "logs/final-worker.log",
+    "manifest.json"
+  ],
+  "identical_file_count": 46,
+  "manifest_delta": {
+    "project_native_extraction": [
+      null,
+      true
+    ]
+  },
+  "call_accounting_equal": true,
+  "baseline_inventory_sha256": "a9473c053d79f8bc01498666b65821e004ae4c73f8ebf450a9175c5491cc7932",
+  "candidate_inventory_sha256": "a9473c053d79f8bc01498666b65821e004ae4c73f8ebf450a9175c5491cc7932"
+}

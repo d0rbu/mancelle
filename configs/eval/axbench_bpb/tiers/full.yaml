@@ -1,0 +1,4 @@
+# @package _global_
+# Full tier: 500 concepts (matches axbench-base full tier scale).
+aggregation:
+  min_rows_per_side: 10

@@ -1,0 +1,131 @@
+{
+  "scope": "Opt-in level8 versus unchanged default12; eight complete synchronous local CPU splices on one warm real shard, four samples per arm.",
+  "parent_commit": "b1f82cc9b26c9edc7b31acef9fdd4afb73266160",
+  "candidate_source_sha256": {
+    "steering/_roundtrip_seam.py": "0d1c3a719f3256932f793c7523864b036c36e760b18822e4732153dbb12695ca",
+    "steering/feature_shard_splice.py": "f7fe855636b733b832d7686d575a5e641ad11af0de65e573098ea01f83b8e47c",
+    "steering/segmentation.py": "7e195fdd3318d4eb91cf5fd657bddfbaef3eb432a45fb73dab8b4b21ac0b4d94",
+    "steering/feature_io.py": "2094dae1c8e0d8197eab83494e84c5bc44fcffeed041b71be02e68a9d518adad",
+    "scripts/preprocess/splice_feature_shards.py": "d4dfd58937fe1d0046d149ad264aa394402b31048253d01d28cd67a225361e3c",
+    "configs/extraction/splice_feature_shards.yaml": "0346afce907e671792c65dea326636adfe05bdb952e93691e0406f782dcb36ea"
+  },
+  "input_sha256": {
+    "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos/splice/cut_frac0.15/seed42/feature_statistics.safetensors": "d957803f6da9f53c5307eb1e0d60796249dafef0c053349542973545d720bf93",
+    "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/eval_contexts/gemma3_4bpt_l22_clustered/shard_00000_features.safetensors.zst": "ee4384b86359e5b1a140b0ecd5d532bfff743bd04688ad6a6218f22908923c38",
+    "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/eval_contexts/gemma3_4bpt_l22_clustered/parquet/shard_00000.parquet": "0638ab7f39abce6896c04818cc693cb5f04184e3c930db3970b4f256eeb5593d"
+  },
+  "driver_sha256": "c3e8fff7848720f3927797fe277b6516f2860d348fe226b5ecd5747b4d0aef01",
+  "parent_writer_sha256": "2094dae1c8e0d8197eab83494e84c5bc44fcffeed041b71be02e68a9d518adad",
+  "parent_runner_sha256": "a7503d198e1ce3a2f5ebe2e3fe278f6d6d60347fd0e64d84dff6d4325a6f4446",
+  "raw_receipt_sha256": {
+    "comparison.json": "b31a598a66496d63b21ae9fd98102bc4c2dfecb8a2661013d68810936fd15573",
+    "experiment_audit.json": "92405c7a481054733ffce662f56fa2d686af509f6eeb86718215bc25346dda24",
+    "default_byte_control.json": "14a2ca0f3c505cbc3bc4a0f11248367b78e0f0fad9923e2a969ff5f7313dd435",
+    "implementation_validation.json": "07f3e0056679fd8f55059ff47438f5c9c8fb379f3a297015f9abcb752bacac6e"
+  },
+  "runtime": {
+    "python": "3.13.2",
+    "torch": "2.13.0+cu130",
+    "torch_threads": 1,
+    "platform": "Linux-6.17.4-76061704-generic-x86_64-with-glibc2.35",
+    "cpu": "AMD Ryzen 9 9950X 16-Core Processor",
+    "packages": {
+      "transformers": "5.14.1",
+      "tokenizers": "0.22.2",
+      "numpy": "1.26.4",
+      "zstandard": "0.25.0",
+      "safetensors": "0.8.0"
+    },
+    "environment": {
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "TOKENIZERS_PARALLELISM": "false",
+      "HF_HUB_OFFLINE": "1",
+      "PYTHONPATH": "."
+    }
+  },
+  "configuration": {
+    "baseline_zstd_level": null,
+    "baseline_effective_level": 12,
+    "candidate_zstd_level": 8,
+    "zstd_threads_both": 2,
+    "shard_parallelism": 1,
+    "async_feature_save_depth": 0,
+    "pairing_mode": "opposite_percentile",
+    "pairing_candidate_pool_size": 64,
+    "cut_fraction": 0.15,
+    "seed": 42,
+    "context_window": 2048,
+    "segment_size": 128,
+    "order": "ABBABAAB"
+  },
+  "workload": {
+    "source_documents": 8239,
+    "derived_documents": 8240,
+    "segments": 24107,
+    "activations": 50689690,
+    "pairing_percentile_checksum": "623c372d3f121b1844f420b976ef964ca3f13de1a3198002cecbf0753eaebe2a"
+  },
+  "samples": [
+    {"index": 0, "arm": "baseline", "run_seconds": 30.265949819236994, "process_cpu_seconds": 35.445710488, "compression_seconds": 5.86001506075263, "feature_bytes": 100423115, "total_data_bytes": 108787100},
+    {"index": 1, "arm": "candidate", "run_seconds": 27.40546615049243, "process_cpu_seconds": 27.458265661, "compression_seconds": 1.5088589452207088, "feature_bytes": 103890943, "total_data_bytes": 112254949},
+    {"index": 2, "arm": "candidate", "run_seconds": 25.678407218307257, "process_cpu_seconds": 26.266205600999996, "compression_seconds": 1.6190136447548866, "feature_bytes": 103890937, "total_data_bytes": 112254943},
+    {"index": 3, "arm": "baseline", "run_seconds": 30.338344998657703, "process_cpu_seconds": 34.53133335, "compression_seconds": 5.75251255556941, "feature_bytes": 100423114, "total_data_bytes": 108787099},
+    {"index": 4, "arm": "candidate", "run_seconds": 25.79057267308235, "process_cpu_seconds": 25.518543550999993, "compression_seconds": 1.4693013429641724, "feature_bytes": 103890937, "total_data_bytes": 112254943},
+    {"index": 5, "arm": "baseline", "run_seconds": 31.030212871730328, "process_cpu_seconds": 34.06605799799999, "compression_seconds": 5.6397256180644035, "feature_bytes": 100423123, "total_data_bytes": 108787108},
+    {"index": 6, "arm": "baseline", "run_seconds": 26.936021644622087, "process_cpu_seconds": 30.873471437999996, "compression_seconds": 5.029095835983753, "feature_bytes": 100423111, "total_data_bytes": 108787096},
+    {"index": 7, "arm": "candidate", "run_seconds": 24.031887747347355, "process_cpu_seconds": 23.426415830999986, "compression_seconds": 1.2973657362163067, "feature_bytes": 103890940, "total_data_bytes": 112254946}
+  ],
+  "median_metrics": {"baseline": {"full_run_seconds": 30.30214740894735, "full_process_cpu_seconds": 34.298695673999994, "shard_wall_seconds": 22.566789215430617, "compress_seconds": 5.696119086816907, "full_run_minus_compress_seconds": 24.49588360078633, "shard_total_minus_compress_seconds": 16.828345503658056, "feature_bytes": 100423114.5, "all_data_artifact_bytes": 108787099.5}, "candidate": {"full_run_seconds": 25.734489945694804, "full_process_cpu_seconds": 25.892374575999995, "shard_wall_seconds": 18.780135955661535, "compress_seconds": 1.4890801440924406, "full_run_minus_compress_seconds": 24.190332451835275, "shard_total_minus_compress_seconds": 17.195143749937415, "feature_bytes": 103890938.5, "all_data_artifact_bytes": 112254944.5}},
+  "candidate_change_percent_vs_baseline": {"full_run_seconds": -15.073708808847808, "full_process_cpu_seconds": -24.509156785143816, "shard_wall_seconds": -16.779760840677593, "compress_seconds": -73.85798784406094, "full_run_minus_compress_seconds": -1.247357123060644, "shard_total_minus_compress_seconds": 2.179645326390678, "feature_bytes": 3.4532129552703683, "all_data_artifact_bytes": 3.187735509025136},
+  "parity": {
+    "all_seven_comparisons_exact_feature_keys_dtypes_shapes_values_scalars_parquet_bytes": true,
+    "parsed_provenance_only_candidate_difference": "params.zstd_level=8",
+    "default_provenance_level_key_absent": true,
+    "same_setting_provenance_bytes_stable": true,
+    "writer_identical_to_parent": true,
+    "input_and_code_before_after_unchanged": true,
+    "compressed_feature_byte_equality_claimed": false
+  },
+  "default_byte_control": {
+    "source": "First document of real retained derived baseline, 1 segment / 1318 activations; deterministic=True, zstd_threads=2.",
+    "method": "Compile parent save helper AST against unchanged current writer; compare omitted level to candidate default None.",
+    "profiled_and_unprofiled_bytes_exact": true,
+    "input_data_unchanged": true,
+    "compressed_bytes_each": 3816,
+    "payload_sha256": "4992ee7ace85a08249bd82c44af781c24e963814c6f078d01b960f517b54cd89",
+    "driver_sha256": "4ed0ec9f2fa7dacd1ab27c24c1a2a7bc412505fb8483db309373d6e7eac3d10e",
+    "initial_launcher_import_failure": "An initial invocation lacked PYTHONPATH; no control ran. Corrected ordinary CLI exited0."
+  },
+  "validation": {
+    "focused_command": "OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 TOKENIZERS_PARALLELISM=false HF_HUB_OFFLINE=1 NANOCHAT_BASE_DIR=/home/d0rb/.cache/nanochat uv run --no-sync pytest tests/scripts/test_splice_feature_shards_config.py tests/scripts/test_splice_feature_shards_skip.py tests/scripts/test_splice_feature_shards_run.py tests/scripts/test_splice_feature_shards_remote.py --basetemp=out/splice_perf_05/tests_tmp --junitxml=out/splice_perf_05/tests_focused.xml -q",
+    "passed": 142,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "pytest_exit_code": 0,
+    "ruff_exit_code": 0,
+    "ty_exit_code": 0,
+    "ty_warning": "One unchanged contextmanager return-annotation deprecation.",
+    "diff_check_exit_code": 0
+  },
+  "cleanup": {
+    "seven_duplicate_outputs_removed_after_exact_comparison": true,
+    "duplicate_regular_bytes_removed": 775381084,
+    "retained_baseline_regular_bytes_removed_after_independent_audit": 108787100,
+    "all_eight_benchmark_outputs_removed": true,
+    "benchmark_regular_bytes_removed_exactly_once": 884168184,
+    "cleanup_receipt_sha256": "587ae7f0d61c2559d71e998ff72f32c9d293d82cf0cc735529eb1ba0af95db83",
+    "owned_test_temp_removed_regular_bytes": 1824043,
+    "control_outputs_removed": true
+  },
+  "limits": [
+    "Shared host, one warm-cache shard, four samples per setting; second four-run group medians were lower for both settings.",
+    "Process imports, equality, hashes and cleanup excluded; per-run setup, source/statistics loads and output I/O included.",
+    "Full-run process CPU includes native compression workers.",
+    "Untargeted full-run-minus-compression median fell 1.25%; shard-total-minus-compression median rose 2.18%.",
+    "Ordinary safetensors serialization changes compressed bytes slightly within a level; manifests retained in raw audit.",
+    "No GPU/training, network cost, async/process throughput, per-arm memory or other-corpus generalization."
+  ]
+}

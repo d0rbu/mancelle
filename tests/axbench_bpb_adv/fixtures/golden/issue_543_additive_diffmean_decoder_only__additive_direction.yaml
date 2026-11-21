@@ -1,0 +1,39 @@
+family: positive|diffmean_decoder_only|decoder_only|additive_direction|not_applicable
+mode: positive
+method_name: diffmean_decoder_only
+target_model: decoder_only
+adversarial_method: additive_direction
+representative_coefficient: '4.0'
+scatter_baseline_x: baseline_loss
+strength_unit: counter_direction_magnitude
+sampling:
+  n_completions: 3
+  temperature: 0.8
+  top_k: null
+  max_new_tokens: 6
+  base_seed: 0
+concepts:
+- concept_id: 1
+  concept_label: dogs
+  prefixes:
+  - core_prefix_id: cp_a
+    prefix_text: dogs are great
+    datapoints:
+    - strength_index: 0
+      adversarial_strength: 0.0
+      is_control: true
+      primary_margin_y: 1.0
+      general_val_bpb: null
+      completions:
+      - ":{\x014s;"
+      - "P=\x0F~+O"
+      - kVZ8+(
+    - strength_index: 1
+      adversarial_strength: 1.0
+      is_control: false
+      primary_margin_y: 0.9
+      general_val_bpb: null
+      completions:
+      - ":{\x014s;"
+      - "P=\x0F~+O"
+      - kVZ8+(

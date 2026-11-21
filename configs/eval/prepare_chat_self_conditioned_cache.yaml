@@ -1,0 +1,18 @@
+# CPU plan writes exact JSONL/parquet and a GPU extraction command to plan.json.
+# Run that command, then repeat these inputs with stage=publish.
+checkpoint_meta_path: ???
+legacy_cache_dir: null
+legacy_contexts_file: null
+legacy_feature_dir: null
+legacy_parquet_dir: null
+output_dir: ???
+stage: plan  # plan | publish; never runs a GPU extraction implicitly
+chat_tasks: [ARC-Easy, ARC-Challenge, MMLU, GSM8K, HumanEval, SpellingBee]
+chat_max_problems: 500
+shard_size: 1024
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

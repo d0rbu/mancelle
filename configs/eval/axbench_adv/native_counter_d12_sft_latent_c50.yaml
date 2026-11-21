@@ -1,0 +1,10 @@
+defaults:
+  - native_counter
+  - _self_
+
+# Native D12/W768 SFT step 1003, decoder block-output layer 9.
+# Checkpoint/tokenizer hashes and the standard50 source scope are inherited.
+# Historical PromptSteering sources still require their matching producer code:
+# see docs/evaluation/axbench-adv-d12-latent.md before launching.
+# Raw saved-direction units; zero is the shared authenticated control.
+magnitudes: [64, 256, 512, 1024, 2048, 4096]

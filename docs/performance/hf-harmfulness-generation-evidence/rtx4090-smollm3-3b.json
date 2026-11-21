@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "measured_at": "2026-08-28",
+  "base_commit": "0753edef12de4285d3df9391bfe3bdc748f958c4",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "torch": "2.13.0+cu130",
+  "checkpoint_identity": {
+    "architecture": "SmolLM3ForCausalLM",
+    "backend": "smollm3",
+    "checkpoint_sha256": "4349c25e204053e469df05bfa3fb310df8cac7c34d3cd129b3a9febb7ec3497a",
+    "model_type": "smollm3",
+    "step": 0,
+    "tokenizer_sha256": "e54f356e498b36d717dbcf688f317278b9e9644322b565076d6be6c52b60b7a6"
+  },
+  "workload": {
+    "prompt_count": 8,
+    "harmful_prompts": 4,
+    "benign_prompts": 4,
+    "max_new_tokens": 32,
+    "temperature": 0.7,
+    "top_k": 50,
+    "seed": 4242
+  },
+  "matched_process_benchmark": {
+    "iterations": 3,
+    "serial_latency_seconds": [
+      3.390064988285303,
+      3.3156748451292515,
+      3.3221218325197697
+    ],
+    "serial_median_seconds": 3.3221218325197697,
+    "batched_latency_seconds": [
+      0.5812896601855755,
+      0.5812591910362244,
+      0.5815874300897121
+    ],
+    "batched_median_seconds": 0.5812896601855755,
+    "speedup": 5.715088466323639,
+    "latency_reduction_percent": 82.50245808280073,
+    "serial_repeatable": true,
+    "batched_repeatable": true,
+    "greedy_serial_batched_exact": true,
+    "sampled_serial_batched_exact": false
+  },
+  "separate_profile_timing": {
+    "serial_median_seconds": 2.5749562829732895,
+    "batched_median_seconds": 0.46067410707473755,
+    "speedup": 5.5895398578491,
+    "latency_reduction_percent": 82.10943967783409,
+    "serial_peak_allocated_mb": 5990.29638671875,
+    "batched_peak_allocated_mb": 6037.62841796875,
+    "peak_delta_mb": 47.33203125
+  },
+  "profile_attribution": {
+    "serial_mm_calls": 64768,
+    "batched_mm_calls": 8096,
+    "serial_single_row_gemv_calls": 35968,
+    "batched_single_row_gemv_calls": 0,
+    "serial_self_cuda_seconds": 2.275,
+    "batched_self_cuda_seconds": 0.400
+  },
+  "full_greedy_trajectory_parity": {
+    "trajectory_tokens": 256,
+    "text_exact": true,
+    "top1_agreement": 1.0,
+    "top50_overlap_min": 46,
+    "top50_overlap_mean": 49.328125,
+    "logits_max_abs": 0.445068359375,
+    "logits_mean_abs": 0.024222214009936526,
+    "logits_rms": 0.035979203344751506,
+    "logits_min_cosine": 0.9968715310096741,
+    "logits_mean_cosine": 0.9999286907259375
+  },
+  "raw_artifact_sha256": {
+    "matched_benchmark_json": "3b4b0a06efea21dc60664d88fceb1bf0f51eec31f40da33620a8404847a4b0b1",
+    "serial_benchmark_json": "a1fad780b35385b114ab6fe179b10ef6331749ed8af6cad78bd42214f629a845",
+    "serial_key_averages": "2d6279db437290bb04deb531f165b8e9d196aa3c037c8e295001cdbff7e9c403",
+    "serial_trace": "32b00ea4aefae59227517d29c53682b937569198bb1d7d23012f2823bbd8ea0c",
+    "batched_benchmark_json": "1cfe6598c9be405b2709ab12f1c87aaa198403dc6405fe188a0ddf8797400d47",
+    "batched_key_averages": "c290846f28f5a6dfed25ca7a2096c81032bc5cc491bfda0183f465ef1cdca060",
+    "batched_trace": "22392fdbe1b34e0f8d7a836bba03b81c6bd7723eabab63c128a7615a2d05babe",
+    "parity_json": "8adf98ad5c8cb65ef6c8c40fd25491bb28db15700d3fef35d75bcb77bac397ee"
+  },
+  "unrun_boundary": "No OpenRouter judge calls and no full 1200-prompt evaluation were run."
+}

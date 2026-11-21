@@ -1,0 +1,53 @@
+# S1 before/after benchmark: eager (PR-1 baseline) vs gated torch.compile.
+#
+# Drives the REAL production path for each configured (model, layer, dtype)
+# cell:
+#   1. `NativeCollector.enable_compiled()` arms the compiled forward.
+#   2. `_native_compile_gate` (the ORACLE) probes compiled ≈ eager via the
+#      project SAE feature-equivalence predicate.
+#   3. Only if the gate PASSES does the benchmark measure compiled latency
+#      and compute the speedup.  Gate FAIL ⇒ row shows ORACLE=FAIL and
+#      compiled=DISABLED, no speedup number presented.
+#
+# Usage:
+#   uv run python scripts/benchmark/benchmark_native_compile.py
+#   uv run python scripts/benchmark/benchmark_native_compile.py smoke=true
+#   uv run python scripts/benchmark/benchmark_native_compile.py n_iters=30
+
+# Configured (model, layer) gate cells — must match the cells the production
+# slow gate (test_native_integration.py) uses.  Default: both GemmaScope cells.
+models:
+  - {name: gemma-2-2b, layer: 6}
+  - {name: gemma-3-1b-pt, layer: 7}
+
+# dtypes to benchmark per model cell.  fp32 and bf16 cover the production path
+# (extraction uses bf16) and the validation path (fp32 proves tightness).
+dtypes:
+  - fp32
+  - bf16
+
+# Steady-state timing: N_WARMUP discarded warmup iterations, then N_ITERS
+# CUDA-synced individual timings; median is the reported latency.
+# Minimum effective values: n_warmup >= 5, n_iters >= 20 for a real 4090 run.
+# Smoke defaults are deliberately small (CPU, no real model, just wiring check).
+n_warmup: 5
+n_iters: 20
+
+# CUDA device for real (non-smoke) runs.
+device: cuda
+
+# smoke=true: tiny CPU gemma twins + stub SAE (no GPU, no download).
+# Proves the script's measurement + ORACLE-gating + reporting plumbing works.
+# The T8 4090 run uses smoke=false.
+smoke: false
+
+# Output directory for the raw JSON results file.
+# Default: current working directory (Hydra run dir is "." per job config).
+out_dir: .
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

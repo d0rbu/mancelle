@@ -1,0 +1,59 @@
+# Smoke-test progression config for d12_base (decoder-only baseline).
+#
+# Mirrors training_progression_d12_baseline_smoke.yaml but for the base
+# decoder model that lives under nanochat_cache/base_checkpoints/d12_base.
+# Decoder-only baseline line across the full pretrain / safety_sft /
+# capabilities_sft chain.
+#
+# Usage (from a worktree with `nanochat_cache -> ../../nanochat_cache`):
+#   uv run python -c "from hydra import compose, initialize_config_dir; \
+#     initialize_config_dir(config_dir='configs/eval', version_base=None).__enter__(); \
+#     cfg = compose(config_name='training_progression_d12_base_smoke'); \
+#     from scripts.train.training_progression import collect_results, plot_results; \
+#     collect_results(cfg); plot_results(cfg)"
+
+defaults:
+  - training_progression
+  - _self_
+
+mode: both
+
+model_tag: d12_base
+model_family: decoder
+
+checkpoints_dir: null
+checkpoint_root: base_checkpoints
+checkpoint_prefix: ""
+
+phases:
+  - phase: pretrain
+    subdir: ""
+    steps:
+      - 54600
+  - phase: safety_sft
+    subdir: "safety_sft_checkpoints"
+    steps:
+      - 2500
+  - phase: capabilities_sft
+    subdir: "safety_sft_checkpoints/capabilities_sft_checkpoints"
+    steps:
+      - 2500
+
+conditioning:
+  conditioned_configs: null
+  context_cache_dir: null
+
+evals: "core,chat,harmfulness"
+
+num_seeds: 1
+base_seed: 1234
+
+max_per_task: 25
+chat_max_problems: 3
+chat_max_new_tokens: 128
+harm_num_benign: 3
+harm_num_harmful: 3
+harm_max_new_tokens: 128
+
+results_file: tmp/d12_base_progression_smoke/results.json
+fig_dir: tmp/d12_base_progression_smoke/fig

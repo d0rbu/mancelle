@@ -1,0 +1,18 @@
+{
+  "source": "1ed472d5139d6b2afe7e80969acccd32a93ef329",
+  "device": "NVIDIA L40S",
+  "method": "SelfConditioning",
+  "pressure": "diffmean_counter",
+  "input_id": 0,
+  "magnitude": 256.0,
+  "logit_shape": [
+    1,
+    128,
+    32768
+  ],
+  "maximum_absolute_logit_difference": 0.0,
+  "exact_logits": true,
+  "within_1e-5": true,
+  "exact_generation": true,
+  "captured_at": 1790234222.5175781
+}

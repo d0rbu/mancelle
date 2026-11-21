@@ -1,0 +1,17 @@
+# Gemma-side extraction for the exact c1024 RustBPE CORE/chat/harmfulness
+# context cache used by the clustered L22 production run.
+#
+# Decoder and extractor context lengths live in different tokenizer spaces.
+# A valid 1024-token RustBPE context can exceed 1024 Gemma tokens (the current
+# production enumeration reaches 1,043), so use a 2,048-token Gemma extraction
+# window and rely on validate_eval_context_cache for the exact routing gate.
+defaults:
+  - extract_features_gemma3_4bpt_l22_f65k_ci_nobos
+  - _self_
+
+context_window: 2048
+
+# Measured target-host geometry for one H200. The enumerator emits one parquet
+# shard, so launch one extraction rank; a second rank would have no shard.
+gpu_batch_size: 32
+cpu_batch_size: 64

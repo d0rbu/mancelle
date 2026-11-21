@@ -1,0 +1,4 @@
+# @package feature_selection
+# Shared 2xH200/2xB200 positive-feature threshold arm.
+threshold_type: feature_percentile_segment_topk
+threshold: 2048.9

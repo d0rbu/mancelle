@@ -1,0 +1,8 @@
+# 4x RTX PRO 6000 Blackwell Server Edition (96GB each) config for chat SFT
+# Usage: torchrun --standalone --nproc_per_node=4 -m scripts.train.chat_sft --config-name chat_sft_4xrtx6000 mixture=safety
+
+defaults:
+  - chat_sft
+  - _self_
+
+device_batch_size: 16

@@ -1,0 +1,2 @@
+# Allow committed fixture tensors in this directory despite the root *.pt rule.
+!*.pt

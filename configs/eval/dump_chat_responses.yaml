@@ -1,0 +1,54 @@
+# Dump raw chat-eval responses from an encoder-decoder checkpoint under
+# full-context conditioning.
+#
+# Build a chat context cache first:
+#   uv run python -m scripts.eval.build_eval_context_cache stage=enumerate evals=chat ...
+#   uv run python -m steering.extract_features ...
+#   uv run python -m scripts.eval.build_eval_context_cache stage=convert ...
+#
+# Then run:
+#   uv run python -m scripts.eval.dump_chat_responses \
+#     checkpoint_dir=... step=... \
+#     conditioning.context_cache_dir=... \
+#     conditioning.identity.feature_selection_hash=... \
+#     feature_configs=[path/to/features.yaml] \
+#     output=out/chat_responses/responses.yaml
+
+checkpoint_dir: ???
+step: ???
+output: out/chat_responses/responses.yaml
+device_type: ""
+
+tasks:
+  - ARC-Easy
+  - ARC-Challenge
+  - MMLU
+  - GSM8K
+  - HumanEval
+  - SpellingBee
+
+n_problems: 10
+max_new_tokens: 512
+temperature: 0.0
+top_k: 50
+feature_configs: ???
+next_segment_conditioning_offset: auto
+model_max_seq_len: 1024
+
+conditioning:
+  context_cache_dir: ???
+  identity:
+    model_id: gemma-2-2b
+    sae_id: gemmascope-residual-l8-16k
+    layer: 8
+    pooling: max_pool
+    feature_selection_hash: null
+  n_sae_features: 16384
+  num_buckets: 2
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

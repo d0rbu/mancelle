@@ -1,0 +1,21 @@
+# Turn target-real cache settings come exclusively from checkpoint lineage.
+defaults:
+  - build_eval_context_cache
+  - _self_
+segment_mode: turn_delimited_fixed_tokens
+evals: chat_target
+model_max_seq_len: 2048
+chat_max_problems: null  # match chat_eval_turn's full suite; set both caps for bounded runs
+checkpoint_meta_path: ???
+n_sae_features: null
+num_buckets: null
+stats_path: null
+source_bos_char_len: null
+feature_selection: null
+negative_selection: null
+identity:
+  model_id: null
+  sae_id: null
+  layer: null
+  pooling: null
+  feature_selection_hash: null

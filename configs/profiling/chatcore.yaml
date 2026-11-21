@@ -1,0 +1,15 @@
+# Single-GPU, six-task standalone ChatCORE latency and grading comparison.
+checkpoint_dir: ???
+step: 999
+output_dir: ???
+grading: candidate  # candidate | reference (unchanged nanochat.execute_code)
+repeats: 3
+profile: false      # separate 64-token generative profile after timed suites
+record_logits: false  # separate numerical audit; its timings are instrumented
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

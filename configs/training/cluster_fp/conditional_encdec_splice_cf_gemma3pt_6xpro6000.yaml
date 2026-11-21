@@ -1,0 +1,10 @@
+# @package _global_
+# 6x PRO 6000 variant of the opt-in cluster-aware compact-FP config.
+defaults:
+  - /cluster_fp/conditional_encdec_splice_cf_gemma3pt_8xpro6000@_global_
+  - _self_
+
+run: splice_cf_gemma3pt_6xpro6000_cluster_fp
+# 6 * 28 * 1024 * 3 = 516,096, only 8,192 below the 524,288-token reference.
+device_batch_size: 28
+total_batch_size: 516096

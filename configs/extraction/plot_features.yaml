@@ -1,0 +1,52 @@
+# Feature statistics visualization config
+# Usage:
+#   python -m viz.plot_features
+#   python -m viz.plot_features stats_path=path/to/stats.json
+
+stats_path: out/data/features/feature_statistics.json
+output_dir: fig
+charts: all  # or list like [count_distribution, count_vs_magnitude]
+dpi: 150
+
+count_distribution:
+  log_scale: true
+  n_bins: 50
+
+features_per_segment:
+  n_bins: 50
+
+count_vs_magnitude:
+  log_x: true
+  log_y: false
+  alpha: 0.3
+
+magnitude_distribution:
+  n_bins: 50
+  log_y: false
+  low_activity_threshold_pct: 1.0
+
+percentile_heatmap:
+  n_features: 21
+  colormap: plasma
+  log_scale: false
+
+percentile_surface_3d:
+  n_features: 21
+  colormap: plasma
+  elevation: 30
+  azimuth: 45
+  log_scale: false
+
+segment_length_distribution:
+  n_bins: 50
+
+features_per_token_ratio:
+  n_bins: 50
+  log_x: false
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

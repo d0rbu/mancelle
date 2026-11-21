@@ -1,0 +1,10 @@
+# Campaign 2 BeaverTails 330k_train; first native safe/unsafe responses per prompt.
+# Full evaluation exclusion and normalized dedupe precede seed-42 prompt shuffle.
+output_dir: ???
+cap: 128
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

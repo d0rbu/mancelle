@@ -1,0 +1,14 @@
+# 8xH100 (80GB each) config for encoder-decoder pretraining WITH feature
+# delta conditioning enabled. Per-GPU HBM is identical to the 4xH100
+# case, so every knob except the WandB run tag matches
+# conditional_encdec_delta_4xh100 — doubling the GPU count halves
+# grad_accum_steps for the same auto-computed total_batch_size, cutting
+# wallclock without changing training dynamics.
+#
+# Usage: torchrun --nproc_per_node=8 -m scripts.train.conditional_encdec_train -- config_name=conditional_encdec_delta_8xh100
+
+defaults:
+  - conditional_encdec_delta_4xh100
+  - _self_
+
+run: encdec_delta_d20_8xh100

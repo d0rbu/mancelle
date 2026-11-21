@@ -1,0 +1,178 @@
+{
+  "schema": "production_packed_native_campaign_closure_v1",
+  "job": 23372822,
+  "campaign_pass": false,
+  "terminal_state": "FAILED",
+  "exit_code": "1:0",
+  "elapsed": "01:04:27",
+  "closed_download_files_verified": 82,
+  "final_input_integrity_pass": true,
+  "exit_receipt_sha256": "b96b03c0763cd4b9a153f884f4da2a570cddd0cf3c75a71ee12e2ca17692ca99",
+  "full_count_optimizer_gate_pass": true,
+  "native_shared_real_gradient_optimizer_gate_pass": true,
+  "native_model_gate_pass": false,
+  "model_candidate_ran": false,
+  "timing_trials_ran": 0,
+  "model_failure_pair": "baseline_control",
+  "model_failure_step": 1,
+  "nonexact_step1_metrics": {
+    "gradients": {
+      "transformer.h.0.attn.c_qkv.weight": {
+        "shape": [
+          1536,
+          512
+        ],
+        "dtype": "torch.float32",
+        "numel": 786432,
+        "max_abs": 3.725290298461914e-09,
+        "reference_rms": 8.90842784428969e-07,
+        "difference_rms": 5.295351830636452e-12,
+        "relative_rms": 5.944204660119436e-06,
+        "finite": true,
+        "elementwise_pass": true,
+        "pass": true
+      },
+      "transformer.h.2.attn.c_qkv.weight": {
+        "shape": [
+          1536,
+          512
+        ],
+        "dtype": "torch.float32",
+        "numel": 786432,
+        "max_abs": 1.862645149230957e-09,
+        "reference_rms": 2.157225026166998e-05,
+        "difference_rms": 2.698959762278963e-12,
+        "relative_rms": 1.251125742349898e-07,
+        "finite": true,
+        "elementwise_pass": true,
+        "pass": true
+      }
+    },
+    "parameters": {
+      "transformer.h.0.attn.c_qkv.weight": {
+        "shape": [
+          1536,
+          512
+        ],
+        "dtype": "torch.float32",
+        "numel": 786432,
+        "max_abs": 9.386008605360985e-05,
+        "reference_rms": 0.04414314031600952,
+        "difference_rms": 8.203434845199808e-06,
+        "relative_rms": 0.00018583713769508702,
+        "finite": true,
+        "elementwise_pass": false,
+        "pass": false
+      },
+      "transformer.h.2.attn.c_qkv.weight": {
+        "shape": [
+          1536,
+          512
+        ],
+        "dtype": "torch.float32",
+        "numel": 786432,
+        "max_abs": 1.2073665857315063e-05,
+        "reference_rms": 0.04415872320532799,
+        "difference_rms": 2.9344736418579487e-08,
+        "relative_rms": 6.645286432339349e-07,
+        "finite": true,
+        "elementwise_pass": true,
+        "pass": true
+      }
+    },
+    "updates": {
+      "transformer.h.0.attn.c_qkv.weight": {
+        "shape": [
+          1536,
+          512
+        ],
+        "dtype": "torch.float32",
+        "numel": 786432,
+        "max_abs": 9.386008605360985e-05,
+        "reference_rms": 0.0007982725510373712,
+        "difference_rms": 8.203434845199808e-06,
+        "relative_rms": 0.010276483682846517,
+        "finite": true,
+        "elementwise_pass": false,
+        "pass": false
+      },
+      "transformer.h.2.attn.c_qkv.weight": {
+        "shape": [
+          1536,
+          512
+        ],
+        "dtype": "torch.float32",
+        "numel": 786432,
+        "max_abs": 1.2073665857315063e-05,
+        "reference_rms": 0.00022155206534080207,
+        "difference_rms": 2.9344736418579487e-08,
+        "relative_rms": 0.00013245074638974815,
+        "finite": true,
+        "elementwise_pass": false,
+        "pass": false
+      }
+    },
+    "optimizer_state": {
+      "feature_pred_head.residual_blocks.0.attn.c_qkv.weight/momentum_buffer": {
+        "shape": [
+          18,
+          1536,
+          512
+        ],
+        "dtype": "torch.float32",
+        "numel": 14155776,
+        "max_abs": 5.575486738962354e-10,
+        "reference_rms": 2.114349290016322e-06,
+        "difference_rms": 2.0966714179944283e-13,
+        "relative_rms": 9.916390957230358e-08,
+        "finite": true,
+        "elementwise_pass": true,
+        "pass": true
+      },
+      "feature_pred_head.residual_blocks.0.attn.c_qkv.weight/second_momentum_buffer": {
+        "shape": [
+          18,
+          1536,
+          1
+        ],
+        "dtype": "torch.float32",
+        "numel": 27648,
+        "max_abs": 1.5045225154608488e-07,
+        "reference_rms": 9.787546332518104e-06,
+        "difference_rms": 9.319413685204836e-09,
+        "relative_rms": 0.0009521705817363084,
+        "finite": true,
+        "elementwise_pass": true,
+        "pass": true
+      }
+    }
+  },
+  "full_logits_and_loss_metrics": "exact across both completed baseline steps",
+  "original_tolerances": {
+    "loss": {
+      "atol": 0.0001,
+      "rtol": 0.001
+    },
+    "gradient": {
+      "atol": 1e-05,
+      "rtol": 0.01,
+      "relative_rms": 0.001
+    },
+    "update": {
+      "atol": 1e-05,
+      "rtol": 0.01,
+      "relative_rms": 0.001
+    },
+    "parameter": {
+      "atol": 1e-05,
+      "rtol": 0.01,
+      "relative_rms": 0.001
+    },
+    "moment": {
+      "atol": 1e-05,
+      "rtol": 0.01,
+      "relative_rms": 0.001
+    }
+  },
+  "scope": "Prior optimizer sub-gates remain exact and scoped; native independent model F/B and timing are not qualified. Input integrity passed independently of numerical rejection."
+}

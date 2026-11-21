@@ -1,0 +1,12 @@
+# 2xB200 (180GB each) config for encoder-decoder conditional pretraining
+# Usage: torchrun --nproc_per_node=2 -m scripts.train.conditional_encdec_train -- config_name=conditional_encdec_2xb200
+
+defaults:
+  - conditional_encdec_train
+  - override feature_selection_variant: threshold_2048p9
+  - _self_
+
+device_batch_size: 32
+
+feature_dir: out/data/features
+decoder_segment_size: null

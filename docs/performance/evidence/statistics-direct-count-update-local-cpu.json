@@ -1,0 +1,341 @@
+{
+  "operation": "Complete public CPU streaming compute_statistics, full genuine cohort",
+  "mechanism": "CPU composite-key count updates use repeated validated keys and integer ones directly instead of sorting unique keys. Chunk validation, represented-count invariant, index_add_ mutation checkpoints, total_count and CUDA reduction unchanged.",
+  "regime": "LOW_RAM_NUMPY_CONTROLLED_NICE19: identical benchmark-only NumPy-zero count backing and count_table_nbytes shape/type admission in both arms; native Torch16/inter-op32 and own TIDs normalized19 before clocks. Not production allocator/admission/eager backing RAM, cold-cache, GPU or training qualification.",
+  "population": {
+    "documents": 8239,
+    "segments": 24107,
+    "activations": 50689690,
+    "n_sae_features": 65536,
+    "compressed_input_bytes": 98347010
+  },
+  "input_sha256": {
+    "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/eval_contexts/gemma3_4bpt_l22_clustered/shard_00000_features.safetensors.zst": "ee4384b86359e5b1a140b0ecd5d532bfff743bd04688ad6a6218f22908923c38",
+    "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-7b181cac/out/splice_perf_91/statistics_output/feature_statistics.safetensors": "f290e598f89dd265ed6674bb760553fd87eb7adc4f1e39da7a38e400221f83d8"
+  },
+  "source_sha256": {
+    "baseline": "c8bed1436f4b2a35aa58663d53e51cc9c5a9181d50cbeed1c65ddf20350a816a",
+    "candidate": "97708fd3159c73a0b834db35412a896dd803e8bddb5ab35c4e2c65d503662ea5",
+    "regression_tests": "d2da4d78d7f96ccdb073d14903328329e3bf64ed9d8ccdf433ca158c09c9f0ec"
+  },
+  "config": {
+    "feature_dir": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-7b181cac/out/splice_perf_91/work/s128/features",
+    "n_sae_features": null,
+    "activation_percentile": 0.0,
+    "skip_per_feature_detail": false,
+    "streaming": true,
+    "device": "cpu",
+    "gpu_chunk_size": 500000000,
+    "exclude_last_shard": true,
+    "allow_degenerate_statistics": false,
+    "checkpoint_dir": null,
+    "checkpoint_interval_shards": 50,
+    "remote_config": null
+  },
+  "runtime": {
+    "intra": 16,
+    "inter": 32,
+    "thread_nice_values": [
+      19
+    ],
+    "cpu_only": true,
+    "unset_environment": [
+      "OMP_NUM_THREADS",
+      "MKL_NUM_THREADS",
+      "OPENBLAS_NUM_THREADS",
+      "TOKENIZERS_PARALLELISM",
+      "RAYON_NUM_THREADS"
+    ],
+    "before_after_all10_exact": true
+  },
+  "schedule": [
+    {
+      "slot": "warm_a",
+      "arm": "baseline"
+    },
+    {
+      "slot": "warm_b",
+      "arm": "candidate"
+    },
+    {
+      "slot": "timed_0",
+      "arm": "baseline"
+    },
+    {
+      "slot": "timed_1",
+      "arm": "candidate"
+    },
+    {
+      "slot": "timed_2",
+      "arm": "candidate"
+    },
+    {
+      "slot": "timed_3",
+      "arm": "baseline"
+    },
+    {
+      "slot": "timed_4",
+      "arm": "candidate"
+    },
+    {
+      "slot": "timed_5",
+      "arm": "baseline"
+    },
+    {
+      "slot": "timed_6",
+      "arm": "baseline"
+    },
+    {
+      "slot": "timed_7",
+      "arm": "candidate"
+    }
+  ],
+  "raw_samples": [
+    {
+      "slot": "warm_a",
+      "arm": "baseline",
+      "wall_seconds": 10.573283545672894,
+      "process_cpu_seconds": 37.098124389
+    },
+    {
+      "slot": "warm_b",
+      "arm": "candidate",
+      "wall_seconds": 9.901061818003654,
+      "process_cpu_seconds": 24.715432988000003
+    },
+    {
+      "slot": "timed_0",
+      "arm": "baseline",
+      "wall_seconds": 10.595963768661022,
+      "process_cpu_seconds": 38.358456792999995
+    },
+    {
+      "slot": "timed_1",
+      "arm": "candidate",
+      "wall_seconds": 9.392114546149969,
+      "process_cpu_seconds": 23.572746117999998
+    },
+    {
+      "slot": "timed_2",
+      "arm": "candidate",
+      "wall_seconds": 10.075202364474535,
+      "process_cpu_seconds": 25.542885808
+    },
+    {
+      "slot": "timed_3",
+      "arm": "baseline",
+      "wall_seconds": 10.430221430957317,
+      "process_cpu_seconds": 37.973574179
+    },
+    {
+      "slot": "timed_4",
+      "arm": "candidate",
+      "wall_seconds": 9.875597070902586,
+      "process_cpu_seconds": 25.642114826
+    },
+    {
+      "slot": "timed_5",
+      "arm": "baseline",
+      "wall_seconds": 10.755897521972656,
+      "process_cpu_seconds": 38.555762759
+    },
+    {
+      "slot": "timed_6",
+      "arm": "baseline",
+      "wall_seconds": 11.313664570450783,
+      "process_cpu_seconds": 40.723623485000005
+    },
+    {
+      "slot": "timed_7",
+      "arm": "candidate",
+      "wall_seconds": 10.072830565273762,
+      "process_cpu_seconds": 25.811743060999998
+    }
+  ],
+  "metrics": {
+    "wall_seconds": {
+      "pooled": {
+        "baseline": 10.773936823010445,
+        "candidate": 9.853936136700213,
+        "improvement_percent": 8.539131994400964
+      },
+      "halves": [
+        {
+          "baseline": 10.51309259980917,
+          "candidate": 9.733658455312252,
+          "improvement_percent": 7.413937783740874
+        },
+        {
+          "baseline": 11.03478104621172,
+          "candidate": 9.974213818088174,
+          "improvement_percent": 9.611130693777039
+        }
+      ],
+      "positions": [
+        {
+          "baseline": 10.954814169555902,
+          "candidate": 9.97539971768856,
+          "improvement_percent": 8.940493528308263
+        },
+        {
+          "baseline": 10.593059476464987,
+          "candidate": 9.732472555711865,
+          "improvement_percent": 8.124063899245737
+        }
+      ],
+      "report_only_pairs": [
+        {
+          "baseline": 10.595963768661022,
+          "candidate": 9.392114546149969,
+          "improvement_percent": 11.361394289319843
+        },
+        {
+          "baseline": 10.430221430957317,
+          "candidate": 10.075202364474535,
+          "improvement_percent": 3.40375387840829
+        },
+        {
+          "baseline": 10.755897521972656,
+          "candidate": 9.875597070902586,
+          "improvement_percent": 8.184351415321231
+        },
+        {
+          "baseline": 11.313664570450783,
+          "candidate": 10.072830565273762,
+          "improvement_percent": 10.96756932689919
+        }
+      ],
+      "pooled_gate": true,
+      "strata_gate": true
+    },
+    "process_cpu_seconds": {
+      "pooled": {
+        "baseline": 38.902854304,
+        "candidate": 25.142372453249997,
+        "improvement_percent": 35.37139394251375
+      },
+      "halves": [
+        {
+          "baseline": 38.166015486,
+          "candidate": 24.557815963,
+          "improvement_percent": 35.65527957193158
+        },
+        {
+          "baseline": 39.639693122,
+          "candidate": 25.7269289435,
+          "improvement_percent": 35.09806227732481
+        }
+      ],
+      "positions": [
+        {
+          "baseline": 39.541040139,
+          "candidate": 25.592500317000002,
+          "improvement_percent": 35.27610748975295
+        },
+        {
+          "baseline": 38.264668469,
+          "candidate": 24.6922445895,
+          "improvement_percent": 35.46985880851328
+        }
+      ],
+      "report_only_pairs": [
+        {
+          "baseline": 38.358456792999995,
+          "candidate": 23.572746117999998,
+          "improvement_percent": 38.54615620954342
+        },
+        {
+          "baseline": 37.973574179,
+          "candidate": 25.542885808,
+          "improvement_percent": 32.73510234355125
+        },
+        {
+          "baseline": 38.555762759,
+          "candidate": 25.642114826,
+          "improvement_percent": 33.49343135478649
+        },
+        {
+          "baseline": 40.723623485000005,
+          "candidate": 25.811743060999998,
+          "improvement_percent": 36.617273090869716
+        }
+      ],
+      "pooled_gate": true,
+      "strata_gate": true
+    },
+    "four_fixed_gates": [
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "native_exact_counts_wall_means": {
+    "baseline": 1.80706412625,
+    "candidate": 1.2982504747499999,
+    "improvement_percent": 28.15692282906887
+  },
+  "correctness": {
+    "all10_all22_tensor_payloads_and_static_metadata_exact": true,
+    "golden_sha256": "f290e598f89dd265ed6674bb760553fd87eb7adc4f1e39da7a38e400221f83d8",
+    "focused_differential_cases": 59,
+    "focused_successes": 28,
+    "focused_expected_errors": 31,
+    "focused_all_values_errors_partial_state_versions_rng_match": true,
+    "applied_nine_file_validation": {
+      "status": "526_PASSED_WITH_THREE_BASELINE_REPRODUCED_CUDA_REFERENCE_FAILURES",
+      "passed": 526,
+      "failed": 3,
+      "skipped": 42,
+      "deselected": 4,
+      "new_persistent_cases_passed": 7,
+      "baseline_reproduction": {
+        "scope": "Exactly the three candidate failures; frozen canonical whole baseline c8bed before consumers/pytest. Full nine-file baseline suite NOT rerun.",
+        "baseline_sha256": "c8bed1436f4b2a35aa58663d53e51cc9c5a9181d50cbeed1c65ddf20350a816a",
+        "failed": 3,
+        "matching_failure_ids": [
+          "tests/steering/test_compute_statistics.py::TestVectorizedPass2::test_vectorized_matches_merge",
+          "tests/steering/test_compute_statistics.py::TestVectorizedPass2::test_vectorized_histograms_match",
+          "tests/steering/test_compute_statistics.py::TestVectorizedPass2::test_vectorized_single_shard"
+        ],
+        "cause": "CPU-only environment: unchanged reference calls CUDA mem_get_info without an available CUDA device; matching normalized traces/checkpoints verified independently."
+      },
+      "interpretation": "No clean-suite or full-nine-file paired baseline PASS claim. All actual failures/skips/deselections retained."
+    },
+    "static_validation": {
+      "status": "PASS",
+      "ruff_version": "0.16.0",
+      "ty_version": "0.0.65",
+      "checks": "Installed offline Ruff/scoped ty for production and regression file, git diff --check and capsule JSON parse; all five recorded commands returned0. Production/test bytes unchanged after these checks."
+    }
+  },
+  "peak_observed_group_rss_bytes": 3566088192,
+  "limits": {
+    "seconds": 600,
+    "owned_group_rss_cap_bytes": 8589934592,
+    "fresh_effective_available_min_bytes": 12884901888,
+    "runtime_effective_available_floor_bytes": 4294967296,
+    "fresh_disk_min_bytes": 3221225472,
+    "poll_seconds": 0.25,
+    "total_seconds": 600
+  },
+  "evidence_sha256": {
+    "out/splice_perf_100/direct_count_scatter_benchmark_v1.py": "4f9acf40ee123632a38720aa129fdd8f56a3f0af6b098759086b73f448755dc5",
+    "out/splice_perf_100/direct_count_scatter_benchmark_v1_child.py": "e227f82fa9211e88b8ef1670526f3b9e62a865c6a1765a7f291397ef569dc00b",
+    "out/splice_perf_100/direct_count_scatter_benchmark_v1_freeze_final.json": "cf825af6adc1ce263d0c13397e5d5b6ee549a6708682873208f5706f3c1a33ce",
+    "out/splice_perf_100/direct_count_scatter_benchmark_v1.json": "091565b5d7ff5f8f72f3b730f6f3bfdfad38f5ce21842085fb5dc0376513324f",
+    "out/splice_perf_100/direct_count_scatter_benchmark_v1_independent_actual_review.json": "0389433f61e5e286e58a9efa72b9ddb682c93e4e5625a7d76ba4d1cbf1c85c79",
+    "out/splice_perf_100/direct_count_scatter_benchmark_v1_independent_extra_actual_review.json": "161966821128df305eed277cbde1285ff253d35318a4a38f82ebe837ee722797",
+    "out/splice_perf_100/direct_count_scatter_baseline_and_static_independent_actual_review_v1.json": "19ad0ae92107239d34c9eb03b2472aef415729c373a602967b3e87bb07e82a55",
+    "out/splice_perf_100/direct_count_scatter_baseline_failure_reproduction_v1_independent_extra_actual_review.json": "7fb223174af8564951e2e7c09ec0607f467781c1317e273167bd8186e0ad17de",
+    "out/splice_perf_100/direct_count_scatter_applied_checks_v2_independent_actual_review.json": "5ce0cd122c99163f1fc55b5f67650cc2eb3fc76a0139636ff859a32cef326f1e",
+    "out/splice_perf_100/direct_count_scatter_applied_checks_v2_independent_extra_actual_review.json": "1cbcc4688222504c10c70679734b0a32e256d3a0d97ff144726e98c9f9655e5c",
+    "out/splice_perf_100/root_direct_count_scatter_static_checks_v1.json": "b79b78d7fcc2b49afdf9675ca74712c4a9c935364543ab0de69640b4cd7d8a5c",
+    "out/splice_perf_100/direct_count_scatter_applied_checks_v2/pytest.xml": "84cbfdc2e3faf81f94c47015e71ad52f8defdd4f11b65646cdc170e3dc467957",
+    "out/splice_perf_100/direct_count_scatter_applied_checks_v2/resources.json": "57be9461533d81bbd70999512e608d8d1b9c89a2766bb33f544918996ddf44c3",
+    "out/splice_perf_100/direct_count_scatter_baseline_failure_reproduction_v1/pytest.xml": "229bd44411af0228c7975ee1d563f156893c7bee8466e259a1680b7c6c6910bd",
+    "out/splice_perf_100/direct_count_scatter_baseline_failure_reproduction_v1/baseline_binding.json": "8bae718fd96b2d1b0a201c372efbe9101159ed1f8c05aec4256c7ca52501d758",
+    "out/splice_perf_100/direct_count_scatter_baseline_failure_reproduction_v1/resources.json": "1df133eac4c9e371b0f1261c25f5e9ba44836e362351561e5ce3e145c5e74fd0"
+  },
+  "interpretation": "WarmAB excluded; all8 fixed samples and all report-only pairs retained. All4gates pass and all strata/pairs favorable. Native exact_counts is an inclusive wall phase, not isolated sorting/operator CPU or sole attribution for whole process CPU. Imports/priority control/hash/oracles outside clocks; whole allocation/update/finalize/save inside. Sampled group memory is specific to this adapted regime."
+}

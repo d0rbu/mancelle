@@ -1,0 +1,39 @@
+# Shared Transformers-native decoder SFT defaults. Select a source preset.
+defaults:
+  - chat_sft
+  - _self_
+
+model_backend: huggingface
+source: null
+model_tag: null
+model_step: null
+
+mixture: standard
+sft_loss_mask: full_sequence
+max_seq_len: 1024
+device_batch_size: 1
+total_batch_size: 524288
+dtype: bfloat16
+weight_decay: 0.0
+init_lr_frac: 1.0
+grad_clip_max_norm: null
+
+embedding_lr: null
+unembedding_lr: null
+matrix_lr: null
+
+huggingface:
+  model_id: ???
+  revision: ???
+  learning_rate: 2.0e-5
+  adam_betas: [0.8, 0.95]
+  adam_eps: 1.0e-10
+  gradient_checkpointing: true
+  attention_implementation: sdpa
+  distributed_implementation: dist_muon_adamw
+  torch_compile: false
+  restart_from_step: -1
+  restart_save_every: 0
+  data_snapshot_sha256: null
+  output_dir: null
+  validate_export: true

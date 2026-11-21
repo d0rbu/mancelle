@@ -1,0 +1,44 @@
+# Steering evaluation config
+# Usage:
+#   uv run python -m scripts.eval.steering_eval source=encdec steering_config=path/to/config.yaml
+#   uv run python -m scripts.eval.steering_eval source=encdec steering_config=path/to/config.yaml output_dir=/tmp/results
+
+# Model
+source: encdec
+model_tag: null
+step: null
+
+# Encdec checkpoint pin. Set both, or leave both null for auto-discovery.
+segment_size: null
+feature_selection: null
+
+# Eval config (required — path to YAML with features, magnitudes, prompts)
+steering_config: null
+
+# Required for encoder-decoder eval: full prompt/context feature cache.
+conditioning:
+  context_cache_dir: null
+  n_sae_features: 16384
+  num_buckets: 2
+  identity:
+    model_id: null
+    sae_id: null
+    layer: null
+    pooling: null
+    feature_selection_hash: null
+  feature_selection: null
+  negative_selection: null
+
+# Judge
+requests_per_minute: 60
+judge_cache_path: ""
+
+# Output — null means auto-derive from model report dir
+output_dir: null
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

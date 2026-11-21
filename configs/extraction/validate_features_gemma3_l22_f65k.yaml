@@ -1,0 +1,21 @@
+# Step 0b validation for the gemma-3-4b-it l22 f65k dataset. Full CPU source
+# validation across all 370 shards: per-document re-tokenization + char
+# boundary alignment, per-shard structural/CSR invariants, and cross-shard
+# metadata (incl. l0_tier) consistency. Tokenizer-only model load
+# (resolve_tokenizer — weight-free); parquet_dir auto-resolves to the nanochat
+# default the extraction used (resolve_parquet_default=true). No GPU spot
+# checks (n_spot_check=0) — that is a separate, opt-in heavy path.
+#
+#   uv run python -m steering.validate_features \
+#       --config-name validate_features_gemma3_l22_f65k
+
+defaults:
+  - validate_features
+  - _self_
+
+feature_dir: out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-it/base
+model: gemma-3-4b-it
+n_spot_check: 0
+parquet_dir: null
+resolve_parquet_default: true
+n_sae_features: 65536         # gemma-scope-2 f65k SAE width; reinstates heredoc range check

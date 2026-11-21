@@ -1,0 +1,19 @@
+# Correctness-first 4x8 H200 benchmark canary for pinned Pythia-1.4B.
+defaults:
+  - chat_sft_pythia_1_4b
+  - _self_
+
+num_iterations: 60
+device_batch_size: 1
+max_seq_len: 1024
+total_batch_size: 524288
+eval_every: 0
+save_every: 0
+dry_run: true
+
+huggingface:
+  attention_implementation: sdpa
+  distributed_implementation: dist_muon_adamw
+  torch_compile: false
+  restart_save_every: 0
+  validate_export: false

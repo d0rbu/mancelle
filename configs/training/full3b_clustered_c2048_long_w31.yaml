@@ -1,0 +1,15 @@
+# 31-GPU variant of full3b_clustered_c2048_long (see full3b_clustered_c2048_w31
+# for the exclusion rationale, BF16/B14/accum-2 geometry, and launch pattern).
+#
+# Owner-selected horizon: 250,000 steps x 1,777,664 tokens = 444.42B tokens
+# (deliberately below the world-32 preset's 524.288B; the ratio below reflects
+# the reduced horizon for tools that report it).
+defaults:
+  - full3b_clustered_c2048_w31
+  - _self_
+
+run: full3b_clustered_c2048_long_w31
+model_tag: full3b_clustered_c2048_long_w31
+
+num_iterations: 250000
+target_param_data_ratio: 251.14727137177792

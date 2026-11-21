@@ -1,0 +1,9 @@
+# Issue #1719: one matched consumption-based epoch per transformer-head run.
+# Use an ordinary feature_prediction_head_layers=6, 8, or 10 override as needed.
+defaults:
+  - conditional_encdec_sft_3b_residual_head
+  - _self_
+
+feature_prediction_block: transformer
+feature_prediction_head_layers: 4
+run: sft3b-transformer-head-${feature_prediction_head_layers}

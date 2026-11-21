@@ -1,0 +1,14 @@
+defaults:
+  - axbench_adv
+  - _self_
+
+# The complete rank-era campaign pinned by axbench_adv.yaml.
+# Restore main/aux train artifacts as well as the source frames/manifests.
+source:
+  prepared_dir: out/axbench/prepared
+  main_parquet: out/axbench/runs/smollm3-3b-c50/main/inference/steering_data.parquet
+  aux_parquet: out/axbench/runs/smollm3-3b-c50/aux/inference/steering_data.parquet
+  target_meta: ${oc.env:NANOCHAT_BASE_DIR,nanochat_cache}/conditional_encdec_checkpoints/l22_main_h100_8rank_db16_v1/s128/dist_geometric/mean_12.0/std_12.0/wl_9172c540310ba842/fc_5738db84ba00c8b7a84cd28e7a6b5ebbd4d8385bc81262cb63d904265ec95039/meta_054600.json
+  feature_statistics: out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos/feature_statistics.safetensors
+  expectations:
+    max_concepts: 50

@@ -1,0 +1,12 @@
+# Campaign 2: derive RustBPE cadence from exact turn-delimited SFT train artifacts.
+metadata: ???
+feature_dir: ???
+parquet_dir: ???
+steered_jsonl: null  # required only for the instruct standard_steered mixture
+output_dir: ???     # new evaluation-only view; training metadata stays immutable
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

@@ -1,0 +1,23 @@
+# @package _global_
+
+defaults:
+  - /training@destination_training: full3b_clustered_c2048_long_w32_bf16_b14
+  - _self_
+
+# Native flat checkpoint leaf containing model/meta/optim files.
+source_checkpoint_dir: ???
+source_step: ???
+
+# Exact local packed-row and precomputed-selection families used by the run.
+packed_row_dir: ???
+selection_dir: ???
+
+# Must not exist. Execute mode publishes a complete sibling staging directory
+# atomically; dry-run is the default.
+destination_dir: ???
+destination_world_size: 32
+dry_run: true
+
+# Optional operator guard. null reports the exact replay without imposing an
+# arbitrary policy; a non-negative value fails before writes when exceeded.
+max_replay_rows: null

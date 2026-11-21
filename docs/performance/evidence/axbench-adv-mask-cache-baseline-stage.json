@@ -1,0 +1,1339 @@
+{
+  "config": "/orcd/data/dylanhm/001/nano-gpt-pretrain-steer/latent-adv400m-20260923/jobs/encdec400-c002-004/config.yaml",
+  "device": "NVIDIA L40S",
+  "source_seconds": 20.115370799787343,
+  "direction_preflight_seconds": 1.7779614152386785,
+  "runtime_startup_seconds": 249.1046817023307,
+  "judge_delay_seconds_per_response": 1.0,
+  "input_count": 10,
+  "magnitude": 256.0,
+  "mode_only": "overlap",
+  "benchmark_wall_seconds": 406.92739436682314,
+  "rows": [
+    {
+      "method": "SelfConditioning",
+      "pressure": "control",
+      "mode": 2,
+      "wall_seconds": 32.62052182853222,
+      "generation_seconds": 31.61683932133019,
+      "judge_seconds": 10.007519574835896,
+      "outputs_per_second": 0.3065554883690822,
+      "judge_calls": 20,
+      "cache_hits": 0,
+      "paid_misses": 20,
+      "peak_cuda_allocated_bytes": 9810427904,
+      "peak_host_rss_kib": 67532240,
+      "generations_sha256": "9b21e80e36ddf2a86fdfef4587d302c1142878f87493b89512cd6bd8d89d745c",
+      "trace": [
+        {
+          "stage": "generate",
+          "input_id": 0,
+          "start_unix": 1790230416.1832063,
+          "end_unix": 1790230427.690754
+        },
+        {
+          "stage": "judge",
+          "input_id": 0,
+          "start_unix": 1790230427.6909864,
+          "end_unix": 1790230428.691248,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 1,
+          "start_unix": 1790230427.6913407,
+          "end_unix": 1790230429.2093449
+        },
+        {
+          "stage": "judge",
+          "input_id": 1,
+          "start_unix": 1790230429.2094939,
+          "end_unix": 1790230430.2096312,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 2,
+          "start_unix": 1790230429.2096593,
+          "end_unix": 1790230430.3882406
+        },
+        {
+          "stage": "judge",
+          "input_id": 2,
+          "start_unix": 1790230430.388364,
+          "end_unix": 1790230431.3885589,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 3,
+          "start_unix": 1790230430.3884523,
+          "end_unix": 1790230431.5324676
+        },
+        {
+          "stage": "judge",
+          "input_id": 3,
+          "start_unix": 1790230431.5325902,
+          "end_unix": 1790230432.5327475,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 4,
+          "start_unix": 1790230431.5326846,
+          "end_unix": 1790230432.6755817
+        },
+        {
+          "stage": "judge",
+          "input_id": 4,
+          "start_unix": 1790230432.6757047,
+          "end_unix": 1790230433.681482,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 5,
+          "start_unix": 1790230432.6757898,
+          "end_unix": 1790230443.1427407
+        },
+        {
+          "stage": "judge",
+          "input_id": 5,
+          "start_unix": 1790230443.142948,
+          "end_unix": 1790230444.1431637,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 6,
+          "start_unix": 1790230443.1430914,
+          "end_unix": 1790230444.3015647
+        },
+        {
+          "stage": "judge",
+          "input_id": 6,
+          "start_unix": 1790230444.3017552,
+          "end_unix": 1790230445.3020556,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 7,
+          "start_unix": 1790230444.3018847,
+          "end_unix": 1790230445.4726677
+        },
+        {
+          "stage": "judge",
+          "input_id": 7,
+          "start_unix": 1790230445.4728582,
+          "end_unix": 1790230446.4730382,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 8,
+          "start_unix": 1790230445.4729974,
+          "end_unix": 1790230446.644422
+        },
+        {
+          "stage": "judge",
+          "input_id": 8,
+          "start_unix": 1790230446.6445744,
+          "end_unix": 1790230447.644727,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 9,
+          "start_unix": 1790230446.644691,
+          "end_unix": 1790230447.8028646
+        },
+        {
+          "stage": "judge",
+          "input_id": 9,
+          "start_unix": 1790230447.802993,
+          "end_unix": 1790230448.8031483,
+          "paid_misses": 2
+        }
+      ]
+    },
+    {
+      "method": "SelfConditioning",
+      "pressure": "diffmean_counter",
+      "mode": 2,
+      "wall_seconds": 12.717684613540769,
+      "generation_seconds": 11.714513907209039,
+      "judge_seconds": 10.001521967351437,
+      "outputs_per_second": 0.7863066512400224,
+      "judge_calls": 20,
+      "cache_hits": 0,
+      "paid_misses": 20,
+      "peak_cuda_allocated_bytes": 9810737152,
+      "peak_host_rss_kib": 67532240,
+      "generations_sha256": "03335b83b49529aa5d5df4c422eee98cfe251713ebb72b050565509956208945",
+      "trace": [
+        {
+          "stage": "generate",
+          "input_id": 0,
+          "start_unix": 1790230448.8041928,
+          "end_unix": 1790230449.96352
+        },
+        {
+          "stage": "judge",
+          "input_id": 0,
+          "start_unix": 1790230449.9637604,
+          "end_unix": 1790230450.9639301,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 1,
+          "start_unix": 1790230449.9641213,
+          "end_unix": 1790230451.1329265
+        },
+        {
+          "stage": "judge",
+          "input_id": 1,
+          "start_unix": 1790230451.1330302,
+          "end_unix": 1790230452.1331186,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 2,
+          "start_unix": 1790230451.133135,
+          "end_unix": 1790230452.3241882
+        },
+        {
+          "stage": "judge",
+          "input_id": 2,
+          "start_unix": 1790230452.3243144,
+          "end_unix": 1790230453.3244631,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 3,
+          "start_unix": 1790230452.3243995,
+          "end_unix": 1790230453.4927273
+        },
+        {
+          "stage": "judge",
+          "input_id": 3,
+          "start_unix": 1790230453.492831,
+          "end_unix": 1790230454.492959,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 4,
+          "start_unix": 1790230453.4929323,
+          "end_unix": 1790230454.6585982
+        },
+        {
+          "stage": "judge",
+          "input_id": 4,
+          "start_unix": 1790230454.658705,
+          "end_unix": 1790230455.6589468,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 5,
+          "start_unix": 1790230454.6588073,
+          "end_unix": 1790230455.8628683
+        },
+        {
+          "stage": "judge",
+          "input_id": 5,
+          "start_unix": 1790230455.8629758,
+          "end_unix": 1790230456.863072,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 6,
+          "start_unix": 1790230455.863082,
+          "end_unix": 1790230457.0212371
+        },
+        {
+          "stage": "judge",
+          "input_id": 6,
+          "start_unix": 1790230457.0213451,
+          "end_unix": 1790230458.0215495,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 7,
+          "start_unix": 1790230457.0214474,
+          "end_unix": 1790230458.1933067
+        },
+        {
+          "stage": "judge",
+          "input_id": 7,
+          "start_unix": 1790230458.1934154,
+          "end_unix": 1790230459.193574,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 8,
+          "start_unix": 1790230458.1935155,
+          "end_unix": 1790230459.3513918
+        },
+        {
+          "stage": "judge",
+          "input_id": 8,
+          "start_unix": 1790230459.3515,
+          "end_unix": 1790230460.3516557,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 9,
+          "start_unix": 1790230459.351604,
+          "end_unix": 1790230460.520995
+        },
+        {
+          "stage": "judge",
+          "input_id": 9,
+          "start_unix": 1790230460.5210488,
+          "end_unix": 1790230461.521191,
+          "paid_misses": 2
+        }
+      ]
+    },
+    {
+      "method": "SelfConditioning",
+      "pressure": "linear_probe_counter",
+      "mode": 2,
+      "wall_seconds": 12.602242379449308,
+      "generation_seconds": 11.486418107524514,
+      "judge_seconds": 10.001975960098207,
+      "outputs_per_second": 0.7935095754313669,
+      "judge_calls": 20,
+      "cache_hits": 0,
+      "paid_misses": 20,
+      "peak_cuda_allocated_bytes": 9810737152,
+      "peak_host_rss_kib": 67532240,
+      "generations_sha256": "f5864c726295eabb3dde9ad9eb6707d25e567f63c27dc1b8e226e8a9d355a162",
+      "trace": [
+        {
+          "stage": "generate",
+          "input_id": 0,
+          "start_unix": 1790230461.5221949,
+          "end_unix": 1790230462.6822588
+        },
+        {
+          "stage": "judge",
+          "input_id": 0,
+          "start_unix": 1790230462.6825519,
+          "end_unix": 1790230463.6826942,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 1,
+          "start_unix": 1790230462.6827407,
+          "end_unix": 1790230463.855695
+        },
+        {
+          "stage": "judge",
+          "input_id": 1,
+          "start_unix": 1790230463.855816,
+          "end_unix": 1790230464.8560266,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 2,
+          "start_unix": 1790230463.855904,
+          "end_unix": 1790230465.050071
+        },
+        {
+          "stage": "generate",
+          "input_id": 3,
+          "start_unix": 1790230465.0503876,
+          "end_unix": 1790230465.9388297
+        },
+        {
+          "stage": "judge",
+          "input_id": 2,
+          "start_unix": 1790230465.050259,
+          "end_unix": 1790230466.0504127,
+          "paid_misses": 2
+        },
+        {
+          "stage": "judge",
+          "input_id": 3,
+          "start_unix": 1790230466.050466,
+          "end_unix": 1790230467.0506518,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 4,
+          "start_unix": 1790230466.0510557,
+          "end_unix": 1790230467.221178
+        },
+        {
+          "stage": "judge",
+          "input_id": 4,
+          "start_unix": 1790230467.2213798,
+          "end_unix": 1790230468.2215812,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 5,
+          "start_unix": 1790230467.2215135,
+          "end_unix": 1790230468.4333224
+        },
+        {
+          "stage": "judge",
+          "input_id": 5,
+          "start_unix": 1790230468.433531,
+          "end_unix": 1790230469.4337904,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 6,
+          "start_unix": 1790230468.4336648,
+          "end_unix": 1790230469.6034856
+        },
+        {
+          "stage": "judge",
+          "input_id": 6,
+          "start_unix": 1790230469.603679,
+          "end_unix": 1790230470.6039112,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 7,
+          "start_unix": 1790230469.6038113,
+          "end_unix": 1790230470.797579
+        },
+        {
+          "stage": "judge",
+          "input_id": 7,
+          "start_unix": 1790230470.7977796,
+          "end_unix": 1790230471.798033,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 8,
+          "start_unix": 1790230470.7979095,
+          "end_unix": 1790230471.958321
+        },
+        {
+          "stage": "judge",
+          "input_id": 8,
+          "start_unix": 1790230471.9584765,
+          "end_unix": 1790230472.958686,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 9,
+          "start_unix": 1790230471.9585917,
+          "end_unix": 1790230473.1234615
+        },
+        {
+          "stage": "judge",
+          "input_id": 9,
+          "start_unix": 1790230473.1235855,
+          "end_unix": 1790230474.123728,
+          "paid_misses": 2
+        }
+      ]
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "pressure": "control",
+      "mode": 2,
+      "wall_seconds": 12.660553087480366,
+      "generation_seconds": 11.655911513604224,
+      "judge_seconds": 10.001661006361246,
+      "outputs_per_second": 0.7898549084627823,
+      "judge_calls": 20,
+      "cache_hits": 0,
+      "paid_misses": 20,
+      "peak_cuda_allocated_bytes": 9810730496,
+      "peak_host_rss_kib": 67532240,
+      "generations_sha256": "0568578a8586972242fce966f344dbe789d69ebdc1c96fc29da5b92b25e38218",
+      "trace": [
+        {
+          "stage": "generate",
+          "input_id": 0,
+          "start_unix": 1790230474.1289465,
+          "end_unix": 1790230475.2889092
+        },
+        {
+          "stage": "judge",
+          "input_id": 0,
+          "start_unix": 1790230475.289259,
+          "end_unix": 1790230476.289405,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 1,
+          "start_unix": 1790230475.289821,
+          "end_unix": 1790230476.4609344
+        },
+        {
+          "stage": "judge",
+          "input_id": 1,
+          "start_unix": 1790230476.4610274,
+          "end_unix": 1790230477.4611666,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 2,
+          "start_unix": 1790230476.4613888,
+          "end_unix": 1790230477.6354775
+        },
+        {
+          "stage": "judge",
+          "input_id": 2,
+          "start_unix": 1790230477.6356046,
+          "end_unix": 1790230478.6357594,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 3,
+          "start_unix": 1790230477.635803,
+          "end_unix": 1790230478.7838504
+        },
+        {
+          "stage": "judge",
+          "input_id": 3,
+          "start_unix": 1790230478.7839863,
+          "end_unix": 1790230479.7841854,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 4,
+          "start_unix": 1790230478.7842066,
+          "end_unix": 1790230479.9368634
+        },
+        {
+          "stage": "judge",
+          "input_id": 4,
+          "start_unix": 1790230479.9369845,
+          "end_unix": 1790230480.9371467,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 5,
+          "start_unix": 1790230479.937192,
+          "end_unix": 1790230481.141777
+        },
+        {
+          "stage": "judge",
+          "input_id": 5,
+          "start_unix": 1790230481.1419013,
+          "end_unix": 1790230482.14212,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 6,
+          "start_unix": 1790230481.142109,
+          "end_unix": 1790230482.294122
+        },
+        {
+          "stage": "judge",
+          "input_id": 6,
+          "start_unix": 1790230482.2942433,
+          "end_unix": 1790230483.2944007,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 7,
+          "start_unix": 1790230482.2944613,
+          "end_unix": 1790230483.4650126
+        },
+        {
+          "stage": "judge",
+          "input_id": 7,
+          "start_unix": 1790230483.4651413,
+          "end_unix": 1790230484.4652684,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 8,
+          "start_unix": 1790230483.4653378,
+          "end_unix": 1790230484.6245043
+        },
+        {
+          "stage": "judge",
+          "input_id": 8,
+          "start_unix": 1790230484.6246245,
+          "end_unix": 1790230485.6248505,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 9,
+          "start_unix": 1790230484.6248238,
+          "end_unix": 1790230485.7885568
+        },
+        {
+          "stage": "judge",
+          "input_id": 9,
+          "start_unix": 1790230485.788702,
+          "end_unix": 1790230486.7888446,
+          "paid_misses": 2
+        }
+      ]
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "pressure": "diffmean_counter",
+      "mode": 2,
+      "wall_seconds": 12.742806846275926,
+      "generation_seconds": 11.737743533216417,
+      "judge_seconds": 10.001757129095495,
+      "outputs_per_second": 0.7847564606947245,
+      "judge_calls": 20,
+      "cache_hits": 0,
+      "paid_misses": 20,
+      "peak_cuda_allocated_bytes": 9810733568,
+      "peak_host_rss_kib": 67532240,
+      "generations_sha256": "77668e48aa0c57b5abfc815e9988c18867c474f0a428cbb88906ccce5f81a869",
+      "trace": [
+        {
+          "stage": "generate",
+          "input_id": 0,
+          "start_unix": 1790230486.7901947,
+          "end_unix": 1790230487.946847
+        },
+        {
+          "stage": "judge",
+          "input_id": 0,
+          "start_unix": 1790230487.9471195,
+          "end_unix": 1790230488.9473405,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 1,
+          "start_unix": 1790230487.9476547,
+          "end_unix": 1790230489.117684
+        },
+        {
+          "stage": "judge",
+          "input_id": 1,
+          "start_unix": 1790230489.117776,
+          "end_unix": 1790230490.11792,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 2,
+          "start_unix": 1790230489.1180274,
+          "end_unix": 1790230490.3054833
+        },
+        {
+          "stage": "judge",
+          "input_id": 2,
+          "start_unix": 1790230490.3055673,
+          "end_unix": 1790230491.305696,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 3,
+          "start_unix": 1790230490.305822,
+          "end_unix": 1790230491.475259
+        },
+        {
+          "stage": "judge",
+          "input_id": 3,
+          "start_unix": 1790230491.475391,
+          "end_unix": 1790230492.4755218,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 4,
+          "start_unix": 1790230491.4757187,
+          "end_unix": 1790230492.6514902
+        },
+        {
+          "stage": "judge",
+          "input_id": 4,
+          "start_unix": 1790230492.6516128,
+          "end_unix": 1790230493.651814,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 5,
+          "start_unix": 1790230492.6519606,
+          "end_unix": 1790230493.8717191
+        },
+        {
+          "stage": "judge",
+          "input_id": 5,
+          "start_unix": 1790230493.8718488,
+          "end_unix": 1790230494.8720748,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 6,
+          "start_unix": 1790230493.8721929,
+          "end_unix": 1790230495.0435135
+        },
+        {
+          "stage": "judge",
+          "input_id": 6,
+          "start_unix": 1790230495.043633,
+          "end_unix": 1790230496.0438113,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 7,
+          "start_unix": 1790230495.043944,
+          "end_unix": 1790230496.217569
+        },
+        {
+          "stage": "judge",
+          "input_id": 7,
+          "start_unix": 1790230496.217674,
+          "end_unix": 1790230497.2179282,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 8,
+          "start_unix": 1790230496.217941,
+          "end_unix": 1790230497.3733096
+        },
+        {
+          "stage": "judge",
+          "input_id": 8,
+          "start_unix": 1790230497.3733926,
+          "end_unix": 1790230498.373533,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 9,
+          "start_unix": 1790230497.3736515,
+          "end_unix": 1790230498.531985
+        },
+        {
+          "stage": "judge",
+          "input_id": 9,
+          "start_unix": 1790230498.5320451,
+          "end_unix": 1790230499.5321898,
+          "paid_misses": 2
+        }
+      ]
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "pressure": "linear_probe_counter",
+      "mode": 2,
+      "wall_seconds": 12.456638876348734,
+      "generation_seconds": 10.999877308495343,
+      "judge_seconds": 10.001410860568285,
+      "outputs_per_second": 0.8027847719810579,
+      "judge_calls": 20,
+      "cache_hits": 0,
+      "paid_misses": 20,
+      "peak_cuda_allocated_bytes": 9810733568,
+      "peak_host_rss_kib": 67532240,
+      "generations_sha256": "578c1e6ac3a7716bfa9e2a83bed01e29472a8fe43849f5b315b38fa65aaf946b",
+      "trace": [
+        {
+          "stage": "generate",
+          "input_id": 0,
+          "start_unix": 1790230499.5333757,
+          "end_unix": 1790230500.6776967
+        },
+        {
+          "stage": "judge",
+          "input_id": 0,
+          "start_unix": 1790230500.6779165,
+          "end_unix": 1790230501.6780457,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 1,
+          "start_unix": 1790230500.67828,
+          "end_unix": 1790230501.8383403
+        },
+        {
+          "stage": "judge",
+          "input_id": 1,
+          "start_unix": 1790230501.8384304,
+          "end_unix": 1790230502.8385684,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 2,
+          "start_unix": 1790230501.838688,
+          "end_unix": 1790230503.0148618
+        },
+        {
+          "stage": "generate",
+          "input_id": 3,
+          "start_unix": 1790230503.0152047,
+          "end_unix": 1790230503.5627387
+        },
+        {
+          "stage": "judge",
+          "input_id": 2,
+          "start_unix": 1790230503.0149522,
+          "end_unix": 1790230504.015122,
+          "paid_misses": 2
+        },
+        {
+          "stage": "judge",
+          "input_id": 3,
+          "start_unix": 1790230504.0151453,
+          "end_unix": 1790230505.0152807,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 4,
+          "start_unix": 1790230504.0156338,
+          "end_unix": 1790230505.161426
+        },
+        {
+          "stage": "judge",
+          "input_id": 4,
+          "start_unix": 1790230505.161519,
+          "end_unix": 1790230506.1616879,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 5,
+          "start_unix": 1790230505.1617796,
+          "end_unix": 1790230506.3589962
+        },
+        {
+          "stage": "judge",
+          "input_id": 5,
+          "start_unix": 1790230506.3590813,
+          "end_unix": 1790230507.3592098,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 6,
+          "start_unix": 1790230506.3593445,
+          "end_unix": 1790230507.5172198
+        },
+        {
+          "stage": "judge",
+          "input_id": 6,
+          "start_unix": 1790230507.5173073,
+          "end_unix": 1790230508.5174363,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 7,
+          "start_unix": 1790230507.5175514,
+          "end_unix": 1790230508.6851418
+        },
+        {
+          "stage": "judge",
+          "input_id": 7,
+          "start_unix": 1790230508.6852248,
+          "end_unix": 1790230509.685383,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 8,
+          "start_unix": 1790230508.6854694,
+          "end_unix": 1790230509.8363173
+        },
+        {
+          "stage": "judge",
+          "input_id": 8,
+          "start_unix": 1790230509.8363962,
+          "end_unix": 1790230510.8365316,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 9,
+          "start_unix": 1790230509.8366325,
+          "end_unix": 1790230510.989105
+        },
+        {
+          "stage": "judge",
+          "input_id": 9,
+          "start_unix": 1790230510.9891431,
+          "end_unix": 1790230511.9892738,
+          "paid_misses": 2
+        }
+      ]
+    },
+    {
+      "method": "NLSteering",
+      "pressure": "control",
+      "mode": 2,
+      "wall_seconds": 12.64951842930168,
+      "generation_seconds": 11.645764452405274,
+      "judge_seconds": 10.001607107929885,
+      "outputs_per_second": 0.7905439290744647,
+      "judge_calls": 20,
+      "cache_hits": 0,
+      "paid_misses": 20,
+      "peak_cuda_allocated_bytes": 9810734080,
+      "peak_host_rss_kib": 67532240,
+      "generations_sha256": "099fa1187b29c501de0c32faa20de1950736ed7f3508876e814856d5a1ae670c",
+      "trace": [
+        {
+          "stage": "generate",
+          "input_id": 0,
+          "start_unix": 1790230511.9952688,
+          "end_unix": 1790230513.140513
+        },
+        {
+          "stage": "judge",
+          "input_id": 0,
+          "start_unix": 1790230513.1407168,
+          "end_unix": 1790230514.1408963,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 1,
+          "start_unix": 1790230513.1410193,
+          "end_unix": 1790230514.3166566
+        },
+        {
+          "stage": "judge",
+          "input_id": 1,
+          "start_unix": 1790230514.3168447,
+          "end_unix": 1790230515.3170125,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 2,
+          "start_unix": 1790230514.3169844,
+          "end_unix": 1790230515.5045187
+        },
+        {
+          "stage": "judge",
+          "input_id": 2,
+          "start_unix": 1790230515.504718,
+          "end_unix": 1790230516.5048985,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 3,
+          "start_unix": 1790230515.5048702,
+          "end_unix": 1790230516.6547098
+        },
+        {
+          "stage": "judge",
+          "input_id": 3,
+          "start_unix": 1790230516.6549091,
+          "end_unix": 1790230517.6550741,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 4,
+          "start_unix": 1790230516.655045,
+          "end_unix": 1790230517.8049216
+        },
+        {
+          "stage": "judge",
+          "input_id": 4,
+          "start_unix": 1790230517.8051333,
+          "end_unix": 1790230518.8052998,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 5,
+          "start_unix": 1790230517.8052666,
+          "end_unix": 1790230519.0165234
+        },
+        {
+          "stage": "judge",
+          "input_id": 5,
+          "start_unix": 1790230519.0167055,
+          "end_unix": 1790230520.016874,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 6,
+          "start_unix": 1790230519.0168433,
+          "end_unix": 1790230520.176347
+        },
+        {
+          "stage": "judge",
+          "input_id": 6,
+          "start_unix": 1790230520.1765442,
+          "end_unix": 1790230521.1767416,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 7,
+          "start_unix": 1790230520.1766758,
+          "end_unix": 1790230521.343153
+        },
+        {
+          "stage": "judge",
+          "input_id": 7,
+          "start_unix": 1790230521.3433075,
+          "end_unix": 1790230522.343435,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 8,
+          "start_unix": 1790230521.343402,
+          "end_unix": 1790230522.4936218
+        },
+        {
+          "stage": "judge",
+          "input_id": 8,
+          "start_unix": 1790230522.493754,
+          "end_unix": 1790230523.4938838,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 9,
+          "start_unix": 1790230522.4938507,
+          "end_unix": 1790230523.6440365
+        },
+        {
+          "stage": "judge",
+          "input_id": 9,
+          "start_unix": 1790230523.6441858,
+          "end_unix": 1790230524.6443274,
+          "paid_misses": 2
+        }
+      ]
+    },
+    {
+      "method": "NLSteering",
+      "pressure": "diffmean_counter",
+      "mode": 2,
+      "wall_seconds": 12.654570587910712,
+      "generation_seconds": 11.651607212610543,
+      "judge_seconds": 10.001464891247451,
+      "outputs_per_second": 0.7902283155742399,
+      "judge_calls": 20,
+      "cache_hits": 0,
+      "paid_misses": 20,
+      "peak_cuda_allocated_bytes": 9810737152,
+      "peak_host_rss_kib": 67532240,
+      "generations_sha256": "310e4f4070830794485286233871e1ba14be6969030ea8b89536776178d763ee",
+      "trace": [
+        {
+          "stage": "generate",
+          "input_id": 0,
+          "start_unix": 1790230524.6453247,
+          "end_unix": 1790230525.791397
+        },
+        {
+          "stage": "judge",
+          "input_id": 0,
+          "start_unix": 1790230525.7916193,
+          "end_unix": 1790230526.791788,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 1,
+          "start_unix": 1790230525.791806,
+          "end_unix": 1790230526.9521928
+        },
+        {
+          "stage": "judge",
+          "input_id": 1,
+          "start_unix": 1790230526.9523141,
+          "end_unix": 1790230527.9524431,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 2,
+          "start_unix": 1790230526.9523988,
+          "end_unix": 1790230528.1337464
+        },
+        {
+          "stage": "judge",
+          "input_id": 2,
+          "start_unix": 1790230528.133863,
+          "end_unix": 1790230529.1339996,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 3,
+          "start_unix": 1790230528.133958,
+          "end_unix": 1790230529.286314
+        },
+        {
+          "stage": "judge",
+          "input_id": 3,
+          "start_unix": 1790230529.286433,
+          "end_unix": 1790230530.286627,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 4,
+          "start_unix": 1790230529.2865186,
+          "end_unix": 1790230530.4438262
+        },
+        {
+          "stage": "judge",
+          "input_id": 4,
+          "start_unix": 1790230530.443949,
+          "end_unix": 1790230531.4440796,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 5,
+          "start_unix": 1790230530.4440346,
+          "end_unix": 1790230531.6495013
+        },
+        {
+          "stage": "judge",
+          "input_id": 5,
+          "start_unix": 1790230531.6496544,
+          "end_unix": 1790230532.6497884,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 6,
+          "start_unix": 1790230531.6497116,
+          "end_unix": 1790230532.8081937
+        },
+        {
+          "stage": "judge",
+          "input_id": 6,
+          "start_unix": 1790230532.8083172,
+          "end_unix": 1790230533.8084445,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 7,
+          "start_unix": 1790230532.808402,
+          "end_unix": 1790230533.9774456
+        },
+        {
+          "stage": "judge",
+          "input_id": 7,
+          "start_unix": 1790230533.9775686,
+          "end_unix": 1790230534.977705,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 8,
+          "start_unix": 1790230533.9776545,
+          "end_unix": 1790230535.1387596
+        },
+        {
+          "stage": "judge",
+          "input_id": 8,
+          "start_unix": 1790230535.1388845,
+          "end_unix": 1790230536.1390755,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 9,
+          "start_unix": 1790230535.1389725,
+          "end_unix": 1790230536.2990181
+        },
+        {
+          "stage": "judge",
+          "input_id": 9,
+          "start_unix": 1790230536.2991364,
+          "end_unix": 1790230537.299265,
+          "paid_misses": 2
+        }
+      ]
+    },
+    {
+      "method": "NLSteering",
+      "pressure": "linear_probe_counter",
+      "mode": 2,
+      "wall_seconds": 12.64086813479662,
+      "generation_seconds": 11.637174393050373,
+      "judge_seconds": 10.001474644988775,
+      "outputs_per_second": 0.7910849075684065,
+      "judge_calls": 20,
+      "cache_hits": 0,
+      "paid_misses": 20,
+      "peak_cuda_allocated_bytes": 9810737152,
+      "peak_host_rss_kib": 67532240,
+      "generations_sha256": "909c3f2a9115604cdc67a406b08297f5ce2a8771cbced9e1c6c5ee6ce55d03f9",
+      "trace": [
+        {
+          "stage": "generate",
+          "input_id": 0,
+          "start_unix": 1790230537.3002272,
+          "end_unix": 1790230538.4533978
+        },
+        {
+          "stage": "judge",
+          "input_id": 0,
+          "start_unix": 1790230538.4536152,
+          "end_unix": 1790230539.4537628,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 1,
+          "start_unix": 1790230538.453968,
+          "end_unix": 1790230539.6204665
+        },
+        {
+          "stage": "judge",
+          "input_id": 1,
+          "start_unix": 1790230539.6206467,
+          "end_unix": 1790230540.620827,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 2,
+          "start_unix": 1790230539.6207755,
+          "end_unix": 1790230540.8084674
+        },
+        {
+          "stage": "judge",
+          "input_id": 2,
+          "start_unix": 1790230540.8086555,
+          "end_unix": 1790230541.8088102,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 3,
+          "start_unix": 1790230540.8087857,
+          "end_unix": 1790230541.9671733
+        },
+        {
+          "stage": "judge",
+          "input_id": 3,
+          "start_unix": 1790230541.9673588,
+          "end_unix": 1790230542.9675171,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 4,
+          "start_unix": 1790230541.9674916,
+          "end_unix": 1790230543.1270835
+        },
+        {
+          "stage": "judge",
+          "input_id": 4,
+          "start_unix": 1790230543.1272705,
+          "end_unix": 1790230544.1274168,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 5,
+          "start_unix": 1790230543.1274009,
+          "end_unix": 1790230544.33012
+        },
+        {
+          "stage": "judge",
+          "input_id": 5,
+          "start_unix": 1790230544.330274,
+          "end_unix": 1790230545.3304296,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 6,
+          "start_unix": 1790230544.330392,
+          "end_unix": 1790230545.4812582
+        },
+        {
+          "stage": "judge",
+          "input_id": 6,
+          "start_unix": 1790230545.481384,
+          "end_unix": 1790230546.4815242,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 7,
+          "start_unix": 1790230545.4814937,
+          "end_unix": 1790230546.6418445
+        },
+        {
+          "stage": "judge",
+          "input_id": 7,
+          "start_unix": 1790230546.6419559,
+          "end_unix": 1790230547.642084,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 8,
+          "start_unix": 1790230546.6420608,
+          "end_unix": 1790230547.7878933
+        },
+        {
+          "stage": "judge",
+          "input_id": 8,
+          "start_unix": 1790230547.7880132,
+          "end_unix": 1790230548.7881613,
+          "paid_misses": 2
+        },
+        {
+          "stage": "generate",
+          "input_id": 9,
+          "start_unix": 1790230547.7881043,
+          "end_unix": 1790230548.9401786
+        },
+        {
+          "stage": "judge",
+          "input_id": 9,
+          "start_unix": 1790230548.9403005,
+          "end_unix": 1790230549.94043,
+          "paid_misses": 2
+        }
+      ]
+    }
+  ],
+  "summary": [],
+  "overall_cell_speedup": null
+}

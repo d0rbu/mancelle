@@ -1,0 +1,214 @@
+[project]
+name = "nano-gpt-pretrain-steer"
+version = "0.1.0"
+description = "Pretraining with SAE-based steering vectors"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    # nanochat dependencies
+    "datasets>=4.0.0",
+    "fastapi>=0.117.1",
+    "ipykernel>=7.1.0",
+    "matplotlib>=3.10.8",
+    "psutil>=7.1.0",
+    "python-dotenv>=1.2.1",
+    "regex>=2025.9.1",
+    "rustbpe>=0.1.0",
+    "scipy>=1.15.3",
+    "setuptools>=80.9.0",
+    "tabulate>=0.9.0",
+    "tiktoken>=0.11.0",
+    "tokenizers>=0.22.0",
+    "torch>=2.13.0,<2.14",
+    "transformers>=5.10.0",
+    "uvicorn>=0.36.0",
+    "wandb>=0.21.3",
+    "zstandard>=0.25.0",
+    # steering-specific dependencies
+    "sae-lens",
+    "transformer-lens",
+    "numpy",
+    "pyyaml",
+    "hydra-core>=1.3.0",
+    # huggingface_hub explicit pin — required for storage-bucket APIs
+    # (create_bucket / sync_bucket / batch_bucket_files / download_bucket_files
+    # are present in 1.12.0; absent in the 0.x line). Project-wide dep, not
+    # steering-only — tokenizer + model loaders in nanochat use it too.
+    "huggingface-hub>=1.12.0",
+    "loguru",
+    "nvitop>=1.6.2",
+    "nnterp>=1.2.2",
+    "spacy>=3.7.0",
+    "en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl",
+    "torchao>=0.18.0,<0.19",
+    "pip>=26.0.1",
+    "kernels>=0.12.1",
+    # FlexAttention's FLASH backend imports flash_attn.cute at compile time.
+    # Pin the H100-validated beta until FA4 publishes a stable release.
+    "flash-attn-4==4.0.0b26; sys_platform == 'linux' and platform_machine == 'x86_64'",
+    # Direct pin makes FA4's exact prerelease CuTeDSL dependency explicit to uv.
+    "nvidia-cutlass-dsl==4.6.0.dev0; sys_platform == 'linux' and platform_machine == 'x86_64'",
+    "nvidia-cutlass-dsl-libs-base==4.6.0.dev0; sys_platform == 'linux' and platform_machine == 'x86_64'",
+    # triton ships Linux wheels only; gate it so the project stays
+    # installable on macOS dev machines (CPU torch from PyPI, see
+    # tool.uv.sources markers below). Linux resolution is unchanged.
+    "triton>=3.7.1; sys_platform == 'linux'",
+    "neuronpedia",
+    "aiohttp",
+    "textual>=3.0.0",
+    "scikit-learn>=1.8.0",
+    "gepa==0.1.1",
+    "beartype>=0.15,<1",
+    "phantom-types>=3.0.2,<4",
+]
+
+[tool.uv]
+prerelease = "if-necessary-or-explicit"
+
+[[tool.uv.index]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cu130"
+explicit = true
+
+[tool.uv.sources]
+# cu130 wheels on Linux; macOS falls back to the PyPI CPU/MPS build so the
+# fast test suite runs on laptops.
+torch = [{ index = "pytorch", marker = "sys_platform == 'linux'" }]
+torchao = [{ index = "pytorch", marker = "sys_platform == 'linux'" }]
+triton = [{ index = "pytorch", marker = "sys_platform == 'linux'" }]
+
+[tool.setuptools.packages.find]
+include = ["steering*", "nanochat*"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-benchmark>=4.0.0",
+    "pytest-cov>=6.0.0",
+    "hypothesis>=6.0.0",
+    "pre-commit>=4.6.1",
+    "ruff>=0.16.0",
+    "ty>=0.0.65",
+    "vulture>=2.16",
+]
+
+[tool.pytest.ini_options]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "very_slow: tests that require real model downloads (Gemma-2b, nanochat d13); skipped by default",
+    "benchmark: marks benchmark performance tests",
+    "api: marks tests that require a live API key (deselect with '-m \"not api\"')",
+    "requires_feature_data: needs pre-extracted features in out/data/features/ (run: uv run python -m scripts.extract_features)",
+]
+testpaths = ["tests"]
+addopts = "-m 'not slow and not very_slow and not benchmark and not api'"
+
+[tool.coverage.run]
+core = "sysmon"
+source = ["steering", "nanochat", "scripts", "tests"]
+concurrency = ["multiprocessing"]
+parallel = true
+omit = [
+    "*/completion_tui/*",
+    "*/__pycache__/*",
+]
+
+[tool.coverage.report]
+show_missing = true
+skip_empty = true
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.",
+    "if TYPE_CHECKING:",
+]
+
+[tool.ty]
+# Type checker is `ty` (from Astral). Run via `uvx ty check`.
+# Docs: https://github.com/astral-sh/ty
+[tool.ty.environment]
+python-version = "3.13"
+[tool.ty.src]
+# Vendored projects use their own tooling and dependency environments.
+exclude = [
+    "nanochat/",
+    "vendor/axbench/",
+    "scripts/eval/axbench_adv/vendored/worker.py",
+    "scripts/eval/axbench_adv/vendored/gcg_worker.py",
+    "scripts/benchmark/benchmark_axbench_adv_gcg_hf.py",
+    # These subprocess suites run under vendor/axbench's Python 3.12 project;
+    # its dependencies and type surface are intentionally absent from the root
+    # Python 3.13 environment. tests/.../test_vendor_suite.py remains checked.
+    "tests/axbench_adv/integration/m4_inference_override_suite.py",
+    "tests/axbench_adv/integration/phase4_worker_suite.py",
+    "tests/axbench_adv/integration/gcg_hf_review_suite.py",
+    "tests/axbench_adv/integration/soft_prompt_hf_suite.py",
+    "wandb/",
+    "out/",
+    "outputs/",
+    "logs/",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+extend-exclude = ["nanochat", "vendor/axbench", "wandb", "out", "outputs", "logs", ".worktrees"]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "W",   # pycodestyle warnings
+    "I",   # isort
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "DTZ", # flake8-datetimez
+    "FLY", # flynt
+    "LOG", # flake8-logging
+    "PIE", # flake8-pie
+    "PLC0206", # dict iteration followed by indexed value access
+    "PLC0207", # unbounded split when only one boundary is used
+    "PLC0208", # set iteration where a sequence is sufficient
+    "PLC3002", # immediately invoked lambda expressions
+    "PLE2515", # invisible zero-width space characters
+    "PERF102", # iterate over mapping values directly when keys are unused
+    "PLR1714", # repeated equality comparisons
+    "PLW1508", # os.environ defaults must be strings or None
+    "PLW1510", # subprocess success policy must be explicit
+    "PLW2901", # do not overwrite loop variables
+    "RET505",  # superfluous else after return
+    "RET506",  # superfluous else after raise
+    "RET508",  # superfluous else after break
+    "RUF007",  # use pairwise for adjacent values
+    "RUF102",  # invalid noqa rule codes
+    "RSE",     # flake8-raise
+    "SIM103",  # needless boolean branches
+    "SIM110",  # reimplemented all
+    "SIM114",  # branches with identical bodies
+    "SIM115",  # files must have explicit lifetimes
+    "SIM222",  # expressions made unconditionally true
+    "SIM910",  # redundant None default in dict.get
+    "TRY201",  # preserve the active traceback when re-raising
+    "TRY203",  # remove try blocks that only re-raise
+]
+ignore = [
+    "E501",  # line too long (handled by formatter)
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["steering", "nanochat", "scripts", "tasks"]
+
+[tool.vulture]
+# Vulture's 80% tier covers unreachable code, unused arguments, and unused
+# imports. Its 60% tier intentionally remains a manual audit because dataclass
+# fields, framework callbacks, and reflective APIs are indistinguishable from
+# dead code without repository-specific reasoning.
+min_confidence = 80
+paths = [
+    "steering",
+    "scripts",
+    "tasks",
+    "viz",
+    "errors.py",
+    "tests/code_quality/vulture_whitelist.py",
+]
+sort_by_size = true

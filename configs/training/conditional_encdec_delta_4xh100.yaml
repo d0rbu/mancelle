@@ -1,0 +1,27 @@
+# 4xH100 (80GB each) config for encoder-decoder pretraining WITH feature
+# delta conditioning enabled. Inherits all hardware settings from
+# conditional_encdec_4xh100 and only flips the delta-related knobs back
+# on (the 4xh100 config sets feature_delta=null and delta_weights=null).
+#
+# Usage: torchrun --nproc_per_node=4 -m scripts.train.conditional_encdec_train -- config_name=conditional_encdec_delta_4xh100
+
+defaults:
+  - conditional_encdec_4xh100
+  - _self_
+
+run: encdec_delta_d20_4xh100
+
+# Feature delta conditioning: per-segment delta vs previous segment,
+# with 100% of negatives drawn from the delta pool.
+feature_delta:
+  mode: prev_segment
+  neg_delta_ratio: 1.0
+
+# Sampling path needs delta_weights set when feature_delta is enabled.
+# percentile_delta routes each feature's delta value into the positive
+# pool's sampling weights too, so positives are drawn proportional to
+# "how much this feature grew vs the previous segment" — not raw
+# magnitude. Delta values also drive negative-pool weighting via
+# sample_delta_negatives, so the whole selection stage is delta-shaped.
+feature_selection:
+  delta_weights: percentile_delta

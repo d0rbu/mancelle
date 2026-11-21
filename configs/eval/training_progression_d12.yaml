@@ -1,0 +1,42 @@
+# Full progression config for the d12 encoder-decoder branch that only has the
+# small pretrain checkpoint set cached locally.
+#
+# This branch does not have SFT continuation checkpoints in the local cache, so
+# it is evaluated as a pretrain-only trajectory.
+
+defaults:
+  - training_progression
+  - _self_
+
+mode: both
+
+model_tag: d12
+model_family: encoder_decoder
+
+checkpoints_dir: null
+checkpoint_root: conditional_encdec_checkpoints
+checkpoint_prefix: "s128/dist_geometric/mean_8.0/std_8.0"
+
+phases:
+  - phase: pretrain
+    subdir: ""
+    steps:
+      - 8
+      - 15
+
+evals: "core,chat,harmfulness"
+
+num_seeds: 3
+base_seed: 1234
+
+max_per_task: 100
+chat_max_problems: 100
+chat_max_new_tokens: 512
+harm_num_benign: 50
+harm_num_harmful: 50
+harm_max_new_tokens: 512
+
+num_gpus: 2
+
+results_file: out/progression/d12/results.json
+fig_dir: fig/progression/d12

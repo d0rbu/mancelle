@@ -1,0 +1,84 @@
+# Precompute nanochat token boundaries in feature shards
+# Usage:
+#   uv run python -m scripts.preprocess.precompute_token_boundaries
+#   uv run python -m scripts.preprocess.precompute_token_boundaries layer=12 sae_width=32k
+#   uv run python -m scripts.preprocess.precompute_token_boundaries feature_dir=path/to/features
+#   uv run python -m scripts.preprocess.precompute_token_boundaries resume=true
+
+defaults:
+  - _self_
+
+# Structured feature path params (used when feature_dir is null)
+model: gemma-2-2b
+activation_type: residual      # residual | mlp | attention
+layer: 8
+pooling: max_pool
+segment_size: 128
+sae_width: "16k"               # 16k | 32k | 65k | 131k | 262k | 524k | 1m
+dataset_phase: null             # null = base, or: standard_sft | safety_sft | capabilities_sft
+feature_root: out/data/features
+
+feature_dir: null  # null = auto-construct from structured params above; set explicitly to override
+data_dir: null     # null = default DATA_DIR from nanochat; set explicitly to override
+
+# Optional bounded HF Storage Bucket input. When disabled, every subordinate
+# value is ignored and the existing local raw-shard runner is used literally.
+# When enabled, remote_features_root still identifies the raw family, but the
+# runner requires the manifest-committed compact v1 source derived from that
+# exact inventory and streams only compact bodies. There is no raw fallback.
+# Parquets, overlays, manifests, statistics, and profiles remain local.
+remote:
+  enabled: false
+  bucket_id: henryac/nano-gpt-pretrain-steer
+  local_features_root: out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos
+  remote_features_root: l22_ci_nobos_raw
+  staging_dir: null
+  expected_shard_count: null
+  retry_timeout_seconds: 900.0
+  retry_interval_seconds: 5.0
+
+# Processing options
+resume: false      # skip shards that already have a matching tokenizer checksum
+force: false       # reprocess ALL shards even if checksums match (overrides resume)
+dry_run: false     # compute boundaries but do not overwrite shard files
+shard_start: 0     # first shard index (inclusive)
+shard_end: -1      # last shard index (exclusive); -1 = all
+workers: 0         # parallel workers per shard (0 = auto = cpu_count // 2, 1 = sequential).
+                    # Pool workers cap torch intra/inter-op and OMP/MKL/OPENBLAS threads to 1
+                    # (issue #1269); the sequential path remains in-process and uncapped.
+zstd_level: 12     # zstd compression level (1-22) for output shards
+
+# Profiling (issue #529). When profile=true the first shard gets a chrome trace AND the run
+# writes a JSON sidecar with stage-level wall-clock + byte counters.
+profile: false                 # enable chrome trace (first shard) + JSON sidecar
+profile_trace: true            # chrome-trace the first shard (sequentially, under
+                               # torch.profiler). Disable for real-corpus benchmark
+                               # runs: the with_stack event buffer on a full shard
+                               # reaches tens of GB (OOM) and the sequential first
+                               # shard distorts worker sweeps (issue #1269).
+profile_output: null           # null => out/traces/tok_boundary_trace.json (chrome trace)
+profile_summary_output: null   # null => out/traces/tok_boundary_profile.json (JSON sidecar)
+
+# Issue #529 optimizations — base-hash caching, worker-pool reuse across shards, and subset
+# feature loading — are UNCONDITIONAL: each was proven byte-identical to the reference path, so
+# it is the only codepath (no opt-out flag). The base-hash cache lives in
+# <feature_dir>/.base_shard_hash_cache.json and self-invalidates when any base shard changes.
+max_nanochat_tokens_per_segment: null  # null = use multiplier-based hard limit
+                                       # (source_segment_size * 6). Set to an absolute
+                                       # integer to override — useful for small
+                                       # segment sizes (e.g. 32) where the default
+                                       # is too tight given fixed per-segment
+                                       # tokenization overhead.
+min_nanochat_tokens_per_segment: null  # null = use multiplier-based lower bound
+                                       # (source_segment_size * 0.5). Set to an absolute
+                                       # integer to override — useful for small
+                                       # segment sizes where the degenerate-segment
+                                       # repair can legitimately produce 1-token
+                                       # segments.
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

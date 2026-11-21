@@ -1,0 +1,102 @@
+{
+  "device": "NVIDIA GeForce RTX 4090",
+  "source": "400M step-1013",
+  "concept_ids": [
+    36
+  ],
+  "counter_magnitudes": [
+    256
+  ],
+  "input_count_per_point": 10,
+  "local_judge_delay_seconds_per_request": 1.0,
+  "paid_provider_calls": 0,
+  "pairs": {
+    "one_method": {
+      "runs": {
+        "parent": {
+          "wall_seconds": 71.01095123961568,
+          "first_cell_entry_seconds": 5.8774233646690845,
+          "local_http_calls": 90,
+          "local_http_peak_concurrency": 9,
+          "raw_report": "axbench-adv-judge-prewarm-4090-one_method-parent.json",
+          "raw_report_sha256": "62c926dfb3d365f5d98a62029ec5aaefb86aaae2b9b341c2fdd8a0df9c892158"
+        },
+        "prewarm": {
+          "wall_seconds": 64.08787348866463,
+          "first_cell_entry_seconds": 0.01195402443408966,
+          "local_http_calls": 90,
+          "local_http_peak_concurrency": 10,
+          "raw_report": "axbench-adv-judge-prewarm-4090-one_method-prewarm.json",
+          "raw_report_sha256": "f551f2480ff8d0caff8c5bb820ce5481ff7411079b3272d53bb1c44e60b051d2"
+        }
+      },
+      "saved_seconds": 6.923077750951052,
+      "complete_speedup": 1.108024769337612,
+      "non_log_file_count_including_manifest": 46,
+      "non_log_file_inventory_sha256": "52f02f69a8ac191ad4c477eb13f722f824d918d97a455b98ce9c30aed93ea60d",
+      "different_paths": [],
+      "manifest_equal": true,
+      "call_accounting_equal": true
+    },
+    "parent_first": {
+      "runs": {
+        "parent": {
+          "wall_seconds": 111.47994907945395,
+          "first_cell_entry_seconds": 5.947248984128237,
+          "local_http_calls": 270,
+          "local_http_peak_concurrency": 19,
+          "raw_report": "axbench-adv-judge-prewarm-4090-parent_first-parent.json",
+          "raw_report_sha256": "2db1b1e623d587ecd2b90b0f0ccbe85264d811604b739aad6174d2703253425a"
+        },
+        "prewarm": {
+          "wall_seconds": 107.85003931820393,
+          "first_cell_entry_seconds": 0.011959131807088852,
+          "local_http_calls": 270,
+          "local_http_peak_concurrency": 17,
+          "raw_report": "axbench-adv-judge-prewarm-4090-parent_first-prewarm.json",
+          "raw_report_sha256": "7f8d107da2e7a43d2769544a5deac17877108b8d22c44e4052cc8be900d142e0"
+        }
+      },
+      "saved_seconds": 3.629909761250019,
+      "complete_speedup": 1.0336570091601007,
+      "non_log_file_count_including_manifest": 58,
+      "non_log_file_inventory_sha256": "0608c2b13627144dc291521630a1060ffbc9e077beae59dfaa2aa21143cef8b5",
+      "different_paths": [],
+      "manifest_equal": true,
+      "call_accounting_equal": true
+    },
+    "prewarm_first": {
+      "runs": {
+        "parent": {
+          "wall_seconds": 110.71194779872894,
+          "first_cell_entry_seconds": 5.904318653047085,
+          "local_http_calls": 270,
+          "local_http_peak_concurrency": 19,
+          "raw_report": "axbench-adv-judge-prewarm-4090-prewarm_first-parent.json",
+          "raw_report_sha256": "164aba8df93e200215e2cd42d88e171bbc4db77c8502539f97c5e94e25531a40"
+        },
+        "prewarm": {
+          "wall_seconds": 107.69750451669097,
+          "first_cell_entry_seconds": 0.011800847947597504,
+          "local_http_calls": 270,
+          "local_http_peak_concurrency": 19,
+          "raw_report": "axbench-adv-judge-prewarm-4090-prewarm_first-prewarm.json",
+          "raw_report_sha256": "65405dc79d269475b2287dad11f4542c83fdbe040e3cf178906209210d4ba64b"
+        }
+      },
+      "saved_seconds": 3.0144432820379734,
+      "complete_speedup": 1.0279899083601403,
+      "non_log_file_count_including_manifest": 58,
+      "non_log_file_inventory_sha256": "0608c2b13627144dc291521630a1060ffbc9e077beae59dfaa2aa21143cef8b5",
+      "different_paths": [],
+      "manifest_equal": true,
+      "call_accounting_equal": true
+    }
+  },
+  "three_method_paired_mean": {
+    "parent_seconds": 111.09594843909144,
+    "prewarm_seconds": 107.77377191744745,
+    "saved_seconds": 3.3221765216439962,
+    "speedup": 1.030825463956005
+  }
+}

@@ -1,0 +1,36 @@
+# Minimal encoder-decoder training for sanity-checking the conditional pipeline.
+# Trains a depth-8 decoder + ratio-0.5 encoder for 200 iterations.
+# Requires features extracted first (see runs/extract_features_quick.sh).
+#
+# Usage:
+#   torchrun --standalone --nproc_per_node=1 -m scripts.train.conditional_encdec_train -- \
+#       config_name=conditional_encdec_simple \
+#       feature_dir=out/data/features/s128/l8/a_res/p_max_pool/f16k/m_gemma-2-2b/base
+
+defaults:
+  - conditional_encdec_train
+  - _self_
+
+depth: 8
+head_dim: 64
+device_batch_size: 16
+num_iterations: 200
+eval_every: 50
+eval_tokens: 524288
+sample_every: 100
+save_every: -1
+steering_eval_every: -1   # in-loop steering eval is expensive; off for the smoke run
+core_metric_every: -1
+
+# Smaller encoder + cross-attn for speed
+encoder:
+  n_embd: 0.5
+  depth: 0.25
+  head_dim: 64
+cross_attention:
+  frequency: 4
+
+# Disable feature_prediction aux loss for simplicity
+feature_prediction: null
+
+run: encdec_smoke

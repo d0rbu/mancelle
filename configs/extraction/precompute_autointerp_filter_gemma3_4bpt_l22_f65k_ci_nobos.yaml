@@ -1,0 +1,50 @@
+# Full-corpus Gemma 3 4B PT l22 65k context-independent/no-BOS autointerp pass.
+#
+# Usage:
+#   uv run -m scripts.preprocess.precompute_autointerp_filter \
+#     --config-name=precompute_autointerp_filter_gemma3_4bpt_l22_f65k_ci_nobos
+
+defaults:
+  - precompute_autointerp_filter
+  - _self_
+
+feature_dir: out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos
+n_sae_features: 65536
+output_dir: out/autointerp_filter/gemma3_4bpt_l22_f65k_ci_nobos_manual
+
+source_index:
+  enabled: true
+  path: ${output_dir}/source_doc_index.sqlite
+  manifest_path: ${output_dir}/source_doc_index.manifest.json
+  force_rebuild: false
+  chunk_size: 5000000
+  scan_workers: 1
+
+token_examples:
+  device: cuda
+  model: gemma-3-4b-pt
+  sae_release: gemmascope_2
+  sae_l0: medium
+  activation_backend: native
+  # bf16 is the throughput fast path: tolerance-based, NOT CPU-reference
+  # byte/trial-equivalent. See "Native bf16 tolerance contract" in
+  # docs/pipelines/autointerp-filter.md. Use float32 or transformerlens for
+  # CPU-reference equivalence.
+  model_dtype: bfloat16
+  context_window: null
+  example_ctx_len: 32
+  activation_threshold_ratio: 0.3
+  max_positive_source_docs_per_target: 128
+  max_intruder_source_docs: 5000
+  max_windows_per_source_doc: 8
+  max_positive_windows_per_target: 512
+  max_non_activating_windows_per_target: 512
+
+neuronpedia:
+  enabled: true
+  model_id: gemma-3-4b
+  sae_source: 22-gemmascope-2-res-65k
+  timeout_seconds: 30.0
+  max_retries: 3
+  backoff_base_seconds: 1.0
+  backoff_max_seconds: 30.0

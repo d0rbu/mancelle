@@ -1,0 +1,91 @@
+{
+  "schema_version": 2,
+  "status": "superseded_by_cumulative_pre_stack_numerical_gate",
+  "superseded_by": "docs/performance/progression-cumulative-numerics-evidence/rtx4090-l22.json",
+  "measured_at": "2026-08-28",
+  "base_commit": "f52df45e2",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "checkpoint": {
+    "step": 54600,
+    "model_sha256": "153d29c0e813036539f71cad8058e47051131d458b21513641f05994471a278d",
+    "metadata_sha256": "03e2f1ead1b3fe48712d9d8ab7fc12c17f04d61db2cc1d6416d959ba5d74cb0f",
+    "feature_vocab_sha256": "8c183369ce4a8ff1e5f153a749e9eb71f9def65283d0a22b4d33bf5ff2d6f16c",
+    "feature_vocab_size": 2074
+  },
+  "workload": {
+    "suite": "core",
+    "seed": 1234,
+    "max_per_task": 5,
+    "task_count": 22,
+    "scored_examples": 110,
+    "conditioned_feature_id": 8,
+    "conditioned_bucket": 1,
+    "unique_contexts": 120,
+    "context_cache_manifest_sha256": "5f3aa7ed6637bab0b6162b147e590cf84da4390b0d4225aca18217cecdb694ac"
+  },
+  "rejected_flexattention_candidate": {
+    "batch_1_result_sha256": "cebe33948098ea400a5558ba6736e41b3e223a3279647bc3074b213d6326d3b1",
+    "batch_5_result_sha256": "428ae959830caeb6cd2bebd0acf6677a388fe9c7ac16bd2fbf4de9f5f450e4eb",
+    "exact_equal": false,
+    "observed_warning": "torch._dynamo reached recompile_limit=8 for flex_attention after value stride mismatch and fell back to eager FlexAttention",
+    "disposition": "rejected before publication because task results depended on batch-shape history"
+  },
+  "historical_retained_implementation": {
+    "examples_per_forward": 5,
+    "wrapper_calls_per_iteration": 22,
+    "decoder_attention": "SDPA scoped to each synchronous target-aware CORE forward",
+    "encoder_attention": "unchanged packed FlexAttention",
+    "cross_attention": "unchanged packed FlexAttention",
+    "override_restoration": "finally restores the exact prior nanochat process override"
+  },
+  "historical_same_backend_batch_partition_check": {
+    "execution": "same process, batch 1 followed by batch 5",
+    "batch_sizes": [1, 5],
+    "task_count": 22,
+    "batch_1_result_sha256": "428ae959830caeb6cd2bebd0acf6677a388fe9c7ac16bd2fbf4de9f5f450e4eb",
+    "batch_5_result_sha256": "428ae959830caeb6cd2bebd0acf6677a388fe9c7ac16bd2fbf4de9f5f450e4eb",
+    "exact_equal": true
+  },
+  "baseline": {
+    "evidence": "docs/performance/progression-context-coverage-evidence/rtx4090-l22-complete-cache.json",
+    "macro_csv_sha256": "b78768a55cd536c51b3524fa296b6caa5781614f0b6daef08310f6d9612e4d73",
+    "wrapper_calls_per_iteration": 110,
+    "run_total_median_seconds": 6.197877,
+    "suite_total_median_seconds": 4.863202,
+    "cold_run_total_seconds": 34.047768,
+    "cold_suite_total_seconds": 32.362514
+  },
+  "macro_profile": {
+    "warmup_iterations": 1,
+    "measured_iterations": 3,
+    "macro_csv_sha256": "0d1a9e83273dd6b68de140059e40afdd385b4d112fe6450b2a1def7145c35cf6",
+    "run_total_seconds": [3.322538, 2.848599, 2.84925],
+    "run_total_median_seconds": 2.84925,
+    "suite_total_seconds": [1.817245, 1.346814, 1.337437],
+    "suite_total_median_seconds": 1.346814,
+    "checkpoint_load_median_seconds": 0.511914,
+    "context_coverage_median_seconds": 0.334825,
+    "conditioning_build_total_seconds": [0.81851, 0.342896, 0.340077],
+    "conditioning_build_median_total_seconds": 0.342896,
+    "wrapper_forward_total_seconds": [1.424663, 0.951699, 0.950046],
+    "wrapper_forward_median_total_seconds": 0.951699,
+    "wrapper_forward_includes_conditioning_build": true,
+    "cold_run_total_seconds": 14.586206,
+    "cold_suite_total_seconds": 12.891366
+  },
+  "comparison": {
+    "run_total_speedup": 2.1753,
+    "suite_total_speedup": 3.6109,
+    "cold_run_speedup": 2.3342,
+    "cold_suite_speedup": 2.5104,
+    "run_total_reduction_percent": 54.03,
+    "suite_total_reduction_percent": 72.31
+  },
+  "final_disposition": {
+    "cross_example_batching_default": 1,
+    "decoder_attention": "preserve the caller's active implementation",
+    "reason": "The historical check proved batch-partition equality only after changing both paths to scoped SDPA. A later direct comparison against the literal pre-stack Flex implementation found material logit, loss, top-1, and task-score drift for real batch sizes 2 and 5. Batch 1 on the final stack is bitwise identical across all 2,226 scored positions.",
+    "larger_batch_sizes": "explicit throughput-only opt-ins; not score-comparable"
+  },
+  "unrun_boundary": "No paid judge calls, harmfulness suite, full 1200-prompt standalone eval, multi-GPU run, or H200 qualification was performed."
+}

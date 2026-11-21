@@ -1,0 +1,12 @@
+# Gemma 3 + gemma-scope-2 packed-rows config. Inherits the v1
+# precompute_packed_rows.yaml; overrides only the Gemma-3 model coordinates.
+# The v1 parent already defaults sae_width: "16k" (matches the
+# extract_features_gemma3.yaml default), so no sae override is needed.
+# See docs/pipelines/gemma-scope-2.md.
+
+defaults:
+  - precompute_packed_rows
+  - _self_
+
+model: gemma-3-4b-it
+layer: 22

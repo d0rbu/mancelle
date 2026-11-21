@@ -1,0 +1,170 @@
+{
+  "schema": "production_followup_terminal_transfer_audit_v1",
+  "job_id": 23377981,
+  "audited_at_utc": "2026-09-21T10:05:55.738991+00:00",
+  "audit_pass": true,
+  "scheduler_observation": {
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "elapsed": "00:45:00",
+    "end_utc": "2026-09-21T10:03:02Z"
+  },
+  "before_manifest": "out/sft_performance/packed-production-triton-v1-23377981-remote-before.json",
+  "after_manifest": "out/sft_performance/packed-production-triton-v1-23377981-remote-after.json",
+  "before_manifest_sha256": "489ec610696a9c38cd9e69d08af2bed6e3c2a45056d94ce4d474a67395ce5c4d",
+  "after_manifest_sha256": "489ec610696a9c38cd9e69d08af2bed6e3c2a45056d94ce4d474a67395ce5c4d",
+  "remote_tree_unchanged_during_transfer": true,
+  "all_remote_files_verified_locally": 128,
+  "remote_file_bytes": 23766830,
+  "batch_log_sha256": "47c0eb6f20ef9e3446c6d834d14cb46dee07b208d4d120928bb5c3add2e2c4a4",
+  "exit_receipt_sha256": "1ff33df2a2c6d2c98e760a7cbc2913f3713c0098e182ced1e79a0a94ef36db50",
+  "closed_phase_exit_files": {
+    "executed-helper-admission.exit": 0,
+    "source-verification.exit": 0,
+    "real-triton-parity.exit": 0,
+    "gpu-after.exit": 0,
+    "prior-optimizer-admission.exit": 0,
+    "small-A1.exit": 0,
+    "slurm-before.exit": 0,
+    "small-A2.exit": 0,
+    "capture-stat.exit": 0,
+    "small-B1.exit": 0,
+    "executed-helpers-verification.exit": 0,
+    "helper-admission.exit": 0,
+    "source-admission.exit": 0,
+    "large-A2.exit": 0,
+    "small-B2.exit": 0,
+    "runtime-admission.exit": 0,
+    "timing-admission.exit": 0,
+    "runtime-before-verification.exit": 0,
+    "large-A1.exit": 0,
+    "model-triton-parity.exit": 0,
+    "manifest-admission.exit": 0,
+    "manifest-verification.exit": 0,
+    "prior-evidence-verification.exit": 0,
+    "gpu-before.exit": 0,
+    "staged-helpers-verification.exit": 0,
+    "capture-inputs-verification.exit": 0,
+    "large-B2.exit": 0,
+    "prior-evidence-admission.exit": 0,
+    "large-B1.exit": 0,
+    "exit-receipt.exit": 0,
+    "capture-admission.exit": 0
+  },
+  "final_verification_OK_counts": {
+    "capture-inputs-verification-after.txt": 5,
+    "executed-helpers-verification-after.txt": 19,
+    "manifest-verification-after.txt": 1,
+    "prior-evidence-verification-after.txt": 5,
+    "runtime-before-verification-after.txt": 8,
+    "source-verification-after.txt": 3535,
+    "staged-helpers-verification-after.txt": 19
+  },
+  "exit_receipt_artifact_hashes_verified": 25,
+  "trial_admissions": [
+    {
+      "name": "small-A1",
+      "sha256": "029ac97e4bb127c4f0149403b5b6164bd92c41a116089eb3dac298d7f4dc73cb",
+      "phase_sample_counts": {
+        "forward_ms": 40,
+        "backward_ms": 40,
+        "optimizer_ms": 40,
+        "wall_ms": 40
+      },
+      "exit_status": 0,
+      "native_FLASH_observed": true
+    },
+    {
+      "name": "small-B1",
+      "sha256": "66bf15e3334322a572cf7e39f97dde1c58643a201afdae254b6c0dbd52a4e741",
+      "phase_sample_counts": {
+        "forward_ms": 40,
+        "backward_ms": 40,
+        "optimizer_ms": 40,
+        "wall_ms": 40
+      },
+      "exit_status": 0,
+      "native_FLASH_observed": true
+    },
+    {
+      "name": "small-B2",
+      "sha256": "bbe5a4351370f5128b9b6e5314a68ea4b1792c70c31df44e9174dd36cff8afd2",
+      "phase_sample_counts": {
+        "forward_ms": 40,
+        "backward_ms": 40,
+        "optimizer_ms": 40,
+        "wall_ms": 40
+      },
+      "exit_status": 0,
+      "native_FLASH_observed": true
+    },
+    {
+      "name": "small-A2",
+      "sha256": "733f3db2fa1033508620ab79134e90f22398fa35156631242ccfeb15c7022a2d",
+      "phase_sample_counts": {
+        "forward_ms": 40,
+        "backward_ms": 40,
+        "optimizer_ms": 40,
+        "wall_ms": 40
+      },
+      "exit_status": 0,
+      "native_FLASH_observed": true
+    },
+    {
+      "name": "large-A1",
+      "sha256": "2c3355dc1be1cae129d68137ccd76785035f58be89d3b09cd2a96e06fb123788",
+      "phase_sample_counts": {
+        "forward_ms": 40,
+        "backward_ms": 40,
+        "optimizer_ms": 40,
+        "wall_ms": 40
+      },
+      "exit_status": 0,
+      "native_FLASH_observed": true
+    },
+    {
+      "name": "large-B1",
+      "sha256": "b9001775355bfb82821c8e2bc6e21725462e482befee72fc8d25c7d510cf9b60",
+      "phase_sample_counts": {
+        "forward_ms": 40,
+        "backward_ms": 40,
+        "optimizer_ms": 40,
+        "wall_ms": 40
+      },
+      "exit_status": 0,
+      "native_FLASH_observed": true
+    },
+    {
+      "name": "large-B2",
+      "sha256": "9a56be08e0d6523260309421a5f2417e4eacbeeb8f215d2ba7aed4fc0d4cda65",
+      "phase_sample_counts": {
+        "forward_ms": 40,
+        "backward_ms": 40,
+        "optimizer_ms": 40,
+        "wall_ms": 40
+      },
+      "exit_status": 0,
+      "native_FLASH_observed": true
+    },
+    {
+      "name": "large-A2",
+      "sha256": "26a19ea4bb84a1eaa6e05babb4d300f2d2b0483f45aa149c99fe1f862bd8e9b2",
+      "phase_sample_counts": {
+        "forward_ms": 40,
+        "backward_ms": 40,
+        "optimizer_ms": 40,
+        "wall_ms": 40
+      },
+      "exit_status": 0,
+      "native_FLASH_observed": true
+    }
+  ],
+  "total_raw_phase_samples": 1280,
+  "all_raw_phase_samples_finite_nonnegative": true,
+  "transfer_note": "scp returned1 because the already-downloaded inputs.sha256 was read-only; that file and all128 remote files plus batch log match identical before/after remote hashes; no missing or different file remains.",
+  "limits": [
+    "Numerical small and real independent trajectories use strict deterministic Triton; native independent full-real forward/backward remains unqualified.",
+    "Native FLASH timing is single-H200 synthetic full-model B2/GA1 and B8/GA8,20warmup+40retained samples per run,2predefined pairs each.",
+    "Performance effect and prospective promotion criteria are delegated to the frozen analyzer and independent benchmark auditor; this receipt checks transfer and admission only."
+  ]
+}

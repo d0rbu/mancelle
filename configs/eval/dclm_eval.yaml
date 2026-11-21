@@ -1,0 +1,93 @@
+# DCLM CORE evaluation config for decoder-only and encoder-decoder models
+# Usage:
+#   Decoder-only:   torchrun --nproc_per_node=8 -m steering.eval.dclm_eval -- source=base model_tag=d26
+#   Encoder-dec:    torchrun --nproc_per_node=8 -m steering.eval.dclm_eval -- source=encdec model_tag=d26
+#   With features:  torchrun --nproc_per_node=8 -m steering.eval.dclm_eval -- source=encdec feature_configs=common.yaml conditioning.context_cache_dir=out/data/eval_context_features/<cache-root>
+#
+# Results are written to {output_dir}/{config_name}.yaml
+# e.g. dclm_eval/safety_delta.yaml, dclm_eval/common.yaml
+
+source: ???  # required: base | sft | safety | capabilities | encdec | safety/rl | encdec/safety | etc.
+model_tag: null          # model tag (e.g. d26), auto-detected if null
+step: null               # checkpoint step, auto-detected if null
+max_per_task: -1         # -1 for full eval, positive int for subsampled
+# Batch 1 preserves pre-batching BF16 numerics and the active decoder backend.
+core_example_batch_size: 1
+device_type: ""          # auto-detected if empty
+output_dir: null         # where to write YAML results, defaults to checkpoint_dir/dclm_eval/
+
+# Feature conditioning: null/[] skips static target deltas; pass a YAML file or
+# inline list to evaluate explicit target-delta configs. Each explicit
+# encoder-decoder config must contain non-empty target-delta features; empty
+# feature dicts are rejected so they cannot become renamed context-only rows.
+# "common.yaml" → load features from file → output to common.yaml
+# [{name: custom, features: {0: 1, 5: 2}}] → inline → output to custom.yaml
+#
+# Empty feature_configs means no static target-delta pass. Set explicit YAMLs
+# here for safety/capability deltas, or use target_real_configs below.
+feature_configs: []
+
+# Context-feature cache for encoder-decoder eval. Encoder-decoder models require
+# this cache so prompt/context text is conditioned on real SAE features. Decoder-
+# only models ignore it.
+conditioning:
+  context_cache_dir: null
+  identity:
+    model_id: gemma-2-2b
+    sae_id: gemmascope-residual-l8-16k
+    layer: 8
+    pooling: max_pool
+    # Must resolve to a 64-char hex hash; null is valid only when the full
+    # canonical feature-selection pipeline params are present.
+    feature_selection_hash: null
+  n_sae_features: 16384
+  # num_buckets=2 represents binary encoding: bucket 0 = low/negative direction,
+  # bucket 1 = high/positive direction. The wrapper handles arbitrary positive
+  # num_buckets; this default reflects the binary-bucket SAE training pipeline.
+  # IMPORTANT: must match the encdec model's encoder.config.num_buckets and
+  # the cache's manifest num_buckets. Override on CLI for legacy 10-bucket setups.
+  num_buckets: 2
+
+# Cache lookup uses model_max_seq_len to navigate the c{N}/ subdirectory
+# of conditioning.context_cache_dir. Must match the cache's metadata
+# (set by build_eval_context_cache when the cache was generated).
+# IMPORTANT: if your model uses a different sequence_len, override on the
+# command line: model_max_seq_len=1024
+model_max_seq_len: 1024
+segment_size: null
+next_segment_conditioning_offset: auto
+
+# Phase 2 PR-C: target-real conditioning configs (best-case upper-bound eval).
+# Each entry consumes a target cache built from full-conversation/sequence
+# tokens plus the exact prompt/context prefix rows used by scoring. Full rows
+# carry target_char_* metadata. Modes: 'lockstep' (per-token routing) or
+# 'pooled' (BUCKET_MAX/BUCKET_MEAN single-segment). See
+# steering/eval/target_conditioning.py::parse_target_real_configs.
+#
+# target_real is opt-in. Leave target_real_configs empty for normal evals.
+# To run target-real, pass explicit entries on the CLI/config; cache_dir may be
+# a concrete path or null for identity-based auto-resolution.
+#
+# cache_dir auto-resolution (PR-C Task 2): if you explicitly set an entry's
+# cache_dir to null, it is auto-resolved via
+# steering.eval.eval_cache_paths.default_target_cache_dir from the
+# conditioning identity + model_max_seq_len + suite ('core_target' for
+# dclm_eval — same suite as base_eval CORE). Path layout:
+#   {nanochat_cache}/eval_caches/core_target/m_{model}/l{layer}/a_{act}/p_{pool}/f{width}/c{T}/{hash[:16]}
+#
+# To build the cache: run
+#   uv run python -m scripts.eval.build_eval_context_cache stage=enumerate evals=core_target ...
+# then pass entries such as:
+#   target_real_configs=[{name:pooled,mode:pooled,cache_dir:null},{name:lockstep,mode:lockstep,cache_dir:null}]
+# with a pinned/effective conditioning.identity.feature_selection_hash for
+# auto-resolution, or replace null cache_dir values with concrete paths. See
+# steering/eval/target_conditioning.py::target_real_cache_generation_instructions
+# for the full operator workflow.
+target_real_configs: []
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

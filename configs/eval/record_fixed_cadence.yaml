@@ -1,0 +1,16 @@
+# Fixed pretraining cadence is measured from packed TRAIN artifacts, never guessed.
+checkpoint_meta_path: ???
+feature_dir: ???
+parquet_dir: ???
+tokenizer_dir: ???
+output_dir: ???
+max_rows: 4096
+# Optional equality assertion against the measurement; never supplies a fallback.
+fixed_segment_size_assertion: null
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

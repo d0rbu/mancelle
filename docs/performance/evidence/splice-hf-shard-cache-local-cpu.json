@@ -1,0 +1,127 @@
+{
+  "status": "Adopted bounded cache; measured component evidence with confounded full-run timings.",
+  "scope": "Eight fresh-process native-checkout complete local splices, four samples per arm. Same level8/thread2 config. Timer covers sfs.run only: imports, config composition, equality, hashes and cleanup excluded. Exact data/parquet/provenance parity without key removal. Shared warm CPU host; no GPU/training/transfer or per-arm memory claim.",
+  "mechanism": "Fresh dictionary per build, <=16384 entries; unchanged standard HF public decode/batch_decode and TokenizersBackend._decode only. Clear before overflowing then recompute all unique IDs; oversized documents bypass shared cache. Private kw-only cache defaults None. No config/provenance changes.",
+  "baseline_head": "575fc1239c5f493088444ca87046bf08d30b8104",
+  "candidate_base_head": "575fc1239c5f493088444ca87046bf08d30b8104",
+  "candidate_is_uncommitted_source_hashes_below": true,
+  "runtime": {
+    "torch": "2.13.0+cu130",
+    "numpy": "1.26.4",
+    "transformers": "5.14.1",
+    "tokenizers": "0.22.2",
+    "zstandard": "0.25.0"
+  },
+  "input_sha256": {
+    "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos/splice/cut_frac0.15/seed42/feature_statistics.safetensors": "d957803f6da9f53c5307eb1e0d60796249dafef0c053349542973545d720bf93",
+    "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/eval_contexts/gemma3_4bpt_l22_clustered/shard_00000_features.safetensors.zst": "ee4384b86359e5b1a140b0ecd5d532bfff743bd04688ad6a6218f22908923c38",
+    "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/eval_contexts/gemma3_4bpt_l22_clustered/parquet/shard_00000.parquet": "0638ab7f39abce6896c04818cc693cb5f04184e3c930db3970b4f256eeb5593d"
+  },
+  "source_sha256": {
+    "baseline": {
+      "scripts/preprocess/splice_feature_shards.py": "d4dfd58937fe1d0046d149ad264aa394402b31048253d01d28cd67a225361e3c",
+      "configs/extraction/splice_feature_shards.yaml": "0346afce907e671792c65dea326636adfe05bdb952e93691e0406f782dcb36ea",
+      "steering/_roundtrip_seam.py": "0d1c3a719f3256932f793c7523864b036c36e760b18822e4732153dbb12695ca",
+      "steering/conditional/percentile_table.py": "c25f569c603c5e25771f1a87ed146b6d3cf9f29d77222563a1f72a57b7b88a1b",
+      "steering/feature_io.py": "2094dae1c8e0d8197eab83494e84c5bc44fcffeed041b71be02e68a9d518adad",
+      "steering/feature_shard_pairing.py": "f61bc8c1dad122ec529b7412880e960a5f7e90cb2a2bb2fa0e5abe8180c09371",
+      "steering/feature_shard_splice.py": "f7fe855636b733b832d7686d575a5e641ad11af0de65e573098ea01f83b8e47c",
+      "steering/segmentation.py": "7e195fdd3318d4eb91cf5fd657bddfbaef3eb432a45fb73dab8b4b21ac0b4d94"
+    },
+    "candidate": {
+      "scripts/preprocess/splice_feature_shards.py": "d4dfd58937fe1d0046d149ad264aa394402b31048253d01d28cd67a225361e3c",
+      "configs/extraction/splice_feature_shards.yaml": "0346afce907e671792c65dea326636adfe05bdb952e93691e0406f782dcb36ea",
+      "steering/_roundtrip_seam.py": "0d1c3a719f3256932f793c7523864b036c36e760b18822e4732153dbb12695ca",
+      "steering/conditional/percentile_table.py": "c25f569c603c5e25771f1a87ed146b6d3cf9f29d77222563a1f72a57b7b88a1b",
+      "steering/feature_io.py": "2094dae1c8e0d8197eab83494e84c5bc44fcffeed041b71be02e68a9d518adad",
+      "steering/feature_shard_pairing.py": "f61bc8c1dad122ec529b7412880e960a5f7e90cb2a2bb2fa0e5abe8180c09371",
+      "steering/feature_shard_splice.py": "2d648c991f5e32ed2aff3e40a3205ecb51b5f4d24f12c6989964566345ee1045",
+      "steering/segmentation.py": "e094b78c421925447f036591e10fc5948f26b4635f65596e355453d5b932df19"
+    }
+  },
+  "settings": {
+    "model": "gemma-3-4b-pt",
+    "context_window": 2048,
+    "cut_fraction": 0.15,
+    "seed": 42,
+    "pairing_mode": "opposite_percentile",
+    "pairing_candidate_pool_size": 64,
+    "zstd_level": 8,
+    "zstd_threads": 2,
+    "shard_parallelism": 1,
+    "async_feature_save_depth": 0,
+    "skip_existing": false,
+    "write_provenance": true,
+    "profile": true
+  },
+  "order": "ABBABAAB",
+  "samples": [
+    {"index": 0, "arm": "baseline", "full_wall_s": 24.235347773879766, "process_cpu_s": 25.059570930999996, "derived_char_text_s": 3.6716321296989918, "pairing_s": 2.7556705325841904, "source_s": 4.63487484306097, "host_load_1m_before": 15.970703125},
+    {"index": 1, "arm": "candidate", "full_wall_s": 25.96743805333972, "process_cpu_s": 26.115638401, "derived_char_text_s": 3.7206553481519222, "pairing_s": 2.7079831175506115, "source_s": 4.593442335724831, "host_load_1m_before": 16.64501953125},
+    {"index": 2, "arm": "candidate", "full_wall_s": 26.881561405956745, "process_cpu_s": 27.280378707, "derived_char_text_s": 3.0901786349713802, "pairing_s": 2.9984902888536453, "source_s": 5.794655486941338, "host_load_1m_before": 18.06494140625},
+    {"index": 3, "arm": "baseline", "full_wall_s": 28.837812684476376, "process_cpu_s": 29.443629323, "derived_char_text_s": 4.51082818210125, "pairing_s": 3.634711232036352, "source_s": 5.185851186513901, "host_load_1m_before": 20.34423828125},
+    {"index": 4, "arm": "candidate", "full_wall_s": 30.887855235487223, "process_cpu_s": 31.456803034000004, "derived_char_text_s": 3.759799152612686, "pairing_s": 3.5812228694558144, "source_s": 5.5196447260677814, "host_load_1m_before": 22.14599609375},
+    {"index": 5, "arm": "baseline", "full_wall_s": 41.15182923153043, "process_cpu_s": 41.54300932, "derived_char_text_s": 5.416593123227358, "pairing_s": 6.65415745601058, "source_s": 7.849320866167545, "host_load_1m_before": 28.53466796875},
+    {"index": 6, "arm": "baseline", "full_wall_s": 43.94170310348272, "process_cpu_s": 45.982858616, "derived_char_text_s": 6.877222314476967, "pairing_s": 5.783431872725487, "source_s": 8.084741540253162, "host_load_1m_before": 30.92041015625},
+    {"index": 7, "arm": "candidate", "full_wall_s": 47.42437245696783, "process_cpu_s": 49.215593639000005, "derived_char_text_s": 5.3857139721512794, "pairing_s": 6.30462883412838, "source_s": 10.635967575013638, "host_load_1m_before": 31.26220703125}
+  ],
+  "observed_medians": {
+    "all_eight": {
+      "full_wall": {"baseline": 34.9948209580034, "candidate": 28.884708320721984, "candidate_change_percent": -17.46004828718525},
+      "full_process_cpu": {"baseline": 35.4933193215, "candidate": 29.3685908705, "candidate_change_percent": -17.256003574988156},
+      "derived_char_text": {"baseline": 4.963710652664304, "candidate": 3.740227250382304, "candidate_change_percent": -24.648564106477224},
+      "pairing": {"baseline": 4.7090715523809195, "candidate": 3.28985657915473, "candidate_change_percent": -30.137893583473595},
+      "source": {"baseline": 6.517586026340723, "candidate": 5.6571501065045595, "candidate_change_percent": -13.201757772873657},
+      "full_minus_char": {"baseline": 30.031110305339098, "candidate": 25.45971942692995, "candidate_change_percent": -15.222184034922016},
+      "shard_wall": {"baseline": 26.185257209464908, "candidate": 21.237037606537342, "candidate_change_percent": -18.896967722505266}
+    },
+    "first_ABBA": {
+      "full_wall": {"baseline": 26.53658022917807, "candidate": 26.424499729648232, "candidate_change_percent": -0.42236225829356266},
+      "full_process_cpu": {"baseline": 27.251600126999996, "candidate": 26.698008553999998, "candidate_change_percent": -2.031409423373709},
+      "derived_char_text": {"baseline": 4.091230155900121, "candidate": 3.4054169915616512, "candidate_change_percent": -16.763006191412423},
+      "pairing": {"baseline": 3.1951908823102713, "candidate": 2.8532367032021284, "candidate_change_percent": -10.702151818263017},
+      "source": {"baseline": 4.9103630147874355, "candidate": 5.194048911333084, "candidate_change_percent": 5.777289697143284},
+      "full_minus_char": {"baseline": 22.44535007327795, "candidate": 23.01908273808658, "candidate_change_percent": 2.556131505793191},
+      "shard_wall": {"baseline": 19.117480967193842, "candidate": 19.424067474901676, "candidate_change_percent": 1.6036972037997366}
+    },
+    "second_BAAB": {
+      "full_wall": {"baseline": 42.546766167506576, "candidate": 39.15611384622753, "candidate_change_percent": -7.969236270343217},
+      "full_process_cpu": {"baseline": 43.762933968, "candidate": 40.336198336500004, "candidate_change_percent": -7.830223709419637},
+      "derived_char_text": {"baseline": 6.146907718852162, "candidate": 4.572756562381983, "candidate_change_percent": -25.608830138158112},
+      "pairing": {"baseline": 6.218794664368033, "candidate": 4.942925851792097, "candidate_change_percent": -20.51633606567379},
+      "source": {"baseline": 7.967031203210354, "candidate": 8.07780615054071, "candidate_change_percent": 1.3904168881090584},
+      "full_minus_char": {"baseline": 36.39985844865441, "candidate": 34.583357283845544, "candidate_change_percent": -4.990407221970994},
+      "shard_wall": {"baseline": 32.089283211156726, "candidate": 28.84108416363597, "candidate_change_percent": -10.122379568738483}
+    }
+  },
+  "correctness": {
+    "comparisons_to_first_baseline": 7,
+    "all_decoded_features_scalars_exact": true,
+    "parquet_bytes_exact": true,
+    "provenance_json_exact_without_key_removal": true,
+    "source_inputs_unchanged": true,
+    "compressed_feature_bytes_claimed_exact": false
+  },
+  "prototype_feasibility_only": {"groups": {"all": {"calls": 8240, "seconds": {"baseline": 3.376145264, "candidate": 2.4576943079999998}, "seconds_saved": 0.918450956, "time_reduction_percent": 27.204130278204765}, "eligible_long": {"calls": 7061, "seconds": {"baseline": 3.330655957, "candidate": 2.4115983069999998}, "seconds_saved": 0.9190576500000001, "time_reduction_percent": 27.593893271036517}, "small_or_fallback": {"calls": 1179, "seconds": {"baseline": 0.045489307, "candidate": 0.046096001}, "seconds_saved": -0.0006066939999999979, "time_reduction_percent": -1.3337068423574738}}, "batch_metrics": {"baseline": {"calls": 7061, "singleton_rows": 974174}, "candidate": {"calls": 3521, "singleton_rows": 49102}}, "cache_hits": 925072, "cache_clears": 2, "cache_peak_entries": 16380, "all_offsets_exact": true},
+  "validation": {
+    "focused_passed": 179,
+    "strengthened_invalid_order_rerun_passed": 4,
+    "invalid_order_rerun_overlaps_focused": true,
+    "cached_gemma_slow_passed": 5,
+    "ruff_exit": 0,
+    "ty_exit": 0,
+    "diff_check_exit": 0,
+    "initial_fixture_failure": "69passed/1failed: new builder fixture omitted required metadata; corrected fixture, focused gate passed.",
+    "focused_slow_deselected": 2
+  },
+  "receipts_sha256": {
+    "comparison.json": "414656528e5bf385f2939bdf4e5fb1ff91b3908821ada4dca9d5956ffe401adf",
+    "experiment_audit.json": "4c768eba4ed91490553e8f9a76512441bf6214107b4bbb0844ac8c63739bc9ad",
+    "paired_complete_offset_cache.json": "4054764021c6d8a54eb02fd9988a8eb31d248033bdad2d1d62067f4eb6a984dc",
+    "singleton_cache_census.json": "062666ff8f54e755eed70a84ed9d492f2e9575f8856a418a42fbec645ae19892",
+    "implementation_validation.json": "24461bba6ee4ffa3b0b7a12bb213f4f659ca8fa7d2cf4d6f52a0212288575b97"
+  },
+  "driver_sha256": "af1aef33de0b4972786647875cd251e9a6746dd86d9ba8ee388ee26b9102efa2",
+  "cleanup": {"receipt_sha256": "63491366aa7eccefaec3ceaba473d2acd659d5151ae0060d635ecfee447f8a54", "generated_output_directories_removed": 8, "generated_artifacts_removed": 24, "generated_output_logical_bytes_exactly_once": 898039565, "clean_native_parent_fixture_logical_bytes_separately": 73345972, "native_parent_removed_by_git_worktree_without_force": true, "all_outputs_and_fixture_absent": true, "scope": "Logical file bytes only, not measured physical free-space gain. Source inputs, raw reports/logs/manifests retained; test-temp cleanup separate in validation receipt."},
+  "limits": "No causal17.46% full-pipeline or generic throughput claim: pooled medians confounded by host drift, subgroup full-wall changes-0.422%/-7.969%, first-group shardwall+1.604%, CPUgroups-2.031%/-7.830%, untargeted pairing-30.14%, full-minus-char-15.22%. Target phase groups-16.76%/-25.61%. Prototype counters inside helper timing, so feasibility only. One actual shard/shared warm CPU host, four independent fresh processes per arm; no isolated allocation, uncertainty estimate, cold-start, GPU/training/network or per-arm/peak-memory evidence."
+}

@@ -1,0 +1,116 @@
+# Exact 4x8xH200 production preset for the clustered Gemma-3 L22 c2048 run.
+defaults:
+  - conditional_encdec_train
+  - _self_
+
+run: full3b_clustered_c2048
+model_tag: full3b_clustered_c2048
+device_type: cuda
+
+# 2,986,781,878 total parameters after the exact whitelist/cluster compaction.
+depth: 27
+aspect_ratio: 61.62962962962963
+head_dim: 128
+window_pattern: SSSL
+max_seq_len: 2048
+attn_impl: fa4
+fp8: true
+fp8_recipe: tensorwise
+
+encoder:
+  n_embd: 1.0
+  depth: 1.0
+  n_head: null
+  n_kv_head: null
+  head_dim: 128
+
+cross_attention:
+  frequency: 1
+  n_head: null
+  n_kv_head: null
+
+sae:
+  release: gemmascope_2
+  model: gemma-3-4b-pt
+  activation_type: residual
+  layer: 22
+  width: 65k
+  l0: medium
+
+segment_size: 128
+pooling: max_pool
+feature_root: /orcd/pool/005/henryac/nano-gpt-pretrain-steer/full3b-clustered-c2048-20260823T194759Z/features
+feature_dir: /orcd/pool/005/henryac/nano-gpt-pretrain-steer/full3b-clustered-c2048-20260823T194759Z/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos/splice/cut_frac0.15/seed42
+data_dir: /orcd/pool/005/henryac/nano-gpt-pretrain-steer/full3b-clustered-c2048-20260823T194759Z/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos/splice/cut_frac0.15/seed42/_parquets
+original_val_feature_dir: /orcd/pool/005/henryac/nano-gpt-pretrain-steer/full3b-clustered-c2048-20260823T194759Z/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos
+
+feature_delta:
+  mode: splice_counterfactual
+  neg_delta_ratio: 1.0
+feature_selection:
+  distribution: geometric
+  mean: 12.0
+  std: 12.0
+  min_k: 1
+  max_k: 49
+  mode: top_k_percentile
+  delta_weights: percentile_delta
+negative_selection:
+  distribution: geometric
+  mean: 12.0
+  min_k: 0
+  max_k: 49
+num_buckets: 2
+
+feature_mask_freq_min: null
+feature_mask_freq_max: null
+feature_mask:
+  mode: whitelist
+  path: /orcd/data/dylanhm/001/nano-gpt-pretrain-steer/preselection-config/feature_mask_two_stage_v2_covsel100.txt
+feature_clusters:
+  path: /orcd/data/dylanhm/001/nano-gpt-pretrain-steer/preselection-config/feature_clusters_two_stage_v2_covsel100.json
+initialize_encoder_embeddings_from_sae: random
+initialize_encoder_embeddings_cluster_vectors: mean
+feature_prediction: null
+
+use_precomputed_batches: true
+feature_prefetch: false
+doc_prefetch_depth: 0
+selection_splice_batch_size: 64
+selection_num_workers: 1
+
+# B16 consumes the complete global batch in one microbatch at world size 32.
+total_batch_size: 1048576
+device_batch_size: 16
+num_iterations: -1
+target_param_data_ratio: 100.0
+
+# One rank receives 32 B16 batches from each nominal 16,384-row shard at world
+# size 32. Retaining two shard-runs lets the producer absorb a slow decode while
+# preserving lead into the following shard; this is execution-only lookahead.
+train_prefetch_batches: 64
+
+# Decoded base+selection shard pairs banked ahead of consumption (issue #1594).
+# This FP8 B16/accumulation-1 base consumes a 16,384-row shard in 32 optimizer
+# steps per rank at world 32, so depth 4 banks 128 steps of supply; its step
+# time is unmeasured, so no wall-clock figure is claimed here. The BF16
+# B14/accumulation-2 child presets consume one in ~18.3 steps, measured at
+# 1.41 s/step on w31, so depth 4 banks ~103 s there. This absorbs the mild
+# hstor013 degradation the batch FIFO could not; it is execution-only.
+train_shard_lookahead: 4
+
+compile: true
+compile_static: auto
+seed: 42
+
+# Clustered CORE/sample/steering evaluation requires a separate certified
+# context cache. Dual original/spliced conditioned-BPB validation remains on at
+# the same storage-conscious cadence as checkpoints.
+eval_every: 5000
+core_metric_every: 0
+sample_every: 0
+steering_eval_every: 0
+
+# Five thousand steps bounds recovery loss to roughly one hour at the projected
+# world-32 rate without risking tens of terabytes of retained checkpoints.
+save_every: 5000

@@ -1,0 +1,43 @@
+# Benchmark: live dataloader (no precomputed shards) on 4090
+# Usage: torchrun --nproc_per_node=1 -m scripts.train.conditional_encdec_train -- config_name=bench_live_4090
+
+defaults:
+  - conditional_encdec_4090
+  - _self_
+
+# Must match the pre-packed run for fair comparison
+max_seq_len: 1024
+device_batch_size: 8
+depth: 6
+
+# 8 micro-batches per step (keeps traces small)
+total_batch_size: 131072
+
+# Short run for MFU measurement
+num_iterations: 25
+run: bench_live
+
+# Force live dataloader path
+use_precomputed_batches: false
+
+# Match generic precomputed packed-row semantics. prev_segment/cum_max delta
+# state is live-document-history dependent; splice_counterfactual packed runs
+# require a spliced dir plus preselected sel/ shards.
+feature_delta: null
+feature_selection:
+  delta_weights: null
+
+# Disable evals/saves — pure training throughput
+eval_every: -1
+core_metric_every: -1
+sample_every: -1
+save_every: -1
+steering_eval_every: 0
+
+# No compile for fair comparison
+compile: false
+
+# Chrome trace: capture steps 6-8 to catch the shard-load stall at step 7
+profile_trace: 6
+profile_trace_steps: 3
+output_dir: out/bench_live

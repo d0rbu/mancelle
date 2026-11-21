@@ -1,0 +1,45 @@
+# Fast encoder-decoder hyperparameter sweep (amortizes startup costs)
+# Usage:
+#   uv run python -m scripts.train.run_encdec_sweep_fast                                            # run all
+#   uv run python -m scripts.train.run_encdec_sweep_fast mode=dry_run                               # list configs
+#   uv run python -m scripts.train.run_encdec_sweep_fast mode=42                                    # run config 42
+#   uv run python -m scripts.train.run_encdec_sweep_fast mode=[0,50]                                # run configs [0,50)
+#   uv run python -m scripts.train.run_encdec_sweep_fast multigpu_config.sweep_world_size=4          # 4-GPU striping
+
+# Execution mode:
+#   null      — run all configs
+#   "dry_run" — list configs without executing
+#   <int>     — run single config at this index
+#   [s, e]    — run configs in range [s, e)
+mode: null
+
+# Filtering & control
+min_idx: null
+max_idx: null
+resume: false
+shuffle: false
+shuffle_seed: 42
+
+# Multi-GPU config striping (null = single-GPU, no striping)
+# When set: {sweep_rank: 0, sweep_world_size: 4, gpu: null}
+#   sweep_rank     — this process's rank (0-indexed)
+#   sweep_world_size — total parallel sweep processes
+#   gpu            — GPU index (null = auto from sweep_rank)
+multigpu_config: null
+
+# Output
+output_dir: null
+
+# Hydra training config to compose per-run
+config_name: conditional_encdec_sweep
+
+# Extra overrides forwarded to the training config (e.g. device_batch_size=4)
+# Usage: training_overrides='[device_batch_size=4,num_iterations=20]'
+training_overrides: []
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

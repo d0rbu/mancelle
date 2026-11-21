@@ -1,0 +1,209 @@
+{
+  "runtime_source": "7b47e87175dcba8972b82d6661af25c561b91656",
+  "baseline_current_main": "967c25dc8c82cde266c2b591ff1d018de06133bf",
+  "prs": [
+    1724,
+    1725,
+    1726
+  ],
+  "scope": "Implementation and hardware qualification; production SFT and fresh ChatCORE deferred. Finite evidence, not exhaustive correctness proof.",
+  "post_qualification_runtime_equivalence": {
+    "archive_member": "merge-review-runtime-equivalence.json",
+    "sha256": "ff3887dc33c54bc90229f06c021e4a910a093338b9eaf1c693d77721f63f317f"
+  },
+  "archive": {
+    "remote_path": "/orcd/data/dylanhm/001/nano-gpt-pretrain-steer/codex-issue1719-20260919/stack-review-evidence.tar.gz",
+    "sha256": "9df458aed21589fb6a3bab8f6e5feb951508f09d9c6c01aa1cb499dd8b93795f",
+    "bytes": 8593232,
+    "manifest_sha256": "c32ba1d426952a74372885a2f01a2238f7b581787e24e533125c46c9d25007bf",
+    "files": 163
+  },
+  "hardware": [
+    {
+      "job_id": 23314141,
+      "status": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:15:12",
+      "environment": {
+        "source_commit": "7b47e87175dcba8972b82d6661af25c561b91656",
+        "torch": "2.13.0+cu130",
+        "devices": [
+          "NVIDIA H200"
+        ],
+        "capability": [
+          9,
+          0
+        ],
+        "native_sm12": false,
+        "cute_flex": true,
+        "cached_fa3": false,
+        "source_manifest_sha256": "3f1668505fcb7a0b291af21250c752cf354ab2deaecdfe9b189eb83d5ba9aec9",
+        "packages": {
+          "flash-attn-4": "4.0.0b26",
+          "nvidia-cutlass-dsl": "4.6.0.dev0",
+          "triton": "3.7.1"
+        }
+      },
+      "attention": {
+        "tests": 73,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 35,
+        "passed": 38
+      },
+      "dtype": {
+        "tests": 10,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 2,
+        "passed": 8
+      },
+      "remote_directory": "/orcd/data/dylanhm/001/nano-gpt-pretrain-steer/codex-issue1719-20260919/qualification-merge-review-23314141"
+    },
+    {
+      "job_id": 23314142,
+      "status": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:17:06",
+      "environment": {
+        "source_commit": "7b47e87175dcba8972b82d6661af25c561b91656",
+        "torch": "2.13.0+cu130",
+        "devices": [
+          "NVIDIA RTX PRO 6000 Blackwell Server Edition"
+        ],
+        "capability": [
+          12,
+          0
+        ],
+        "native_sm12": true,
+        "cute_flex": false,
+        "cached_fa3": false,
+        "source_manifest_sha256": "3f1668505fcb7a0b291af21250c752cf354ab2deaecdfe9b189eb83d5ba9aec9",
+        "packages": {
+          "flash-attn-4": "4.0.0b26",
+          "nvidia-cutlass-dsl": "4.6.0.dev0",
+          "triton": "3.7.1"
+        }
+      },
+      "attention": {
+        "tests": 73,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 73
+      },
+      "dtype": {
+        "tests": 10,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 10
+      },
+      "remote_directory": "/orcd/data/dylanhm/001/nano-gpt-pretrain-steer/codex-issue1719-20260919/qualification-merge-review-23314142"
+    }
+  ],
+  "cpu_groups": {
+    "passed": 1363,
+    "skipped": 5,
+    "failures": 0,
+    "errors": 0,
+    "note": "Seven disjoint groups; see raw XML and run_merge_cpu scripts in archive. Coverage retries supersede collection-only errors."
+  },
+  "supplemental_metadata": {
+    "passed": 449,
+    "deselected": 1,
+    "overlaps_cpu_groups": true
+  },
+  "independent_model_probes": {
+    "passed": 54,
+    "inapplicable_skipped": 6,
+    "source_commit": "220eae61a16568ee56ce89c9348344186965a274",
+    "applicability": "Exercised model and feature-head implementation files are byte-identical in the integrated qualified runtime; these CPU SDPA probes do not execute the changed native autocast or SFT LR path."
+  },
+  "parity": {
+    "exact_tensors": 1128,
+    "report": {
+      "archive_member": "merge-review-legacy-parity.json",
+      "sha256": "5d074bc424e0cba3179b7d67ca3711d9868e9d30638b51dc461802943fe861ea"
+    }
+  },
+  "mutations": {
+    "detected": 17,
+    "attempted": 17,
+    "baseline_passed": 130,
+    "report": {
+      "archive_member": "merge-review-mutations/results.json",
+      "sha256": "09ada5014fec4a96ba0add9af1755e17e82d269b5384aeafb722ae6d3e60c1a8"
+    }
+  },
+  "coverage": {
+    "changed_statements": [
+      429,
+      437
+    ],
+    "changed_statements_with_multiline_owners": [
+      438,
+      446
+    ],
+    "changed_outgoing_arcs": [
+      193,
+      204
+    ],
+    "report": {
+      "archive_member": "merge-review-coverage-assessment.json",
+      "sha256": "dceb8d3be3c09b8eed9cf2f13b4ad4aefd26ee60caec5fdd80d24b21eea524ef"
+    },
+    "assessment": {
+      "archive_member": "merge-review-coverage-assessment.md",
+      "sha256": "2c4bbbe740b646e1f3dabf62906cc85aa5c932bb3f2c4f3fbbb30525d55e17a6"
+    }
+  },
+  "config_failure_triage": {
+    "main": {
+      "passed": 198,
+      "failed": 45
+    },
+    "reviewed_parent": {
+      "passed": 204,
+      "failed": 43
+    },
+    "final_stack": {
+      "passed": 204,
+      "failed": 43
+    },
+    "all_final_failures_reproduced_on_main": true,
+    "report": {
+      "archive_member": "merge-review-config-triage-summary.json",
+      "sha256": "2f7f54315dc95663723f4e18b1de2913c6d6ea84d1e18e1c3e4894b1f8249fd4"
+    },
+    "ordered_payload_migration": {
+      "archive_member": "merge-review-config-golden-migration.json",
+      "sha256": "058711827aadb160068741de2f714fe3c86f4246c4ba53d4e94c44264fb2b4de"
+    }
+  },
+  "type_check": {
+    "counts": {
+      "main": 442,
+      "stack": 439
+    },
+    "added": {},
+    "removed": {
+      "tests/steering/test_feature_head_checkpoint_depth.py:LINE:COL: error[invalid-argument-type] Argument to function `count_nonzero` is incorrect: Expected `Tensor`, found `Tensor | None`": 2,
+      "tests/steering/test_residual_feature_head_integration.py:LINE:COL: error[invalid-argument-type] Argument to function `count_nonzero` is incorrect: Expected `Tensor`, found `Tensor | None`": 1
+    }
+  },
+  "reviewed_defect": {
+    "path": "scripts/eval/encdec_rlvr.py",
+    "fix": "Call shared canonical head architecture validator before applying trained state.",
+    "durable_red_failures": 10,
+    "durable_after_fix_passed": 42,
+    "independent_model_probe_passed": 6
+  },
+  "remaining_limits": [
+    "Full default suite remains interrupted/not green; current config and type failures are paired against untouched current main.",
+    "Final-source full CUDA pretraining/SFT entry-point startup and four-rank production canary not run; target GPU compiled packed SFT and real SM120 BPB covered. Earlier tiny real CLI/NCCL receipts retain their original source identities.",
+    "Physical cached FA3 was unavailable; unchanged cached dispatcher used SDPA.",
+    "FA4 backward and stochastic selection are not bitwise production-resume guarantees.",
+    "Production SFT, final weights publication and fresh matched ChatCORE are deferred."
+  ]
+}

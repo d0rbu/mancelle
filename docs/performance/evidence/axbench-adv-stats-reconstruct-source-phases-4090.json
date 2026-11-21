@@ -1,0 +1,58 @@
+{
+  "validate_prepared_dir": {
+    "count": 1,
+    "seconds": 9.831413626670837e-05
+  },
+  "_assert_hash_keys": {
+    "count": 3,
+    "seconds": 0.03272677958011627
+  },
+  "pd.read_parquet": {
+    "count": 6,
+    "seconds": 0.09583931043744087
+  },
+  "_validate_run_manifest": {
+    "count": 2,
+    "seconds": 0.00016251951456069946
+  },
+  "load_steering_entries": {
+    "count": 2,
+    "seconds": 0.09004883095622063
+  },
+  "_validate_evaluated_jsonl": {
+    "count": 2,
+    "seconds": 0.10189582034945488
+  },
+  "_validate_project_manifest": {
+    "count": 1,
+    "seconds": 0.00010015442967414856
+  },
+  "_validate_checkpoint_sources": {
+    "count": 2,
+    "seconds": 1.4454153589904308
+  },
+  "load_method_setup": {
+    "count": 1,
+    "seconds": 13.623031239956617
+  },
+  "_validate_training_texts": {
+    "count": 2,
+    "seconds": 0.17070908844470978
+  },
+  "assert_source_hashes": {
+    "count": 1,
+    "seconds": 0.015819281339645386
+  },
+  "_validate_nl_targets": {
+    "count": 1,
+    "seconds": 0.13509732857346535
+  },
+  "_validate_nl_attachment": {
+    "count": 1,
+    "seconds": 0.3641028255224228
+  },
+  "total": {
+    "count": 1,
+    "seconds": 15.874368339776993
+  }
+}

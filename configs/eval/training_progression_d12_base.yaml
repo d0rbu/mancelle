@@ -1,0 +1,58 @@
+# Full progression config for the decoder-only d12_base run.
+
+defaults:
+  - training_progression
+  - _self_
+
+mode: both
+
+model_tag: d12_base
+model_family: decoder
+
+checkpoints_dir: null
+checkpoint_root: base_checkpoints
+checkpoint_prefix: ""
+
+phases:
+  - phase: pretrain
+    subdir: ""
+    steps:
+      - 4000
+      - 8000
+      - 12000
+      - 16000
+      - 20000
+      - 24000
+      - 28000
+      - 32000
+      - 36000
+      - 40000
+      - 44000
+      - 48000
+      - 52000
+      - 54600
+  - phase: safety_sft
+    subdir: "safety_sft_checkpoints"
+    steps:
+      - 903
+  - phase: capabilities_sft
+    subdir: "safety_sft_checkpoints/capabilities_sft_checkpoints"
+    steps:
+      - 1140
+
+evals: "core,chat,harmfulness"
+
+num_seeds: 3
+base_seed: 1234
+
+max_per_task: 100
+chat_max_problems: 100
+chat_max_new_tokens: 512
+harm_num_benign: 50
+harm_num_harmful: 50
+harm_max_new_tokens: 512
+
+num_gpus: 1
+
+results_file: out/progression/d12_base/results.json
+fig_dir: fig/progression/d12_base

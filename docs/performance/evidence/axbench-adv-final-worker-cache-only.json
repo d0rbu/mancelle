@@ -1,0 +1,74 @@
+{
+  "scope": "cache-only final AxBench evaluation of five already-published 400M step-1013 concept-36 point inputs, no GPU generation or provider requests",
+  "oneoff_seconds_per_point": [
+    5.842221897095442,
+    5.8192178048193455,
+    5.868959620594978,
+    5.834659926593304,
+    5.858506824821234
+  ],
+  "oneoff_total_seconds": 29.223566073924303,
+  "persistent_wall_seconds": 8.52,
+  "persistent_evaluation_seconds_per_point": [
+    0.6189749166369438,
+    0.5922280177474022,
+    0.844583161175251,
+    0.6085825003683567,
+    0.5897266715764999
+  ],
+  "speedup": 3.429996018066233,
+  "all_point_files_byte_identical": true,
+  "file_count": 40,
+  "oneoff_sha256_by_point": [
+    {
+      "judge_call_accounting.json": "438421f9f896f93573d45772cc32639efeecbc84333b223395a25a0b1e28cced",
+      "steering.jsonl": "61bf5a79ad3e0125b13b2635197e564ff19dcdcdb497b6947e09e8e09f0b9c69",
+      "steering_combined_plot.png": "01356f8a702c35ae7e173216e62ab3ffcc5560f784b94fb25a53a38088ec4faf",
+      "steering_data.parquet": "4ada3fb0315a7f7b4d941e697845dffd2f9f4a368b92a206c35c12ad1676d955",
+      "steering_evaluate_state.pkl": "73e8bdc23780a3281207c5abeae17fdef38185cd743e03ce36e439ded1d571b3",
+      "steering_plot.png": "0745b6d9d3f5ea0b901b9eedd806b4526038c0caed9a564c6ded0d21d088f436",
+      "temp_all_results.pkl": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048",
+      "temp_eval_dfs.pkl": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048"
+    },
+    {
+      "judge_call_accounting.json": "438421f9f896f93573d45772cc32639efeecbc84333b223395a25a0b1e28cced",
+      "steering.jsonl": "61bf5a79ad3e0125b13b2635197e564ff19dcdcdb497b6947e09e8e09f0b9c69",
+      "steering_combined_plot.png": "01356f8a702c35ae7e173216e62ab3ffcc5560f784b94fb25a53a38088ec4faf",
+      "steering_data.parquet": "797e9865bdd41b672ef53c1a6a6183a7bdaed3d6a4181bcc385a4d5c48a81b40",
+      "steering_evaluate_state.pkl": "73e8bdc23780a3281207c5abeae17fdef38185cd743e03ce36e439ded1d571b3",
+      "steering_plot.png": "0745b6d9d3f5ea0b901b9eedd806b4526038c0caed9a564c6ded0d21d088f436",
+      "temp_all_results.pkl": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048",
+      "temp_eval_dfs.pkl": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048"
+    },
+    {
+      "judge_call_accounting.json": "438421f9f896f93573d45772cc32639efeecbc84333b223395a25a0b1e28cced",
+      "steering.jsonl": "61bf5a79ad3e0125b13b2635197e564ff19dcdcdb497b6947e09e8e09f0b9c69",
+      "steering_combined_plot.png": "01356f8a702c35ae7e173216e62ab3ffcc5560f784b94fb25a53a38088ec4faf",
+      "steering_data.parquet": "4acced317dd5d466a6e2222d2761a604153dd744301b64433e96173ca02f917b",
+      "steering_evaluate_state.pkl": "73e8bdc23780a3281207c5abeae17fdef38185cd743e03ce36e439ded1d571b3",
+      "steering_plot.png": "0745b6d9d3f5ea0b901b9eedd806b4526038c0caed9a564c6ded0d21d088f436",
+      "temp_all_results.pkl": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048",
+      "temp_eval_dfs.pkl": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048"
+    },
+    {
+      "judge_call_accounting.json": "438421f9f896f93573d45772cc32639efeecbc84333b223395a25a0b1e28cced",
+      "steering.jsonl": "61bf5a79ad3e0125b13b2635197e564ff19dcdcdb497b6947e09e8e09f0b9c69",
+      "steering_combined_plot.png": "01356f8a702c35ae7e173216e62ab3ffcc5560f784b94fb25a53a38088ec4faf",
+      "steering_data.parquet": "53c61b281b4c2937bd2fcc74fb055cdb6ab53db2eaf5774d39b34096943cb144",
+      "steering_evaluate_state.pkl": "73e8bdc23780a3281207c5abeae17fdef38185cd743e03ce36e439ded1d571b3",
+      "steering_plot.png": "0745b6d9d3f5ea0b901b9eedd806b4526038c0caed9a564c6ded0d21d088f436",
+      "temp_all_results.pkl": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048",
+      "temp_eval_dfs.pkl": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048"
+    },
+    {
+      "judge_call_accounting.json": "438421f9f896f93573d45772cc32639efeecbc84333b223395a25a0b1e28cced",
+      "steering.jsonl": "61bf5a79ad3e0125b13b2635197e564ff19dcdcdb497b6947e09e8e09f0b9c69",
+      "steering_combined_plot.png": "01356f8a702c35ae7e173216e62ab3ffcc5560f784b94fb25a53a38088ec4faf",
+      "steering_data.parquet": "b9d23fefecbc7b4825da72b586a82e475703c542c4060eaad75bbfb7289c8930",
+      "steering_evaluate_state.pkl": "73e8bdc23780a3281207c5abeae17fdef38185cd743e03ce36e439ded1d571b3",
+      "steering_plot.png": "0745b6d9d3f5ea0b901b9eedd806b4526038c0caed9a564c6ded0d21d088f436",
+      "temp_all_results.pkl": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048",
+      "temp_eval_dfs.pkl": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048"
+    }
+  ]
+}

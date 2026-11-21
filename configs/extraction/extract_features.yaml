@@ -1,0 +1,94 @@
+# SAE feature extraction config
+# Note: On networked storage (e.g. NFS), initial model loading (sae_lens,
+# transformer_lens, HF weights) can take 10-20 min due to I/O latency.
+# Usage:
+#   uv run python -m steering.extract_features
+# Multi-GPU (torchrun sets RANK/WORLD_SIZE/LOCAL_RANK; each rank gets cuda:LOCAL_RANK):
+#   torchrun --nproc_per_node=4 -m steering.extract_features num_shards=300  # 4xH100
+# Or manually (e.g. 2 processes on a single GPU node):
+#   RANK=0 WORLD_SIZE=2 LOCAL_RANK=0 python -m steering.extract_features num_shards=300 &
+#   RANK=1 WORLD_SIZE=2 LOCAL_RANK=1 python -m steering.extract_features num_shards=300 &
+# Independent jobs targeting one output_dir must use disjoint windows; the
+# exclusive range is [start_shard, num_shards):
+#   python -m steering.extract_features start_shard=0 num_shards=150 &
+#   python -m steering.extract_features start_shard=150 num_shards=300 &
+
+defaults:
+  - _self_
+  - optional local@_global_: extract_features
+
+# Model
+model: gemma-2-2b              # TransformerLens model name
+
+# Activation site
+activation_type: residual      # residual | mlp | attention
+
+# SAE selection
+sae:
+  release: gemmascope
+  num_features: 16k            # 16k | 32k | 65k | 131k | 262k | 524k | 1m
+  l0: null                     # null = canonical, or specific int for average_l0
+
+layer: 8
+context_window: 1024
+device: cuda
+pooling: max_pool
+segment_size: 128
+# fixed_tokens | turn_delimited_fixed_tokens; turn mode requires an SFT
+# dataset_phase and parquet turn_char_starts from the current converter.
+segment_mode: fixed_tokens
+context_independent_features: false  # If true, run each segment as an
+# independent sequence through the SAE model (no cross-segment context).
+# BOS is prepended per-segment when the segment doesn't already start with
+# BOS (i.e., every SFT segment and every pretraining segment except seg 0).
+# Output directory auto-gains a '/context_independent' leaf. Default: false.
+# ignore_bos_features is no longer configurable — BOS-feature exclusion is
+# frozen ALWAYS-ON in the producer; a value passed via config/CLI is logged as
+# an error and ignored. Legacy artifacts extracted before the freeze (flag off,
+# no '/no_bos' leaf) remain fully readable. See
+# docs/pipelines/feature-extraction.md § Ignore BOS Features.
+
+# Extract settings
+data_dir: null  # null = use nanochat's default DATA_DIR
+output_dir: null
+dataset_phase: null    # null = base data, or: standard_sft | safety_sft | capabilities_sft
+feature_root: out/data/features  # root for auto-constructed paths
+num_shards: 1
+start_shard: 0  # index of first shard to process (0-based); range is [start_shard, num_shards)
+gpu_batch_size: 16  # auto | integer — GPU forward pass batch size (see extract_features_2xb200.yaml for B200)
+cpu_batch_size: 64  # auto | integer — outer pipeline chunk size (see extract_features_2xb200.yaml for B200)
+min_gpu_batch_size: 1  # lower bound for auto-tuning grid search (power of 2)
+min_cpu_batch_size: 1  # lower bound for auto-tuning grid search (power of 2)
+max_gpu_batch_size: 512  # upper bound for auto-tuning grid search (power of 2)
+max_cpu_batch_size: 512  # upper bound for auto-tuning grid search (power of 2)
+gc_mem_threshold: 0.9  # 0.0-1.0 — trigger gc.collect() when GPU VRAM usage exceeds this fraction
+backend: auto  # auto | nnterp | transformerlens | native
+# native torch.compile is ALWAYS ON: with the per-RMSNorm graph-break (S3),
+# every currently-tested (model, layer, dtype) cell passes the runtime SAE-
+# equivalence gate. The previously-opt-in `native_compile` / `native_compile_
+# force` flags were removed — failed compile-gate probes now hard-raise
+# CompileGateError (no silent eager-fallback). The gate stays as the safety
+# net: a future cell that fails it aborts the run loudly.
+# native SDPA row-packing is also mandatory-gated: the row-pack gate builds the
+# same fixed-token/context-independent, BOS-filtered, configured-pooling rows
+# extraction will write. A pass activates capture_packed; a fail hard-raises
+# RowPackGateError with no silent unpacked fallback.
+model_dtype: bfloat16  # float32 | bfloat16 — bf16 is ~6x faster with <5% magnitude error
+zstd_level: 12  # zstd compression level (1-22) for output shards
+staging:
+  scratch_dir: /tmp/nanochat_extract_scratch  # real LOCAL disk; keyed by output_dir, [start_shard, num_shards), and rank
+  output_depth: 3   # >=1: staged save+move concurrency; 0: synchronous direct save to output_dir
+  input_depth: 1    # >=1: N-deep parquet->scratch read prefetch (each in-flight shard holds its text in RAM); 0: inline read
+  min_free_gb: 6.0  # per-save free-space floor on scratch and output; blocks then raises
+  est_shard_gb: 2.0 # estimated output shard size for startup checks on scratch and output
+# Extraction INFO heartbeats and TTY-aware tqdm behavior are fixed operational
+# behavior; they intentionally have no config knob and do not affect outputs.
+profile: false  # when true, write a per-rank GPU-idle/timing sidecar (free-when-off)
+profile_output: out/traces/extraction_profile  # sidecar stem; per-rank suffix added
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

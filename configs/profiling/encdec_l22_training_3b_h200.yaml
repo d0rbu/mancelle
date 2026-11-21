@@ -1,0 +1,44 @@
+# Planned four-node x eight-H200 main-run profile. Topology mode inventories the
+# exact parameter, batch, and DistMuonAdamW contracts; distributed mode measures
+# the same model with synthetic conditioning rows and random weights.
+defaults:
+  - encdec_l22_training
+  - _self_
+
+mode: topology
+
+distributed:
+  model: ${topology.model}
+  # The trainer's scaling-law batch for this model is 1,048,576 tokens. World
+  # size 32 consumes it in one B=16 microbatch.
+  device_batch_size: 16
+  total_batch_size: 1048576
+  # No production c2048 packed manifest exists yet. This conservatively doubles
+  # the audited c1024 synthetic extent (13 slots) while retaining 16 real
+  # 128-token segments per row.
+  padded_segments: 26
+  padded_features: 96
+  static_max_seg_size: 2048
+  fp8: true
+
+topology:
+  model:
+    decoder_depth: 27
+    encoder_depth: 27
+    width: 1664
+    head_dim: 128
+    sequence_length: 2048
+    window_pattern: SSSL
+  # World size 64 remains in the optimizer inventory, but B=16 deliberately
+  # reports an invalid fixed-global-batch contract there. The main run is W=32;
+  # an eight-node fallback must override B=8.
+  world_sizes: [8, 32, 64]
+  gpus_per_node: 8
+  # HGX H200 NVSwitch line rate and one 400 Gb/s inter-node rail. These remain
+  # sensitivity assumptions; the target-cluster preflight supplies measurements.
+  intra_latency_us: 2
+  intra_bandwidth_gb_s: 900
+  inter_latency_us: [5, 25, 100]
+  inter_bandwidth_gb_s: 50
+  device_batch_size: 16
+  total_batch_size: 1048576

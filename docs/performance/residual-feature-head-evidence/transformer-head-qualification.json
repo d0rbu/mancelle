@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "91a7604ecf28500fcf2b0df6ccaeb96d901e57b7",
+  "qualified_production_commit": "9cb4b9418e54d0f2d39d322ec73ebb99fc251cec",
+  "report_checkout_commit": "9086307afe80f59c1189b0768f7105a1b2c7ca4d",
+  "source_manifest_sha256": "d7f94002e12b51718988861d4ba794e5b5fc827c543bcf2f630d3c81fec9ed89",
+  "changed_runtime_config_file_hashes": {
+    "configs/training/cluster_fp/conditional_encdec_splice_cf_gemma3pt_8xpro6000.yaml": "219e9fcbc71aeb134ca7a45d86f6f84d905e6b73ea8460c4bbe088b20a4f3bbb",
+    "configs/training/conditional_encdec_d12_fp10_4xh100.yaml": "073ec6e0a0e6b3b3e0ec459b4eec2d04526c857b75f94dc3fb82d35fafd1c408",
+    "configs/training/conditional_encdec_d12_fp_4xh100.yaml": "8068903932161ec9be5c51641de9bfb5b25cf3b4ab16d3077552654657ed358a",
+    "configs/training/conditional_encdec_d12_fp_s32.yaml": "072100109d4014ec61cc9f4c118e62ca1943f553ee2089a2d67d49e95b1d1055",
+    "configs/training/conditional_encdec_sft.yaml": "cfd26a1dcd36e1799db69c23b335303c47c31f0367a9f0c272c20aa855f6ee01",
+    "configs/training/conditional_encdec_sft_3b_residual_head.yaml": "15d052f7fd12140c0657afe8d7eab662bc0ccba3d05f8cebb28c7afc4024aaca",
+    "configs/training/conditional_encdec_sft_3b_transformer_head.yaml": "9c17aa9679a0171cfc86fa54b476fb1c2c64671257988c9d24a8197069197f15",
+    "configs/training/conditional_encdec_sweep.yaml": "6680769b244c5830efe4ab721e94aed3f31681d7824e0dfface6e5b651bc8630",
+    "configs/utils/migrate_feature_head_metadata.yaml": "926acbfb50ff800a86e5435a48fc60715123f112bf310a053214f503762476f6",
+    "nanochat/VENDORED.md": "9321f429b9f163243ce25fee961307e5db93b999e1a6ef4d200be643852903f6",
+    "nanochat/checkpoint_manager.py": "cc1fbc1f8a3c1356bc25a0bb1812a44b9d8d00087ebff01e51833cf330e56d8b",
+    "scripts/chat_tui/session.py": "2298918096bac42588eeb009ff387cb8818f3726337b0e876a149da9191112d0",
+    "scripts/slurm/conditional_encdec_sft_residual_head.sbatch": "6350f864f176e4cbc716015620d757694a2e93b0837dc77e5fff263b982f0453",
+    "scripts/train/conditional_encdec_rlvr.py": "1aeb3edb96c81c2c15e0234610ba9df34d5ebf287545a90cf0a021bd4e066c89",
+    "scripts/train/conditional_encdec_selfcond.py": "e90f9f8ceaea500f1c1bf6ce0eb69f31bbb4f5ccbd376b9905ac8acc8f7b5c3b",
+    "scripts/train/conditional_encdec_sft.py": "8a8b79e34cb82d51af62b3caa4242861092941240f72e8f26fd7aab5198804a0",
+    "scripts/train/conditional_encdec_sft_grpo.py": "b79df0a7123baa5bd8ae389301d2bdf7e125bff61c02dae1abc55063404e53e4",
+    "scripts/train/conditional_encdec_train.py": "82ebfa6918c4919284fdced28f068769ca000ab87b1934dbd4a127bd59bc1aca",
+    "steering/conditional/encoder_decoder/config.py": "f8b554685ab75f4a9630409128f4675bbf7b349965f6a30a121cde84949c6bcb",
+    "steering/conditional/encoder_decoder/eval_adapter.py": "b41b65eeebc0b94c95f5677e81305042a6269fc56cbb4826a1265e6cebae2b9a",
+    "steering/conditional/encoder_decoder/feature_prediction_head.py": "45ccc1d94beaae6a6c17c4f63b3abf46bc4dd2289fd08093ca56e2d158387bc6",
+    "steering/conditional/encoder_decoder/model.py": "e104dd62fa72ba7cdbf4abf778de3ce44c0a10cc673cd53028ddf1e360809d81",
+    "steering/conditional/encoder_decoder/rlvr_policy.py": "267a0539c29a0351d14932786e850964e040e53232967843fd6d04735fa5637b",
+    "steering/conditional/encoder_decoder/sm12_fa4.py": "afeaf4ba80e3a348b685bb0b5cb7aacf87dcea054990ee55fd1edfbebbf13db7",
+    "steering/eval/axbench_adv/self_conditioning.py": "03af91f15c2ccdc1e8d8ffb2ca23d49e1fb8b467c358b7429e704129e3c617b2",
+    "steering/eval/inference_engine.py": "d49dd1545995d780c9a38aab3f02e4bb1ef51f7a211c510484c3b4e532e57bed",
+    "steering/eval/multiseg_generator.py": "a74e3e7adea97c9ef2971bc1f8263224e31efda651c6ab4c3579a0d2394cdd65",
+    "steering/remote_training.py": "3a11fcdce558d2c48df6e3efc2562c552b552f0de661b1cebc110c5c530d0298",
+    "steering/tools/migrate_encdec_train_state.py": "b5aaa1d711a6470a1a80014157d507674c92466eeb481639ef0120f35e11196b",
+    "steering/tools/migrate_feature_head_metadata.py": "f7baa4b9fe3c8f68c20af699b0a180c47324e71ec31f421fec9f069d518aa8db"
+  },
+  "cpu_suites_overlap_do_not_sum": {
+    "focused": {
+      "junit_sha256": "b4a536429173a1e6e40a2b1f822e0f80204be8523247eb8b0c958b4c123799ea",
+      "testcases": 1326,
+      "failure": 0,
+      "error": 0,
+      "skipped": 3,
+      "passed": 1323
+    },
+    "supplemental": {
+      "junit_sha256": "d9596a54abd7fe6ac8a481f08a7c99983ff13fc5e4a8c75896a8c2c06de403bb",
+      "testcases": 451,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0,
+      "passed": 451
+    },
+    "durable_regressions": {
+      "junit_sha256": "239d449538dd69815d21f253a13b71d109b03b6514500564014d6173d1a7b190",
+      "testcases": 206,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0,
+      "passed": 206
+    }
+  },
+  "legacy_parity": {
+    "receipt": "transformer-head-legacy-parity.json",
+    "exact_tensor_comparisons": 1128,
+    "cases": "linear and learned MLP2; float32/bfloat16; eager/aot_eager; CPU SDPA",
+    "checks": "state, logits, loss, input and existing-parameter gradients, RNG, optimizer ownership and deterministic updates"
+  },
+  "mutations": {
+    "receipt": "transformer-head-mutations.json",
+    "detected": 14,
+    "attempted": 14
+  },
+  "h200_final_source": {
+    "job_id": 23162099,
+    "remote_evidence": "/orcd/data/dylanhm/001/nano-gpt-pretrain-steer/codex-issue1719-20260919/qualification-reviewed-23162099",
+    "environment": {
+      "source_commit": "9cb4b9418e54d0f2d39d322ec73ebb99fc251cec",
+      "torch": "2.13.0+cu130",
+      "devices": [
+        "NVIDIA H200"
+      ],
+      "capability": [
+        9,
+        0
+      ],
+      "native_sm12": false,
+      "cute_flex": true,
+      "cached_fa3": false,
+      "source_manifest_sha256": "d7f94002e12b51718988861d4ba794e5b5fc827c543bcf2f630d3c81fec9ed89",
+      "packages": {
+        "flash-attn-4": "4.0.0b26",
+        "nvidia-cutlass-dsl": "4.6.0.dev0",
+        "triton": "3.7.1"
+      }
+    },
+    "attention_sft": {
+      "junit_sha256": "019c7751078bcb705d71d12af48a1943cd343da5f5a0415e84153174bbe358e3",
+      "testcases": 57,
+      "failure": 0,
+      "error": 0,
+      "skipped": 35,
+      "passed": 22
+    },
+    "attention_log_sha256": "0511d7a5a018f7d3c26b7b8f4fe5c79fc1799d80eb9c8d7bb563a2ecca29ef2d"
+  },
+  "h200_two_rank_initial_source": {
+    "job_id": 23162099,
+    "remote_evidence": "/orcd/data/dylanhm/001/nano-gpt-pretrain-steer/codex-issue1719-20260919/qualification-23162099",
+    "environment": {
+      "source_commit": "6c829644c179e6622c0b8ee8229a2f74b03d7114",
+      "torch": "2.13.0+cu130",
+      "devices": [
+        "NVIDIA H200",
+        "NVIDIA H200"
+      ],
+      "capability": [
+        9,
+        0
+      ],
+      "native_sm12": false,
+      "cute_flex": true,
+      "cached_fa3": false,
+      "source_manifest_sha256": "5fce3ce67dceb05b14e487f1d4c11fb9ff214e0cd4f499bb691a51b5ae9dd702",
+      "packages": {
+        "flash-attn-4": "4.0.0b26",
+        "nvidia-cutlass-dsl": "4.6.0.dev0",
+        "triton": "3.7.1"
+      }
+    },
+    "two_rank_cli_nccl_resume": {
+      "junit_sha256": "e951bac831d7f30ff58a0b6cc8cb31adaea91bcc57a2f0cac77c7771db8741ee",
+      "testcases": 2,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0,
+      "passed": 2
+    },
+    "log_sha256": "002d95c3b2f5dc85acf939830901e4224d964ba1662a0c61cceb000da16d60da"
+  },
+  "sm120_final_source": {
+    "job_id": 23256349,
+    "remote_evidence": "/orcd/data/dylanhm/001/nano-gpt-pretrain-steer/codex-issue1719-20260919/qualification-23256349",
+    "environment": {
+      "source_commit": "9cb4b9418e54d0f2d39d322ec73ebb99fc251cec",
+      "torch": "2.13.0+cu130",
+      "devices": [
+        "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+        "NVIDIA RTX PRO 6000 Blackwell Server Edition"
+      ],
+      "capability": [
+        12,
+        0
+      ],
+      "native_sm12": true,
+      "cute_flex": false,
+      "cached_fa3": false,
+      "source_manifest_sha256": "d7f94002e12b51718988861d4ba794e5b5fc827c543bcf2f630d3c81fec9ed89",
+      "packages": {
+        "flash-attn-4": "4.0.0b26",
+        "nvidia-cutlass-dsl": "4.6.0.dev0",
+        "triton": "3.7.1"
+      }
+    },
+    "attention_sft": {
+      "junit_sha256": "67cb0411c44dd55b1ccf15e5e170bc89d50e75db41aecd90ac0ae1b3b0c3a6e6",
+      "testcases": 57,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0,
+      "passed": 57
+    },
+    "attention_log_sha256": "4b5543bb9a251b4f7ade51b2d206c9a1146167bf6d62f5e5df44efd2322e7ef9",
+    "two_rank_cli_nccl_resume": {
+      "junit_sha256": "2fbceb5dd8786c36b9c2eaece342e64efb97a4363fd571f1d3d8fc3b5a00eab2",
+      "testcases": 2,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0,
+      "passed": 2
+    },
+    "nccl_log_sha256": "eb72b64923bf3eb52ddaef272f61afadbda1e790768c3153d697c472c5dbdf1e"
+  },
+  "external_tiny_sft": {
+    "receipt": "transformer-head-sft-cli.json",
+    "job_id": 23257899,
+    "scope": "Single-rank H200, real compiled SFT main with deterministic conversations and synthetic SAE values; fresh train, strict reload and resume"
+  },
+  "type_check": {
+    "baseline_commit": "91a7604ecf28500fcf2b0df6ccaeb96d901e57b7",
+    "baseline_diagnostics": 388,
+    "candidate_diagnostics": 385,
+    "new_diagnostics": [],
+    "comparison": "relative path and diagnostic text; line/column locations normalized",
+    "log_sha256": {
+      "issue1719-ty-baseline.log": "31d29deab96d5b9b95124a28f0f7893bb016e17974e0bcc2e5adc198b871b149",
+      "issue1719-ty-reviewed-v2.log": "ada4dcca6df4d444765c53cd9363b9320ade6b11791e3b7fbe7b12687698c3b9"
+    }
+  },
+  "kernel_numerical_contract": {
+    "cross_kernel_atol": 0.02,
+    "cross_kernel_rtol": 0.02,
+    "relative_l2_maximum_exclusive": 0.01,
+    "fixture": "learned FP32 parameters and BF16 activations; width-scaled learned output projections; mean loss",
+    "independent_math": "FP64 normalization, RoPE, causal/local attention and MLP; every input/parameter gradient",
+    "rlvr_replay_tolerances": "unchanged"
+  },
+  "prepared_artifacts": {
+    "migration_receipt": "transformer-head-migration.json",
+    "final_source_revalidation_receipt": "transformer-head-migration-revalidation.json",
+    "cadence_receipt": "transformer-head-cadence.json",
+    "control_cadence": 33,
+    "historical_chatcore_scores": "preserved; not new measurements"
+  },
+  "broad_suite_receipt": "transformer-head-broad-suite.json",
+  "deferred_by_owner": [
+    "production SFT at depths 4, 6, 8 and 10",
+    "four-H200 3B per-run canary and production artifact admission",
+    "fresh matched six-task ChatCORE evaluation",
+    "production artifact publication"
+  ],
+  "limitations": [
+    "Full default suite has baseline/environment failures; see separate broad-suite accounting.",
+    "H200 cached attention exercised the existing SDPA fallback because FA3 was unavailable offline; FA3 kernels were not qualified.",
+    "CUDA training is not a bitwise-resume oracle: native backward and existing selection RNG have determinism limits.",
+    "No hosted GitHub CI check runs were reported during this review."
+  ]
+}

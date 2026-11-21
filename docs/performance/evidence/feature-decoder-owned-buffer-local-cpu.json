@@ -1,0 +1,53 @@
+{
+  "status": "Local CPU decoder component and one fresh-process memory-pair qualification; no pipeline/GPU throughput claim.",
+  "mechanism": "After unchanged full upcast loop, delta-decode IDs in the new owned I32 buffer for U16/I16; clone when upcast returned the parsed raw tensor. Same ownership pattern as existing percentile decoder and span decoder; no numeric/config/storage change.",
+  "baseline_head": "220adf1844c30bf24098e37ecd95061bc08238c7",
+  "candidate_measured_before_commit_using_exact_source_hash": true,
+  "source_sha256": {"steering/feature_io.py":{"baseline":"2094dae1c8e0d8197eab83494e84c5bc44fcffeed041b71be02e68a9d518adad","candidate":"ac889e1152578538d7e2f7d831934c7b062f5f6be782aeae0d55f7ce02cc7ffa"},"tests/steering/test_feature_io.py":"d442c66b479653d477c27a7c5010ebb7d7e736c27381565ba24da9ea1e1ab1f9"},
+  "timing_scope": "Complete generic bytes decoder: native safetensors deserialize, metadata parse, all upcasts, delta restoration, metadata fields and internal temporary release inside clocks. Actual payload read/decompression, one baseline warmup, output fingerprint/destruction and GC outside clocks. No held previous output at next call. Warm shared process, eight ABBABAAB calls, four samples per arm.",
+  "runtime": {"python":"3.13.2","torch":"2.13.0+cu130","safetensors":"0.8.0","zstandard":"0.25.0","numpy":"1.26.4","torch_intra_threads":16,"torch_interop_threads":32,"cpu_affinity_count":32,"OMP_NUM_THREADS":null,"MKL_NUM_THREADS":null,"OPENBLAS_NUM_THREADS":null,"TOKENIZERS_PARALLELISM":null,"RAYON_NUM_THREADS":null,"requested_nice":19,"observed_nice_all_measured_children":6,"runtime_before_after_stable_per_child":true},
+  "input": {"path":"/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/eval_contexts/gemma3_4bpt_l22_clustered/shard_00000_features.safetensors.zst","model_source":"Gemma-3-4b-pt L22 clustered features; no model/tokenizer instantiated by decoder probe.","compressed_sha256":"ee4384b86359e5b1a140b0ecd5d532bfff743bd04688ad6a6218f22908923c38","plain_safetensors_sha256":"9b03def4e78ccf50996780d1a06642ddf1c8e8ca88419331e1d622d8bb2f5444","plain_bytes":203371272,"feature_id_storage":"U16[50689690]","owned_restored_id_buffer_bytes":202758760},
+  "host_scope": "Shared host; prelaunch observed66% CPU idle,30GiB available,9% I/O wait and foreign I/O. Per-sample load averages preserved; no isolation or statistical uncertainty estimate.",
+  "samples": [
+    {"index":0,"arm":"baseline","wall_seconds":0.21682678535580635,"cpu_seconds":0.9356636799999993,"load_before":[15.53369140625,20.3388671875,22.712890625],"load_after":[15.53369140625,20.3388671875,22.712890625]},
+    {"index":1,"arm":"candidate","wall_seconds":0.20577117800712585,"cpu_seconds":0.6816130059999992,"load_before":[15.53369140625,20.3388671875,22.712890625],"load_after":[15.53369140625,20.3388671875,22.712890625]},
+    {"index":2,"arm":"candidate","wall_seconds":0.21710248664021492,"cpu_seconds":0.7172993549999997,"load_before":[15.53369140625,20.3388671875,22.712890625],"load_after":[15.53369140625,20.3388671875,22.712890625]},
+    {"index":3,"arm":"baseline","wall_seconds":0.22294669225811958,"cpu_seconds":0.9407416810000004,"load_before":[15.53369140625,20.3388671875,22.712890625],"load_after":[15.53369140625,20.3388671875,22.712890625]},
+    {"index":4,"arm":"candidate","wall_seconds":0.19966620579361916,"cpu_seconds":0.6845740120000023,"load_before":[15.53369140625,20.3388671875,22.712890625],"load_after":[15.53369140625,20.3388671875,22.712890625]},
+    {"index":5,"arm":"baseline","wall_seconds":0.22335924953222275,"cpu_seconds":0.9660035119999968,"load_before":[15.53369140625,20.3388671875,22.712890625],"load_after":[15.5712890625,20.2666015625,22.6767578125]},
+    {"index":6,"arm":"baseline","wall_seconds":0.23038920015096664,"cpu_seconds":0.9508864639999999,"load_before":[15.5712890625,20.2666015625,22.6767578125],"load_after":[15.5712890625,20.2666015625,22.6767578125]},
+    {"index":7,"arm":"candidate","wall_seconds":0.21564766764640808,"cpu_seconds":0.6981053800000012,"load_before":[15.5712890625,20.2666015625,22.6767578125],"load_after":[15.5712890625,20.2666015625,22.6767578125]}
+  ],
+  "observed_medians": [
+    {"group":"all_eight","wall_seconds":{"baseline":0.22315297089517117,"candidate":0.21070942282676697,"candidate_change_percent":-5.576241274533467},"cpu_seconds":{"baseline":0.9458140725000002,"candidate":0.6913396960000018,"candidate_change_percent":-26.905327791049373}},
+    {"group":"first_ABBA","wall_seconds":{"baseline":0.21988673880696297,"candidate":0.2114368323236704,"candidate_change_percent":-3.8428449706149337},"cpu_seconds":{"baseline":0.9382026804999999,"candidate":0.6994561804999995,"candidate_change_percent":-25.447219983720824}},
+    {"group":"second_BAAB","wall_seconds":{"baseline":0.2268742248415947,"candidate":0.20765693672001362,"candidate_change_percent":-8.47045896685652},"cpu_seconds":{"baseline":0.9584449879999983,"candidate":0.6913396960000018,"candidate_change_percent":-27.86860960662637}}
+  ],
+  "interpretation": "Complete decoder pooled median wall223.152971→210.709423ms (5.5762% lower), processCPU26.9053% lower. First/second group wall3.8428%/8.4705% lower. The earlier cProfile36.8ms clone observation is not the measured saving or a pipeline claim.",
+  "fresh_memory_scope": "Two sequential fresh Python children, one complete decode per arm, identical imports/source compilation/input preparation, no decode warmup or held gold. Linux ru_maxrss captured immediately after return BEFORE output fingerprint/description allocations. Earlier prep high-water can mask decode peak generally; both post values exceed pre in this pair. Do not subtract monotonic per-process high-water marks.",
+  "fresh_memory_samples": [
+    {"arm":"baseline","pre_decode_high_water_bytes":1271865344,"immediate_post_decode_high_water_bytes":1988448256,"exact_output_match":true},
+    {"arm":"candidate","pre_decode_high_water_bytes":1275318272,"immediate_post_decode_high_water_bytes":1788256256,"exact_output_match":true}
+  ],
+  "fresh_memory_interpretation": "Observed immediate post-decode high-water difference200192000bytes (baseline1988448256,candidate1788256256). Unequal pre-high-waters1271865344/1275318272 disclosed. Single pair, no repeated/statistical/universal RSS claim; the source-proven removed202758760byte allocation is distinct from observed RSS.",
+  "correctness": {"synthetic_differential_controls":48,"timed_complete_real_calls":8,"exact_real_results":8,"oracle":"Every top-level key/type, all tensor types/dtypes/shapes/strides/raw bits, scalar/metadata types and values; input payload SHA unchanged. Only top-level map insertion order excluded, because baseline-vs-baseline native parser already changes order; raw typed key order retained in ignored raw receipts. Nested/value ordering unchanged.","ownership":"Checked regression retains actual native parsed buffers and actual upcast results; U16/I16 returned buffer is owned upcast, I32/I64 return independently cloned buffer; raw buffers/bytes and repeated decode results independent.","sources_inputs_runtime_unchanged":true},
+  "validation": {"distinct_pytest_passed":240,"focused_12_file_passed":238,"focused_slow_deselected":2,"cached_real_consumer_slow_passed":2,"new_checked_parameterized_cases":4,"ruff_exit":0,"targeted_ty_raw_exit":1,"baseline_ty_raw_exit":1,"ty_note":"One unchanged contextmanager return-annotation deprecation warning, baseline line872→candidate875; no new diagnostics.","diff_check_exit":0,"scope":"Affected I/O, delta widths/property/subsets/prepared/presorted/content-size, splice builders/end-to-end/pairing/statistics pipeline plus real cached Gemma spawn byte-identity and pairing counterfactual preservation; not full repository/exhaustive-state coverage."},
+  "probe_harness_notes": "Two prior control attempts retained with zero complete-case/performance credit: inherited compiler future flag mismatch fixed with dont_inherit=True; ordered output oracle failed baseline-vs-baseline and was narrowed only for top-level map order. Final logging-only revision binds the validated48-control driver/receipt and preserves actual completed timing/flags before assertions. Numeric candidate unchanged throughout.",
+  "receipts_sha256": {
+    "byte_decode_probe.json": "80c14a86d4856d6549c50da414451927cccc6dfc1c1d59e2fc1551b571bd292c",
+    "byte_decode_progress.json": "d0d0dce4c05522d48ce3706fa219e1d15a04b733e184c876881a072a68eef4d7",
+    "rss-baseline.json": "140f18449842797d3d6cc6a37f75d9f724e69919a71bd1b83081ad8337f1e5fb",
+    "rss-candidate.json": "16f71ea3122054cd94f5b03524b078f516f5acec783592c1a39838fd25abe139",
+    "focused_controls.json": "7908ec0a3c3906aa448f3ace40b4e2d3c783f07e408e58fe8f42ee2b325eeecc",
+    "output_diagnostic.json": "d8d96e16a3471bd8bfd3c25f4611422dafdad66eef54644303e486575350e7da",
+    "actual_evidence_independent_review.json": "358e79139d57fafdb1d8f4b2c9cc7f6f2079dabce46cd662682d12a641cde1d3",
+    "experiment_terminal.json": "83b60689ae0e20e114e4416e6f80d5bb7025df8a6930243becd846bdbd85e4ef",
+    "implementation_validation.json": "35ba8b70d2f3f036333d5e8891e012b1c5787883fac6f65cd81d9e0766811718",
+    "pytest_fast_owned_cleanup.json": "703fc55811944eadf7c665a66f130bb823a3a6c809c7ed4ccd519eade42dca38",
+    "integration_validation/final_validation.json": "7cb805e9c5bbcce96fc003b0f3e2e8b423075295ae6b3688240409e0ba806904"
+  },
+  "driver_sha256": "c7c03620e7ccdd2678f27f00dc125327c73eef6a693d30716f4dc2a9ff527e46",
+  "validated_controls_driver_sha256": "e58778990cec756bd8d9d2d084140850fbb5808d8edcaabf461a3de45428e3a7",
+  "cleanup": {"generated_dataset_outputs":0,"owned_fast_pytest_bytes_removed_once":417450,"owned_cached_integration_bytes_removed_once":83855,"owned_test_temp_roots_absent":true,"raw_evidence_and_failed_attempt_archives_retained":true},
+  "limits": "One feature payload and CPU host, four warm timing samples per arm and one fresh memory sample per arm. Complete decoder result/ownership qualification; no full splice benchmark, cold-cache/download/network, GPU/training throughput or universal allocation-failure parity claim."
+}

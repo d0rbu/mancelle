@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "measured_at": "2026-08-28",
+  "base_commit": "7007c30de",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "checkpoint": {
+    "step": 54600,
+    "model_sha256": "153d29c0e813036539f71cad8058e47051131d458b21513641f05994471a278d",
+    "metadata_sha256": "03e2f1ead1b3fe48712d9d8ab7fc12c17f04d61db2cc1d6416d959ba5d74cb0f",
+    "feature_vocab_sha256": "8c183369ce4a8ff1e5f153a749e9eb71f9def65283d0a22b4d33bf5ff2d6f16c",
+    "feature_vocab_size": 2074
+  },
+  "statistics": {
+    "recorded_legacy_file_sha256": "dadf6d4f8d3b56ba1b40e0f49f4bb92bfb635c64f78a530f04f624b1d5773b5d",
+    "decoded_content_sha256": "2797adf0b7ec7beb4d7f149524ef736ea9ca12f06a5b29f570a27a1e50af8770",
+    "bytes": 82241744,
+    "verification": "exact original raw-file bytes"
+  },
+  "workload": {
+    "suite": "core",
+    "seed": 1234,
+    "max_per_task": 5,
+    "task_count": 22,
+    "conditioned_feature_id": 8,
+    "conditioned_bucket": 1,
+    "scored_examples": 110,
+    "expected_prompt_variants": 255,
+    "unique_contexts": 120
+  },
+  "extraction": {
+    "model_id": "gemma-3-4b-pt",
+    "sae_id": "layer_22_width_65k_l0_medium",
+    "documents": 120,
+    "segments": 314,
+    "tokens": 30207,
+    "wall_seconds": 9.9,
+    "tokens_per_second": 3065,
+    "contexts_jsonl_sha256": "61212b65b0778b1e218c175e0bd206823463158e6c6cc5ecc2775ff81d41cfa4",
+    "parquet_sha256": "4245d2c09ef7eb738b54a91d1e61fcb837a07bae0e5ed65c42606cb0c4d02c87",
+    "features_sha256": "b6c4d9e42ab5c4d08a8bc69db24b66470c64e3a0d317340a275ea5fc4b6a26e1"
+  },
+  "context_cache": {
+    "feature_selection_hash": "6be4095ad0116d3e1b7ca93a2fe0a47439eaba770c6d0ef08ab164a0652a19bc",
+    "manifest_sha256": "5f3aa7ed6637bab0b6162b147e590cf84da4390b0d4225aca18217cecdb694ac",
+    "manifest_bytes": 546424,
+    "validated_rows": 120,
+    "extra_cached_rows": 0,
+    "checkpoint_preselection_seed": 42
+  },
+  "macro_profile": {
+    "warmup_iterations": 1,
+    "measured_iterations": 3,
+    "macro_csv_sha256": "b78768a55cd536c51b3524fa296b6caa5781614f0b6daef08310f6d9612e4d73",
+    "run_total_seconds": [6.711081, 6.197877, 6.167733],
+    "run_total_median_seconds": 6.197877,
+    "suite_total_seconds": [5.356185, 4.863202, 4.846441],
+    "suite_total_median_seconds": 4.863202,
+    "checkpoint_load_median_seconds": 0.360885,
+    "context_coverage_median_seconds": 0.331151,
+    "wrapper_calls_per_iteration": 110,
+    "conditioning_build_median_total_seconds": 1.004911,
+    "wrapper_forward_median_total_seconds": 4.412385,
+    "wrapper_forward_includes_conditioning_build": true
+  },
+  "suite_profile": {
+    "key_averages_sha256": "41a7162acad9efaae2ef812a94610094e8cf6bb7a94e19696068c6d7fe5bf6cd",
+    "self_cpu_time_seconds": 8.183,
+    "self_cuda_time_seconds": 1.073,
+    "cuda_kernel_launches": 162139,
+    "copy_calls": 50827,
+    "stream_synchronizations": 9385,
+    "async_memcpy_calls": 14241,
+    "flex_attention_calls": 1287,
+    "finding": "The warmed forward path is CPU and launch bound across many small operations; the coverage fence is not the dominant cost."
+  },
+  "unrun_boundary": "No paid judge calls, harmfulness suite, full 1200-prompt standalone eval, multi-GPU run, or H200 qualification was performed."
+}

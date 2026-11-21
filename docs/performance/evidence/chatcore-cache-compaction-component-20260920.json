@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "scope": "component screen only; separate whole-suite qualification required",
+  "reference_revision": "f95f459d0ab99ead8c63cce03973639931fce709",
+  "job_id": "23338844",
+  "hardware": "NVIDIA L40S",
+  "node": "node2804",
+  "elapsed": "00:00:49",
+  "terminal": "COMPLETED 0:0",
+  "source_files": 3525,
+  "controls_files": 44,
+  "exact_tiny_cases": 17,
+  "exact_tiny_steps": 19,
+  "exact_full_cases": 2,
+  "timed_calls": 320,
+  "warmup_calls": 32,
+  "full_backing_restorations": 352,
+  "max_allocated_bytes": 33876257792,
+  "max_reserved_bytes": 34181480448,
+  "ownership": {
+    "probe": {
+      "samples": 38,
+      "positive_owned_samples": 23,
+      "outsiders": 0,
+      "exit_code": 0
+    },
+    "slurm_terminal": {
+      "JobIDRaw": "23338844",
+      "State": "COMPLETED",
+      "ExitCode": "0:0",
+      "NodeList": "node2804",
+      "AllocTRES": "billing=8,cpu=8,gres/gpu:l40s=1,gres/gpu=1,mem=32G,node=1",
+      "Elapsed": "00:00:49"
+    },
+    "sampling_limit": "Approximately one-second snapshots, not continuous observation."
+  },
+  "cases": [
+    {
+      "case": "b150_to149_drop66",
+      "pooled": {
+        "reference_block_geomean_seconds": 0.128680148231026,
+        "candidate_block_geomean_seconds": 0.09145415715658951,
+        "reference_call_geomean_us": 32170.0370577565,
+        "candidate_call_geomean_us": 22863.53928914738,
+        "latency_reduction_percent": 28.92908625470556
+      },
+      "positive_comparative_quartets": 8,
+      "placebo_effects_percent": [
+        0.02968035540842351,
+        -0.006240617399733139
+      ],
+      "by_orientation": {
+        "ABBA": {
+          "reference_block_geomean_seconds": 0.12872955850016024,
+          "candidate_block_geomean_seconds": 0.09128387343655812,
+          "reference_call_geomean_us": 32182.38962504006,
+          "candidate_call_geomean_us": 22820.96835913953,
+          "latency_reduction_percent": 29.088645607026997
+        },
+        "BAAB": {
+          "reference_block_geomean_seconds": 0.12863075692703635,
+          "candidate_block_geomean_seconds": 0.09162475852906285,
+          "reference_call_geomean_us": 32157.689231759086,
+          "candidate_call_geomean_us": 22906.189632265712,
+          "latency_reduction_percent": 28.76916787402918
+        }
+      },
+      "halves": {
+        "first_four": {
+          "reference_block_geomean_seconds": 0.1286260943626356,
+          "candidate_block_geomean_seconds": 0.09161196082996619,
+          "reference_call_geomean_us": 32156.523590658904,
+          "candidate_call_geomean_us": 22902.990207491548,
+          "latency_reduction_percent": 28.776535364834654
+        },
+        "last_four": {
+          "reference_block_geomean_seconds": 0.1287342248150302,
+          "candidate_block_geomean_seconds": 0.09129662530360731,
+          "reference_call_geomean_us": 32183.556203757547,
+          "candidate_call_geomean_us": 22824.15632590183,
+          "latency_reduction_percent": 29.081310401499305
+        }
+      }
+    },
+    {
+      "case": "b50_to49_drop1",
+      "pooled": {
+        "reference_block_geomean_seconds": 0.07441859574103728,
+        "candidate_block_geomean_seconds": 0.051021333161374416,
+        "reference_call_geomean_us": 18604.64893525932,
+        "candidate_call_geomean_us": 12755.333290343604,
+        "latency_reduction_percent": 31.440075355736262
+      },
+      "positive_comparative_quartets": 8,
+      "placebo_effects_percent": [
+        -0.0861570030758374,
+        0.03973677092639072
+      ],
+      "by_orientation": {
+        "ABBA": {
+          "reference_block_geomean_seconds": 0.07442249520432466,
+          "candidate_block_geomean_seconds": 0.05104953427768612,
+          "reference_call_geomean_us": 18605.623801081165,
+          "candidate_call_geomean_us": 12762.383569421529,
+          "latency_reduction_percent": 31.405774373015582
+        },
+        "BAAB": {
+          "reference_block_geomean_seconds": 0.07441469648206735,
+          "candidate_block_geomean_seconds": 0.05099314762410712,
+          "reference_call_geomean_us": 18603.674120516836,
+          "candidate_call_geomean_us": 12748.28690602678,
+          "latency_reduction_percent": 31.47435918603042
+        }
+      },
+      "halves": {
+        "first_four": {
+          "reference_block_geomean_seconds": 0.07440885489285753,
+          "candidate_block_geomean_seconds": 0.051120853461402445,
+          "reference_call_geomean_us": 18602.213723214383,
+          "candidate_call_geomean_us": 12780.213365350612,
+          "latency_reduction_percent": 31.297352264038793
+        },
+        "last_four": {
+          "reference_block_geomean_seconds": 0.07442833786438949,
+          "candidate_block_geomean_seconds": 0.05092200660400613,
+          "reference_call_geomean_us": 18607.08446609737,
+          "candidate_call_geomean_us": 12730.501651001532,
+          "latency_reduction_percent": 31.582501954044105
+        }
+      }
+    }
+  ],
+  "evidence_sha256": {
+    "loop18-decision.json": "9d58117065c13782562f3f599e425bd24c1f361e7e441c5001ab92332f65450f",
+    "compaction-screen-23338844/independent-audit.json": "24e4d35d9f76712eb931fcfe340d3f834a0841761f266a8c68f88f78740d5b86",
+    "loop18-compiled-review-23338844.json": "5457fadd1a92702f56031fd6730ddb852d44e5984e91ceb264d50fbfa29f535b",
+    "compaction-screen-23338844/probe/metrics.json": "8bf579130168fdee9868067645443e12f117d6c2f30f0be647e50bb5385a0261",
+    "compaction-screen-23338844/comparison.json": "fda3e2a09d6b3d0d6990f47be752e89aecfc40a2cec66cbe5fac2fbf72c29ebe",
+    "compaction-screen-23338844/output.sha256": "07065c03390221df15169694d44e092d32e3bb65a6b61b8d20cdef543c4fe3a8",
+    "loop18-compaction-controls.sha256": "80b5828b35215f6cb3ffeb8b8c8e07767ca9411b1402f377737f024c1d9bb026",
+    "loop18-compaction-controls.tar.gz": "9daf11303905d8f8b6b7e34d343b58bc15e472c0f50aa225bbe3b52a308f18bb",
+    "loop17-compaction-attribution.json": "c11d63659863604372dd39c08c208eb425f45335c9c73207cf8bb181201fa427",
+    "loop17-root-compaction-attribution-review.json": "17de8c81c07413ba926b21b2499d9ab2827fc51f6067c42a5cca595a4d5c7666"
+  },
+  "limitations": [
+    "The two full-size fixtures use real geometry/mappings/positions with synthetic FP8 bytes, not checkpoint K/V.",
+    "Full-size GPU parity, pointers and route witnesses are pinned in-process producer evidence; only tiny full storages are independently replayed offline.",
+    "Complete component timing includes all guards, indices, copies, positions and views, but is not whole-generator/model-resident performance.",
+    "Ownership observations are sampled approximately once per second; the pinned controller separately enforces its child deadline.",
+    "The actual compiled-artifact review is an explicit human/agent reasoning gate; the audit does not recompile or execute GPU kernels."
+  ]
+}

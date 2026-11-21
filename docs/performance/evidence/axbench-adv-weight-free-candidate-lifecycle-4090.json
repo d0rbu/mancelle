@@ -1,0 +1,43 @@
+{
+  "wall_seconds": 94.93980858847499,
+  "events": [
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "__enter__",
+      "seconds": 6.706139408051968
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 15.73684685304761
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 7.589412551373243
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "evaluate",
+      "seconds": 7.888109192252159
+    },
+    {
+      "method": "SelfConditioningMasked",
+      "concept_id": 36,
+      "factor": 6.0,
+      "phase": "close",
+      "seconds": 2.031423144042492
+    }
+  ],
+  "local_http_calls": 90,
+  "local_http_peak_concurrency": 10,
+  "manifest": "/tmp/axbench-weight-free-production-pr1770-r1/output/manifest.json"
+}

@@ -1,0 +1,11 @@
+# @package feature_selection
+# Default encoder-decoder positive-feature sampling arm.
+distribution: geometric
+mean: 12.0
+std: 12.0
+min_k: 1
+max_k: 49
+# Uses the selected feature_delta mode's positive percentile deltas as ranking
+# weights. Counterfactual splicing itself remains an explicit feature_delta mode.
+delta_weights: percentile_delta
+mode: top_k_percentile  # weighted or top_k_percentile

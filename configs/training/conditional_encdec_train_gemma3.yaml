@@ -1,0 +1,26 @@
+# Gemma 3 + gemma-scope-2 conditional encoder-decoder training config.
+# Inherits every field from conditional_encdec_train.yaml and overrides ONLY
+# the SAE coordinates needed for Gemma 3 (gemma-3-4b-it) + gemma-scope-2.
+#
+# The encdec training config has NO top-level `model:` key — the feature
+# source model lives in the structured `sae:` block. We override the whole
+# `sae:` block to switch release/model/layer; width stays 16k.
+#
+# Layer note: valid gemma-scope-2 layers for the 4b model are {9, 17, 22, 29};
+# 22 is the default mid-late residual site.
+# See docs/pipelines/gemma-scope-2.md.
+
+defaults:
+  - conditional_encdec_train
+  - _self_
+
+# SAE — gemma-scope-2 (v2 release). The v1 parent uses a flat `width: 16k`
+# inside the sae: block (not the v2 num_features/l0 grammar), so we mirror
+# that schema here and only switch release/model/layer.
+sae:
+  release: gemmascope_2
+  model: gemma-3-4b-it
+  activation_type: residual
+  layer: 22
+  width: 16k
+  l0: medium

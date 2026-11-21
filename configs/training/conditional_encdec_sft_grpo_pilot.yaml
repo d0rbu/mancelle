@@ -1,0 +1,7 @@
+defaults:
+  - conditional_encdec_sft_grpo
+  - _self_
+
+# Requested experimental-gate policy group. The remaining runtime geometry is
+# still mandatory and must be supplied for the hardware being qualified.
+group_size: 256

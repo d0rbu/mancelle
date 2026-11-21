@@ -1,0 +1,142 @@
+# Build a safetensors context-feature cache for target-aware progression eval.
+#
+# Stage "enumerate" writes:
+#   1. a JSONL file of exact eval token contexts;
+#   2. a parquet shard whose text column is the matching Gemma extraction text.
+#
+# Stage "convert" expects:
+#   1. a JSONL file of enumerated eval contexts;
+#   2. a feature_dir containing extracted SAE feature shards for those contexts
+#      in the same document order.
+#
+# The output is a safetensors cache consumable via
+# conditioning.context_cache_dir in progression eval or encoder-decoder
+# pretraining CORE/sample generation. Caches are written under
+# output_dir/c{model_max_seq_len}/{feature_selection_hash[:16]}/ so different
+# checkpoint context lengths and feature selections cannot reuse each other's
+# exact token contexts.
+
+defaults:
+  - _self_
+  - optional local@_global_: build_eval_context_cache
+
+stage: convert  # enumerate | convert | validate
+
+checkpoint_meta_path: null  # required for turn conversion/validation; exact checkpoint metadata JSON
+source_segment_size: null  # optional assertion against turn checkpoint lineage
+source_context_window: null  # optional assertion against authenticated training statistics
+segment_mode: fixed_tokens  # use build_eval_context_cache_turn for turn chat_target (schema 5)
+
+contexts_file: ???
+context_parquet_dir: ???
+required_contexts_manifest: null  # Stage 3e manifest for exact AxBench contexts
+feature_dir: ???
+output_dir: ???  # cache root; convert writes output_dir/c{model_max_seq_len}/{hash[:16]}
+
+n_sae_features: ???
+num_buckets: ???
+# Generic legacy path default. When required_contexts_manifest is set, the
+# configured extraction tokenizer is authoritative and this value must agree
+# with its decoded BOS length.
+source_bos_char_len: 5
+extraction_tokenizer_id: null  # required with required_contexts_manifest
+stats_path: ???
+
+feature_selection:
+  threshold_type: feature_percentile_segment_topk
+  threshold: 2048.9
+
+negative_selection: null
+# feature_mask: when set, only the specified SAE feature ids are visible to the
+# conditioning pipeline (blacklist) or exclusively allowed (whitelist). Must
+# match the mask used during precompute and training so the cache records
+# exactly the features the model was trained to see.
+# Format: {mode: blacklist|whitelist, ids: [int, ...]} or
+#         {mode: blacklist|whitelist, path: /path/to/ids.txt}
+# Leave null (default) for unmasked / legacy builds.
+feature_mask: null
+# Optional schema-v1 static clusters. Clustered prompt caches support only
+# sampling selection, resolve representatives after the mask, and require
+# feature_delta=null with no delta_weights key in feature_selection.
+feature_clusters: null
+feature_delta: null
+# New identities use the decoded-content SHA-256. An exact raw-file digest
+# recorded by a pre-content_sha256 checkpoint is also accepted only when the
+# original statistics file bytes are present; the legacy digest is preserved.
+stats_source_sha256: null  # required when identity.feature_selection_hash is null
+# Required (strict int, no silent default) for clustered builds: both the
+# clustered cache's identity hash (steering/eval/cache_identity.py) and its
+# sampled content (build_feature_pipeline_from_cfg_block's RNG) are pinned
+# to this real training-preselection seed. Unclustered builds ignore it.
+seed: null
+
+# Optional checkpoint-provenance cross-check (opt-in; PR #739 Track D). When
+# set, a clustered build (feature_clusters != null) fails loud, before any
+# shard I/O, unless `seed` above equals the target checkpoint's REAL
+# training-time preselection seed (steering/eval/cluster_feature_contract.py
+# via steering/eval/clustered_cache_seed_contract.py). Provide checkpoint_dir
+# OR (checkpoint_source AND checkpoint_model_tag) -- exactly one of the two
+# forms; checkpoint_step/checkpoint_tag are independent optional refinements
+# of either form, not part of that choice. Leave every field null (default)
+# to skip the cross-check entirely -- unclustered builds and pre-D-contract
+# clustered builds are unaffected. A future clustered-AxBench caller is
+# expected to make one of checkpoint_dir/checkpoint_source mandatory (`???`)
+# for its own use case; this shared schema itself stays opt-in.
+checkpoint_dir: null
+checkpoint_source: null
+checkpoint_model_tag: null
+checkpoint_step: null
+checkpoint_tag: null
+
+# SAE identity — mandatory. Caches are keyed by (identity, tokens) so
+# changing any of these fields produces a different cache.
+identity:
+  model_id: ???
+  sae_id: ???
+  layer: ???
+  pooling: ???
+  # Set explicitly to a 64-char hex string, or leave null only when
+  # feature_selection + negative_selection + num_buckets + stats_source_sha256
+  # are present so the canonical hash can be computed.
+  feature_selection_hash: null
+
+metadata: {}
+shard_size: 1024
+overwrite: false
+zstd_level: 12
+
+# Eval enumeration settings used by stage=enumerate. These mirror
+# validate_eval_context_cache.yaml and training_progression.yaml.
+evals: "core,chat,harmfulness,samples"
+rlvr_jsonl_files: null  # required list [train.jsonl, validation.jsonl] for evals=chat_rlvr
+
+# Must match `sample_prompts` in configs/training/conditional_encdec_train.yaml.
+# conditional_encdec_train.py generates from these every `sample_every` steps
+# through the cached context provider, so a cache built without the `samples`
+# suite KeyErrors at the first sample-generation step even though CORE passes.
+sample_prompts:
+  - "The capital of France is"
+  - "The chemical symbol of gold is"
+  - "If yesterday was Friday, then tomorrow will be"
+  - "The opposite of hot is"
+  - "The planets of the solar system are:"
+  - "My favorite color is"
+  - "If 5*x + 3 = 13, then x is"
+# Required for CORE enumeration. Use checkpoint meta max_seq_len/model.max_seq_len
+# so cache enumeration skips the same oversized rows as nanochat.core_eval.
+model_max_seq_len: ???
+num_seeds: 3
+base_seed: 1234
+max_per_task: 500
+chat_tasks: null
+chat_batch_size: 8
+chat_max_problems: 100
+harm_num_benign: 50
+harm_num_harmful: 50
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

@@ -1,0 +1,61 @@
+# HF storage-bucket sync configuration.
+# Push: `python -m scripts.utils.hf_push category=<name>`
+# Pull: `python -m scripts.utils.hf_pull category=<name>`
+# Or invoke the shell wrappers in runs/ for the standard sets.
+
+defaults:
+  - _self_
+  - optional local@_global_: artifacts
+
+# Required at invocation time: which category to push/pull
+category: ???
+
+# Optional flags (set on the CLI, e.g. `dry_run=true`)
+dry_run: false
+delete: false
+no_default_include: false
+no_default_exclude: false
+
+# The bucket lives at hf://buckets/<bucket_owner>/<bucket_name>.
+# Override either field for a fork or a personal staging bucket.
+bucket_owner: d0rb
+bucket_name: nano-gpt-pretrain-steer-artifacts
+
+# Logical artifact groupings. Each maps a local-FS root to a bucket
+# subpath, with default include/exclude glob filters that the user can
+# extend or override on the command line.
+categories:
+
+  base_checkpoints:
+    # Resolved at use time. Fallback `nanochat_cache` matches nanochat.common.get_base_dir()'s
+    # behavior when NANOCHAT_BASE_DIR is unset (project-root/nanochat_cache, relative-to-cwd
+    # works because `hydra.job.chdir: false` keeps cwd at repo root).
+    local_root: ${oc.env:NANOCHAT_BASE_DIR,nanochat_cache}/base_checkpoints
+    remote_subpath: checkpoints/base
+    default_include: []                    # empty = all
+    default_exclude: ["**/optim_*.pt"]     # optimizer state is huge + rarely needed
+
+  sft_checkpoints:
+    local_root: ${oc.env:NANOCHAT_BASE_DIR,nanochat_cache}/sft_checkpoints
+    remote_subpath: checkpoints/sft
+    default_include: []
+    default_exclude: ["**/optim_*.pt"]
+
+  encdec_checkpoints:
+    local_root: ${oc.env:NANOCHAT_BASE_DIR,nanochat_cache}/conditional_encdec_checkpoints
+    remote_subpath: checkpoints/conditional_encdec
+    default_include: []
+    default_exclude: ["**/optim_*.pt"]
+
+  features:
+    local_root: out/data/features
+    remote_subpath: features
+    default_include: []
+    default_exclude: []   # feature shards are the whole point — keep them all
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

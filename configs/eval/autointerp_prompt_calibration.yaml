@@ -1,0 +1,29 @@
+# Replay an existing autointerp trial_audit.yaml against prompt variants.
+#
+# Usage:
+#   uv run -m scripts.eval.autointerp_prompt_calibration -- \
+#     judge.prompt_variant=delphi judge.few_shot_set=delphi
+
+trial_audit_path: out/autointerp_real_samples_4b/gemma3_4bpt_l22_f65k_large_tl_owl_alpha_4shards_f20_t20_q5/trial_audit.yaml
+output_path: out/autointerp_prompt_calibration/calibration.yaml
+json_output_path: out/autointerp_prompt_calibration/calibration.json
+max_trials: null
+fail_on_parse_error: true
+progress_interval: 10
+checkpoint_interval: 10
+
+judge:
+  model: openai/gpt-5-nano
+  requests_per_minute: 60
+  max_prompt_chars: 32000
+  parse_max_retries: 2
+  cot: false
+  prompt_variant: highlight_context_token_first_v1
+  few_shot_set: sae_realistic_v1
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

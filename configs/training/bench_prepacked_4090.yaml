@@ -1,0 +1,43 @@
+# Benchmark: precomputed packed row shards on 4090
+# Usage: torchrun --nproc_per_node=1 -m scripts.train.conditional_encdec_train -- config_name=bench_prepacked_4090
+
+defaults:
+  - conditional_encdec_4090
+  - _self_
+
+# Match precomputed shard context length (c1024)
+max_seq_len: 1024
+# Reduce batch size to fit the encoder/decoder workload in 24GB
+device_batch_size: 8
+depth: 6
+
+# 8 micro-batches per step (keeps traces small)
+total_batch_size: 131072
+
+# Short run for MFU measurement
+num_iterations: 25
+run: bench_prepacked
+
+# Force precomputed path
+use_precomputed_batches: true
+
+# Required for this generic packed-row benchmark. prev_segment/cum_max are
+# live-only; splice_counterfactual packed training requires preselected sel/
+# shards built from a spliced derived feature dir.
+feature_delta: null
+feature_selection:
+  delta_weights: null
+
+# Disable evals/saves — pure training throughput
+eval_every: -1
+core_metric_every: -1
+sample_every: -1
+save_every: -1
+steering_eval_every: 0
+
+# No compile for fair comparison
+compile: false
+
+# Chrome trace: capture steps 10-12 (after warmup)
+profile_trace: 10
+output_dir: out/bench_prepacked

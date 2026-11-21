@@ -1,0 +1,49 @@
+{
+  "benchmark_script_sha256": "93962e2fe1b31d3f898afe670ab39d34468dcf25d45749d66c6ea2a6dd20358e",
+  "downstream_slice_validation": [
+    "diffmean_counter",
+    "linear_probe_counter"
+  ],
+  "hardware": "NVIDIA GeForce RTX 4090",
+  "local_http_calls": 270,
+  "manifest_call_accounting": {
+    "actual_evaluator_calls": 60,
+    "actual_generation_calls": 60,
+    "control_generation_calls": 30,
+    "control_paid_judge_cache_misses": 60,
+    "final_actual_evaluator_calls": 270,
+    "final_paid_judge_cache_misses": 90,
+    "gepa_nominal_metric_calls": 0,
+    "paid_judge_cache_misses": 120,
+    "paid_reflection_cache_misses": 0
+  },
+  "manifest_file_count": 57,
+  "manifest_sha256": "1cddd2939c6b418a844015ba01af23c7191d2fffee0147d52ddb369d86e0659b",
+  "masked_point_receipts_equal_to_one_method_enabled_run": 4,
+  "output_file_count": 61,
+  "peak_api_concurrency_including_final_judge": 20,
+  "publication_complete": true,
+  "scope": {
+    "concept_ids": [
+      36
+    ],
+    "counter_magnitudes": [
+      256
+    ],
+    "input_count_per_point": 10,
+    "judge_delay_seconds_per_response_pair": 2.0,
+    "judge_endpoint": "local deterministic HTTP",
+    "methods": [
+      "SelfConditioning",
+      "SelfConditioningMasked",
+      "NLSteering"
+    ],
+    "pressures": [
+      "diffmean_counter",
+      "linear_probe_counter"
+    ]
+  },
+  "source_commit": "e5ab01d7ecd196630d290e8321f659b7ce19228f",
+  "source_config_sha256": "99140a3aa8ea0771e6db2a48e04a1a1aaa8c38c4a06167da94c65af725727673",
+  "wall_seconds": 198.03326100111008
+}

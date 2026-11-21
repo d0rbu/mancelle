@@ -1,0 +1,2169 @@
+{
+  "schema_version": 1,
+  "scope": "Qualified warm complete ChatCORE suite for one 4096-byte compaction tile change against published 7003 tile 1024. Component and resident results are supporting evidence, not added gains. Later documentation-only packaging is separately verified.",
+  "reference_revision": "7003bc5247d2a4786556361d8ad1b996716f8d50",
+  "runtime_change": {
+    "path": "steering/eval/triton_kv_cache_compaction.py",
+    "literal": "_BLOCK_BYTES = 1024 -> 4096",
+    "reference_helper_sha256": "6eed19cc2331e361d84a9e091c12a95b2a0afaebe4331cd380818084b3b67254",
+    "candidate_helper_sha256": "a6792c14216dc84d504b4d92c6e0bb94ca432b37d7c99fd742bb701e833d3d4b",
+    "entire_helper_inverse_bytes_and_AST_equal": true,
+    "unchanged": [
+      "greedy runtime",
+      "admission and fallback",
+      "kernel row ordering and integer byte copies",
+      "four warps, one stage, fusion and FTZ flags",
+      "one paired K/V launch per layer",
+      "index allocation/H2D and scalar positions",
+      "backing allocations and prefix-view semantics"
+    ],
+    "fullgeometry_grid": {
+      "row_bytes": 1429376,
+      "reference_programs_per_layer": 1396,
+      "candidate_programs_per_layer": 349,
+      "layers": 26
+    },
+    "test_delta": "4113-byte tile_tail at offset7, with high-coordinate payload contrast across4096 and full hidden-backing byte checks. Other GPU test identities unchanged."
+  },
+  "source_snapshot": {
+    "purpose": "Fresh-process canonical complete-suite compaction qualification; no resident overlay or runtime witness",
+    "parent_revision": "7003bc5247d2a4786556361d8ad1b996716f8d50",
+    "reference_files": 3532,
+    "candidate_files": 3532,
+    "changed_files": {
+      "steering/eval/triton_kv_cache_compaction.py": {
+        "reference": "6eed19cc2331e361d84a9e091c12a95b2a0afaebe4331cd380818084b3b67254",
+        "candidate": "a6792c14216dc84d504b4d92c6e0bb94ca432b37d7c99fd742bb701e833d3d4b"
+      },
+      "tests/steering/test_triton_kv_cache_compaction.py": {
+        "reference": "aa704cce13e4fb64000d9956504b897d8c6f723a40d072a04ce79f7d01d7f366",
+        "candidate": "cf4e1c211604eb1d26d88ae480f3b23bea02e6772d456d00576c17c72e72a8fc"
+      }
+    },
+    "runtime_freeze": {
+      "steering/eval/greedy_token_batch.py": "c308fc9e78e9bfee7336e917fd20b5903523727b88dfa94ee62ec1bcec5f65b5",
+      "steering/eval/triton_kv_cache_compaction.py": "a6792c14216dc84d504b4d92c6e0bb94ca432b37d7c99fd742bb701e833d3d4b",
+      "tests/steering/test_greedy_cache_compaction_gpu.py": "41cd7bd916da12bdb42fe34c7044e300385434da66a00a9b504fa42089de2132",
+      "tests/steering/test_triton_kv_cache_compaction.py": "cf4e1c211604eb1d26d88ae480f3b23bea02e6772d456d00576c17c72e72a8fc"
+    },
+    "canonical_harness_sha256": "8e9dcd2dd5922411fc3fffe332f4fc6e4918184f6f022f3954ffb9043d7a0d6a",
+    "reference_source_manifest_sha256": "905982e3ebe9ca6fb12cfdd813c039d0baeeebcf6dbdc347a465d8646521d529",
+    "candidate_source_manifest_sha256": "579cebaa5d064c451fb655203a7aedcbc91e551312e1bceafe91acdb7d8f4589",
+    "candidate_source_archive_sha256": "2be81c897a1d4a94c4af2e5209b87513ee8f488706301799e733992b40bcbfac",
+    "resident_independent_audit_sha256": "6840bc73d5b7e4354a784906afc2353d50372854cde21d0586d35a04d53f231d",
+    "resident_advance_decision_sha256": "bcf42cbe5825008c5ab1da704611085276ff56b34784f41d5a6d69b01f4b20be",
+    "baseline_comparison_sha256": "6dc49689ff313f31d401ce123f09610f417125fc3d235ed8193b91790ca8dde5",
+    "baseline_logits_sha256": "948e6e7836ca3c5b5a11e6da019ae16ab0090cda8c3c48f1c639704b27ee45d5"
+  },
+  "decision": {
+    "status": "accept_scoped_qualification_for_stacked_PR",
+    "job_id": "23359170",
+    "terminal": "COMPLETED 0:0",
+    "node": "node3204",
+    "elapsed_seconds": 435,
+    "reference_revision": "7003bc5247d2a4786556361d8ad1b996716f8d50",
+    "runtime_freeze": {
+      "steering/eval/greedy_token_batch.py": "c308fc9e78e9bfee7336e917fd20b5903523727b88dfa94ee62ec1bcec5f65b5",
+      "steering/eval/triton_kv_cache_compaction.py": "a6792c14216dc84d504b4d92c6e0bb94ca432b37d7c99fd742bb701e833d3d4b",
+      "tests/steering/test_greedy_cache_compaction_gpu.py": "41cd7bd916da12bdb42fe34c7044e300385434da66a00a9b504fa42089de2132",
+      "tests/steering/test_triton_kv_cache_compaction.py": "cf4e1c211604eb1d26d88ae480f3b23bea02e6772d456d00576c17c72e72a8fc"
+    },
+    "primary_geometric_means_seconds": {
+      "reference": 9.039791069545544,
+      "candidate": 8.968405551677924
+    },
+    "primary_latency_reduction_percent": 0.7896810592018522,
+    "primary_seconds_saved": 0.07138551786762015,
+    "fixed_qualification_conditions": {
+      "adjacent_AB_geomean": true,
+      "adjacent_BA_geomean": true,
+      "all_four_candidate_reference_geomean_contrasts": true,
+      "all_four_candidate_reference_median_contrasts": true
+    },
+    "faster_reference_contrasts": {
+      "geometric_mean_seconds": {
+        "1_candidate": {
+          "reference_seconds": 9.015831961760107,
+          "candidate_seconds": 8.974443823375184,
+          "latency_reduction_percent": 0.45906066750652785
+        },
+        "2_candidate": {
+          "reference_seconds": 9.015831961760107,
+          "candidate_seconds": 8.962371342708758,
+          "latency_reduction_percent": 0.5929637916733288
+        }
+      },
+      "median_seconds": {
+        "1_candidate": {
+          "reference_seconds": 9.013058016775176,
+          "candidate_seconds": 8.972487951861694,
+          "latency_reduction_percent": 0.4501254162346702
+        },
+        "2_candidate": {
+          "reference_seconds": 9.013058016775176,
+          "candidate_seconds": 8.958954320522025,
+          "latency_reduction_percent": 0.6002812380931366
+        }
+      }
+    },
+    "process_drift_percent": {
+      "geometric_mean_seconds": {
+        "reference": 0.5321958735020393,
+        "candidate": -0.1345206555862677
+      },
+      "median_seconds": {
+        "reference": 0.5896272342303943,
+        "candidate": -0.15083476748343205
+      }
+    },
+    "qualitative_caveat_assessment": [
+      "Reference geometric-mean drift of +0.532196% is material to the primary 0.789681% magnitude; adjacent AB and BA reductions are 0.459061% and 1.119203%. This limits precision and generalization of the pooled estimate.",
+      "The direction remains supported under every frozen conservative comparison: both candidate processes beat the faster reference by geometric mean (0.459061%, 0.592964%) and median (0.450125%, 0.600281%). There is no contradictory process comparison or dependence on selecting the slower reference.",
+      "The prior independent resident allocation showed 8/8 positive quartets, similar order effects, small reference-reference differences, and no dominant quartet. Together with exact fresh correctness and source/ownership audits, this is convincing scoped evidence for adoption.",
+      "Keep the original primary estimate and report drift and faster-reference contrasts prominently. No post-hoc threshold, replacement estimator, sample removal, drift subtraction, extra repetition, confidence interval, or universal performance claim."
+    ],
+    "all22_retained": true,
+    "timing_classification": {
+      "primary_warm_calls": 16,
+      "excluded_first_calls": 4,
+      "excluded_sampled_logit_audits": 2
+    },
+    "correctness": {
+      "all22_artifact_sets_byte_exact": true,
+      "sampled_logits_and_ids_byte_exact": true,
+      "GPU_tests_passed_no_skips": 5
+    },
+    "GPU_allocator_peaks_equal_across_arms": {
+      "allocated_bytes": 18571301888,
+      "cold_and_audit_reserved_bytes": 26533167104,
+      "warm_reserved_bytes": 28399632384
+    },
+    "performance_qualified": true,
+    "qualification_scope": "This exact runtime/test snapshot, pinned trained checkpoint and 150-row six-task benchmark on the measured L40S allocations. Final commit packaging must preserve qualified runtime/test bytes; no full-cache trained-checkpoint audit or full repository suite claim.",
+    "next_stage": "Publish reviewed documentation and immutable evidence with the two qualified code/test changes in a PR stacked on #1738; then restart profiling from its exact published head.",
+    "merge_authorized": false,
+    "goal_status": "active",
+    "evidence": {
+      "full_audit": {
+        "path": "tile4096-qualified-23359170/independent-audit.json",
+        "sha256": "55f68e17dcd9108dba9a480102ff7381b80bad0aa972b69f70a32c34982dfbad"
+      },
+      "output_manifest": {
+        "path": "tile4096-qualified-23359170/output.sha256",
+        "sha256": "b5801719235bc81f52ce7d855ce8765e41b2ea0fc410efba6c1488465f55669d"
+      },
+      "measurement_assessment": {
+        "path": "loop25-qual-measurement-assessment.json",
+        "sha256": "7637842d73c728ea65288b21a5b931a4f86f43366978ae1007bb08132734cd31"
+      },
+      "raw_timing": {
+        "path": "loop25-qual-raw-timing-review.json",
+        "sha256": "dbb3159008bc40742204498e72f58c5ae30b7e515367f9ae9b756c6b2e497e4b"
+      },
+      "root_direct_arithmetic": {
+        "path": "loop25-qualification-root-timing-review.json",
+        "sha256": "bd7a1079a5dbf247fdd8308e5f2c2c565becfcc4c7aa53093125cf1bf76fe28b"
+      },
+      "independent_summary": {
+        "path": "loop25-qualification-independent-summary.json",
+        "sha256": "d329eee1a7379945acb6d2182d6d1c7141f632161bae39ec7c199ed4efaa77cf"
+      },
+      "source_receipt": {
+        "path": "loop25-qual-sources.json",
+        "sha256": "6e64775d50014dbf26946255175144acc05f2f591178347a87828f7a931ceda5"
+      },
+      "resident_decision": {
+        "path": "loop25-resident-decision.json",
+        "sha256": "bcf42cbe5825008c5ab1da704611085276ff56b34784f41d5a6d69b01f4b20be"
+      },
+      "focused_tests": {
+        "path": "loop25-focused-test-receipt.json",
+        "sha256": "fdc3aba09566031e73a9cc17511dccb269035dabbbf20c37bba2f206cd55b0e9"
+      }
+    }
+  },
+  "decision_sha256": "c90bf9481bc00d53bad9338bca7a45562f9f19b6f753f04768ca3ee0832d626f",
+  "component": {
+    "job_id": "23354196",
+    "terminal": {
+      "JobIDRaw": "23354196",
+      "State": "COMPLETED",
+      "ExitCode": "0:0",
+      "NodeList": "node3204",
+      "AllocTRES": "billing=8,cpu=8,gres/gpu:l40s=1,gres/gpu=1,mem=32G,node=1",
+      "Elapsed": "00:00:52"
+    },
+    "reference_revision": "7003bc5247d2a4786556361d8ad1b996716f8d50",
+    "fixtures": "Synthetic raw-byte payloads, actual census geometry/keep mappings/active positions; both cases retain full150-row backing,26layers,859capacity,13heads,128head dimension,E4M3 K/V.",
+    "scope": "Complete unchanged outer compaction caller, including selected actual helper guards, capability query, indices allocation/H2D,26layer launches, scalar positions and views. Reference/candidate helper selected outside timer; identical full restoration and synchronization outside every interval.",
+    "calls": {
+      "raw_individual_calls_used": 320,
+      "comparative_calls": 256,
+      "RR_calls": 64,
+      "actual_helper_calls": {
+        "reference": 192,
+        "candidate": 128
+      },
+      "excluded_warmup_calls": 32,
+      "reported_warmup_and_timed_restorations": 352
+    },
+    "per_case": [
+      {
+        "case": "b150_to149_drop66",
+        "pooled": {
+          "reference_block_geomean_seconds": 0.09192326120092784,
+          "candidate_block_geomean_seconds": 0.08685577928571729,
+          "reference_call_geomean_us": 22980.81530023196,
+          "candidate_call_geomean_us": 21713.944821429322,
+          "latency_reduction_percent": 5.512730781095698,
+          "call_equivalent_reduction_us": 1266.8704788026362
+        },
+        "by_orientation": {
+          "ABBA": {
+            "reference_block_geomean_seconds": 0.09180303580555065,
+            "candidate_block_geomean_seconds": 0.08680239985903752,
+            "reference_call_geomean_us": 22950.758951387663,
+            "candidate_call_geomean_us": 21700.59996475938,
+            "latency_reduction_percent": 5.447135710310325,
+            "call_equivalent_reduction_us": 1250.1589866282802
+          },
+          "BAAB": {
+            "reference_block_geomean_seconds": 0.09204364404366569,
+            "candidate_block_geomean_seconds": 0.08690919153825437,
+            "reference_call_geomean_us": 23010.91101091642,
+            "candidate_call_geomean_us": 21727.29788456359,
+            "latency_reduction_percent": 5.578280345979703,
+            "call_equivalent_reduction_us": 1283.6131263528305
+          }
+        },
+        "halves": {
+          "first_four": {
+            "reference_block_geomean_seconds": 0.0920582062705811,
+            "candidate_block_geomean_seconds": 0.0868470836201954,
+            "reference_call_geomean_us": 23014.551567645274,
+            "candidate_call_geomean_us": 21711.77090504885,
+            "latency_reduction_percent": 5.660682367706538,
+            "call_equivalent_reduction_us": 1302.7806625964256
+          },
+          "last_four": {
+            "reference_block_geomean_seconds": 0.09178851394277401,
+            "candidate_block_geomean_seconds": 0.08686447582190282,
+            "reference_call_geomean_us": 22947.1284856935,
+            "candidate_call_geomean_us": 21716.118955475704,
+            "latency_reduction_percent": 5.364547163211631,
+            "call_equivalent_reduction_us": 1231.0095302177983
+          }
+        },
+        "positive_comparative_quartets": 8,
+        "placebo_effects_percent": [
+          0.09354726766386268,
+          0.20529471238607266
+        ],
+        "guards": {
+          "all_eight_comparative_quartets_positive": true,
+          "both_orientations_positive": true,
+          "both_halves_positive": true,
+          "aggregate_exceeds_each_absolute_RR_effect": true
+        },
+        "advances_component_filter": true
+      },
+      {
+        "case": "b50_to49_drop1",
+        "pooled": {
+          "reference_block_geomean_seconds": 0.05112888633826529,
+          "candidate_block_geomean_seconds": 0.04873455756512384,
+          "reference_call_geomean_us": 12782.221584566323,
+          "candidate_call_geomean_us": 12183.63939128096,
+          "latency_reduction_percent": 4.682927684559235,
+          "call_equivalent_reduction_us": 598.582193285362
+        },
+        "by_orientation": {
+          "ABBA": {
+            "reference_block_geomean_seconds": 0.05111817899733681,
+            "candidate_block_geomean_seconds": 0.0486538171035416,
+            "reference_call_geomean_us": 12779.544749334204,
+            "candidate_call_geomean_us": 12163.4542758854,
+            "latency_reduction_percent": 4.820910959922109,
+            "call_equivalent_reduction_us": 616.0904734488024
+          },
+          "BAAB": {
+            "reference_block_geomean_seconds": 0.05113959592198003,
+            "candidate_block_geomean_seconds": 0.04881543201459285,
+            "reference_call_geomean_us": 12784.898980495007,
+            "candidate_call_geomean_us": 12203.85800364821,
+            "latency_reduction_percent": 4.544744371725173,
+            "call_equivalent_reduction_us": 581.0409768467958
+          }
+        },
+        "halves": {
+          "first_four": {
+            "reference_block_geomean_seconds": 0.05114726914185939,
+            "candidate_block_geomean_seconds": 0.048779294990080144,
+            "reference_call_geomean_us": 12786.817285464847,
+            "candidate_call_geomean_us": 12194.823747520037,
+            "latency_reduction_percent": 4.629717659434673,
+            "call_equivalent_reduction_us": 591.9935379448109
+          },
+          "last_four": {
+            "reference_block_geomean_seconds": 0.051110510141621546,
+            "candidate_block_geomean_seconds": 0.04868986117063327,
+            "reference_call_geomean_us": 12777.627535405387,
+            "candidate_call_geomean_us": 12172.465292658319,
+            "latency_reduction_percent": 4.736108022167896,
+            "call_equivalent_reduction_us": 605.1622427470684
+          }
+        },
+        "positive_comparative_quartets": 8,
+        "placebo_effects_percent": [
+          -0.030234622735880734,
+          -0.28614880387187736
+        ],
+        "guards": {
+          "all_eight_comparative_quartets_positive": true,
+          "both_orientations_positive": true,
+          "both_halves_positive": true,
+          "aggregate_exceeds_each_absolute_RR_effect": true
+        },
+        "advances_component_filter": true
+      }
+    ],
+    "correctness": {
+      "tiny_cases": 17,
+      "steps_or_attempts": 19,
+      "all_tiny_replay_passed": true,
+      "full_reports": [
+        {
+          "case": "b150_to149_drop66",
+          "passed": true,
+          "full_backing_bytes": 11149133400,
+          "positions_equal": true,
+          "storage_preserved": true,
+          "metadata_equal": true,
+          "helper_results": [
+            true
+          ],
+          "fused_launches": 26,
+          "scope": "Independent schema/pointer/position checks; full GPU bytes compared in frozen producer, not persisted for CPU replay."
+        },
+        {
+          "case": "b50_to49_drop1",
+          "passed": true,
+          "full_backing_bytes": 11149133400,
+          "positions_equal": true,
+          "storage_preserved": true,
+          "metadata_equal": true,
+          "helper_results": [
+            true
+          ],
+          "fused_launches": 26,
+          "scope": "Independent schema/pointer/position checks; full GPU bytes compared in frozen producer, not persisted for CPU replay."
+        }
+      ],
+      "tiny_oracle": "Persisted unique raw storages replayed by independent integer-address CPU oracle, including overlaps, offsets, hidden tails, fallbacks and partial errors. Full-size bytes compared on GPU, not persisted for CPU replay."
+    },
+    "compiled_review": {
+      "status": "pass",
+      "path": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-cf0115e8/out/benchmarks/chatcore-20260920/loop24-actual-compiled-review-23354196.json",
+      "sha256": "3458681b92e7eef736da7f631e2213899de853dad922e23cea0664fb10f9fa4f",
+      "reviewer": "/root/decode_review; manual actual TTIR/TTGIR/LLVM/PTX and offline cubin-resource inspection for job23354196",
+      "cases": [
+        "overlap_chain",
+        "offset_holes",
+        "tile_tail",
+        "drop_suffix_no_moves",
+        "b150_to149_drop66",
+        "b50_to49_drop1"
+      ],
+      "scope": "Explicit reviewer conclusions bound to actual artifacts, not a programmatic proof of arbitrary PTX."
+    },
+    "compiled_scope": "Six saved last-launch bundles, not every executed specialization. Actual IR/PTX ordering/masks reviewed and cubin hashes bound; no SASS or achieved-occupancy claim.",
+    "ownership": {
+      "samples": 37,
+      "positive_owned_samples": 22,
+      "outsiders": 0,
+      "exit_code": 0,
+      "timeout_seconds": 300
+    },
+    "provenance": {
+      "controls_sha256": "95e607573d24cca67d161b5c4e7d7769e64bb50fbf39bb0cadae919f8e12860e",
+      "controls_archive_sha256": "f95fb517b7320bb0ec46cd3a759c2eb140e5aed1446c3911ad743239af7fe924",
+      "source_manifest_sha256": "905982e3ebe9ca6fb12cfdd813c039d0baeeebcf6dbdc347a465d8646521d529",
+      "source_archive_sha256": "35f99f325af8d68a3c688fa0af930c216eef43149158a02da4eda031bd3133be",
+      "source_files": 3532,
+      "control_files": 41,
+      "sealed_output_files": 57,
+      "output_manifest_sha256": "e556326be1cb12402a37057d718493dede189f854679ecac627e65a696ed7316",
+      "metrics_sha256": "c91629c0576698753ba5bd86de70961bbeea780b6622bb53ef25af4830ea4f29"
+    },
+    "audit_sha256": "722ce1b6c8c8c0423b200ea3263c4a2e79904305ed3ffad1aa446d375f4ad65c",
+    "whole_suite_claim_permitted_from_this_stage": false
+  },
+  "resident": {
+    "job_id": "23356531",
+    "terminal": {
+      "JobIDRaw": "23356531",
+      "State": "COMPLETED",
+      "ExitCode": "0:0",
+      "NodeList": "node3204",
+      "AllocTRES": "billing=8,cpu=8,gres/gpu:l40s=1,gres/gpu=1,mem=64G,node=1",
+      "Elapsed": "00:07:55"
+    },
+    "schedule": {
+      "excluded_warmups": 4,
+      "comparative_calls": 32,
+      "comparative_quartets": 8,
+      "reference_reference_calls": 8,
+      "total": 44
+    },
+    "timing": {
+      "quartet_effects": [
+        {
+          "block": 1,
+          "orientation": "BAAB",
+          "geometric_means_seconds": {
+            "reference": 9.080033876339895,
+            "candidate": 8.998692052228611
+          },
+          "candidate_minus_reference_log_ratio": -0.008998684235683698,
+          "latency_reduction_percent": 0.8958317250692072
+        },
+        {
+          "block": 2,
+          "orientation": "BAAB",
+          "geometric_means_seconds": {
+            "reference": 9.079430509889283,
+            "candidate": 8.9996286059214
+          },
+          "candidate_minus_reference_log_ratio": -0.008828160995062291,
+          "latency_reduction_percent": 0.8789307201697683
+        },
+        {
+          "block": 3,
+          "orientation": "ABBA",
+          "geometric_means_seconds": {
+            "reference": 9.060254867887013,
+            "candidate": 8.992956180388923
+          },
+          "candidate_minus_reference_log_ratio": -0.007455626487568149,
+          "latency_reduction_percent": 0.7427902247719498
+        },
+        {
+          "block": 4,
+          "orientation": "ABBA",
+          "geometric_means_seconds": {
+            "reference": 9.092448882530409,
+            "candidate": 8.992242001440626
+          },
+          "candidate_minus_reference_log_ratio": -0.011082070164600387,
+          "latency_reduction_percent": 1.1020890233687575
+        },
+        {
+          "block": 5,
+          "orientation": "BAAB",
+          "geometric_means_seconds": {
+            "reference": 9.059755297537741,
+            "candidate": 9.001329891864927
+          },
+          "candidate_minus_reference_log_ratio": -0.006469778405636896,
+          "latency_reduction_percent": 0.6448894451784204
+        },
+        {
+          "block": 6,
+          "orientation": "ABBA",
+          "geometric_means_seconds": {
+            "reference": 9.061424359420108,
+            "candidate": 9.00053746419379
+          },
+          "candidate_minus_reference_log_ratio": -0.006742027965171142,
+          "latency_reduction_percent": 0.6719351485069858
+        },
+        {
+          "block": 7,
+          "orientation": "ABBA",
+          "geometric_means_seconds": {
+            "reference": 9.069555170096976,
+            "candidate": 8.991084727633345
+          },
+          "candidate_minus_reference_log_ratio": -0.008689718270281395,
+          "latency_reduction_percent": 0.8652071793151972
+        },
+        {
+          "block": 8,
+          "orientation": "BAAB",
+          "geometric_means_seconds": {
+            "reference": 9.079141114706557,
+            "candidate": 9.010339389139178
+          },
+          "candidate_minus_reference_log_ratio": -0.007606858286066565,
+          "latency_reduction_percent": 0.7577999361187637
+        }
+      ],
+      "primary_geometric_means_seconds": {
+        "reference": 9.072748691113194,
+        "candidate": 8.998349356291044
+      },
+      "primary_latency_reduction_percent": 0.8200308126579348,
+      "primary_seconds_saved": 0.07439933482215011,
+      "orientation_and_temporal_effects_percent": {
+        "ABBA": 0.8456402488681292,
+        "BAAB": 0.7944147620817632,
+        "first_four": 0.9049936043042717,
+        "last_four": 0.7349951750002082
+      },
+      "leave_one_quartet_out_effects_percent_fragility_guard": [
+        0.8091973790893325,
+        0.8116136835298882,
+        0.8310602745252083,
+        0.7796711679208812,
+        0.8450257923701354,
+        0.8411693033681389,
+        0.8135753656266731,
+        0.828917751794056
+      ],
+      "leave_one_quartet_out_range_percent": [
+        0.7796711679208812,
+        0.8450257923701354
+      ],
+      "positive_quartets": 8,
+      "placebo_effects": [
+        {
+          "after_block": 3,
+          "orientation": "ABBA",
+          "raw_seconds": {
+            "A": [
+              9.046231245622039,
+              9.071703176014125
+            ],
+            "B": [
+              9.054751601070166,
+              9.063705935608596
+            ]
+          },
+          "label_geometric_means_seconds": {
+            "A": 9.058958258092796,
+            "B": 9.059227662007457
+          },
+          "apparent_reduction_percent": -0.0029738950879876214
+        },
+        {
+          "after_block": 6,
+          "orientation": "BAAB",
+          "raw_seconds": {
+            "A": [
+              9.059686962049454,
+              9.057677128817886
+            ],
+            "B": [
+              9.051363736856729,
+              9.07586286123842
+            ]
+          },
+          "label_geometric_means_seconds": {
+            "A": 9.058681989693916,
+            "B": 9.063605021342127
+          },
+          "apparent_reduction_percent": -0.05434600368807718
+        }
+      ],
+      "advance_conditions": {
+        "full_sample_positive": true,
+        "both_orientations_positive": true,
+        "both_halves_positive": true,
+        "exceeds_each_absolute_RR": true,
+        "all_leave_one_out_positive": true
+      },
+      "numerical_screen_conditions_met": true,
+      "decision": "eligible_for_independent_fresh_process_qualification_review",
+      "performance_qualified": false
+    },
+    "correctness": {
+      "all_44_suite_artifacts_byte_exact": true,
+      "completion_rows_per_suite": 150,
+      "completion_tokens_per_suite": 42089,
+      "graded_programs_per_suite": 50,
+      "passed_programs_per_suite": 3,
+      "sampled_logits": {
+        "reference": {
+          "samples": 8,
+          "finite_logit_values": 1048576,
+          "ids": 705,
+          "dtype_shape_and_raw_bytes_equal": true,
+          "artifact_sha256": "4564aac3b2cb481e2f4c83a605b1ea6bf09fb04742ac074b1a084b2f37c3aba3"
+        },
+        "candidate": {
+          "samples": 8,
+          "finite_logit_values": 1048576,
+          "ids": 705,
+          "dtype_shape_and_raw_bytes_equal": true,
+          "artifact_sha256": "7965207ae0004c0b9397586f5b9371490ac3bb5ee1af14d467c8f560dded68d1"
+        }
+      },
+      "clean_staging_and_private_public_identity_receipts_all_44": true
+    },
+    "prior_warmup_routes": {
+      "reference": {
+        "block_bytes": 1024,
+        "decode_calls": 511,
+        "compact_calls": 70,
+        "helper_calls": 70,
+        "admitted_calls": 70,
+        "fused_launches": 1820,
+        "fallback_calls": 0,
+        "sample_calls": [
+          0,
+          64,
+          128,
+          192,
+          256,
+          320,
+          384,
+          448
+        ],
+        "wrappers_restored": true,
+        "storage_contract_summary": {
+          "compactions": 70,
+          "descriptors_each": 53,
+          "base_storage_size_stride_offset_dtype_device_preserved": true,
+          "full_receipts_in_hash_bound_resident_audit": true
+        }
+      },
+      "candidate": {
+        "block_bytes": 4096,
+        "decode_calls": 511,
+        "compact_calls": 70,
+        "helper_calls": 70,
+        "admitted_calls": 70,
+        "fused_launches": 1820,
+        "fallback_calls": 0,
+        "sample_calls": [
+          0,
+          64,
+          128,
+          192,
+          256,
+          320,
+          384,
+          448
+        ],
+        "wrappers_restored": true,
+        "storage_contract_summary": {
+          "compactions": 70,
+          "descriptors_each": 53,
+          "base_storage_size_stride_offset_dtype_device_preserved": true,
+          "full_receipts_in_hash_bound_resident_audit": true
+        }
+      }
+    },
+    "witness_scope": "First excluded reference/candidate warmup only; both actual helpers70admissions/1820launches with1024/4096 block/grids,511decodes,53backing descriptors stable across all70events. Witnesses removed before plain warmups/measured runs. No route instrumentation in fresh qualification.",
+    "ownership": {
+      "gpu-preflight": {
+        "samples": 22,
+        "positive_owned_samples": 4,
+        "outsiders": 0,
+        "exit_code": 0,
+        "timeout_seconds": 300
+      },
+      "resident": {
+        "samples": 410,
+        "positive_owned_samples": 397,
+        "outsiders": 0,
+        "exit_code": 0,
+        "timeout_seconds": 1200
+      }
+    },
+    "provenance": {
+      "status": "pass",
+      "controls": 29,
+      "outputs": 116,
+      "reference_files": 3532,
+      "candidate_files": 3532,
+      "changed_files": {
+        "scripts/benchmark/benchmark_chatcore.py": {
+          "reference": "8e9dcd2dd5922411fc3fffe332f4fc6e4918184f6f022f3954ffb9043d7a0d6a",
+          "candidate": "bb0ecf2ed519a38c12cf3d9f2597ffe48786eb75b00bcbc57ff355a37fb48729"
+        },
+        "steering/eval/triton_kv_cache_compaction.py": {
+          "reference": "6eed19cc2331e361d84a9e091c12a95b2a0afaebe4331cd380818084b3b67254",
+          "candidate": "a6792c14216dc84d504b4d92c6e0bb94ca432b37d7c99fd742bb701e833d3d4b"
+        },
+        "tests/steering/test_triton_kv_cache_compaction.py": {
+          "reference": "aa704cce13e4fb64000d9956504b897d8c6f723a40d072a04ce79f7d01d7f366",
+          "candidate": "cf4e1c211604eb1d26d88ae480f3b23bea02e6772d456d00576c17c72e72a8fc"
+        }
+      },
+      "reference_helper_sha256": "6eed19cc2331e361d84a9e091c12a95b2a0afaebe4331cd380818084b3b67254",
+      "candidate_helper_sha256": "a6792c14216dc84d504b4d92c6e0bb94ca432b37d7c99fd742bb701e833d3d4b",
+      "entire_helper_single_constant_inverse_bytes_equal": true,
+      "entire_helper_single_constant_inverse_AST_equal": true,
+      "reference_helper_AST_sha256": "7b8cb297f0958522d578d2dc1c3c4c569d2f57a470e19fc9516b7562a900ac24",
+      "unchanged_entire_greedy_runtime_bytes": true,
+      "controls_manifest_sha256": "d15cfa60ec1bbf03ed74e13f779c71d65524a02a05996a779487852b8135b6fd",
+      "controls_archive_sha256": "5eefd9911d54c173506718705c7cd5e795306fe59ec95feaf3f592503b65e0b6",
+      "source_archive_sha256": "278d389b4d1b4afc42b02ce0e01475b3ff4aed8ec5d1a195b4ec5441428cd240",
+      "remote_output_manifest_sha256": "8909fdc11d195396d0786458c81550e238ff0cc273525e22343644948531e71d"
+    },
+    "audit_sha256": "6840bc73d5b7e4354a784906afc2353d50372854cde21d0586d35a04d53f231d",
+    "raw44_calls": [
+      {
+        "repeat": 0,
+        "phase": "warmup",
+        "experiment_block": null,
+        "label": "A",
+        "helper_selection": "reference",
+        "instrumented_warmup": true,
+        "seconds": 15.410798575729132,
+        "primary": false
+      },
+      {
+        "repeat": 1,
+        "phase": "warmup",
+        "experiment_block": null,
+        "label": "B",
+        "helper_selection": "candidate",
+        "instrumented_warmup": true,
+        "seconds": 9.071824754122645,
+        "primary": false
+      },
+      {
+        "repeat": 2,
+        "phase": "warmup",
+        "experiment_block": null,
+        "label": "A",
+        "helper_selection": "reference",
+        "instrumented_warmup": false,
+        "seconds": 9.0823582271114,
+        "primary": false
+      },
+      {
+        "repeat": 3,
+        "phase": "warmup",
+        "experiment_block": null,
+        "label": "B",
+        "helper_selection": "candidate",
+        "instrumented_warmup": false,
+        "seconds": 9.00802907673642,
+        "primary": false
+      },
+      {
+        "repeat": 4,
+        "phase": "comparison",
+        "experiment_block": 1,
+        "label": "B",
+        "helper_selection": "candidate",
+        "instrumented_warmup": false,
+        "seconds": 9.005954563152045,
+        "primary": true
+      },
+      {
+        "repeat": 5,
+        "phase": "comparison",
+        "experiment_block": 1,
+        "label": "A",
+        "helper_selection": "reference",
+        "instrumented_warmup": false,
+        "seconds": 9.086596194189042,
+        "primary": true
+      },
+      {
+        "repeat": 6,
+        "phase": "comparison",
+        "experiment_block": 1,
+        "label": "A",
+        "helper_selection": "reference",
+        "instrumented_warmup": false,
+        "seconds": 9.073476297780871,
+        "primary": true
+      },
+      {
+        "repeat": 7,
+        "phase": "comparison",
+        "experiment_block": 1,
+        "label": "B",
+        "helper_selection": "candidate",
+        "instrumented_warmup": false,
+        "seconds": 8.991435397882015,
+        "primary": true
+      },
+      {
+        "repeat": 8,
+        "phase": "comparison",
+        "experiment_block": 2,
+        "label": "B",
+        "helper_selection": "candidate",
+        "instrumented_warmup": false,
+        "seconds": 9.015553494915366,
+        "primary": true
+      },
+      {
+        "repeat": 9,
+        "phase": "comparison",
+        "experiment_block": 2,
+        "label": "A",
+        "helper_selection": "reference",
+        "instrumented_warmup": false,
+        "seconds": 9.087716882582754,
+        "primary": true
+      },
+      {
+        "repeat": 10,
+        "phase": "comparison",
+        "experiment_block": 2,
+        "label": "A",
+        "helper_selection": "reference",
+        "instrumented_warmup": false,
+        "seconds": 9.071151692885906,
+        "primary": true
+      },
+      {
+        "repeat": 11,
+        "phase": "comparison",
+        "experiment_block": 2,
+        "label": "B",
+        "helper_selection": "candidate",
+        "instrumented_warmup": false,
+        "seconds": 8.9837318463251,
+        "primary": true
+      },
+      {
+        "repeat": 12,
+        "phase": "comparison",
+        "experiment_block": 3,
+        "label": "A",
+        "helper_selection": "reference",
+        "instrumented_warmup": false,
+        "seconds": 9.046492347028106,
+        "primary": true
+      },
+      {
+        "repeat": 13,
+        "phase": "comparison",
+        "experiment_block": 3,
+        "label": "B",
+        "helper_selection": "candidate",
+        "instrumented_warmup": false,
+        "seconds": 8.986045564059168,
+        "primary": true
+      },
+      {
+        "repeat": 14,
+        "phase": "comparison",
+        "experiment_block": 3,
+        "label": "B",
+        "helper_selection": "candidate",
+        "instrumented_warmup": false,
+        "seconds": 8.999872111249715,
+        "primary": true
+      },
+      {
+        "repeat": 15,
+        "phase": "comparison",
+        "experiment_block": 3,
+        "label": "A",
+        "helper_selection": "reference",
+        "instrumented_warmup": false,
+        "seconds": 9.074038325808942,
+        "primary": true
+      },
+      {
+        "repeat": 16,
+        "phase": "placebo",
+        "experiment_block": 3,
+        "label": "A",
+        "helper_selection": "reference",
+        "instrumented_warmup": false,
+        "seconds": 9.046231245622039,
+        "primary": false
+      },
+      {
+        "repeat": 17,
+        "phase": "placebo",
+        "experiment_block": 3,
+        "label": "B",
+        "helper_selection": "reference",
+        "instrumented_warmup": false,
+        "seconds": 9.054751601070166,
+        "primary": false
+      },
+      {
+        "repeat": 18,
+        "phase": "placebo",
+        "experiment_block": 3,
+        "label": "B",
+        "helper_selection": "reference",
+        "instrumented_warmup": false,
+        "seconds": 9.063705935608596,
+        "primary": false
+      },
+      {
+        "repeat": 19,
+        "phase": "placebo",
+        "experiment_block": 3,
+        "label": "A",
+        "helper_selection": "reference",
+        "instrumented_warmup": false,
+        "seconds": 9.071703176014125,
+        "primary": false
+      },
+      {
+        "repeat": 20,
+        "phase": "comparison",
+        "experiment_block": 4,
+        "label": "A",
+        "helper_selection": "reference",
+        "instrumented_warmup": false,
+        "seconds": 9.080612572375685,
+        "primary": true
+      },
+      {
+        "repeat": 21,
+        "phase": "comparison",
+        "experiment_block": 4,
+        "label": "B",
+        "helper_selection": "candidate",
+        "instrumented_warmup": false,
+        "seconds": 8.991982399951667,
+        "primary": true
+      },
+      {
+        "repeat": 22,
+        "phase": "comparison",
+        "experiment_block": 4,
+        "label": "B",
+        "helper_selection": "candidate",
+        "instrumented_warmup": false,
+        "seconds": 8.99250161042437,
+        "primary": true
+      },
+      {
+        "repeat": 23,
+        "phase": "comparison",
+        "experiment_block": 4,
+        "label": "A",
+        "helper_selection": "reference",
+        "instrumented_warmup": false,
+        "seconds": 9.10430062096566,
+        "primary": true
+      },
+      {
+        "repeat": 24,
+        "phase": "comparison",
+        "experiment_block": 5,
+        "label": "B",
+        "helper_selection": "candidate",
+        "instrumented_warmup": false,
+        "seconds": 9.030134950764477,
+        "primary": true
+      },
+      {
+        "repeat": 25,
+        "phase": "comparison",
+        "experiment_block": 5,
+        "label": "A",
+        "helper_selection": "reference",
+        "instrumented_warmup": false,
+        "seconds": 9.04754885006696,
+        "primary": true
+      },
+      {
+        "repeat": 26,
+        "phase": "comparison",
+        "experiment_block": 5,
+        "label": "A",
+        "helper_selection": "reference",
+        "instrumented_warmup": false,
+        "seconds": 9.071978213265538,
+        "primary": true
+      },
+      {
+        "repeat": 27,
+        "phase": "comparison",
+        "experiment_block": 5,
+        "label": "B",
+        "helper_selection": "candidate",
+        "instrumented_warmup": false,
+        "seconds": 8.972616717685014,
+        "primary": true
+      },
+      {
+        "repeat": 28,
+        "phase": "comparison",
+        "experiment_block": 6,
+        "label": "A",
+        "helper_selection": "reference",
+        "instrumented_warmup": false,
+        "seconds": 9.053788960911334,
+        "primary": true
+      },
+      {
+        "repeat": 29,
+        "phase": "comparison",
+        "experiment_block": 6,
+        "label": "B",
+        "helper_selection": "candidate",
+        "instrumented_warmup": false,
+        "seconds": 9.022291775792837,
+        "primary": true
+      },
+      {
+        "repeat": 30,
+        "phase": "comparison",
+        "experiment_block": 6,
+        "label": "B",
+        "helper_selection": "candidate",
+        "instrumented_warmup": false,
+        "seconds": 8.978835606016219,
+        "primary": true
+      },
+      {
+        "repeat": 31,
+        "phase": "comparison",
+        "experiment_block": 6,
+        "label": "A",
+        "helper_selection": "reference",
+        "instrumented_warmup": false,
+        "seconds": 9.06906619714573,
+        "primary": true
+      },
+      {
+        "repeat": 32,
+        "phase": "placebo",
+        "experiment_block": 6,
+        "label": "B",
+        "helper_selection": "reference",
+        "instrumented_warmup": false,
+        "seconds": 9.051363736856729,
+        "primary": false
+      },
+      {
+        "repeat": 33,
+        "phase": "placebo",
+        "experiment_block": 6,
+        "label": "A",
+        "helper_selection": "reference",
+        "instrumented_warmup": false,
+        "seconds": 9.059686962049454,
+        "primary": false
+      },
+      {
+        "repeat": 34,
+        "phase": "placebo",
+        "experiment_block": 6,
+        "label": "A",
+        "helper_selection": "reference",
+        "instrumented_warmup": false,
+        "seconds": 9.057677128817886,
+        "primary": false
+      },
+      {
+        "repeat": 35,
+        "phase": "placebo",
+        "experiment_block": 6,
+        "label": "B",
+        "helper_selection": "reference",
+        "instrumented_warmup": false,
+        "seconds": 9.07586286123842,
+        "primary": false
+      },
+      {
+        "repeat": 36,
+        "phase": "comparison",
+        "experiment_block": 7,
+        "label": "A",
+        "helper_selection": "reference",
+        "instrumented_warmup": false,
+        "seconds": 9.064122619107366,
+        "primary": true
+      },
+      {
+        "repeat": 37,
+        "phase": "comparison",
+        "experiment_block": 7,
+        "label": "B",
+        "helper_selection": "candidate",
+        "instrumented_warmup": false,
+        "seconds": 8.980288644321263,
+        "primary": true
+      },
+      {
+        "repeat": 38,
+        "phase": "comparison",
+        "experiment_block": 7,
+        "label": "B",
+        "helper_selection": "candidate",
+        "instrumented_warmup": false,
+        "seconds": 9.00189378997311,
+        "primary": true
+      },
+      {
+        "repeat": 39,
+        "phase": "comparison",
+        "experiment_block": 7,
+        "label": "A",
+        "helper_selection": "reference",
+        "instrumented_warmup": false,
+        "seconds": 9.0749909770675,
+        "primary": true
+      },
+      {
+        "repeat": 40,
+        "phase": "comparison",
+        "experiment_block": 8,
+        "label": "B",
+        "helper_selection": "candidate",
+        "instrumented_warmup": false,
+        "seconds": 9.020452988334,
+        "primary": true
+      },
+      {
+        "repeat": 41,
+        "phase": "comparison",
+        "experiment_block": 8,
+        "label": "A",
+        "helper_selection": "reference",
+        "instrumented_warmup": false,
+        "seconds": 9.089029252994806,
+        "primary": true
+      },
+      {
+        "repeat": 42,
+        "phase": "comparison",
+        "experiment_block": 8,
+        "label": "A",
+        "helper_selection": "reference",
+        "instrumented_warmup": false,
+        "seconds": 9.069263733923435,
+        "primary": true
+      },
+      {
+        "repeat": 43,
+        "phase": "comparison",
+        "experiment_block": 8,
+        "label": "B",
+        "helper_selection": "candidate",
+        "instrumented_warmup": false,
+        "seconds": 9.000237129162997,
+        "primary": true
+      }
+    ],
+    "raw44_metrics_sha256": "705fa68c22b47753739b93255ea5d5357602ac49f3fb87909828c9a78b0a8a02"
+  },
+  "qualification": {
+    "job_id": "23359170",
+    "terminal": {
+      "JobIDRaw": "23359170",
+      "State": "COMPLETED",
+      "ExitCode": "0:0",
+      "NodeList": "node3204",
+      "AllocTRES": "billing=8,cpu=8,gres/gpu:l40s=1,gres/gpu=1,mem=64G,node=1",
+      "Elapsed": "00:07:15"
+    },
+    "hardware": {
+      "gpu": "NVIDIA L40S",
+      "gpu_uuid": "GPU-2388998c-184f-c3e2-a983-e7fa9a64424a",
+      "capability": [
+        8,
+        9
+      ],
+      "driver": "590.48.01",
+      "memory_total_mib": 46068,
+      "cpus_per_task": 8,
+      "host_memory_gib": 64,
+      "cpu_affinity": [
+        8,
+        10,
+        12,
+        14,
+        16,
+        18,
+        20,
+        22,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86
+      ]
+    },
+    "software": {
+      "torch": "2.13.0+cu130",
+      "triton": "3.7.1"
+    },
+    "model_config": {
+      "sequence_len": 2048,
+      "vocab_size": 32768,
+      "n_layer": 26,
+      "n_head": 13,
+      "n_kv_head": 13,
+      "n_embd": 1664,
+      "window_pattern": "SSSL"
+    },
+    "input_sha256": {
+      "model_000999.pt": "d3d320a5b4e3985a6915d70d51f63f4500ace6c12bc7bbd867fec74ab50f7371",
+      "meta_000999.json": "342cc82f20dc6b8fb933a955d59ea78db549de32042dfa5ebd61216156ab7dd7",
+      "tokenizer.pkl": "c3945190ac5c38a6ac941480e21895763775619e756cde4d108cafb5a081e185"
+    },
+    "input_hash_scope": "Remote producer hashes preserved and crosschecked across all six children; local audit did not rehash checkpoint/tokenizer contents.",
+    "protocol": {
+      "processes": [
+        {
+          "index": 0,
+          "name": "0_reference",
+          "arm": "reference",
+          "repeats": 5,
+          "record_logits": false,
+          "profile": false,
+          "instrumented_timing": false,
+          "primary_warm_repeat_indices": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "index": 1,
+          "name": "1_candidate",
+          "arm": "candidate",
+          "repeats": 5,
+          "record_logits": false,
+          "profile": false,
+          "instrumented_timing": false,
+          "primary_warm_repeat_indices": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "index": 2,
+          "name": "2_candidate",
+          "arm": "candidate",
+          "repeats": 5,
+          "record_logits": false,
+          "profile": false,
+          "instrumented_timing": false,
+          "primary_warm_repeat_indices": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "index": 3,
+          "name": "3_reference",
+          "arm": "reference",
+          "repeats": 5,
+          "record_logits": false,
+          "profile": false,
+          "instrumented_timing": false,
+          "primary_warm_repeat_indices": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "index": 4,
+          "name": "4_reference_parity",
+          "arm": "reference",
+          "repeats": 1,
+          "record_logits": true,
+          "profile": false,
+          "instrumented_timing": true,
+          "primary_warm_repeat_indices": []
+        },
+        {
+          "index": 5,
+          "name": "5_candidate_parity",
+          "arm": "candidate",
+          "repeats": 1,
+          "record_logits": true,
+          "profile": false,
+          "instrumented_timing": true,
+          "primary_warm_repeat_indices": []
+        }
+      ],
+      "counts": {
+        "timing_processes": 4,
+        "suite_calls_in_timing_processes": 20,
+        "cold_calls_reported_excluded": 4,
+        "primary_warm_calls_reference": 8,
+        "primary_warm_calls_candidate": 8,
+        "separate_numerical_audits": 2,
+        "total_canonical_suites": 22
+      },
+      "grading": "candidate",
+      "step": 999,
+      "problems_per_task": 50,
+      "max_new_tokens": 512,
+      "profile": false,
+      "timer": "Use unchanged canonical CUDA synchronization/perf_counter around complete test_chatcore. Each benchmark process naturally imports its own source, loads its own model, and uses separate configured compiler caches. Report every call; only repeats 1..4 of the four five-suite processes enter primary timing. Exclude their repeat 0 and both record_logits=true audits by precommitment.",
+      "outside_primary_timers": [
+        "Fresh process/model/tokenizer setup and source/input hash checks by canonical harness",
+        "Per-phase compiler-cache creation and five-case GPU preflight",
+        "Artifact serialization/validation"
+      ],
+      "inside_primary_timers": [
+        "Entire test_chatcore including categorical tasks, generation, staging, prefill/decode, finish/keep decisions, compaction and parallel grading",
+        "Candidate live admission, capability query, index allocation/H2D, kernels, position copies and view/metadata updates",
+        "Shared canonical completion/grade capture and final CUDA synchronization"
+      ],
+      "child_timeout_seconds": 300,
+      "slurm_outer_minutes": 30,
+      "natural_imports": true,
+      "resident_overlay_or_runtime_route_witness": false,
+      "compiler_caches": {
+        "gpu-preflight": {
+          "TRITON_CACHE_DIR": "/tmp/chatcore-0920-23359170-pZLbsd/caches/gpu-preflight/triton",
+          "TORCHINDUCTOR_CACHE_DIR": "/tmp/chatcore-0920-23359170-pZLbsd/caches/gpu-preflight/inductor"
+        },
+        "0_reference": {
+          "TRITON_CACHE_DIR": "/tmp/chatcore-0920-23359170-pZLbsd/caches/0_reference/triton",
+          "TORCHINDUCTOR_CACHE_DIR": "/tmp/chatcore-0920-23359170-pZLbsd/caches/0_reference/inductor"
+        },
+        "1_candidate": {
+          "TRITON_CACHE_DIR": "/tmp/chatcore-0920-23359170-pZLbsd/caches/1_candidate/triton",
+          "TORCHINDUCTOR_CACHE_DIR": "/tmp/chatcore-0920-23359170-pZLbsd/caches/1_candidate/inductor"
+        },
+        "2_candidate": {
+          "TRITON_CACHE_DIR": "/tmp/chatcore-0920-23359170-pZLbsd/caches/2_candidate/triton",
+          "TORCHINDUCTOR_CACHE_DIR": "/tmp/chatcore-0920-23359170-pZLbsd/caches/2_candidate/inductor"
+        },
+        "3_reference": {
+          "TRITON_CACHE_DIR": "/tmp/chatcore-0920-23359170-pZLbsd/caches/3_reference/triton",
+          "TORCHINDUCTOR_CACHE_DIR": "/tmp/chatcore-0920-23359170-pZLbsd/caches/3_reference/inductor"
+        },
+        "4_reference_parity": {
+          "TRITON_CACHE_DIR": "/tmp/chatcore-0920-23359170-pZLbsd/caches/4_reference_parity/triton",
+          "TORCHINDUCTOR_CACHE_DIR": "/tmp/chatcore-0920-23359170-pZLbsd/caches/4_reference_parity/inductor"
+        },
+        "5_candidate_parity": {
+          "TRITON_CACHE_DIR": "/tmp/chatcore-0920-23359170-pZLbsd/caches/5_candidate_parity/triton",
+          "TORCHINDUCTOR_CACHE_DIR": "/tmp/chatcore-0920-23359170-pZLbsd/caches/5_candidate_parity/inductor"
+        }
+      }
+    },
+    "primary_estimator": "For each timing process, geometric mean of repeats1..4. Reduction percent =100*(1-exp((log(C1/R1)+log(C2/R2))/2)); same equal-weight pooled warm geometric means. Four first calls and two instrumented audits excluded by precommitment. No drift correction, reference selection or placebo subtraction.",
+    "timing": {
+      "process_stats": {
+        "0_reference": {
+          "cold_seconds": 15.444038177840412,
+          "warm_seconds": [
+            9.002201727591455,
+            9.035045301076025,
+            9.01875696470961,
+            9.007359068840742
+          ],
+          "geometric_mean_seconds": 9.015831961760107,
+          "median_seconds": 9.013058016775176
+        },
+        "1_candidate": {
+          "cold_seconds": 15.568313009105623,
+          "warm_seconds": [
+            8.97270865412429,
+            8.991528136190027,
+            8.9722672495991,
+            8.961297564208508
+          ],
+          "geometric_mean_seconds": 8.974443823375184,
+          "median_seconds": 8.972487951861694
+        },
+        "2_candidate": {
+          "cold_seconds": 15.619965450838208,
+          "warm_seconds": [
+            8.940671196673065,
+            8.990996544715017,
+            8.971572536043823,
+            8.946336105000228
+          ],
+          "geometric_mean_seconds": 8.962371342708758,
+          "median_seconds": 8.958954320522025
+        },
+        "3_reference": {
+          "cold_seconds": 15.645543766207993,
+          "warm_seconds": [
+            9.047154919244349,
+            9.073968197219074,
+            9.058434725739062,
+            9.075727979652584
+          ],
+          "geometric_mean_seconds": 9.063813847422471,
+          "median_seconds": 9.066201461479068
+        }
+      },
+      "primary_ABBA_latency_reduction_percent": 0.7896810592018522,
+      "primary_seconds_saved": 0.07138551786762015,
+      "adjacent_latency_reduction_percent": [
+        0.45906066750652785,
+        1.1192033113363253
+      ],
+      "all_process_contrasts_percent": {
+        "geometric_mean_seconds": {
+          "1_candidate/0_reference": 0.45906066750652785,
+          "1_candidate/3_reference": 0.9860090415769296,
+          "2_candidate/0_reference": 0.5929637916733288,
+          "2_candidate/3_reference": 1.1192033113363253
+        },
+        "median_seconds": {
+          "1_candidate/0_reference": 0.4501254162346702,
+          "1_candidate/3_reference": 1.0336579218490516,
+          "2_candidate/0_reference": 0.6002812380931366,
+          "2_candidate/3_reference": 1.182933573809486
+        }
+      },
+      "process_drift_percent": {
+        "geometric_mean_seconds": {
+          "reference": 0.5321958735020393,
+          "candidate": -0.1345206555862677
+        },
+        "median_seconds": {
+          "reference": 0.5896272342303943,
+          "candidate": -0.15083476748343205
+        }
+      },
+      "pooled_secondary": {
+        "reference": {
+          "geometric_mean_seconds": 9.039791069545544,
+          "median_seconds": 9.041100110160187
+        },
+        "candidate": {
+          "geometric_mean_seconds": 8.968405551677924,
+          "median_seconds": 8.971919892821461
+        }
+      },
+      "qualification_conditions": {
+        "adjacent_AB_geomean": true,
+        "adjacent_BA_geomean": true,
+        "all_four_candidate_reference_geomean_contrasts": true,
+        "all_four_candidate_reference_median_contrasts": true
+      },
+      "all_conditions_met": true,
+      "decision": "eligible_for_final_qualification_review"
+    },
+    "faster_reference_contrasts": {
+      "geometric_mean_seconds": {
+        "1_candidate": {
+          "reference_seconds": 9.015831961760107,
+          "candidate_seconds": 8.974443823375184,
+          "latency_reduction_percent": 0.45906066750652785
+        },
+        "2_candidate": {
+          "reference_seconds": 9.015831961760107,
+          "candidate_seconds": 8.962371342708758,
+          "latency_reduction_percent": 0.5929637916733288
+        }
+      },
+      "median_seconds": {
+        "1_candidate": {
+          "reference_seconds": 9.013058016775176,
+          "candidate_seconds": 8.972487951861694,
+          "latency_reduction_percent": 0.4501254162346702
+        },
+        "2_candidate": {
+          "reference_seconds": 9.013058016775176,
+          "candidate_seconds": 8.958954320522025,
+          "latency_reduction_percent": 0.6002812380931366
+        }
+      }
+    },
+    "raw_22_calls": [
+      {
+        "process": "0_reference",
+        "arm": "reference",
+        "repeat": 0,
+        "seconds": 15.444038177840412,
+        "instrumented": false,
+        "cold_first_call": true,
+        "primary": false,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 26533167104,
+        "max_parent_rss_kib": 2189504,
+        "max_single_child_rss_kib": 2189504
+      },
+      {
+        "process": "0_reference",
+        "arm": "reference",
+        "repeat": 1,
+        "seconds": 9.002201727591455,
+        "instrumented": false,
+        "cold_first_call": false,
+        "primary": true,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "max_parent_rss_kib": 2189504,
+        "max_single_child_rss_kib": 2189504
+      },
+      {
+        "process": "0_reference",
+        "arm": "reference",
+        "repeat": 2,
+        "seconds": 9.035045301076025,
+        "instrumented": false,
+        "cold_first_call": false,
+        "primary": true,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "max_parent_rss_kib": 2189504,
+        "max_single_child_rss_kib": 2189504
+      },
+      {
+        "process": "0_reference",
+        "arm": "reference",
+        "repeat": 3,
+        "seconds": 9.01875696470961,
+        "instrumented": false,
+        "cold_first_call": false,
+        "primary": true,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "max_parent_rss_kib": 2189504,
+        "max_single_child_rss_kib": 2189504
+      },
+      {
+        "process": "0_reference",
+        "arm": "reference",
+        "repeat": 4,
+        "seconds": 9.007359068840742,
+        "instrumented": false,
+        "cold_first_call": false,
+        "primary": true,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "max_parent_rss_kib": 2189504,
+        "max_single_child_rss_kib": 2189504
+      },
+      {
+        "process": "1_candidate",
+        "arm": "candidate",
+        "repeat": 0,
+        "seconds": 15.568313009105623,
+        "instrumented": false,
+        "cold_first_call": true,
+        "primary": false,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 26533167104,
+        "max_parent_rss_kib": 2192500,
+        "max_single_child_rss_kib": 2192500
+      },
+      {
+        "process": "1_candidate",
+        "arm": "candidate",
+        "repeat": 1,
+        "seconds": 8.97270865412429,
+        "instrumented": false,
+        "cold_first_call": false,
+        "primary": true,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "max_parent_rss_kib": 2192500,
+        "max_single_child_rss_kib": 2192500
+      },
+      {
+        "process": "1_candidate",
+        "arm": "candidate",
+        "repeat": 2,
+        "seconds": 8.991528136190027,
+        "instrumented": false,
+        "cold_first_call": false,
+        "primary": true,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "max_parent_rss_kib": 2192500,
+        "max_single_child_rss_kib": 2192500
+      },
+      {
+        "process": "1_candidate",
+        "arm": "candidate",
+        "repeat": 3,
+        "seconds": 8.9722672495991,
+        "instrumented": false,
+        "cold_first_call": false,
+        "primary": true,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "max_parent_rss_kib": 2192500,
+        "max_single_child_rss_kib": 2192500
+      },
+      {
+        "process": "1_candidate",
+        "arm": "candidate",
+        "repeat": 4,
+        "seconds": 8.961297564208508,
+        "instrumented": false,
+        "cold_first_call": false,
+        "primary": true,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "max_parent_rss_kib": 2192500,
+        "max_single_child_rss_kib": 2192500
+      },
+      {
+        "process": "2_candidate",
+        "arm": "candidate",
+        "repeat": 0,
+        "seconds": 15.619965450838208,
+        "instrumented": false,
+        "cold_first_call": true,
+        "primary": false,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 26533167104,
+        "max_parent_rss_kib": 2168132,
+        "max_single_child_rss_kib": 2168132
+      },
+      {
+        "process": "2_candidate",
+        "arm": "candidate",
+        "repeat": 1,
+        "seconds": 8.940671196673065,
+        "instrumented": false,
+        "cold_first_call": false,
+        "primary": true,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "max_parent_rss_kib": 2168132,
+        "max_single_child_rss_kib": 2168132
+      },
+      {
+        "process": "2_candidate",
+        "arm": "candidate",
+        "repeat": 2,
+        "seconds": 8.990996544715017,
+        "instrumented": false,
+        "cold_first_call": false,
+        "primary": true,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "max_parent_rss_kib": 2168132,
+        "max_single_child_rss_kib": 2168132
+      },
+      {
+        "process": "2_candidate",
+        "arm": "candidate",
+        "repeat": 3,
+        "seconds": 8.971572536043823,
+        "instrumented": false,
+        "cold_first_call": false,
+        "primary": true,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "max_parent_rss_kib": 2168132,
+        "max_single_child_rss_kib": 2168132
+      },
+      {
+        "process": "2_candidate",
+        "arm": "candidate",
+        "repeat": 4,
+        "seconds": 8.946336105000228,
+        "instrumented": false,
+        "cold_first_call": false,
+        "primary": true,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "max_parent_rss_kib": 2168132,
+        "max_single_child_rss_kib": 2168132
+      },
+      {
+        "process": "3_reference",
+        "arm": "reference",
+        "repeat": 0,
+        "seconds": 15.645543766207993,
+        "instrumented": false,
+        "cold_first_call": true,
+        "primary": false,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 26533167104,
+        "max_parent_rss_kib": 2190824,
+        "max_single_child_rss_kib": 2190824
+      },
+      {
+        "process": "3_reference",
+        "arm": "reference",
+        "repeat": 1,
+        "seconds": 9.047154919244349,
+        "instrumented": false,
+        "cold_first_call": false,
+        "primary": true,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "max_parent_rss_kib": 2190824,
+        "max_single_child_rss_kib": 2190824
+      },
+      {
+        "process": "3_reference",
+        "arm": "reference",
+        "repeat": 2,
+        "seconds": 9.073968197219074,
+        "instrumented": false,
+        "cold_first_call": false,
+        "primary": true,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "max_parent_rss_kib": 2190824,
+        "max_single_child_rss_kib": 2190824
+      },
+      {
+        "process": "3_reference",
+        "arm": "reference",
+        "repeat": 3,
+        "seconds": 9.058434725739062,
+        "instrumented": false,
+        "cold_first_call": false,
+        "primary": true,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "max_parent_rss_kib": 2190824,
+        "max_single_child_rss_kib": 2190824
+      },
+      {
+        "process": "3_reference",
+        "arm": "reference",
+        "repeat": 4,
+        "seconds": 9.075727979652584,
+        "instrumented": false,
+        "cold_first_call": false,
+        "primary": true,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 28399632384,
+        "max_parent_rss_kib": 2190824,
+        "max_single_child_rss_kib": 2190824
+      },
+      {
+        "process": "4_reference_parity",
+        "arm": "reference",
+        "repeat": 0,
+        "seconds": 15.606169892009348,
+        "instrumented": true,
+        "cold_first_call": false,
+        "primary": false,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 26533167104,
+        "max_parent_rss_kib": 2190836,
+        "max_single_child_rss_kib": 2190836
+      },
+      {
+        "process": "5_candidate_parity",
+        "arm": "candidate",
+        "repeat": 0,
+        "seconds": 15.08205779781565,
+        "instrumented": true,
+        "cold_first_call": false,
+        "primary": false,
+        "peak_allocated": 18571301888,
+        "peak_reserved": 26533167104,
+        "max_parent_rss_kib": 2169868,
+        "max_single_child_rss_kib": 2169868
+      }
+    ],
+    "qualitative_assessment": [
+      "Reference geometric-mean drift of +0.532196% is material to the primary 0.789681% magnitude; adjacent AB and BA reductions are 0.459061% and 1.119203%. This limits precision and generalization of the pooled estimate.",
+      "The direction remains supported under every frozen conservative comparison: both candidate processes beat the faster reference by geometric mean (0.459061%, 0.592964%) and median (0.450125%, 0.600281%). There is no contradictory process comparison or dependence on selecting the slower reference.",
+      "The prior independent resident allocation showed 8/8 positive quartets, similar order effects, small reference-reference differences, and no dominant quartet. Together with exact fresh correctness and source/ownership audits, this is convincing scoped evidence for adoption.",
+      "Keep the original primary estimate and report drift and faster-reference contrasts prominently. No post-hoc threshold, replacement estimator, sample removal, drift subtraction, extra repetition, confidence interval, or universal performance claim."
+    ],
+    "correctness": {
+      "all22_suite_artifacts_byte_exact": true,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_rows_per_suite": 150,
+      "completion_tokens_per_suite": 42089,
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs_per_suite": 50,
+      "passed_programs_per_suite": 3,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "sampled_logits": {
+        "reference": {
+          "samples": 8,
+          "finite_logit_values": 1048576,
+          "ids": 705,
+          "dtype_shape_and_raw_bytes_equal": true,
+          "artifact_sha256": "948e6e7836ca3c5b5a11e6da019ae16ab0090cda8c3c48f1c639704b27ee45d5"
+        },
+        "candidate": {
+          "samples": 8,
+          "finite_logit_values": 1048576,
+          "ids": 705,
+          "dtype_shape_and_raw_bytes_equal": true,
+          "artifact_sha256": "948e6e7836ca3c5b5a11e6da019ae16ab0090cda8c3c48f1c639704b27ee45d5"
+        }
+      },
+      "sample_calls": [
+        0,
+        64,
+        128,
+        192,
+        256,
+        320,
+        384,
+        448
+      ],
+      "historical_correctness_baseline_revision": "f95f459d0ab99ead8c63cce03973639931fce709",
+      "limits": "Every completion/grade artifact and score compared; actual checkpoint logits sampled at8calls, not every cache or logit value. Timing reference is published7003, not historicalf95."
+    },
+    "GPU_preflight": {
+      "passed": 5,
+      "identities": [
+        [
+          "tests.steering.test_greedy_cache_compaction_gpu",
+          "test_trained_generator_preserves_repeated_compaction[bfloat16]"
+        ],
+        [
+          "tests.steering.test_greedy_cache_compaction_gpu",
+          "test_trained_generator_preserves_repeated_compaction[float16]"
+        ],
+        [
+          "tests.steering.test_triton_kv_cache_compaction",
+          "test_cuda_compaction_preserves_all_backing_bytes[offset_holes]"
+        ],
+        [
+          "tests.steering.test_triton_kv_cache_compaction",
+          "test_cuda_compaction_preserves_all_backing_bytes[overlap_chain]"
+        ],
+        [
+          "tests.steering.test_triton_kv_cache_compaction",
+          "test_cuda_compaction_preserves_all_backing_bytes[tile_tail]"
+        ]
+      ]
+    },
+    "memory": {
+      "canonical_per_process": {
+        "0_reference": {
+          "metrics_sha256": "e48d84c80aa6ebada80b0f70e4dad5a60baac5a44811def786c6a6ecb8fa75ff",
+          "peak_allocated_bytes": [
+            18571301888
+          ],
+          "cold_or_audit_peak_reserved_bytes": 26533167104,
+          "warm_peak_reserved_bytes": [
+            28399632384
+          ],
+          "max_parent_rss_kib": 2189504,
+          "max_single_child_rss_kib": 2189504
+        },
+        "1_candidate": {
+          "metrics_sha256": "589e2eb90696094f095ff5417a52e213037f7168acf025392c111d016b585499",
+          "peak_allocated_bytes": [
+            18571301888
+          ],
+          "cold_or_audit_peak_reserved_bytes": 26533167104,
+          "warm_peak_reserved_bytes": [
+            28399632384
+          ],
+          "max_parent_rss_kib": 2192500,
+          "max_single_child_rss_kib": 2192500
+        },
+        "2_candidate": {
+          "metrics_sha256": "779c26bd48447fc6e07fed200205c08b42d844987b6656c0c5a53f79b6ebaf6e",
+          "peak_allocated_bytes": [
+            18571301888
+          ],
+          "cold_or_audit_peak_reserved_bytes": 26533167104,
+          "warm_peak_reserved_bytes": [
+            28399632384
+          ],
+          "max_parent_rss_kib": 2168132,
+          "max_single_child_rss_kib": 2168132
+        },
+        "3_reference": {
+          "metrics_sha256": "08d38895c7de044fe7a7ceb5c1beec3b7da3e979f96eab404d3dfed0f239bbe9",
+          "peak_allocated_bytes": [
+            18571301888
+          ],
+          "cold_or_audit_peak_reserved_bytes": 26533167104,
+          "warm_peak_reserved_bytes": [
+            28399632384
+          ],
+          "max_parent_rss_kib": 2190824,
+          "max_single_child_rss_kib": 2190824
+        },
+        "4_reference_parity": {
+          "metrics_sha256": "62a0e295f27031a3bc94fdf5e74bb653adc8986fd07494ce55c17daf26202b70",
+          "peak_allocated_bytes": [
+            18571301888
+          ],
+          "cold_or_audit_peak_reserved_bytes": 26533167104,
+          "warm_peak_reserved_bytes": [],
+          "max_parent_rss_kib": 2190836,
+          "max_single_child_rss_kib": 2190836
+        },
+        "5_candidate_parity": {
+          "metrics_sha256": "859961a6ef5b18dabb8cb6bdcbc07907c42b0c25aa24bce8287ba0fdbdd64d74",
+          "peak_allocated_bytes": [
+            18571301888
+          ],
+          "cold_or_audit_peak_reserved_bytes": 26533167104,
+          "warm_peak_reserved_bytes": [],
+          "max_parent_rss_kib": 2169868,
+          "max_single_child_rss_kib": 2169868
+        }
+      },
+      "sampled_process_tree": {
+        "gpu-preflight": {
+          "sha256": "9620083f247fc548b57a408c94500cfc0ee89708d1bea7c477d02d0fe91e1ec1",
+          "peak_sampled_process_tree_rss_bytes": 2168459264,
+          "samples": 22,
+          "positive_owned_samples": 5
+        },
+        "0_reference": {
+          "sha256": "3e08185c9399406b5b52515ae022ac7ce4d9ec3882013b2964a4d0a0658b24a3",
+          "peak_sampled_process_tree_rss_bytes": 4822114304,
+          "samples": 68,
+          "positive_owned_samples": 55
+        },
+        "1_candidate": {
+          "sha256": "63198901d09221531045c16fe05b6a4fcabfb5043936df3c7704d23812b673a0",
+          "peak_sampled_process_tree_rss_bytes": 4788932608,
+          "samples": 70,
+          "positive_owned_samples": 54
+        },
+        "2_candidate": {
+          "sha256": "f6a3a112f19c4466a086faab8924e30cb0f888909a66433375d9fd8f836450cb",
+          "peak_sampled_process_tree_rss_bytes": 4758253568,
+          "samples": 70,
+          "positive_owned_samples": 55
+        },
+        "3_reference": {
+          "sha256": "7e4763ce32ecdd04542e820c427bdcc0d3fd24cc0c3e7259ca3ce2ff21e60635",
+          "peak_sampled_process_tree_rss_bytes": 4779003904,
+          "samples": 71,
+          "positive_owned_samples": 55
+        },
+        "4_reference_parity": {
+          "sha256": "2688cc6d97af7cb950a1a5c1ecfa851dc4156dd2fd50a5486000515066a04f7e",
+          "peak_sampled_process_tree_rss_bytes": 4788723712,
+          "samples": 37,
+          "positive_owned_samples": 21
+        },
+        "5_candidate_parity": {
+          "sha256": "42dc0a0a9b891bcd62270f865f292086f27ac041b9106b8b00adcc599f545abe",
+          "peak_sampled_process_tree_rss_bytes": 4774543360,
+          "samples": 34,
+          "positive_owned_samples": 21
+        }
+      },
+      "GPU_allocator_peaks_equal_across_arms": {
+        "allocated_bytes": 18571301888,
+        "cold_and_audit_reserved_bytes": 26533167104,
+        "warm_reserved_bytes": 28399632384
+      },
+      "limits": [
+        "Memory counters are reported CUDA allocator peaks and per-process resource maxima; sampled process-tree RSS is a separate monitor observation, not an unsampled concurrent maximum.",
+        "Allocated and cold/warm reserved byte counters are equal across both arms in this qualification; no memory reduction claim.",
+        "Process-tree RSS can miss short workers and double-count shared pages; it is not an exact concurrent host peak. No general memory-reduction claim."
+      ]
+    },
+    "ownership": {
+      "gpu-preflight": {
+        "samples": 22,
+        "positive_owned_samples": 5,
+        "outsiders": 0,
+        "exit_code": 0,
+        "timeout_seconds": 300
+      },
+      "0_reference": {
+        "samples": 68,
+        "positive_owned_samples": 55,
+        "outsiders": 0,
+        "exit_code": 0,
+        "timeout_seconds": 300
+      },
+      "1_candidate": {
+        "samples": 70,
+        "positive_owned_samples": 54,
+        "outsiders": 0,
+        "exit_code": 0,
+        "timeout_seconds": 300
+      },
+      "2_candidate": {
+        "samples": 70,
+        "positive_owned_samples": 55,
+        "outsiders": 0,
+        "exit_code": 0,
+        "timeout_seconds": 300
+      },
+      "3_reference": {
+        "samples": 71,
+        "positive_owned_samples": 55,
+        "outsiders": 0,
+        "exit_code": 0,
+        "timeout_seconds": 300
+      },
+      "4_reference_parity": {
+        "samples": 37,
+        "positive_owned_samples": 21,
+        "outsiders": 0,
+        "exit_code": 0,
+        "timeout_seconds": 300
+      },
+      "5_candidate_parity": {
+        "samples": 34,
+        "positive_owned_samples": 21,
+        "outsiders": 0,
+        "exit_code": 0,
+        "timeout_seconds": 300
+      }
+    },
+    "ownership_totals": {
+      "samples": 372,
+      "positive_owned_samples": 266,
+      "outsiders": 0
+    },
+    "ownership_limits": "One-second snapshots on assigned GPU UUID, positive owned activity and zero observed outsiders, empty initial/final inventories. Cannot rule out subsecond interference.",
+    "independent_audit": {
+      "status": "pass",
+      "sha256": "55f68e17dcd9108dba9a480102ff7381b80bad0aa972b69f70a32c34982dfbad",
+      "auditor_sha256": "019a82e0e0220c41a09a86b52091b9df83e6729d2e6bf3ad62df5560ba25beaa",
+      "provenance": {
+        "status": "pass",
+        "controls": 31,
+        "outputs": 108,
+        "reference_files": 3532,
+        "candidate_files": 3532,
+        "changed_files": {
+          "steering/eval/triton_kv_cache_compaction.py": {
+            "reference": "6eed19cc2331e361d84a9e091c12a95b2a0afaebe4331cd380818084b3b67254",
+            "candidate": "a6792c14216dc84d504b4d92c6e0bb94ca432b37d7c99fd742bb701e833d3d4b"
+          },
+          "tests/steering/test_triton_kv_cache_compaction.py": {
+            "reference": "aa704cce13e4fb64000d9956504b897d8c6f723a40d072a04ce79f7d01d7f366",
+            "candidate": "cf4e1c211604eb1d26d88ae480f3b23bea02e6772d456d00576c17c72e72a8fc"
+          }
+        },
+        "inverse_source_proof": {
+          "reference_helper_sha256": "6eed19cc2331e361d84a9e091c12a95b2a0afaebe4331cd380818084b3b67254",
+          "candidate_helper_sha256": "a6792c14216dc84d504b4d92c6e0bb94ca432b37d7c99fd742bb701e833d3d4b",
+          "entire_helper_single_constant_inverse_bytes_equal": true,
+          "entire_helper_single_constant_inverse_AST_equal": true,
+          "reference_helper_AST_sha256": "7b8cb297f0958522d578d2dc1c3c4c569d2f57a470e19fc9516b7562a900ac24"
+        },
+        "controls_manifest_sha256": "e737ed2ccf55e87deb9d39357f6a057732422133decd324aee0a1b8e4b59a16f",
+        "controls_archive_sha256": "78fc0490f44be3ad2b9861f530328563ded68b448e0c54eee2cc53a21160de14",
+        "source_archive_sha256": "2be81c897a1d4a94c4af2e5209b87513ee8f488706301799e733992b40bcbfac",
+        "remote_output_manifest_sha256": "b5801719235bc81f52ce7d855ce8765e41b2ea0fc410efba6c1488465f55669d",
+        "natural_import_receipt_sha256": "0659593dbbb9c148dfd693453cc01ec541908b86ffeea70b6d54f678d530e453",
+        "prior_resident_audit_sha256": "6840bc73d5b7e4354a784906afc2353d50372854cde21d0586d35a04d53f231d"
+      },
+      "comparison": {
+        "comparison_sha256": "b51ce1b6a19cf32e3f581591a0e3b5a9505d81747fd20caf6e55db0229fd88aa",
+        "all_producer_process_statistics_independently_recomputed": true
+      }
+    },
+    "limits": [
+      "One fresh allocation/four timing processes plus accepted resident evidence; no universal speedup or independent16-sample confidence claim.",
+      "Exactly four first calls and two logit audits excluded from primary; all22 call timings retained. No drift adjustment, placebo subtraction or post-result sample removal.",
+      "Natural-import identity proof is CUDA-hidden; actual canonical GPU path is bound by complete source hashes. Resident70compaction/1820launch witnesses are prior evidence, not reconstructed from uninstrumented qualification.",
+      "Five focused GPU tests check full cache parity; actual checkpoint evidence consists of complete artifacts and two1M-value logit samples, not every cache/logit value.",
+      "One-second process-tree/GPU telemetry bounds observed interference; input file hashes are remote producer receipts, not local rehashes of the checkpoint/tokenizer."
+    ]
+  },
+  "validation": {
+    "focused_CPU": {
+      "command": "CUDA_VISIBLE_DEVICES='' NANOCHAT_DTYPE=bfloat16 PYTHONDONTWRITEBYTECODE=1 uv run --no-sync pytest tests/steering/test_triton_kv_cache_compaction.py tests/steering/test_greedy_token_batch.py -q --junitxml=out/benchmarks/chatcore-20260920/loop25-focused-cpu.xml",
+      "passed": 71,
+      "deselected": 3,
+      "by_classname": {
+        "tests.steering.test_triton_kv_cache_compaction": 27,
+        "tests.steering.test_greedy_token_batch": 44
+      },
+      "JUnit_sha256": "beda671eaa602ed46241d5138f95ab82bd15e626bf08560d5cb6324e30f346f8"
+    },
+    "focused_static": {
+      "ruff": "pass",
+      "ruff_format_check": "pass",
+      "ty": "pass",
+      "git_diff_check": "pass"
+    },
+    "GPU_preflight_execution": "All five focused cases passed without skips in both resident and fresh qualification allocations; BF16/FP16 generator tests are correctness coverage, not a FP16 performance qualification.",
+    "controller_CPU_checks": [
+      "actual_full_3532_3532_exports_exact_two_delta_and_canonical_harness",
+      "full_22_suite_real_bytes_two_1M_logit_arrays_seven_owned_phases_positive",
+      "wrong_source_rejected",
+      "wrong_repeat_count_rejected",
+      "grade_route_rejected",
+      "wrong_hydra_rejected",
+      "preflight_cache_reuse_rejected",
+      "preflight_wrong_source_rejected",
+      "extra_suite_artifact_rejected",
+      "actual_grade_bytes_rejected",
+      "pooled_positive_loses_faster_reference_rejected"
+    ],
+    "independent_auditor_CPU_checks": [
+      "actual3532_prefixed_candidate_archive_3532_parent_and_exact_inverse_source",
+      "actual_local_pinned_census_completion_attribution_and_accepted_resident_witnesses",
+      "actual22_baseline_artifacts_two1M_logits_fiveJUnit_seven_phase_schema_and_process_math",
+      "four_cold_and_two_audit_times_excluded_from_primary",
+      "positive_pooled_effect_losing_to_fast_reference_rejected",
+      "reused_preflight_compiler_cache_rejected",
+      "changed_child_deadline_rejected",
+      "corrupted_reported_process_contrast_rejected"
+    ],
+    "natural_import_proof_sha256": "0659593dbbb9c148dfd693453cc01ec541908b86ffeea70b6d54f678d530e453",
+    "natural_import_scope": "Fresh CUDA-hidden canonical imports from both exact3532 exports,173 project imports per arm, own helper/JIT globals1024/4096, six run_all bindings and inference/early-error restoration. No GPU execution from this proof.",
+    "full_repository_suite_run_or_claimed_green": false
+  },
+  "packaging_boundary": "GPU qualification covered the stable3532-file two-path helper/test delta and canonical harness. Later report/evidence/reference-link edits require a separate documentation-only packaging proof; the complete later commit was not run. All four pinned runtime/test files and canonical harness must remain byte-identical.",
+  "evidence_sha256": {
+    "loop24-postrun-independent-review-23354196.json": "722ce1b6c8c8c0423b200ea3263c4a2e79904305ed3ffad1aa446d375f4ad65c",
+    "loop24-actual-compiled-review-23354196.json": "3458681b92e7eef736da7f631e2213899de853dad922e23cea0664fb10f9fa4f",
+    "loop24-raw-timing-review.json": "51163f66df5a0aff29d515d2323577c0edafe6d3b25b7d8023bf11180258192d",
+    "loop24-decision.json": "94fdf0a9f9609272c130924debb08074ceda573729e2745e37a40340e2eb9798",
+    "tile4096-resident-23356531/independent-audit.json": "6840bc73d5b7e4354a784906afc2353d50372854cde21d0586d35a04d53f231d",
+    "loop25-resident-decision.json": "bcf42cbe5825008c5ab1da704611085276ff56b34784f41d5a6d69b01f4b20be",
+    "loop25-raw-timing-review.json": "a0677bc2405ebbb133fda87b3a5e1ad777dcfd498c597320414f822e7ff40c98",
+    "tile4096-qualified-23359170/independent-audit.json": "55f68e17dcd9108dba9a480102ff7381b80bad0aa972b69f70a32c34982dfbad",
+    "tile4096-qualified-23359170/comparison.json": "b51ce1b6a19cf32e3f581591a0e3b5a9505d81747fd20caf6e55db0229fd88aa",
+    "tile4096-qualified-23359170/output.sha256": "b5801719235bc81f52ce7d855ce8765e41b2ea0fc410efba6c1488465f55669d",
+    "tile4096-qualified-23359170/slurm-terminal.txt": "aabacee1cd0ed62d52fadc3314850bcd5e4d603819d80e9c886750760838fa9a",
+    "tile4096-qualified-23359170/run-summary.json": "9472fec9601cd21b07e411f6e6fe4078578000fbfac22ea8ebcbb39d2797036b",
+    "tile4096-qualified-23359170/gpu-preflight.xml": "77c7127db77c59b98d872c1c94b6af68bb485b531c33818bc591df685509a397",
+    "tile4096-qualified-23359170/gpu-info.txt": "94604686db0864b3a6a59bac35a7d8ca088ed9927d865037935c7d656e7ea50f",
+    "loop25-qualification-decision.json": "c90bf9481bc00d53bad9338bca7a45562f9f19b6f753f04768ca3ee0832d626f",
+    "loop25-qual-raw-timing-review.json": "dbb3159008bc40742204498e72f58c5ae30b7e515367f9ae9b756c6b2e497e4b",
+    "loop25-qual-measurement-assessment.json": "7637842d73c728ea65288b21a5b931a4f86f43366978ae1007bb08132734cd31",
+    "loop25-qualification-independent-summary.json": "d329eee1a7379945acb6d2182d6d1c7141f632161bae39ec7c199ed4efaa77cf",
+    "loop25-qualification-root-timing-review.json": "bd7a1079a5dbf247fdd8308e5f2c2c565becfcc4c7aa53093125cf1bf76fe28b",
+    "loop25-qual-plan.json": "2673eddb7c88fd8283f22dc23928e1050483895f27753a7576d9226a518c0127",
+    "loop25-qual-sources.json": "6e64775d50014dbf26946255175144acc05f2f591178347a87828f7a931ceda5",
+    "loop25-production-source-proof.json": "35407a5b5cbd5824c65d97bcd4070087268d9b3164f99cb5c596361d9f3da1e9",
+    "loop25-qual-natural-import-proof.json": "0659593dbbb9c148dfd693453cc01ec541908b86ffeea70b6d54f678d530e453",
+    "loop25-focused-test-receipt.json": "fdc3aba09566031e73a9cc17511dccb269035dabbbf20c37bba2f206cd55b0e9",
+    "loop25-qual-controller-cpu-validation.json": "14691b1c42c55723ec387cfe19e95d9c197c1dc41c96a028d2f3831e6198dfde",
+    "loop25-qualification-auditor-cpu-validation.json": "6d3596754fce379ed227237e2f10e7fb49d9b08852377741694d1d277f33548a",
+    "loop25-qual-controls.sha256": "e737ed2ccf55e87deb9d39357f6a057732422133decd324aee0a1b8e4b59a16f",
+    "loop25-qual-source.sha256": "579cebaa5d064c451fb655203a7aedcbc91e551312e1bceafe91acdb7d8f4589",
+    "loop20-profile-source.sha256": "905982e3ebe9ca6fb12cfdd813c039d0baeeebcf6dbdc347a465d8646521d529",
+    "loop25_qual_raw_timing_analysis.py": "ae744ae738f7b314f2a44b728d8104f76bf4f1168908c441784683a51ab4f5a2",
+    "loop25_qualification_independent_audit.py": "019a82e0e0220c41a09a86b52091b9df83e6729d2e6bf3ad62df5560ba25beaa",
+    "loop25-qual-reuse-proof.json": "790197862844c452d13ab3ba38060bb806f04009c96a0e8b9d789f7224c73898"
+  },
+  "remote_outputs": {
+    "host": "Engaging",
+    "component": "/home/henryac/chatcore-perf-20260920/loop24_compaction_23354196",
+    "resident": "/home/henryac/chatcore-perf-20260920/loop25_resident_23356531",
+    "qualification": "/home/henryac/chatcore-perf-20260920/loop25_qual_23359170",
+    "campaign": "/home/henryac/chatcore-perf-20260920"
+  }
+}

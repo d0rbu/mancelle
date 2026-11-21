@@ -1,0 +1,38 @@
+# Verified standard100 union plus the relocated original native shard roots.
+final_root: ???
+archive_roots: ???
+
+checkpoint_dir: ???
+step: 1003
+tokenizer_path: ???
+
+output_dir: ???
+mailbox_dir: null
+concept_ids: null
+device: cuda:0
+
+methods: [DiffMean, LinearProbe, LoRA]
+pressures: [gepa, linear_probe_counter, diffmean_counter]
+counter_magnitudes: [0.25, 0.5, 1.0, 2.0]
+proposal_counts: [1, 2, 4, 8]
+gepa_seed: 42
+seed_suffix: Please avoid the target concept while remaining helpful and responsive.
+reflection_model: openai/gpt-5.6-luna
+reflection_minibatch_size: 3
+provider_timeout_seconds: 3600.0
+
+# `archived` preserves exact standard100 replay. For reviewed D12 and D14
+# contracts, `runtime` generates and judges a new positive-only shared zero.
+zero_control_source: archived
+
+# `pilot` performs one input for all three positive methods and both counter
+# families without constructing a provider mailbox. `run` executes the full
+# selected concept slice and leaves final three-axis judging to the judge CLI.
+phase: run
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

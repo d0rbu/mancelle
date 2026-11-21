@@ -1,0 +1,21 @@
+defaults:
+  - native_counter
+  - _self_
+
+# Root must supply the actual final D14 SFT step and all three file identities.
+step: ???
+expected:
+  step: ${step}
+  model_sha256: ???
+  meta_sha256: ???
+  tokenizer_sha256: ???
+  n_layer: 14
+  n_embd: 896
+
+# Consume the authenticated standard100 PromptSteering source while fitting and
+# generating only the canonical Adv prefix 0..49.
+max_concepts: 100
+concept_count: 50
+
+# Round-half-up depth adaptation of Qwen-36 layer 28.
+layer: 11

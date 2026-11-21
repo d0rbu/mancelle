@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "measured_at": "2026-08-28",
+  "base_commit": "465740da2",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "torch": "2.13.0+cu130",
+  "checkpoint_sha256": "4349c25e204053e469df05bfa3fb310df8cac7c34d3cd129b3a9febb7ec3497a",
+  "tokenizer_sha256": "e54f356e498b36d717dbcf688f317278b9e9644322b565076d6be6c52b60b7a6",
+  "workload": {
+    "prompt_count": 32,
+    "prompt_sha256": "f4a008852771d645d912d90b18d768de32edddbc9c8950bbf9c8d8f286cda364",
+    "batch_size": 32,
+    "max_new_tokens": 512,
+    "temperature": 0.7,
+    "top_k": 50,
+    "seed": 4242
+  },
+  "production_512_token_comparison": {
+    "rowwise_median_seconds": 14.563385618850589,
+    "vectorized_latency_seconds": [
+      12.976143978536129,
+      12.973042011260986
+    ],
+    "vectorized_median_seconds": 12.974592994898558,
+    "speedup": 1.1224541397619736,
+    "latency_reduction_percent": 10.909500479720357,
+    "rowwise_peak_allocated_mib": 7693.244140625,
+    "vectorized_peak_allocated_mib": 7693.306640625,
+    "peak_delta_mib": 0.0625,
+    "output_sha256_before": "940accd5a34aa906cf3040d505f0b6694db9cc748c97087d489a3e3c8753c13e",
+    "output_sha256_after": "940accd5a34aa906cf3040d505f0b6694db9cc748c97087d489a3e3c8753c13e",
+    "vectorized_repeatable": true
+  },
+  "profile_32_token_comparison": {
+    "rowwise_latency_seconds": [
+      0.8936013132333755,
+      0.8938749171793461,
+      0.8940228261053562,
+      0.8938343338668346,
+      0.8937255628407001
+    ],
+    "rowwise_median_seconds": 0.8938343338668346,
+    "vectorized_latency_seconds": [
+      0.7953166551887989,
+      0.7946488074958324,
+      0.7941400595009327,
+      0.7949378378689289,
+      0.795007985085249
+    ],
+    "vectorized_median_seconds": 0.7949378378689289,
+    "speedup": 1.1244078357913214,
+    "latency_reduction_percent": 11.0642981871224,
+    "rowwise_topk_calls": 1024,
+    "vectorized_topk_calls": 32,
+    "rowwise_softmax_calls": 1024,
+    "vectorized_softmax_calls": 32,
+    "rowwise_self_cuda_seconds": 0.831955,
+    "vectorized_self_cuda_seconds": 0.744026,
+    "output_sha256_before": "a8677315ada48e9b537df2ecdcaa3292e4477c60b44b5571ab146076264cad1f",
+    "output_sha256_after": "a8677315ada48e9b537df2ecdcaa3292e4477c60b44b5571ab146076264cad1f"
+  },
+  "raw_optimized_512_artifact_sha256": "08e921e42ff1cb5c9a99710e7763e3083bc4c96a9e027f956b9746e0b7fce1da",
+  "unrun_boundary": "No OpenRouter judge calls and no full 1200-prompt evaluation were run."
+}

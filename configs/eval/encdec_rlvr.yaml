@@ -1,0 +1,25 @@
+# Use the exact generated feature policy and verifier used by the RLVR trainer.
+base_checkpoint_dir: ???
+model_step: null
+bundle_dir: ???
+stats_path: null
+# Null evaluates the original SFT checkpoint; otherwise load an RLVR checkpoint.
+rlvr_checkpoint_dir: null
+rlvr_step: null
+output_path: ???
+device_type: ???
+seed: 42
+validation_seed: 314159
+temperature: 1.0
+top_k: null
+mc_max_tokens: 16
+gsm8k_max_tokens: 512
+# Null selects every heldout row; the default is the fixed training panel.
+validation_per_task: 32
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

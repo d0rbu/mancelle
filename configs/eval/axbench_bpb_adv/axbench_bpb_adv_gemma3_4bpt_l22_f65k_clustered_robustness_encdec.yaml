@@ -1,0 +1,47 @@
+# Encoder-decoder arm of the steering-robustness sweep (#1249 follow-through).
+#
+# The decoder-only sweep (`..._robustness`, run tag `..._m_robustness`) scored
+# diffmean/linear-probe/control x 11 counter-steering strengths but could not
+# include `feature_diffmean_encdec`: counter-steering an encdec target needs
+# `diffmean/encdec/` directions, which did not exist (#1248) and, once they
+# could exist, had to be fit under conditioned forwards (#1249).
+#
+# This config scores ONLY the encdec arm under the same 11-strength grid. Its
+# scores/candidates/general_val are then merged post-hoc with the decoder-only
+# run's tables (same source, same contract, disjoint methods) before
+# aggregate/plot -- re-scoring the 160k decoder-only rows would cost ~1.9 h for
+# nothing. The fair feature-DiffMean rows produced here are ALSO what
+# representative-coefficient selection requires; the decoder-only run alone
+# cannot plot at all (`_select_representative_coefficient` measures every
+# family against the scored fair encdec feature-DiffMean baseline).
+#
+# `ours` in families is REQUIRED: attack_rows emits an additive row only when
+# the spec's baseline_family is in `families` (or is "control"), and BOTH
+# feature-DiffMean methods carry baseline="ours". Without it this run emits
+# ZERO rows, silently -- the exact failure that lost 693 roofline bags once.
+
+defaults:
+  - axbench_bpb_adv_gemma3_4bpt_l22_f65k_clustered_robustness
+  - _self_
+
+base_methods:
+  - feature_diffmean_encdec
+  - neg_feature_diffmean_encdec
+
+adversarial_methods:
+  - method: additive_direction
+    families: [ours]
+    magnitudes: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, 4.0, 6.0]
+
+run_tag: l22_f65k_clustered_std50_m_robustness_encdec
+
+# Concept 37 positive is excluded: its conditioned-fit direction has a
+# NON-POSITIVE max_activation (-1098.07 -- every fit row and position projects
+# negative along the direction), which the #1228 fail-loud scale guard refuses
+# to write, making counter-steering that (concept, mode) undefined. The census
+# over all 100 (concept, mode) fits found exactly this one failure (passing
+# range 123..45013, median ~10934). (37, negative) passes and stays. For a
+# symmetric population, the post-hoc merge drops (37, positive) rows from the
+# decoder-only tables as well, so every plotted series covers the same
+# concepts per mode.
+exclude_concept_modes: ["37:positive"]

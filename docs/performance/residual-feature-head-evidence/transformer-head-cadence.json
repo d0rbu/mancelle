@@ -1,0 +1,26 @@
+{
+  "linear": {
+    "cadence": 33,
+    "documents": 3257,
+    "feature_dir": "/orcd/data/dylanhm/001/nano-gpt-pretrain-steer/claude-sft3b-steered-20260905/features/s32/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/standard_steered_sft/context_independent/no_bos/turn_delimited",
+    "maximum": 209,
+    "mean": "448701/13421",
+    "minimum": 17,
+    "original_metadata": "/orcd/data/dylanhm/001/nano-gpt-pretrain-steer/codex-issue1719-20260919/migrated/linear/meta_001125.json",
+    "original_metadata_sha256": "266120157d9a67ec11be7af446f79d7c704bbf6586dca30d155d0918dbaee358",
+    "parquet_dir": "/orcd/data/dylanhm/001/nano-gpt-pretrain-steer/claude-sft3b-steered-20260905/nanochat_cache/sft_data/standard_steered",
+    "windows": 40263
+  },
+  "mlp2": {
+    "cadence": 33,
+    "documents": 3257,
+    "feature_dir": "/orcd/data/dylanhm/001/nano-gpt-pretrain-steer/claude-sft3b-steered-20260905/features/s32/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/standard_steered_sft/context_independent/no_bos/turn_delimited",
+    "maximum": 209,
+    "mean": "448701/13421",
+    "minimum": 17,
+    "original_metadata": "/orcd/data/dylanhm/001/nano-gpt-pretrain-steer/codex-issue1719-20260919/migrated/mlp2/meta_001125.json",
+    "original_metadata_sha256": "98c0fbe0fb715112f76c69fafaa5e90643ff945cb84f6914beed77ec0481cb7c",
+    "parquet_dir": "/orcd/data/dylanhm/001/nano-gpt-pretrain-steer/claude-sft3b-steered-20260905/nanochat_cache/sft_data/standard_steered",
+    "windows": 40263
+  }
+}

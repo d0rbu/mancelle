@@ -1,0 +1,88 @@
+# Full source for fork A (PromptSteering rows with attribute prompts, step 325): needed only so the adversarial source contract (six methods) is met;
+# only PromptSteering is attacked or reported. Same as pythia_s1_main.yaml except the model path.
+# Local AxBench configuration; see ../../../VENDORED.md.
+#
+# Pythia-2.8B + our SFT: the SAME base model as pythia_2_8b_main.yaml, SFT'd by Henry on OUR SFT data.
+#
+# This is the closest thing to a control the 3B comparison will have. Against an
+# off-the-shelf instruct model, "our conditional pretraining" and "their
+# instruct recipe" are confounded; with the SFT stage held to one dataset, what
+# remains is the pretraining -- data, architecture, tokenizer, and whether a
+# conditioning channel was built in. Still not a matched control (base_d12 at
+# 400M is the only one of those), but it removes the single largest confound on
+# the instruct side, and it makes every prompting arm comparable: how well a
+# prompt works then reflects the pretrained model, not whose SFT wrote the
+# template.
+#
+# ~30% of that SFT data is messages_steered.jsonl, written for a model with a
+# conditioning channel. A model without one sees the same text minus the channel
+# -- which is exactly what a control should see. Say so in the paper.
+#
+# Checkpoint: pythia-2.8b-standard-steered-mask-20260911/step_001091, pulled from
+# the artifacts bucket. sft_metadata confirms mixture=standard_steered, 1,210,674
+# train rows of which 361,018 are SteeredConversations, validation BPB 0.260.
+#
+# Two things the SFT changed about this model, both of which the base run did NOT
+# have to deal with:
+#   - it now HAS a chat template (chat_template.jinja), so is_chat_model is a live
+#     question again, not a settled one;
+#   - it now has a pad token (<|padding|>), so ensure_pad_token is a no-op here.
+# Its tokenizer_config still declares tokenizer_class GPTNeoXTokenizer, a slow
+# class transformers does not ship, so load_tokenizer_compat's fallback is what
+# makes use_fast=False survive.
+# THEN SMOKE (2 concepts) before the full run. Two things a path-named model can
+# trip that a hub-named one did not: CHAT_MODELS is matched on the exact name
+# string, so a local path resolves is_chat_model=False even with a template
+# present (SmolLM3 ran correctly in that state; adding it broke the run -- do not
+# assume either way, measure); and the SFT's chat template is Henry's, not the
+# upstream one, so the template-length helpers see something new.
+train:
+  model_name: /orcd/pool/008/ychenliu/pythia_std_sft/drills20_forkA_20261114-043802/step_000325
+  layer: 25
+  component: res
+  seed: 42
+  use_bf16: true
+  output_length: 128
+  models:
+    DiffMean:
+      batch_size: 6
+      n_epochs: 1
+      binarize_dataset: true
+      low_rank_dimension: 1
+    LinearProbe:
+      batch_size: 12
+      gradient_accumulation_steps: 4
+      n_epochs: 24
+      lr: 0.005
+      weight_decay: 0.001
+      coeff_l1_loss: 0.0
+      binarize_dataset: true
+      low_rank_dimension: 1
+
+generate:
+  lm_model: openai/gpt-5.6-luna
+  output_length: 128
+  num_of_examples: 144
+  dataset_category: instruction
+  lm_use_cache: true
+  seed: 42
+
+inference:
+  models: [DiffMean, LinearProbe]
+  model_name: /orcd/pool/008/ychenliu/pythia_std_sft/drills20_forkA_20261114-043802/step_000325
+  steering_model_name: /orcd/pool/008/ychenliu/pythia_std_sft/drills20_forkA_20261114-043802/step_000325
+  use_bf16: true
+  seed: 42
+  lm_model: openai/gpt-5.6-luna
+  latent_num_of_examples: 36
+  latent_batch_size: 16
+  steering_intervention_type: addition
+  steering_datasets: [AlpacaEval]
+  steering_batch_size: 10
+  steering_output_length: 128
+  steering_layer: 25
+  steering_layers: [25]
+  steering_num_of_examples: 10
+  steering_factors: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, 4.0, 5.0, 6.0]
+  temperature: 1.0
+  intervene_on_prompt: true

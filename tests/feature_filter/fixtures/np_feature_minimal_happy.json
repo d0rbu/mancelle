@@ -1,0 +1,21 @@
+{
+  "modelId": "gemma-2-2b",
+  "layer": "8-gemmascope-res-16k",
+  "index": "42",
+  "explanations": [{"description": "German articles"}],
+  "frac_nonzero": 0.001,
+  "maxActApprox": 44.6,
+  "freq_hist_data_bar_heights": [0.9998, 0.00016],
+  "freq_hist_data_bar_values": [0.0, 8.919],
+  "activations": [
+    {
+      "tokens": ["der", " apfel"],
+      "values": [3.5, 0.0],
+      "maxValue": 3.5,
+      "maxValueTokenIndex": 0,
+      "binMin": 0.0,
+      "binMax": 8.919,
+      "binContains": 0.9998
+    }
+  ]
+}

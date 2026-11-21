@@ -1,0 +1,309 @@
+{
+  "reviewed_at": "2026-09-18T17:44:53.170031+00:00",
+  "status": "all_twelve_tasks_and_both_merges_verified",
+  "runtime_commit": "50462075083d793d0e9a406fde7e07d08bb9a50c",
+  "metric_definition": "Unweighted mean of (accuracy - baseline)/(1 - baseline); baseline 1/4 for ARC-Easy, ARC-Challenge, MMLU and zero for other tasks. Raw units; not multiplied by 100.",
+  "models": {
+    "control": {
+      "aggregate_sha256": "508935014fdc5306f67ef65d3186d2c740e8543e7e492d37e604b10fa6c0cefa",
+      "chatcore_metric": 0.1660786331300813,
+      "exact_rational_metric": "1307371/7872000",
+      "ordered_float_calculation_exactly_equal": true,
+      "rational_rounding_error": 0.0,
+      "examples": 2420,
+      "tasks": {
+        "ARC-Easy": {
+          "correct": 113,
+          "total": 500,
+          "accuracy": 0.226,
+          "result_sha256": "1274e09f18ed9fae762fc2ad15a8f4173b397a54e121bc78c5959f46aa051234"
+        },
+        "ARC-Challenge": {
+          "correct": 135,
+          "total": 500,
+          "accuracy": 0.27,
+          "result_sha256": "b63169cef73fea77efca169797538888bd9d7bc4c83f95b7fc1ec676a1060422"
+        },
+        "MMLU": {
+          "correct": 127,
+          "total": 500,
+          "accuracy": 0.254,
+          "result_sha256": "1578e1492cf95b55a9b062b8aae481dd4fee4d5c6a1f6c7a30d3ec048747a543"
+        },
+        "GSM8K": {
+          "correct": 4,
+          "total": 500,
+          "accuracy": 0.008,
+          "result_sha256": "c8a56621f002bdfa9510703b2c113960bdaccb29b8083f11d14db5a9956a0638"
+        },
+        "HumanEval": {
+          "correct": 9,
+          "total": 164,
+          "accuracy": 0.054878048780487805,
+          "result_sha256": "3506597d38b8ccdc9f2bfd522bff471f5f0456e28396f099a84568b8cda6497b"
+        },
+        "SpellingBee": {
+          "correct": 239,
+          "total": 256,
+          "accuracy": 0.93359375,
+          "result_sha256": "45ba4ed303214e76bc760b138bd37e151ddcd4093e4718c20344a88f91d7d58f"
+        }
+      },
+      "run_identity_sha256": "ef89a4f69ede1e1f2aa24867be5ef3d8bb6a071502bc1a7aae329b4e8bf725a2",
+      "checkpoint": {
+        "architecture_sha256": "9e5f6f4e177cd93aa1e07812efbe9b64ee833ed19862ccd224e21ffd008f430d",
+        "metadata_sha256": "f16935eb4c5372bc321d7fb6cc1be736c89f3480445ac037014725ea3d3d2874",
+        "model_sha256": "795a5b32687b0c6badb9b849fcadb9acf3d66eca54265ef24bc68ba3b2493da0",
+        "resolved_tag": "control",
+        "step": 1125
+      },
+      "jobs": [
+        {
+          "JobID": "22957429",
+          "State": "COMPLETED",
+          "ExitCode": "0:0",
+          "Start": "2026-09-18T05:52:11",
+          "End": "2026-09-18T05:57:28",
+          "Elapsed": "00:05:17",
+          "ElapsedRaw": "317",
+          "Restarts": "0",
+          "AllocTRES": "billing=8,cpu=8,gres/gpu:h200=1,gres/gpu=1,mem=128G,node=1"
+        },
+        {
+          "JobID": "22957430",
+          "State": "COMPLETED",
+          "ExitCode": "0:0",
+          "Start": "2026-09-18T05:52:52",
+          "End": "2026-09-18T05:57:26",
+          "Elapsed": "00:04:34",
+          "ElapsedRaw": "274",
+          "Restarts": "0",
+          "AllocTRES": "billing=8,cpu=8,gres/gpu:h200=1,gres/gpu=1,mem=128G,node=1"
+        },
+        {
+          "JobID": "22957431",
+          "State": "COMPLETED",
+          "ExitCode": "0:0",
+          "Start": "2026-09-18T06:05:14",
+          "End": "2026-09-18T06:11:16",
+          "Elapsed": "00:06:02",
+          "ElapsedRaw": "362",
+          "Restarts": "0",
+          "AllocTRES": "billing=8,cpu=8,gres/gpu:h200=1,gres/gpu=1,mem=128G,node=1"
+        },
+        {
+          "JobID": "22958178",
+          "State": "COMPLETED",
+          "ExitCode": "0:0",
+          "Start": "2026-09-18T06:48:46",
+          "End": "2026-09-18T07:49:20",
+          "Elapsed": "01:00:34",
+          "ElapsedRaw": "3634",
+          "Restarts": "0",
+          "AllocTRES": "billing=8,cpu=8,gres/gpu:h200=1,gres/gpu=1,mem=128G,node=1"
+        },
+        {
+          "JobID": "22958180",
+          "State": "COMPLETED",
+          "ExitCode": "0:0",
+          "Start": "2026-09-18T15:08:15",
+          "End": "2026-09-18T15:37:29",
+          "Elapsed": "00:29:14",
+          "ElapsedRaw": "1754",
+          "Restarts": "0",
+          "AllocTRES": "billing=8,cpu=8,gres/gpu:h200=1,gres/gpu=1,mem=128G,node=1"
+        },
+        {
+          "JobID": "22958181",
+          "State": "COMPLETED",
+          "ExitCode": "0:0",
+          "Start": "2026-09-18T15:38:01",
+          "End": "2026-09-18T16:42:05",
+          "Elapsed": "01:04:04",
+          "ElapsedRaw": "3844",
+          "Restarts": "0",
+          "AllocTRES": "billing=8,cpu=8,gres/gpu:h200=1,gres/gpu=1,mem=128G,node=1"
+        }
+      ],
+      "accounting_timezone": "UTC",
+      "allocated_h200_seconds": 10185,
+      "accounting_sha256": "3df55d9d3159bbca17d696edc68887198537be0288871619f0c1053d0bde4596"
+    },
+    "depth2": {
+      "aggregate_sha256": "75b15788b080ae8f8f90c85fcd95cf54c67816be170bc6f152d0a0d89c4e1ced",
+      "chatcore_metric": 0.19975211720867211,
+      "exact_rational_metric": "2358673/11808000",
+      "ordered_float_calculation_exactly_equal": true,
+      "rational_rounding_error": 2.7755575615628914e-17,
+      "examples": 2420,
+      "tasks": {
+        "ARC-Easy": {
+          "correct": 135,
+          "total": 500,
+          "accuracy": 0.27,
+          "result_sha256": "4385a0ca9e860eeb921af3b2315b5c7c777f8a4f6fd624c6b41cdd9c4178aeb3"
+        },
+        "ARC-Challenge": {
+          "correct": 130,
+          "total": 500,
+          "accuracy": 0.26,
+          "result_sha256": "994b1d3f6dba7b17e2e7bd785a49c5c785836fe8872a6f0c2bf821633d3603ff"
+        },
+        "MMLU": {
+          "correct": 141,
+          "total": 500,
+          "accuracy": 0.282,
+          "result_sha256": "c094d2f36b1cc8a15913196237a6067946c187c41827229d85d8228b209fbada"
+        },
+        "GSM8K": {
+          "correct": 10,
+          "total": 500,
+          "accuracy": 0.02,
+          "result_sha256": "b7130705e4713566885d622c788005f87785f3bd5ce9d1a049c45f8a900c727d"
+        },
+        "HumanEval": {
+          "correct": 17,
+          "total": 164,
+          "accuracy": 0.10365853658536585,
+          "result_sha256": "be36fbfde80cd504a155b3ac561147a123ff3e77ea1b2bd153f8b5a3a569649c"
+        },
+        "SpellingBee": {
+          "correct": 254,
+          "total": 256,
+          "accuracy": 0.9921875,
+          "result_sha256": "f59b624c10e30d327262e83669d3a3f87277234de3c68d44190fb873a3438aa6"
+        }
+      },
+      "run_identity_sha256": "208194de5814ad1c060974114ac1a0fc49505376420b6efc72a2430175f74a7e",
+      "checkpoint": {
+        "architecture_sha256": "9e5f6f4e177cd93aa1e07812efbe9b64ee833ed19862ccd224e21ffd008f430d",
+        "metadata_sha256": "783853412eaddb5b0d9762093d423e50ec85ae67ab4e996b13444da27447cf4b",
+        "model_sha256": "d404424912a03b876cc89a318ac994a606c13f4031986b86b6a997ca327e468a",
+        "resolved_tag": "depth2",
+        "step": 1125
+      },
+      "jobs": [
+        {
+          "JobID": "22984388",
+          "State": "COMPLETED",
+          "ExitCode": "0:0",
+          "Start": "2026-09-18T16:29:38",
+          "End": "2026-09-18T17:29:39",
+          "Elapsed": "01:00:01",
+          "ElapsedRaw": "3601",
+          "Restarts": "0",
+          "AllocTRES": "billing=8,cpu=8,gres/gpu:h200=1,gres/gpu=1,mem=128G,node=1",
+          "NodeList": "node3001"
+        },
+        {
+          "JobID": "22984389",
+          "State": "COMPLETED",
+          "ExitCode": "0:0",
+          "Start": "2026-09-18T16:29:38",
+          "End": "2026-09-18T17:40:16",
+          "Elapsed": "01:10:38",
+          "ElapsedRaw": "4238",
+          "Restarts": "0",
+          "AllocTRES": "billing=8,cpu=8,gres/gpu:h200=1,gres/gpu=1,mem=128G,node=1",
+          "NodeList": "node3401-c1"
+        },
+        {
+          "JobID": "22984390",
+          "State": "COMPLETED",
+          "ExitCode": "0:0",
+          "Start": "2026-09-18T16:33:32",
+          "End": "2026-09-18T16:53:29",
+          "Elapsed": "00:19:57",
+          "ElapsedRaw": "1197",
+          "Restarts": "0",
+          "AllocTRES": "billing=8,cpu=8,gres/gpu:h200=1,gres/gpu=1,mem=128G,node=1",
+          "NodeList": "node3001"
+        },
+        {
+          "JobID": "22984391",
+          "State": "COMPLETED",
+          "ExitCode": "0:0",
+          "Start": "2026-09-18T14:20:18",
+          "End": "2026-09-18T14:24:28",
+          "Elapsed": "00:04:10",
+          "ElapsedRaw": "250",
+          "Restarts": "0",
+          "AllocTRES": "billing=8,cpu=8,gres/gpu:h200=1,gres/gpu=1,mem=128G,node=1",
+          "NodeList": "node3200"
+        },
+        {
+          "JobID": "22984392",
+          "State": "COMPLETED",
+          "ExitCode": "0:0",
+          "Start": "2026-09-18T14:21:44",
+          "End": "2026-09-18T14:25:32",
+          "Elapsed": "00:03:48",
+          "ElapsedRaw": "228",
+          "Restarts": "0",
+          "AllocTRES": "billing=8,cpu=8,gres/gpu:h200=1,gres/gpu=1,mem=128G,node=1",
+          "NodeList": "node3200"
+        },
+        {
+          "JobID": "22984393",
+          "State": "COMPLETED",
+          "ExitCode": "0:0",
+          "Start": "2026-09-18T14:24:34",
+          "End": "2026-09-18T14:28:56",
+          "Elapsed": "00:04:22",
+          "ElapsedRaw": "262",
+          "Restarts": "0",
+          "AllocTRES": "billing=8,cpu=8,gres/gpu:h200=1,gres/gpu=1,mem=128G,node=1",
+          "NodeList": "node3200"
+        }
+      ],
+      "accounting_timezone": "UTC",
+      "allocated_h200_seconds": 9776,
+      "accounting_sha256": "5f9bd08a8933ed1ed2f88ac8bdea561ed0adeb7e1991fe724e4b722663348fa7"
+    }
+  },
+  "depth2_minus_control": {
+    "chatcore_metric": 0.033673484078590804,
+    "exact_rational_metric": "795233/23616000",
+    "rational_metric_rounded_to_float": 0.03367348407859078,
+    "tasks": {
+      "ARC-Easy": {
+        "accuracy_delta": 0.044,
+        "exact_accuracy_delta": "11/250",
+        "percentage_point_delta": 4.4
+      },
+      "ARC-Challenge": {
+        "accuracy_delta": -0.01,
+        "exact_accuracy_delta": "-1/100",
+        "percentage_point_delta": -1.0
+      },
+      "MMLU": {
+        "accuracy_delta": 0.028,
+        "exact_accuracy_delta": "7/250",
+        "percentage_point_delta": 2.8
+      },
+      "GSM8K": {
+        "accuracy_delta": 0.012,
+        "exact_accuracy_delta": "3/250",
+        "percentage_point_delta": 1.2
+      },
+      "HumanEval": {
+        "accuracy_delta": 0.04878048780487805,
+        "exact_accuracy_delta": "2/41",
+        "percentage_point_delta": 4.878048780487805
+      },
+      "SpellingBee": {
+        "accuracy_delta": 0.05859375,
+        "exact_accuracy_delta": "15/256",
+        "percentage_point_delta": 5.859375
+      }
+    }
+  },
+  "independent_cross_model_review_sha256": "46e57823181a74afa52849bd6580b076bf250cf85ac15819d368661ec8e49a2e",
+  "runtime_and_hardware": "Exact 227 package versions, BF16 no-autocast protocol, NVIDIA H200, driver590.48.01,143771MiB; all startup and completion receipts passed.",
+  "limits": [
+    "One fixed seed; no variance or significance estimate.",
+    "Historical training code/runtime and resumed feature-selection RNG differ; not a causal depth-only comparison.",
+    "No peak GPU memory measurement.",
+    "Steering evaluation and GRPO campaign deferred."
+  ]
+}

@@ -1,0 +1,38 @@
+# configs/eval/feature_filter/feature_filter.yaml
+defaults:
+  - _self_
+  - judge: openai_gpt5_nano
+
+model_id: ???
+sae_source: ???
+tokenizer_id: ???
+
+feature_ids: null
+n_sae_features: 16384
+samples_per_bin: 3
+
+interp_min_score: 1
+consistency_min_score: 3
+
+max_concurrent_fetches: 14
+max_concurrent_judges: 8
+max_judge_calls: null
+error_abort_fraction: 0.5
+shutdown_grace_seconds: 30.0
+hist_sum_tolerance: 1.0e-3
+
+output_dir: ./out/feature_filter/${model_id}/${sae_source}
+neuronpedia_cache_dir: ${output_dir}/np_cache
+judge_cache_path: ${output_dir}/judge_cache.sqlite
+features_output_path: ${output_dir}/feature_scores.jsonl
+accepted_features_path: ${output_dir}/accepted_feature_ids.txt
+report_output_path: ${output_dir}/filter_report.json
+runner_manifest_path: ${output_dir}/runner_manifest.json
+lockfile_path: ${output_dir}/.lockfile
+
+neuronpedia:
+  timeout_seconds: 30
+  max_retries: 5
+  backoff_base_seconds: 1.0
+  backoff_max_seconds: 60.0
+  max_concurrent: 14

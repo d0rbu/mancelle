@@ -1,0 +1,1709 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "case_00",
+      "source_tokens": [
+        0,
+        0,
+        67
+      ],
+      "attacked_tokens": [
+        0,
+        0,
+        103
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            0,
+            1000
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 11
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          11
+        ]
+      ]
+    },
+    {
+      "id": "case_01",
+      "source_tokens": [
+        0,
+        67,
+        0,
+        69
+      ],
+      "attacked_tokens": [
+        0,
+        101,
+        0,
+        107
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            10,
+            1010
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 6
+        },
+        {
+          "feature_ids": [
+            11,
+            1011
+          ],
+          "buckets": [
+            2,
+            3
+          ],
+          "char_start": 6,
+          "char_end": 12
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          6
+        ],
+        [
+          6,
+          12
+        ]
+      ]
+    },
+    {
+      "id": "case_02",
+      "source_tokens": [
+        0,
+        68,
+        69,
+        0,
+        71
+      ],
+      "attacked_tokens": [
+        0,
+        102,
+        105,
+        0,
+        111
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            20,
+            1020
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 5
+        },
+        {
+          "feature_ids": [
+            21,
+            1021
+          ],
+          "buckets": [
+            2,
+            3
+          ],
+          "char_start": 5,
+          "char_end": 7
+        },
+        {
+          "feature_ids": [
+            22,
+            1022
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 7,
+          "char_end": 13
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          5
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          7,
+          13
+        ]
+      ]
+    },
+    {
+      "id": "case_03",
+      "source_tokens": [
+        0,
+        69,
+        70,
+        71,
+        0,
+        73
+      ],
+      "attacked_tokens": [
+        0,
+        103,
+        106,
+        109,
+        0,
+        115
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            30,
+            1030
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 14
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          14
+        ]
+      ]
+    },
+    {
+      "id": "case_04",
+      "source_tokens": [
+        0,
+        70,
+        71,
+        72,
+        73,
+        0,
+        75
+      ],
+      "attacked_tokens": [
+        0,
+        104,
+        107,
+        110,
+        113,
+        0,
+        119
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            40,
+            1040
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 7
+        },
+        {
+          "feature_ids": [
+            41,
+            1041
+          ],
+          "buckets": [
+            2,
+            3
+          ],
+          "char_start": 7,
+          "char_end": 15
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          7
+        ],
+        [
+          7,
+          15
+        ]
+      ]
+    },
+    {
+      "id": "case_05",
+      "source_tokens": [
+        0,
+        71,
+        72,
+        73,
+        74,
+        75,
+        0,
+        77
+      ],
+      "attacked_tokens": [
+        0,
+        105,
+        108,
+        111,
+        114,
+        117,
+        0,
+        97
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            50,
+            1050
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 6
+        },
+        {
+          "feature_ids": [
+            51,
+            1051
+          ],
+          "buckets": [
+            2,
+            3
+          ],
+          "char_start": 6,
+          "char_end": 9
+        },
+        {
+          "feature_ids": [
+            52,
+            1052
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 9,
+          "char_end": 16
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          6
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          9,
+          16
+        ]
+      ]
+    },
+    {
+      "id": "case_06",
+      "source_tokens": [
+        0,
+        0,
+        73
+      ],
+      "attacked_tokens": [
+        0,
+        0,
+        109
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            60,
+            1060
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 11
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          11
+        ]
+      ]
+    },
+    {
+      "id": "case_07",
+      "source_tokens": [
+        0,
+        73,
+        0,
+        75
+      ],
+      "attacked_tokens": [
+        0,
+        107,
+        0,
+        113
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            70,
+            1070
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 6
+        },
+        {
+          "feature_ids": [
+            71,
+            1071
+          ],
+          "buckets": [
+            2,
+            3
+          ],
+          "char_start": 6,
+          "char_end": 12
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          6
+        ],
+        [
+          6,
+          12
+        ]
+      ]
+    },
+    {
+      "id": "case_08",
+      "source_tokens": [
+        0,
+        0,
+        75,
+        76,
+        77
+      ],
+      "attacked_tokens": [
+        0,
+        0,
+        111,
+        114,
+        117
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            80,
+            1080
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 5
+        },
+        {
+          "feature_ids": [
+            81,
+            1081
+          ],
+          "buckets": [
+            2,
+            3
+          ],
+          "char_start": 5,
+          "char_end": 11
+        },
+        {
+          "feature_ids": [
+            82,
+            1082
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 11,
+          "char_end": 13
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          5
+        ],
+        [
+          5,
+          11
+        ],
+        [
+          11,
+          13
+        ]
+      ]
+    },
+    {
+      "id": "case_09",
+      "source_tokens": [
+        0,
+        75,
+        76,
+        77,
+        78,
+        0
+      ],
+      "attacked_tokens": [
+        0,
+        109,
+        112,
+        115,
+        118,
+        0
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            90,
+            1090
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 14
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          14
+        ]
+      ]
+    },
+    {
+      "id": "case_10",
+      "source_tokens": [
+        0,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81
+      ],
+      "attacked_tokens": [
+        0,
+        110,
+        113,
+        116,
+        119,
+        122,
+        99
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            100,
+            1100
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 7
+        },
+        {
+          "feature_ids": [
+            101,
+            1101
+          ],
+          "buckets": [
+            2,
+            3
+          ],
+          "char_start": 7,
+          "char_end": 11
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          7
+        ],
+        [
+          7,
+          11
+        ]
+      ]
+    },
+    {
+      "id": "case_11",
+      "source_tokens": [
+        0,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83
+      ],
+      "attacked_tokens": [
+        0,
+        111,
+        114,
+        117,
+        120,
+        97,
+        100,
+        103
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            110,
+            1110
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 6
+        },
+        {
+          "feature_ids": [
+            111,
+            1111
+          ],
+          "buckets": [
+            2,
+            3
+          ],
+          "char_start": 6,
+          "char_end": 9
+        },
+        {
+          "feature_ids": [
+            112,
+            1112
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 9,
+          "char_end": 12
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          6
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          9,
+          12
+        ]
+      ]
+    },
+    {
+      "id": "case_12",
+      "source_tokens": [
+        0,
+        78,
+        79
+      ],
+      "attacked_tokens": [
+        0,
+        112,
+        115
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            120,
+            1120
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 7
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          7
+        ]
+      ]
+    },
+    {
+      "id": "case_13",
+      "source_tokens": [
+        0,
+        79,
+        80,
+        81
+      ],
+      "attacked_tokens": [
+        0,
+        113,
+        116,
+        119
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            130,
+            1130
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 6
+        },
+        {
+          "feature_ids": [
+            131,
+            1131
+          ],
+          "buckets": [
+            2,
+            3
+          ],
+          "char_start": 6,
+          "char_end": 8
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          6
+        ],
+        [
+          6,
+          8
+        ]
+      ]
+    },
+    {
+      "id": "case_14",
+      "source_tokens": [
+        0,
+        80,
+        81,
+        82,
+        83
+      ],
+      "attacked_tokens": [
+        0,
+        114,
+        117,
+        120,
+        97
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            140,
+            1140
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 5
+        },
+        {
+          "feature_ids": [
+            141,
+            1141
+          ],
+          "buckets": [
+            2,
+            3
+          ],
+          "char_start": 5,
+          "char_end": 7
+        },
+        {
+          "feature_ids": [
+            142,
+            1142
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 7,
+          "char_end": 9
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          5
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          7,
+          9
+        ]
+      ]
+    },
+    {
+      "id": "case_15",
+      "source_tokens": [
+        0,
+        81,
+        82,
+        83,
+        84,
+        85
+      ],
+      "attacked_tokens": [
+        0,
+        115,
+        118,
+        121,
+        98,
+        101
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            150,
+            1150
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 10
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          10
+        ]
+      ]
+    },
+    {
+      "id": "case_16",
+      "source_tokens": [
+        0,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87
+      ],
+      "attacked_tokens": [
+        0,
+        116,
+        119,
+        122,
+        99,
+        102,
+        105
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            160,
+            1160
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 7
+        },
+        {
+          "feature_ids": [
+            161,
+            1161
+          ],
+          "buckets": [
+            2,
+            3
+          ],
+          "char_start": 7,
+          "char_end": 11
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          7
+        ],
+        [
+          7,
+          11
+        ]
+      ]
+    },
+    {
+      "id": "case_17",
+      "source_tokens": [
+        0,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "attacked_tokens": [
+        0,
+        117,
+        120,
+        97,
+        100,
+        103,
+        106,
+        109
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            170,
+            1170
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 6
+        },
+        {
+          "feature_ids": [
+            171,
+            1171
+          ],
+          "buckets": [
+            2,
+            3
+          ],
+          "char_start": 6,
+          "char_end": 9
+        },
+        {
+          "feature_ids": [
+            172,
+            1172
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 9,
+          "char_end": 12
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          6
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          9,
+          12
+        ]
+      ]
+    },
+    {
+      "id": "case_18",
+      "source_tokens": [
+        0,
+        84,
+        85
+      ],
+      "attacked_tokens": [
+        0,
+        118,
+        121
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            180,
+            1180
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 7
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          7
+        ]
+      ]
+    },
+    {
+      "id": "case_19",
+      "source_tokens": [
+        0,
+        85,
+        86,
+        87
+      ],
+      "attacked_tokens": [
+        0,
+        119,
+        122,
+        99
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            190,
+            1190
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 6
+        },
+        {
+          "feature_ids": [
+            191,
+            1191
+          ],
+          "buckets": [
+            2,
+            3
+          ],
+          "char_start": 6,
+          "char_end": 8
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          6
+        ],
+        [
+          6,
+          8
+        ]
+      ]
+    },
+    {
+      "id": "case_20",
+      "source_tokens": [
+        0,
+        86,
+        87,
+        88,
+        89
+      ],
+      "attacked_tokens": [
+        0,
+        120,
+        97,
+        100,
+        103
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            200,
+            1200
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 5
+        },
+        {
+          "feature_ids": [
+            201,
+            1201
+          ],
+          "buckets": [
+            2,
+            3
+          ],
+          "char_start": 5,
+          "char_end": 7
+        },
+        {
+          "feature_ids": [
+            202,
+            1202
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 7,
+          "char_end": 9
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          5
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          7,
+          9
+        ]
+      ]
+    },
+    {
+      "id": "case_21",
+      "source_tokens": [
+        0,
+        87,
+        88,
+        89,
+        90,
+        65
+      ],
+      "attacked_tokens": [
+        0,
+        121,
+        98,
+        101,
+        104,
+        107
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            210,
+            1210
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 10
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          10
+        ]
+      ]
+    },
+    {
+      "id": "case_22",
+      "source_tokens": [
+        0,
+        88,
+        89,
+        90,
+        65,
+        66,
+        67
+      ],
+      "attacked_tokens": [
+        0,
+        122,
+        99,
+        102,
+        105,
+        108,
+        111
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            220,
+            1220
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 7
+        },
+        {
+          "feature_ids": [
+            221,
+            1221
+          ],
+          "buckets": [
+            2,
+            3
+          ],
+          "char_start": 7,
+          "char_end": 11
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          7
+        ],
+        [
+          7,
+          11
+        ]
+      ]
+    },
+    {
+      "id": "case_23",
+      "source_tokens": [
+        0,
+        89,
+        90,
+        65,
+        66,
+        67,
+        68,
+        69
+      ],
+      "attacked_tokens": [
+        0,
+        97,
+        100,
+        103,
+        106,
+        109,
+        112,
+        115
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            230,
+            1230
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 6
+        },
+        {
+          "feature_ids": [
+            231,
+            1231
+          ],
+          "buckets": [
+            2,
+            3
+          ],
+          "char_start": 6,
+          "char_end": 9
+        },
+        {
+          "feature_ids": [
+            232,
+            1232
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 9,
+          "char_end": 12
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          6
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          9,
+          12
+        ]
+      ]
+    },
+    {
+      "id": "case_24",
+      "source_tokens": [
+        0,
+        90,
+        65
+      ],
+      "attacked_tokens": [
+        0,
+        98,
+        101
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            240,
+            1240
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 7
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          7
+        ]
+      ]
+    },
+    {
+      "id": "case_25",
+      "source_tokens": [
+        0,
+        65,
+        66,
+        67
+      ],
+      "attacked_tokens": [
+        0,
+        99,
+        102,
+        105
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            250,
+            1250
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 6
+        },
+        {
+          "feature_ids": [
+            251,
+            1251
+          ],
+          "buckets": [
+            2,
+            3
+          ],
+          "char_start": 6,
+          "char_end": 8
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          6
+        ],
+        [
+          6,
+          8
+        ]
+      ]
+    },
+    {
+      "id": "case_26",
+      "source_tokens": [
+        0,
+        66,
+        67,
+        68,
+        69
+      ],
+      "attacked_tokens": [
+        0,
+        100,
+        103,
+        106,
+        109
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            260,
+            1260
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 5
+        },
+        {
+          "feature_ids": [
+            261,
+            1261
+          ],
+          "buckets": [
+            2,
+            3
+          ],
+          "char_start": 5,
+          "char_end": 7
+        },
+        {
+          "feature_ids": [
+            262,
+            1262
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 7,
+          "char_end": 9
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          5
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          7,
+          9
+        ]
+      ]
+    },
+    {
+      "id": "case_27",
+      "source_tokens": [
+        0,
+        67,
+        68,
+        69,
+        70,
+        71
+      ],
+      "attacked_tokens": [
+        0,
+        101,
+        104,
+        107,
+        110,
+        113
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            270,
+            1270
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 10
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          10
+        ]
+      ]
+    },
+    {
+      "id": "case_28",
+      "source_tokens": [
+        0,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73
+      ],
+      "attacked_tokens": [
+        0,
+        102,
+        105,
+        108,
+        111,
+        114,
+        117
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            280,
+            1280
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 7
+        },
+        {
+          "feature_ids": [
+            281,
+            1281
+          ],
+          "buckets": [
+            2,
+            3
+          ],
+          "char_start": 7,
+          "char_end": 11
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          7
+        ],
+        [
+          7,
+          11
+        ]
+      ]
+    },
+    {
+      "id": "case_29",
+      "source_tokens": [
+        0,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75
+      ],
+      "attacked_tokens": [
+        0,
+        103,
+        106,
+        109,
+        112,
+        115,
+        118,
+        121
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            290,
+            1290
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 6
+        },
+        {
+          "feature_ids": [
+            291,
+            1291
+          ],
+          "buckets": [
+            2,
+            3
+          ],
+          "char_start": 6,
+          "char_end": 9
+        },
+        {
+          "feature_ids": [
+            292,
+            1292
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 9,
+          "char_end": 12
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          6
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          9,
+          12
+        ]
+      ]
+    },
+    {
+      "id": "case_30",
+      "source_tokens": [
+        0,
+        70,
+        71
+      ],
+      "attacked_tokens": [
+        0,
+        104,
+        107
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            300,
+            1300
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 7
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          7
+        ]
+      ]
+    },
+    {
+      "id": "case_31",
+      "source_tokens": [
+        0,
+        71,
+        72,
+        73
+      ],
+      "attacked_tokens": [
+        0,
+        105,
+        108,
+        111
+      ],
+      "source_segments": [
+        {
+          "feature_ids": [
+            310,
+            1310
+          ],
+          "buckets": [
+            1,
+            2
+          ],
+          "char_start": 0,
+          "char_end": 6
+        },
+        {
+          "feature_ids": [
+            311,
+            1311
+          ],
+          "buckets": [
+            2,
+            3
+          ],
+          "char_start": 6,
+          "char_end": 8
+        }
+      ],
+      "expected_projected_spans": [
+        [
+          0,
+          6
+        ],
+        [
+          6,
+          8
+        ]
+      ]
+    }
+  ]
+}

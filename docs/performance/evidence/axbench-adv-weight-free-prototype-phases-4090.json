@@ -1,0 +1,6 @@
+{
+  "get_pretrained_model_config": 0.00036359578371047974,
+  "resolve_tokenizer": 3.2700200229883194,
+  "SAE.from_pretrained": 0.8176286295056343,
+  "build_nnterp_model": 7.549402493983507
+}

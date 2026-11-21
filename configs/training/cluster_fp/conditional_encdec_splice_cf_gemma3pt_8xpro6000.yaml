@@ -1,0 +1,171 @@
+# @package _global_
+# Opt-in cluster-aware compact feature-prediction run. Requires the merged
+# compact feature-prediction implementation from PR #772.
+#
+# This artifact-dependent config intentionally lives in the `cluster_fp` config
+# group rather than the shipped flat training-config matrix. It consumes
+# precomputed, cluster-aware selection/packed-row artifacts and requires each
+# packed-row family to carry the fp_target_source_integrity certificate.
+#
+# Before launch, certify the train and validation packed-row families with:
+#   uv run python -m scripts.preprocess.validate_fp_target_source \
+#     packed_row_dir=<packed-row-family> n_sae_features=65536
+#
+# The feature-cluster report is not the trainer input. The schema-v1 adapter below
+# is the strict, lossless consumer artifact produced during pipeline preparation.
+
+defaults:
+  - /conditional_encdec_splice_cf_gemma3pt_8xpro6000@_global_
+  - _self_
+
+run: splice_cf_gemma3pt_8xpro6000_cluster_fp
+
+# Pin the intended global token batch. At 8 ranks this gives
+# grad_accum_steps=2 with the inherited device_batch_size=32 and c1024 rows.
+total_batch_size: 524288
+
+# Match the requested full-width encoder, decoder attention geometry, and zero
+# global weight decay. Cross-attention derives its heads directly from the
+# decoder; the encoder needs its own head_dim pin to avoid inheriting 64.
+weight_decay: 0.0
+encoder:
+  n_embd: 1.0
+  depth: 1.0
+  n_head: null
+  n_kv_head: null
+  head_dim: 128
+cross_attention:
+  frequency: 1
+  n_head: null
+  n_kv_head: null
+
+# The explicit whitelist is authoritative; disable the frequency-band producer so
+# this run cannot silently resolve a different mask from feature statistics.
+feature_mask_freq_min: null
+feature_mask_freq_max: null
+feature_mask:
+  mode: whitelist
+  path: out/autointerp_filter/gemma3_4bpt_l22_f65k_ci_nobos_freqmask_n40x40_root_20260710_145543/manual_feature_filter_with_descriptions.yaml
+
+feature_clusters:
+  path: out/artifacts/feature_clusters_two_stage_schema_v1.yaml
+
+# Cluster-aware SAE initialization from PRs #769/#772. SVD uses the effective
+# clustered dictionary; mean replaces each retained representative with the
+# fp32 mean of its mask-surviving cluster members before the SVD basis is formed.
+initialize_encoder_embeddings_from_sae: svd
+initialize_encoder_embeddings_cluster_vectors: mean
+
+# Clustered FP is a precomputed-only training surface.
+use_precomputed_batches: true
+
+# Final feature sampling contract.
+feature_selection:
+  distribution: geometric
+  mean: 12.0
+  std: 12.0
+  min_k: 1
+  # max_k is exclusive: 49 permits the requested effective maximum of 48.
+  max_k: 49
+  mode: top_k_percentile
+  delta_weights: percentile_delta
+
+negative_selection:
+  distribution: geometric
+  mean: 12.0
+  min_k: 0
+  max_k: 49
+
+# PR #772 compactly sizes this head to V_effective and builds its targets from
+# certified raw packed CSR rows. Max-pool is inference-compatible and matches
+# the requested feature-prediction behavior.
+feature_prediction:
+  block: mlp
+  head_layers: 0
+  weight: 0.1
+  layer: -1
+  loss_mode: max_pool
+  loss_fn: bce
+
+# Cluster-aware cached CORE/sample evaluation. Build and validate this cache
+# before launch with scripts.eval.build_eval_context_cache; the trainer derives
+# the final c1024/<hash>/ leaf from this identity contract.
+core_metric_every: 2000
+sample_every: 2000
+conditioning:
+  context_cache_dir: out/data/eval_context_features/gemma3_4bpt_l22_clustered
+  n_sae_features: 65536
+  num_buckets: 2
+  # D-seed (PR #739 Track D): clustered eval-context-cache identity is now
+  # pinned to the real training-preselection seed (steering/eval/
+  # cache_identity.py's clustered branch) rather than a legacy hardcoded
+  # seed=0. Set to this run's actual seed (conditional_encdec_train.yaml's
+  # top-level `seed: 42`, inherited unmodified through this config's
+  # defaults chain -- verified via `cfg.seed` on the composed config) so
+  # eval-cache identity matches the seed training's own packed-row
+  # selection already uses. Required (no silent default); omitting it
+  # raises before any cache I/O.
+  seed: 42
+  feature_selection:
+    distribution: geometric
+    mean: 12.0
+    std: 12.0
+    min_k: 1
+    max_k: 49
+    mode: top_k_percentile
+  negative_selection:
+    distribution: geometric
+    mean: 12.0
+    min_k: 0
+    max_k: 49
+  feature_mask:
+    mode: whitelist
+    path: out/autointerp_filter/gemma3_4bpt_l22_f65k_ci_nobos_freqmask_n40x40_root_20260710_145543/manual_feature_filter_with_descriptions.yaml
+  feature_clusters:
+    path: out/artifacts/feature_clusters_two_stage_schema_v1.yaml
+  feature_delta: null
+  # SHA-256 of the current canonical l22 base statistics artifact. This and
+  # the derived canonical selection hash name the rebuilt c1024 cache below.
+  stats_source_sha256: dadf6d4f8d3b56ba1b40e0f49f4bb92bfb635c64f78a530f04f624b1d5773b5d
+  identity:
+    model_id: gemma-3-4b-pt
+    sae_id: layer_22_width_65k_l0_medium
+    layer: 22
+    pooling: max_pool
+    # Canonical hash for the resolved policy above: positive geometric
+    # (mean/std=12, min_k=1, max_k=49), negative geometric
+    # (mean=12, min_k=0, max_k=49), plus this exact whitelist/cluster pair,
+    # pinned to conditioning.seed above.
+    # D-seed (PR #739 Track D, 2026-07-24) migration: clustered
+    # eval-context-cache identity is now computed from the checkpoint's
+    # REAL training-preselection seed (conditioning.seed=42) with
+    # delta_config=None (statistics identity is independently pinned by
+    # the clustered feature contract + cache manifest, not folded into
+    # this hash) AND delta_weights explicitly retained as null (matching
+    # the packed-row producer's own delta-free payload convention --
+    # scripts/train/conditional_encdec_train.py's discover_packed_
+    # selection, the splice_cf original/base-validation
+    # base_val_feature_selection_raw branch), replacing the legacy
+    # hardcoded seed=0 formula. This value is IDENTICAL to the real
+    # packed-row "original/base validation" selection hash for this exact
+    # policy (test_issue768_production_artifacts.py's
+    # _BASE_SELECTION_HASH) -- the intended unification: the same
+    # delta-free selection/mask/cluster/seed inputs now produce the same
+    # identity regardless of consumer (eval-context cache vs packed-row
+    # validation selection), even though they live under different
+    # directory trees (c1024/<hash>/ vs sel/<hash>/). Migration history:
+    # legacy (seed=0) was
+    # 63aeb505576814764888abb660e9e9154c19bb399541a59bf3f50fc697bcea0f;
+    # a first real-seed attempt that incorrectly DROPPED delta_weights
+    # instead of retaining it as null was briefly
+    # 9b2085a6f814a6a63128ea186cfaa83a1369c6658a1bcdced1f5c97143d6434f
+    # (Codex cross-review Finding 1, HIGH: that value did not match the
+    # packed-row identity and was never a valid target). Any cache built
+    # against either superseded hash is unreachable by this config
+    # post-fix (accepted clean break; ~0 production clustered caches
+    # existed at migration time).
+    feature_selection_hash: 6be4095ad0116d3e1b7ca93a2fe0a47439eaba770c6d0ef08ab164a0652a19bc
+
+# Clustered steering consumes the exact delta-aware derived validation
+# preselection and joins it through packed provenance at startup.
+steering_eval_every: 250

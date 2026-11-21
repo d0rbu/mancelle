@@ -1,0 +1,68 @@
+{
+  "device": "NVIDIA GeForce RTX 4090",
+  "concept_id": 36,
+  "fit_concept_ids": [
+    36,
+    37
+  ],
+  "input_count": 10,
+  "source_seconds": 14.727792147547007,
+  "rows": [
+    {
+      "scope": "full",
+      "startup_seconds": 117.45085833594203,
+      "cell_seconds": 13.880338363349438,
+      "exact_direction": true,
+      "exact_raw_evaluations": true,
+      "prompt_rng_after_startup_sha256": "bb62187c4aefa7bb1da68dc97de574980079fa94e9509c1a0a1d18361cf35989",
+      "generation_sha256": "58518c22b777cfaf293e8b68d511ef25590fdd13ea10e56433dd6516433914ee",
+      "judge_calls": 20,
+      "peak_provider_concurrency": 2,
+      "paid_misses": 20,
+      "peak_cuda_allocated_bytes": 11418351104,
+      "peak_host_rss_kib": 68143476
+    },
+    {
+      "scope": "selected",
+      "startup_seconds": 40.54170762374997,
+      "cell_seconds": 6.486396286636591,
+      "exact_direction": true,
+      "exact_raw_evaluations": true,
+      "prompt_rng_after_startup_sha256": "bb62187c4aefa7bb1da68dc97de574980079fa94e9509c1a0a1d18361cf35989",
+      "generation_sha256": "58518c22b777cfaf293e8b68d511ef25590fdd13ea10e56433dd6516433914ee",
+      "judge_calls": 20,
+      "peak_provider_concurrency": 2,
+      "paid_misses": 20,
+      "peak_cuda_allocated_bytes": 11418062336,
+      "peak_host_rss_kib": 76642828
+    },
+    {
+      "scope": "selected",
+      "startup_seconds": 41.11649871990085,
+      "cell_seconds": 6.7446716241538525,
+      "exact_direction": true,
+      "exact_raw_evaluations": true,
+      "prompt_rng_after_startup_sha256": "bb62187c4aefa7bb1da68dc97de574980079fa94e9509c1a0a1d18361cf35989",
+      "generation_sha256": "58518c22b777cfaf293e8b68d511ef25590fdd13ea10e56433dd6516433914ee",
+      "judge_calls": 20,
+      "peak_provider_concurrency": 2,
+      "paid_misses": 20,
+      "peak_cuda_allocated_bytes": 11418062336,
+      "peak_host_rss_kib": 76642828
+    },
+    {
+      "scope": "full",
+      "startup_seconds": 118.56229327246547,
+      "cell_seconds": 6.590921860188246,
+      "exact_direction": true,
+      "exact_raw_evaluations": true,
+      "prompt_rng_after_startup_sha256": "bb62187c4aefa7bb1da68dc97de574980079fa94e9509c1a0a1d18361cf35989",
+      "generation_sha256": "58518c22b777cfaf293e8b68d511ef25590fdd13ea10e56433dd6516433914ee",
+      "judge_calls": 20,
+      "peak_provider_concurrency": 2,
+      "paid_misses": 20,
+      "peak_cuda_allocated_bytes": 11418062336,
+      "peak_host_rss_kib": 76642828
+    }
+  ]
+}

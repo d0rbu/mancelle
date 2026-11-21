@@ -1,0 +1,34 @@
+# Feature shard validation config
+# Usage:
+#   uv run python -m steering.validate_features feature_dir=out/data/features/s128/l8/...
+#   uv run python -m steering.validate_features feature_dir=... parquet_dir=data/...
+#   uv run python -m steering.validate_features feature_dir=... parquet_dir=... n_spot_check=10
+
+defaults:
+  - _self_
+
+feature_dir: ???              # Required: path to feature directory
+parquet_dir: null             # Optional: source parquet directory for cross-referencing
+n_sae_features: null          # Optional: if set, verifies all feature IDs < n_sae_features
+resolve_parquet_default: false  # if true AND parquet_dir is null, resolve to the
+                                # nanochat default base_data dir (the same parquet
+                                # dir extraction uses) and run full source validation
+model: null                  # Model name (for tokenizer + GPU validation)
+n_spot_check: 5              # 0=CPU-only, 1=first doc, 2=first+last, 3+=length-biased
+sae_release: null             # SAE release string (required for GPU spot-checks)
+sae_id: null                  # SAE id string (required for GPU spot-checks)
+model_dtype: bfloat16         # Model dtype for GPU spot-checks (bfloat16 matches extraction default)
+backend: null                 # null: use shard extraction_backend; all-legacy falls back to auto
+                              # with a warning. Mixed known/unknown requires an explicit backend
+                              # for spot-checks. Explicit auto|nnterp|transformerlens overrides
+                              # provenance with a mismatch warning (auto = nnterp, CUDA required).
+                              # native replay remains unsupported; n_spot_check=0 ignores this key.
+feature_count_rtol: 0.01     # Max relative feature count difference per segment (1%)
+jaccard_threshold: 0.99      # Min Jaccard similarity of feature ID sets per segment (99%)
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

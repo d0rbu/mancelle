@@ -1,0 +1,28 @@
+# 4090 (24GB) overrides for encoder-decoder sweep
+# Usage: python -m scripts.train.run_encdec_sweep_fast --all
+#        (set config_name=conditional_encdec_sweep_4090 in sweep runner)
+
+defaults:
+  - conditional_encdec_sweep
+  - _self_
+
+# depth=12 fits at B=2 on 24GB VRAM
+depth: 12
+
+# FP8 not well-supported on Ada Lovelace (4090) for training
+fp8: false
+
+# torch.compile with dynamic shapes (variable encoder dims)
+compile: true
+
+# B=4 fits depth=12 on 24GB (~12GB used, ~13GB headroom)
+device_batch_size: 4
+
+# Use all available extracted shards (null = no limit)
+max_train_shards: null
+
+# Precomputed packed rows ready (s50, 47 shards)
+use_precomputed_batches: true
+
+# Probe model (gemma-2-2b ~10GB) loaded on CPU, moved to GPU only during eval
+offload_steering_eval_feature_model: true

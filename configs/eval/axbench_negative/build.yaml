@@ -1,0 +1,94 @@
+defaults:
+  - _self_
+
+source_path: ???
+source_sha256: ???
+source_manifest_path: null
+metadata_path: ???
+metadata_sha256: ???
+concept_ids: [0]
+render_tokenizer_path: ???
+render_tokenizer_sha256: null
+reserved_extraction_tokens: 512
+output_root: out/axbench-negative/source
+response_cache: out/axbench-negative/responses.sqlite
+
+# Full prompt plus budget must fit every target before neutral sampling.
+target_admission:
+  - family: native
+    meta_path: ???
+    feature_statistics_path: null
+    pretrain_meta_path: null
+    tokenizer_path: ${render_tokenizer_path}
+    max_new_tokens: 256
+    expected_meta_sha256: null
+    expected_model_sha256: null
+    expected_tokenizer_sha256: ${render_tokenizer_sha256}
+  - family: encdec
+    meta_path: ???
+    feature_statistics_path: ???
+    pretrain_meta_path: null
+    tokenizer_path: ${render_tokenizer_path}
+    max_new_tokens: 256
+    expected_meta_sha256: null
+    expected_model_sha256: null
+    expected_tokenizer_sha256: ${render_tokenizer_sha256}
+
+# Matches the canonical prepared AxBench concept metadata's Neuronpedia SAE.
+extractor:
+  model: gemma-2-2b
+  sae_release: gemmascope
+  sae_width: 16k
+  sae_l0: null
+  layer: 20
+  activation_type: residual
+  device: cuda
+  batch_size: 1
+  context_limit: 2048
+  expected_model_sha256: null
+  expected_sae_sha256: null
+  expected_extraction_tokenizer_sha256: null
+  expected_render_tokenizer_sha256: null
+
+producer:
+  n_verification_seeds: 5
+  min_consistency_passes: 3
+  max_concurrent: 8
+  avoid_max_attempts: 3
+  max_candidates_per_feature: 30
+
+neutral:
+  provider: openai
+  model: ???
+  temperature: 1.0
+  top_p: 1.0
+  max_tokens: 512
+  seed: null
+  requests_per_minute: 60
+  max_retries: 3
+  transport_retry_budget_seconds: 0.0
+avoiding:
+  provider: ${neutral.provider}
+  model: ${neutral.model}
+  temperature: 0.7
+  top_p: 1.0
+  max_tokens: 512
+  seed: null
+  requests_per_minute: 60
+  max_retries: 3
+  transport_retry_budget_seconds: 0.0
+quality:
+  provider: openai
+  model: ???
+  temperature: 0.0
+  top_p: 1.0
+  max_tokens: 512
+  seed: null
+  requests_per_minute: 60
+  max_retries: 3
+  transport_retry_budget_seconds: 0.0
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null

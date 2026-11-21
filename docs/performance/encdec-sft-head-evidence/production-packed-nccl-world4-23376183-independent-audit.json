@@ -1,0 +1,268 @@
+{
+  "schema": "production_world4_nccl_independent_receipt_audit_v1",
+  "status": "passed_scoped_optimizer_fixture_audit",
+  "pass": true,
+  "reviewed_utc": "2026-09-21T17:14:15.596601+00:00",
+  "job": 23376183,
+  "accounting": {
+    "scheduler_state": "COMPLETED",
+    "exit_code": "0:0",
+    "elapsed": "00:00:47",
+    "start_cluster_local": "2026-09-21T06:51:58-04:00",
+    "end_cluster_local": "2026-09-21T06:52:45-04:00",
+    "node": "node3401-c1"
+  },
+  "evidence": {
+    "result_directory": "production-packed-nccl-world4-23376183",
+    "remote_inventory_file": "verification-jobs-23380833-23376183-remote-before.json",
+    "remote_before_after_inventory_sha256": "bae8306f12ca88112036b50318c41e59688511893c649e0eee79bae01f43226e",
+    "transfer_receipt": "verification-jobs-23380833-23376183-terminal-transfer.json",
+    "transfer_receipt_sha256": "c4e13ef69e25746aa8e8e5739c7117b062caf034d661f08e99fdb1db4d9b1baf",
+    "closed_tree_files_independently_sha_and_size_verified": 46,
+    "adjacent_batch_log_sha256": "ac407fb21c1078da25c005a2395d096d1780cc0496364b062c7ba35d036fb2b4",
+    "parity_sha256": "703c30079759ddcb81d4bb746e5d578a1a8f5db8abbca393aca1304bf68e4c80",
+    "rank_receipts_sha256": {
+      "parity.ranks/world-4/rank-0.json": "b69e679a52927c3ff5f63a18783d3bb797fe8347cd92fd3d53159458f0873b0c",
+      "parity.ranks/world-4/rank-1.json": "8e9f2715c1564788e5c957ebe644170a581acdaf9e28cd9fe7b9f788d63fa899",
+      "parity.ranks/world-4/rank-2.json": "9bb0b507f23b30f8d53df20e78185f0b3b624bb2993f81370bd60cafd47a285f",
+      "parity.ranks/world-4/rank-3.json": "6c5d10f3912f3bc4678cb24a3e8e1b025e4cfc13edd359e409d9e2762508c706"
+    },
+    "final_artifact_receipt_sha256": "cc2daa1690a7226d03c00162ad3095a03d8579494e763c6772268c740abfc3ed",
+    "world_completion_sha256": "4d6116490887b25e1d1b42c056cb3f1d59c742c00fac90d67e619bdf14e16070",
+    "batch_validation_sha256": "d4ba76e6697057a5646fc7a8975dc00db4f6cb9e931c143c5bea685f056e36fc"
+  },
+  "identity": {
+    "submitted_launcher_sha256": "b05a44a334e698d33d496028d17dd488ab811e55700247ba920c3a65ba702db1",
+    "source_manifest_sha256": "0e89bf87f2fcbea0e77fe8d3eb43d8c9b5071e9cf45666ecf85c272ea7e9c96f",
+    "runtime_base_revision": "de4c6772c11b1a7360897a1f8beb1ee563e40700",
+    "production_optimizer_sha256": "d995ec99d9af8d675c6823be30fea15a8977889194dc723dea60be370630384f",
+    "upstream_optimizer_sha256": "3aed3cc16baf172d11b02a26983e0d9f3e9465d2b3363ff2f185ea9dbac8ea7c",
+    "executed_helpers_sha256": {
+      "production_packed_sources.py": "51d3ec5e781cc8425e729f482661cab0e963329bba8ae10bcad60f3f6118f32b",
+      "parity_packed_production_nccl.py": "21d86bf631757214b58440c080241b8e6b709471e201ee20e020c0bf60e2ac6f",
+      "parity_packed_dist_nccl.py": "2a98c293fca4e9c3f3fbec2fac0727a02819f4f71d7c3909dc65aef59f999717",
+      "packed_dist_muon_experiment.py": "2a6ef7dc507a502b810548425548b5cf9f72bb1e3f553814ddf179bf8ed45a42",
+      "parity_packed_dist_gloo.py": "20cce503e2aeaf5b297b870eb139484f1dd4cd21defc99c6af8e06f9f7b6b7ac",
+      "packed_muon_experiment.py": "abbe8c8025daa9e42c04a008ae452bc8e5c67df9c2197a3635b58e21afe54963",
+      "replay_real_sft.py": "0d69eb22ee4615d7a27217809e9f4b97d6aaf297b6147af1f6563f418787fdf7",
+      "capture_real_sft.py": "39197d9c2e7c6e88e096b5bb9dc029e5765df14e8ddb764e0a1bc3eaae7b307f"
+    },
+    "kernel_source_text_sha256": {
+      "muon_step_fused": "e35503fcbaba2cfd73f50c5c6eacff87b8eb8b1cb6ddb6eb0e12e948b7b6f29c",
+      "adamw_step_fused": "3c7bdd9c0a0966b43e9689f14ec02a7a10300c304ee5d99c6cd9b566beddd2e3"
+    },
+    "full_manifest_entries_verified_before_and_after": 3535,
+    "runtime_source_files_authenticated": 1005,
+    "runtime_files_hashed_before_and_rechecked_after": 6,
+    "source_factory_or_kernel_replacement": false,
+    "candidate_selection": "Direct production DistPackedMuonAdamW constructor with owner=model; no model/SFT factory qualification in this fixture."
+  },
+  "closed_integrity": {
+    "pass": true,
+    "exit_status": 0,
+    "completed_job_marker": 23376183,
+    "verification_exit_statuses": {
+      "source-verification.exit": 0,
+      "parity.exit": 0,
+      "executed-helpers-verification.exit": 0,
+      "runtime-before-verification.exit": 0,
+      "manifest-verification.exit": 0,
+      "staged-helpers-verification.exit": 0
+    },
+    "all_final_json_artifact_hashes_verified": true,
+    "all_staged_and_executed_helper_pins_verified": true,
+    "source_before_after_complete_coverage_verified": true,
+    "all_rank_paths_runtime_sources_and_completion_hashes_match": true
+  },
+  "runtime": {
+    "device": "NVIDIA H200",
+    "capability": [
+      9,
+      0
+    ],
+    "torch": "2.13.0+cu130",
+    "cuda": "13.0",
+    "nccl": [
+      2,
+      29,
+      7
+    ],
+    "matmul_precision": "high",
+    "deterministic_algorithms": false,
+    "cuda_visible_devices": "0,1,2,3",
+    "compiled_kernels": true,
+    "collective_backend": "nccl"
+  },
+  "rank_compiled_graph_counters": [
+    {
+      "before": 0,
+      "after": 7
+    },
+    {
+      "before": 0,
+      "after": 6
+    },
+    {
+      "before": 0,
+      "after": 6
+    },
+    {
+      "before": 0,
+      "after": 5
+    }
+  ],
+  "fixture": {
+    "world_size": 4,
+    "steps_per_rank": 4,
+    "completed_rank_steps": 16,
+    "parameter_dtype": "float32; unchanged upstream Muon internally uses bfloat16",
+    "parameter_tensors_per_model": 17,
+    "parameter_scalars_per_model": 8538,
+    "muon_groups": [
+      {
+        "shape": [
+          4,
+          4
+        ],
+        "count": 1,
+        "padded_count": 4,
+        "owned_by_rank": [
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "shape": [
+          7,
+          3
+        ],
+        "count": 5,
+        "padded_count": 8,
+        "owned_by_rank": [
+          2,
+          2,
+          1,
+          0
+        ]
+      },
+      {
+        "shape": [
+          3,
+          7
+        ],
+        "count": 7,
+        "padded_count": 8,
+        "owned_by_rank": [
+          2,
+          2,
+          2,
+          1
+        ]
+      }
+    ],
+    "adamw_shapes": [
+      [],
+      [
+        13
+      ],
+      [
+        64,
+        64
+      ],
+      [
+        65,
+        64
+      ]
+    ],
+    "gradient_input": "Rank-distinct sinusoidal gradients include rank offset, evolving step offset, and current baseline parameter contribution; baseline and candidate receive separate exact clones.",
+    "schedules": {
+      "step_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "adamw_lr": "0.003 * (1 - 0.08 * step)",
+      "muon_lr": "0.02 * (1 - 0.08 * step), followed by original upstream shape scaling",
+      "weight_decay": "0.01 + 0.005 * step",
+      "muon_momentum": "0.85 + 0.02 * step",
+      "muon_beta2": "0.95 - 0.005 * step",
+      "ns_steps": 5
+    }
+  },
+  "numerical_and_storage_checks": {
+    "all_16_rank_steps_passed_exact_original_shape_dtype_and_finite_gates": true,
+    "parameter_tensor_update_comparisons": 272,
+    "muon_version_increment_tensor_checks": 208,
+    "optimizer_state_tensor_leaves_per_rank_step_inferred_from_frozen_fixture": 14,
+    "maximum_observed_difference_per_exact_torch_equal_gate": 0,
+    "parameters_updates_moments_and_postgradients_compared": true,
+    "adamw_scalar_small_and_indivisible_postgradients": "Equal independent native NCCL AVG oracle; mutation is expected.",
+    "muon_and_sharded_adamw_source_gradients": "Remain equal to original local source gradients.",
+    "original_parameter_identity_and_packed_disjoint_view_bindings_validated": true,
+    "zero_gradient_send_parameter_and_optimizer_moment_padding_checked": true,
+    "muon_parameter_version_increment_per_update": 1,
+    "pending_gathers_empty_and_candidate_not_poisoned": true,
+    "cross_rank_parameter_sha256_by_step": [
+      "566ac98be9b909d2e4950cd6feef4edde4ad62df473babc9fbf1bcd5a5ed3cf6",
+      "bb5e09aaa0eb5837805f19bfdeb3e0f02372f22b48fa249c93bf0514c64455c4",
+      "b9bfe71c2b3edd6880df244bda8f694aae517c62802935bdb75c8f05e66b1ae8",
+      "72c606f5b2f5354546f4911d20b53ea48630af6eb6a593f1a6f42ac98c5796a4"
+    ],
+    "all_step_model_digests_distinct": true,
+    "each_individual_parameter_update_nonzero_asserted": false
+  },
+  "collectives": {
+    "all_16_raw_baseline_traces_independently_checked": true,
+    "candidate_traces_exactly_compared_to_baseline_by_frozen_worker": true,
+    "events_per_rank_step_saved": 22,
+    "launches_per_optimizer_step": {
+      "all_reduce_AVG": 3,
+      "reduce_scatter_AVG": 4,
+      "all_gather": 4
+    },
+    "all_shapes_and_AVG_semantics_checked": true,
+    "seven_reductions_launched_before_first_wait": true,
+    "matching_wait_for_each_launch": true,
+    "gather_waits_in_final_phase": true,
+    "native_nccl_future_wait_delegated_unchanged": true,
+    "gloo_work_wait_proxy_unused": true,
+    "muon_gather_send_and_receive_storage_disjoint": true,
+    "device_wide_synchronization": "After both complete optimizer steps, not inside the three optimizer phases."
+  },
+  "checkpoint_continuation": {
+    "both_directions_passed_on_all_four_ranks": true,
+    "saved_after_step": 1,
+    "continued_steps": [
+      2,
+      3
+    ],
+    "directions": [
+      "packed model+optimizer -> upstream",
+      "upstream model+optimizer -> packed"
+    ],
+    "actual_torch_save_load_roundtrip": true,
+    "original_parameters_preserved_by_assign_false_restore": true,
+    "retained_world_size": 4
+  },
+  "evidence_limits": [
+    "No raw parameter, gradient, update or optimizer-state tensor payloads are saved in rank JSONs. Numerical conclusions are backed by authenticated, assert-enabled worker code and its completed exact finite checks; this audit did not independently recompute GPU tensors.",
+    "Positive Dynamo graph counters (7,6,6,5) and identity guards establish use of original compiled wrappers; no independent kernel-level GPU trace is retained.",
+    "Distinct per-step model digests prove aggregate parameter evolution, not a nonzero-update assertion for every individual tensor.",
+    "Scope is a small FP32 synthetic optimizer fixture with upstream BF16 Muon internals, four H200 ranks and native NCCL on one node.",
+    "No full-model forward/backward, real SFT gradients, model/SFT opt-in, full production parameter counts, peak-memory, fault recovery, world8 or multi-node qualification.",
+    "Checkpoint continuation retains world4; topology migration is not tested. The earlier world2 result remains separate evidence.",
+    "No performance or throughput claim: the run includes diagnostic padding copies, synchronization and validation; 47-second allocation elapsed is operational context only."
+  ],
+  "qualification": {
+    "optimizer_fixture_world_sizes": [
+      4
+    ],
+    "full_model_training": false,
+    "sft_opt_in": false,
+    "performance": false
+  },
+  "audit_operations": "Local standard-library JSON/SHA/AST/trace inspection only; no GPU, network, runtime/source edits or changes inside the result directory."
+}

@@ -1,0 +1,34 @@
+# Web chat server config
+# Usage: python -m scripts.chat.chat_web
+
+num_gpus: 1
+source: sft
+temperature: 0.8
+top_k: 50
+max_tokens: 512
+model_tag: null
+step: null
+port: 8000
+dtype: bfloat16
+device_type: ""
+# Security defaults — see scripts/chat/chat_web.py docstring.
+# Bind to localhost by default; operators must explicitly opt-in to 0.0.0.0.
+host: "127.0.0.1"
+# Explicit CORS allow-list. Empty = no cross-origin browsers allowed.
+allow_origins: []
+# Optional API key. If set (non-empty string), every endpoint requires the
+# header `X-API-Key: <value>` and returns 401 otherwise.
+api_key: null
+# Maximum number of concurrent in-flight chat_completions requests. Additional
+# requests block on the semaphore until one finishes. Prevents DoS via flood.
+max_in_flight: 4
+# Whether to log user messages and assistant responses verbatim. OFF by default
+# because users may paste secrets/PII. When false, only sizes/counts are logged.
+log_content: false
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

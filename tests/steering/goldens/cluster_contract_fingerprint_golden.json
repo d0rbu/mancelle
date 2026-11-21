@@ -1,0 +1,2530 @@
+{
+  "cells": {
+    "empty_concept_projection_after_masking": {
+      "oracle_outcome": {
+        "error_message": null,
+        "fingerprint": "29170382bff0a0c9da7797c3f8634b220a2fb54b68ef2931cfc9ba176ea14452",
+        "raises": false,
+        "semantic_dict": {
+          "algorithms": {
+            "concept_projection": "mask_first_min_allowed_representative_v1",
+            "feature_diffmean_projection": "per_completion_uint8_amax_then_mean_v1",
+            "generic_roofline_signal": "per_document_cluster_signal_v2",
+            "packed_percentile_selection": "training_uint8_roundtrip_cluster_amax_v1",
+            "qc_target_reduction": "member_token_amax_own_percentile_v1"
+          },
+          "checkpoint": {
+            "feature_vocab": {
+              "canonical": {
+                "n_sae_features": 512,
+                "original_ids": [
+                  500,
+                  502,
+                  503,
+                  504,
+                  505
+                ]
+              },
+              "persistent": true,
+              "sha256": "e85676c956bf70872d3b0f7b453db5a22c72395a99fc5c4f4c796cedcf6d7c33"
+            },
+            "load_bearing_metadata": {},
+            "metadata_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+            "model_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+            "n_sae_features": 512,
+            "resolved_tag": "clustered-fixture",
+            "step": 7
+          },
+          "concept_source": {
+            "domain": [
+              2,
+              3,
+              4,
+              6
+            ],
+            "mode": "statistics_domain",
+            "source_to_representative": []
+          },
+          "feature_clusters": {
+            "canonical": {
+              "clusters": [
+                [
+                  500,
+                  501
+                ]
+              ],
+              "schema_version": 1
+            },
+            "consolidated_away": [
+              501
+            ],
+            "descriptor": {
+              "content_sha256": "610d6630d53ee1b857a048df63a5d4395db987c81d5033ba7090b4919dde8768",
+              "n_sae_features": 512,
+              "schema_version": 1,
+              "semantics": "post_mask_post_delta_max_percentile_v1"
+            },
+            "representative_to_allowed_members": [
+              [
+                500,
+                [
+                  500,
+                  501
+                ]
+              ],
+              [
+                502,
+                [
+                  502
+                ]
+              ],
+              [
+                503,
+                [
+                  503
+                ]
+              ],
+              [
+                504,
+                [
+                  504
+                ]
+              ],
+              [
+                505,
+                [
+                  505
+                ]
+              ]
+            ],
+            "representative_universe": [
+              500,
+              502,
+              503,
+              504,
+              505
+            ]
+          },
+          "feature_directory": {
+            "activation_type": "residual",
+            "context_independent_features": false,
+            "dataset_phase": "base",
+            "ignore_bos_features": true,
+            "layer": 8,
+            "model": "gemma-2-2b",
+            "pooling": "max_pool",
+            "segment_size": 128,
+            "width": "16k"
+          },
+          "feature_mask": {
+            "allowed_count": 6,
+            "allowed_ids_sha256": "f6c758ef8a4efb7629d15f2a866ac415adcc2fceb44066bacbcb988cf50accde",
+            "canonical": {
+              "ids": [
+                500,
+                501,
+                502,
+                503,
+                504,
+                505
+              ],
+              "mode": "whitelist"
+            }
+          },
+          "n_sae_features": 512,
+          "sae": {
+            "activation_type": "residual",
+            "actual_loaded_width": 512,
+            "hook_name": "blocks.8.hook_resid_post",
+            "layer": 8,
+            "model": "gemma-2-2b",
+            "release": "gemma-scope-2b-pt-res",
+            "sae_id": "layer_8/width_16k/canonical",
+            "width": "16k"
+          },
+          "schema_version": 1,
+          "selection": {
+            "effective_positive_buckets": 1,
+            "feature_delta": null,
+            "negative_selection": {
+              "distribution": "geometric",
+              "mean": 1.0
+            },
+            "num_buckets": 2,
+            "packed_row_fingerprint": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+            "positive_selection": {
+              "distribution": "geometric",
+              "mean": 2.0
+            },
+            "preselection_seed": 42,
+            "selection_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "selection_manifest_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "selection_shards_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+          },
+          "statistics": {
+            "feature_id_domain": [
+              2,
+              3,
+              4,
+              6
+            ],
+            "file_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "n_sae_features": 512,
+            "percentile_table_checksum": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        }
+      },
+      "tier": "tier1"
+    },
+    "genuine_cluster_effective_vocab_accepted": {
+      "oracle_outcome": {
+        "error_message": "ClusterFeatureContractError: configured feature mask and authoritative state-dict FeatureVocab do not agree",
+        "fingerprint": null,
+        "raises": true,
+        "semantic_dict": null
+      },
+      "tier": "tier2"
+    },
+    "genuine_cluster_wide_vocab_rejected": {
+      "oracle_outcome": {
+        "error_message": null,
+        "fingerprint": "211793d2f86782f15be7ccdb948f82c6d7b144a4923ba668adc7832310930826",
+        "raises": false,
+        "semantic_dict": {
+          "algorithms": {
+            "concept_projection": "mask_first_min_allowed_representative_v1",
+            "feature_diffmean_projection": "per_completion_uint8_amax_then_mean_v1",
+            "generic_roofline_signal": "per_document_cluster_signal_v2",
+            "packed_percentile_selection": "training_uint8_roundtrip_cluster_amax_v1",
+            "qc_target_reduction": "member_token_amax_own_percentile_v1"
+          },
+          "checkpoint": {
+            "feature_vocab": {
+              "canonical": {
+                "n_sae_features": 16384,
+                "original_ids": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              },
+              "persistent": true,
+              "sha256": "64483a266f2a2277a4e2886bf3ed13cd1401cf11f249a03b0a03204fb8ba8a65"
+            },
+            "load_bearing_metadata": {
+              "encoder_config": {
+                "depth": 1,
+                "n_embd": 8
+              },
+              "feature_clusters_canonical": {
+                "clusters": [
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    2,
+                    3
+                  ]
+                ],
+                "schema_version": 1
+              },
+              "feature_clusters_descriptor": {
+                "content_sha256": "f8e1096dc8c9ae235a76f1b83544c05d59106b97d6cc81eac201e364223990e3",
+                "n_sae_features": 16384,
+                "schema_version": 1,
+                "semantics": "post_mask_post_delta_max_percentile_v1"
+              },
+              "feature_mask_canonical": {
+                "ids": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ],
+                "mode": "whitelist"
+              },
+              "feature_vocab": {
+                "n_sae_features": 16384,
+                "sha256": "64483a266f2a2277a4e2886bf3ed13cd1401cf11f249a03b0a03204fb8ba8a65",
+                "vocab_size": 6
+              },
+              "model_config": {
+                "n_embd": 8,
+                "n_layer": 2
+              },
+              "num_buckets": 2,
+              "user_config": {
+                "feature_delta": null,
+                "feature_prediction": null,
+                "feature_selection": {
+                  "distribution": "geometric",
+                  "mean": 2.0,
+                  "std": 2.0
+                },
+                "negative_selection": {
+                  "distribution": "geometric",
+                  "mean": 1.0,
+                  "std": 1.0
+                },
+                "num_buckets": 2,
+                "sae": {
+                  "activation_type": "residual",
+                  "l0": null,
+                  "layer": 8,
+                  "model": "gemma-2-2b",
+                  "release": "gemmascope",
+                  "width": "16k"
+                },
+                "seed": 42
+              },
+              "xattn_config": {
+                "frequency": 1
+              }
+            },
+            "metadata_sha256": "8c44913e9e20fca3263de8cc17e65056fb3acdf455af8094bc0002b96dd4ab0e",
+            "model_sha256": "<elided: nondeterministic raw-file-hash, see module docstring>",
+            "n_sae_features": 16384,
+            "resolved_tag": "fixture-step-7",
+            "step": 7
+          },
+          "concept_source": {
+            "domain": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "mode": "statistics_domain",
+            "source_to_representative": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                3,
+                2
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                5,
+                5
+              ]
+            ]
+          },
+          "feature_clusters": {
+            "canonical": {
+              "clusters": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "schema_version": 1
+            },
+            "consolidated_away": [
+              1,
+              3
+            ],
+            "descriptor": {
+              "content_sha256": "f8e1096dc8c9ae235a76f1b83544c05d59106b97d6cc81eac201e364223990e3",
+              "n_sae_features": 16384,
+              "schema_version": 1,
+              "semantics": "post_mask_post_delta_max_percentile_v1"
+            },
+            "representative_to_allowed_members": [
+              [
+                0,
+                [
+                  0,
+                  1
+                ]
+              ],
+              [
+                2,
+                [
+                  2,
+                  3
+                ]
+              ],
+              [
+                4,
+                [
+                  4
+                ]
+              ],
+              [
+                5,
+                [
+                  5
+                ]
+              ]
+            ],
+            "representative_universe": [
+              0,
+              2,
+              4,
+              5
+            ]
+          },
+          "feature_directory": {
+            "activation_type": "residual",
+            "context_independent_features": false,
+            "dataset_phase": "base",
+            "ignore_bos_features": false,
+            "layer": 8,
+            "model": "gemma-2-2b",
+            "pooling": "max_pool",
+            "segment_size": 128,
+            "width": "16k"
+          },
+          "feature_mask": {
+            "allowed_count": 6,
+            "allowed_ids_sha256": "4e098021cf9ec15699efd082b803811ec67394af4b3ea324e86edbccc3cbeac3",
+            "canonical": {
+              "ids": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "mode": "whitelist"
+            }
+          },
+          "n_sae_features": 16384,
+          "sae": {
+            "activation_type": "residual",
+            "actual_loaded_width": 16384,
+            "hook_name": "blocks.8.hook_resid_post",
+            "layer": 8,
+            "model": "gemma-2-2b",
+            "release": "gemma-scope-2b-pt-res-canonical",
+            "sae_id": "layer_8/width_16k/canonical",
+            "width": "16k"
+          },
+          "schema_version": 1,
+          "selection": {
+            "effective_positive_buckets": 1,
+            "feature_delta": null,
+            "negative_selection": {
+              "distribution": "geometric",
+              "mean": 1.0,
+              "std": 1.0
+            },
+            "num_buckets": 2,
+            "packed_row_fingerprint": "6c8d5ea56855545d7724665ab1d5f86f4fcc3c035283dd90fcc69dbe91195021",
+            "positive_selection": {
+              "distribution": "geometric",
+              "mean": 2.0,
+              "std": 2.0
+            },
+            "preselection_seed": 42,
+            "selection_hash": "5fda71cc6c9ed552fe1532bf4666fe78d3069d27aa23cce669edc5f44d27b84f",
+            "selection_manifest_sha256": "545e7cf72c928dcf3aed34c1c1ea686b1e0baa2b4e14787867343fbf295dda14",
+            "selection_shards_sha256": "56330fe9da25ba53863057c07e080563e4501c5de259f37eba06fbc81acfde3d"
+          },
+          "statistics": {
+            "feature_id_domain": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "file_sha256": "<elided: nondeterministic raw-file-hash, see module docstring>",
+            "n_sae_features": 16384,
+            "percentile_table_checksum": "8a00abaabf2fc001f19e2d70c967266ea556c6447ae0a34e3813667f17addb79"
+          }
+        }
+      },
+      "tier": "tier2"
+    },
+    "inert_cluster": {
+      "oracle_outcome": {
+        "error_message": null,
+        "fingerprint": "50ae79f022646e910a5fbfb3134eb51b663027d4719b4d0e5252cdacb072bc57",
+        "raises": false,
+        "semantic_dict": {
+          "algorithms": {
+            "concept_projection": "mask_first_min_allowed_representative_v1",
+            "feature_diffmean_projection": "per_completion_uint8_amax_then_mean_v1",
+            "generic_roofline_signal": "per_document_cluster_signal_v2",
+            "packed_percentile_selection": "training_uint8_roundtrip_cluster_amax_v1",
+            "qc_target_reduction": "member_token_amax_own_percentile_v1"
+          },
+          "checkpoint": {
+            "feature_vocab": {
+              "canonical": {
+                "n_sae_features": 8,
+                "original_ids": [
+                  1,
+                  3,
+                  4,
+                  5,
+                  6
+                ]
+              },
+              "persistent": true,
+              "sha256": "8b49bb366144144eedd654e4b9d3ab759a76957a30470d537ded8d11177696a9"
+            },
+            "load_bearing_metadata": {},
+            "metadata_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+            "model_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+            "n_sae_features": 8,
+            "resolved_tag": "clustered-fixture",
+            "step": 7
+          },
+          "concept_source": {
+            "domain": [
+              2,
+              4,
+              6
+            ],
+            "mode": "explicit_whitelist",
+            "source_to_representative": [
+              [
+                2,
+                1
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                6,
+                6
+              ]
+            ]
+          },
+          "feature_clusters": {
+            "canonical": {
+              "clusters": [
+                [
+                  0,
+                  7
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "schema_version": 1
+            },
+            "consolidated_away": [
+              2
+            ],
+            "descriptor": {
+              "content_sha256": "346f90b1165ece13de5086d91a74eddb443bfbb1ce971ae6a582f1d4b73083d7",
+              "n_sae_features": 8,
+              "schema_version": 1,
+              "semantics": "post_mask_post_delta_max_percentile_v1"
+            },
+            "representative_to_allowed_members": [
+              [
+                1,
+                [
+                  1,
+                  2
+                ]
+              ],
+              [
+                3,
+                [
+                  3
+                ]
+              ],
+              [
+                4,
+                [
+                  4
+                ]
+              ],
+              [
+                5,
+                [
+                  5
+                ]
+              ],
+              [
+                6,
+                [
+                  6
+                ]
+              ]
+            ],
+            "representative_universe": [
+              1,
+              3,
+              4,
+              5,
+              6
+            ]
+          },
+          "feature_directory": {
+            "activation_type": "residual",
+            "context_independent_features": false,
+            "dataset_phase": "base",
+            "ignore_bos_features": true,
+            "layer": 8,
+            "model": "gemma-2-2b",
+            "pooling": "max_pool",
+            "segment_size": 128,
+            "width": "16k"
+          },
+          "feature_mask": {
+            "allowed_count": 6,
+            "allowed_ids_sha256": "17ec0c346922df8a32b8fee47a41171e9d6fddd3b46b04f9c3a70d9eb7b14af7",
+            "canonical": {
+              "ids": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ],
+              "mode": "whitelist"
+            }
+          },
+          "n_sae_features": 8,
+          "sae": {
+            "activation_type": "residual",
+            "actual_loaded_width": 8,
+            "hook_name": "blocks.8.hook_resid_post",
+            "layer": 8,
+            "model": "gemma-2-2b",
+            "release": "gemma-scope-2b-pt-res",
+            "sae_id": "layer_8/width_16k/canonical",
+            "width": "16k"
+          },
+          "schema_version": 1,
+          "selection": {
+            "effective_positive_buckets": 1,
+            "feature_delta": null,
+            "negative_selection": {
+              "distribution": "geometric",
+              "mean": 1.0
+            },
+            "num_buckets": 2,
+            "packed_row_fingerprint": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+            "positive_selection": {
+              "distribution": "geometric",
+              "mean": 2.0
+            },
+            "preselection_seed": 42,
+            "selection_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "selection_manifest_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "selection_shards_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+          },
+          "statistics": {
+            "feature_id_domain": [
+              2,
+              3,
+              4,
+              6
+            ],
+            "file_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "n_sae_features": 8,
+            "percentile_table_checksum": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        }
+      },
+      "tier": "tier1"
+    },
+    "multi_member_mask_shifted_representative": {
+      "oracle_outcome": {
+        "error_message": null,
+        "fingerprint": "9a9b4e496c8c05984c29834f016afa0ecf93b210b2df1dd7cf04b87f74f4de72",
+        "raises": false,
+        "semantic_dict": {
+          "algorithms": {
+            "concept_projection": "mask_first_min_allowed_representative_v1",
+            "feature_diffmean_projection": "per_completion_uint8_amax_then_mean_v1",
+            "generic_roofline_signal": "per_document_cluster_signal_v2",
+            "packed_percentile_selection": "training_uint8_roundtrip_cluster_amax_v1",
+            "qc_target_reduction": "member_token_amax_own_percentile_v1"
+          },
+          "checkpoint": {
+            "feature_vocab": {
+              "canonical": {
+                "n_sae_features": 8,
+                "original_ids": [
+                  2,
+                  4,
+                  5,
+                  6
+                ]
+              },
+              "persistent": true,
+              "sha256": "7a367764b61cee316156b09974da49c39f79c220f0aecc286600cb5844a294db"
+            },
+            "load_bearing_metadata": {},
+            "metadata_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+            "model_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+            "n_sae_features": 8,
+            "resolved_tag": "clustered-fixture",
+            "step": 7
+          },
+          "concept_source": {
+            "domain": [
+              2,
+              3,
+              4,
+              6
+            ],
+            "mode": "statistics_domain",
+            "source_to_representative": [
+              [
+                2,
+                2
+              ],
+              [
+                3,
+                2
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                6,
+                6
+              ]
+            ]
+          },
+          "feature_clusters": {
+            "canonical": {
+              "clusters": [
+                [
+                  1,
+                  2,
+                  3
+                ]
+              ],
+              "schema_version": 1
+            },
+            "consolidated_away": [
+              3
+            ],
+            "descriptor": {
+              "content_sha256": "dbf44a2d53b8d4de39580607bac953df366db97b51101acd77d5bb9c957a3bd0",
+              "n_sae_features": 8,
+              "schema_version": 1,
+              "semantics": "post_mask_post_delta_max_percentile_v1"
+            },
+            "representative_to_allowed_members": [
+              [
+                2,
+                [
+                  2,
+                  3
+                ]
+              ],
+              [
+                4,
+                [
+                  4
+                ]
+              ],
+              [
+                5,
+                [
+                  5
+                ]
+              ],
+              [
+                6,
+                [
+                  6
+                ]
+              ]
+            ],
+            "representative_universe": [
+              2,
+              4,
+              5,
+              6
+            ]
+          },
+          "feature_directory": {
+            "activation_type": "residual",
+            "context_independent_features": false,
+            "dataset_phase": "base",
+            "ignore_bos_features": true,
+            "layer": 8,
+            "model": "gemma-2-2b",
+            "pooling": "max_pool",
+            "segment_size": 128,
+            "width": "16k"
+          },
+          "feature_mask": {
+            "allowed_count": 5,
+            "allowed_ids_sha256": "30b5fcc48536512d38205b8b49d5d60a3b9491d683d369039daf8987a30967b6",
+            "canonical": {
+              "ids": [
+                2,
+                3,
+                4,
+                5,
+                6
+              ],
+              "mode": "whitelist"
+            }
+          },
+          "n_sae_features": 8,
+          "sae": {
+            "activation_type": "residual",
+            "actual_loaded_width": 8,
+            "hook_name": "blocks.8.hook_resid_post",
+            "layer": 8,
+            "model": "gemma-2-2b",
+            "release": "gemma-scope-2b-pt-res",
+            "sae_id": "layer_8/width_16k/canonical",
+            "width": "16k"
+          },
+          "schema_version": 1,
+          "selection": {
+            "effective_positive_buckets": 1,
+            "feature_delta": null,
+            "negative_selection": {
+              "distribution": "geometric",
+              "mean": 1.0
+            },
+            "num_buckets": 2,
+            "packed_row_fingerprint": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+            "positive_selection": {
+              "distribution": "geometric",
+              "mean": 2.0
+            },
+            "preselection_seed": 42,
+            "selection_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "selection_manifest_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "selection_shards_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+          },
+          "statistics": {
+            "feature_id_domain": [
+              2,
+              3,
+              4,
+              6
+            ],
+            "file_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "n_sae_features": 8,
+            "percentile_table_checksum": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        }
+      },
+      "tier": "tier1"
+    },
+    "no_cluster_legacy": {
+      "oracle_outcome": {
+        "error_message": null,
+        "fingerprint": "0c74179eeb5a2f69008039520fa1ff6a458cb8102dfbeb886d6abe9884692403",
+        "raises": false,
+        "semantic_dict": {
+          "algorithms": {
+            "concept_projection": "mask_first_min_allowed_representative_v1",
+            "feature_diffmean_projection": "per_completion_uint8_amax_then_mean_v1",
+            "generic_roofline_signal": "per_document_cluster_signal_v2",
+            "packed_percentile_selection": "training_uint8_roundtrip_cluster_amax_v1",
+            "qc_target_reduction": "member_token_amax_own_percentile_v1"
+          },
+          "checkpoint": {
+            "feature_vocab": {
+              "canonical": {
+                "n_sae_features": 8,
+                "original_ids": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6
+                ]
+              },
+              "persistent": true,
+              "sha256": "28c936464b88e642231e7d52d17647fbca63aaac55aee36882103ec6e49bc6cf"
+            },
+            "load_bearing_metadata": {},
+            "metadata_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+            "model_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+            "n_sae_features": 8,
+            "resolved_tag": "clustered-fixture",
+            "step": 7
+          },
+          "concept_source": {
+            "domain": [
+              2,
+              3,
+              4,
+              6
+            ],
+            "mode": "statistics_domain",
+            "source_to_representative": [
+              [
+                2,
+                2
+              ],
+              [
+                3,
+                3
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                6,
+                6
+              ]
+            ]
+          },
+          "feature_clusters": {
+            "canonical": {
+              "clusters": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  2,
+                  7
+                ]
+              ],
+              "schema_version": 1
+            },
+            "consolidated_away": [],
+            "descriptor": {
+              "content_sha256": "42a68ce0e259f45d738c5a4ccde6a464ac089cb04e5cfce19187996e72a92a7b",
+              "n_sae_features": 8,
+              "schema_version": 1,
+              "semantics": "post_mask_post_delta_max_percentile_v1"
+            },
+            "representative_to_allowed_members": [
+              [
+                1,
+                [
+                  1
+                ]
+              ],
+              [
+                2,
+                [
+                  2
+                ]
+              ],
+              [
+                3,
+                [
+                  3
+                ]
+              ],
+              [
+                4,
+                [
+                  4
+                ]
+              ],
+              [
+                5,
+                [
+                  5
+                ]
+              ],
+              [
+                6,
+                [
+                  6
+                ]
+              ]
+            ],
+            "representative_universe": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          },
+          "feature_directory": {
+            "activation_type": "residual",
+            "context_independent_features": false,
+            "dataset_phase": "base",
+            "ignore_bos_features": true,
+            "layer": 8,
+            "model": "gemma-2-2b",
+            "pooling": "max_pool",
+            "segment_size": 128,
+            "width": "16k"
+          },
+          "feature_mask": {
+            "allowed_count": 6,
+            "allowed_ids_sha256": "17ec0c346922df8a32b8fee47a41171e9d6fddd3b46b04f9c3a70d9eb7b14af7",
+            "canonical": {
+              "ids": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ],
+              "mode": "whitelist"
+            }
+          },
+          "n_sae_features": 8,
+          "sae": {
+            "activation_type": "residual",
+            "actual_loaded_width": 8,
+            "hook_name": "blocks.8.hook_resid_post",
+            "layer": 8,
+            "model": "gemma-2-2b",
+            "release": "gemma-scope-2b-pt-res",
+            "sae_id": "layer_8/width_16k/canonical",
+            "width": "16k"
+          },
+          "schema_version": 1,
+          "selection": {
+            "effective_positive_buckets": 1,
+            "feature_delta": null,
+            "negative_selection": {
+              "distribution": "geometric",
+              "mean": 1.0
+            },
+            "num_buckets": 2,
+            "packed_row_fingerprint": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+            "positive_selection": {
+              "distribution": "geometric",
+              "mean": 2.0
+            },
+            "preselection_seed": 42,
+            "selection_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "selection_manifest_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "selection_shards_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+          },
+          "statistics": {
+            "feature_id_domain": [
+              2,
+              3,
+              4,
+              6
+            ],
+            "file_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "n_sae_features": 8,
+            "percentile_table_checksum": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        }
+      },
+      "tier": "tier1"
+    },
+    "pretrain_layout_encoder_xattn_normalization": {
+      "oracle_outcome": {
+        "error_message": null,
+        "fingerprint": "aeceffab041f4e1f41d370fe906159e021a9bd3e889dca5ac0644edbe6cdb100",
+        "raises": false,
+        "semantic_dict": {
+          "algorithms": {
+            "concept_projection": "mask_first_min_allowed_representative_v1",
+            "feature_diffmean_projection": "per_completion_uint8_amax_then_mean_v1",
+            "generic_roofline_signal": "per_document_cluster_signal_v2",
+            "packed_percentile_selection": "training_uint8_roundtrip_cluster_amax_v1",
+            "qc_target_reduction": "member_token_amax_own_percentile_v1"
+          },
+          "checkpoint": {
+            "feature_vocab": {
+              "canonical": {
+                "n_sae_features": 16384,
+                "original_ids": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              },
+              "persistent": true,
+              "sha256": "64483a266f2a2277a4e2886bf3ed13cd1401cf11f249a03b0a03204fb8ba8a65"
+            },
+            "load_bearing_metadata": {
+              "encoder_config": null,
+              "feature_clusters_canonical": {
+                "clusters": [
+                  [
+                    0,
+                    10
+                  ],
+                  [
+                    1,
+                    11
+                  ],
+                  [
+                    2,
+                    12
+                  ],
+                  [
+                    3,
+                    13
+                  ],
+                  [
+                    4,
+                    14
+                  ],
+                  [
+                    5,
+                    15
+                  ]
+                ],
+                "schema_version": 1
+              },
+              "feature_clusters_descriptor": {
+                "content_sha256": "9318b27753acd566ad1fc260feb52b6508b36566baa649c71045449e92266203",
+                "n_sae_features": 16384,
+                "schema_version": 1,
+                "semantics": "post_mask_post_delta_max_percentile_v1"
+              },
+              "feature_mask_canonical": {
+                "ids": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ],
+                "mode": "whitelist"
+              },
+              "feature_vocab": {
+                "n_sae_features": 16384,
+                "sha256": "64483a266f2a2277a4e2886bf3ed13cd1401cf11f249a03b0a03204fb8ba8a65",
+                "vocab_size": 6
+              },
+              "model_config": {
+                "n_embd": 8,
+                "n_layer": 2
+              },
+              "num_buckets": 2,
+              "user_config": {
+                "feature_delta": null,
+                "feature_prediction": null,
+                "feature_selection": {
+                  "distribution": "geometric",
+                  "mean": 2.0,
+                  "std": 2.0
+                },
+                "negative_selection": {
+                  "distribution": "geometric",
+                  "mean": 1.0,
+                  "std": 1.0
+                },
+                "sae": {
+                  "activation_type": "residual",
+                  "l0": null,
+                  "layer": 8,
+                  "model": "gemma-2-2b",
+                  "release": "gemmascope",
+                  "width": "16k"
+                },
+                "seed": 42
+              },
+              "xattn_config": null
+            },
+            "metadata_sha256": "1e720e1074ae7bfa70cb3ef8813a21925134f1c7e1bc73a942da0aaa670ef642",
+            "model_sha256": "<elided: nondeterministic raw-file-hash, see module docstring>",
+            "n_sae_features": 16384,
+            "resolved_tag": "fixture-step-7",
+            "step": 7
+          },
+          "concept_source": {
+            "domain": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "mode": "statistics_domain",
+            "source_to_representative": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                3,
+                3
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                5,
+                5
+              ]
+            ]
+          },
+          "feature_clusters": {
+            "canonical": {
+              "clusters": [
+                [
+                  0,
+                  10
+                ],
+                [
+                  1,
+                  11
+                ],
+                [
+                  2,
+                  12
+                ],
+                [
+                  3,
+                  13
+                ],
+                [
+                  4,
+                  14
+                ],
+                [
+                  5,
+                  15
+                ]
+              ],
+              "schema_version": 1
+            },
+            "consolidated_away": [],
+            "descriptor": {
+              "content_sha256": "9318b27753acd566ad1fc260feb52b6508b36566baa649c71045449e92266203",
+              "n_sae_features": 16384,
+              "schema_version": 1,
+              "semantics": "post_mask_post_delta_max_percentile_v1"
+            },
+            "representative_to_allowed_members": [
+              [
+                0,
+                [
+                  0
+                ]
+              ],
+              [
+                1,
+                [
+                  1
+                ]
+              ],
+              [
+                2,
+                [
+                  2
+                ]
+              ],
+              [
+                3,
+                [
+                  3
+                ]
+              ],
+              [
+                4,
+                [
+                  4
+                ]
+              ],
+              [
+                5,
+                [
+                  5
+                ]
+              ]
+            ],
+            "representative_universe": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "feature_directory": {
+            "activation_type": "residual",
+            "context_independent_features": false,
+            "dataset_phase": "base",
+            "ignore_bos_features": false,
+            "layer": 8,
+            "model": "gemma-2-2b",
+            "pooling": "max_pool",
+            "segment_size": 128,
+            "width": "16k"
+          },
+          "feature_mask": {
+            "allowed_count": 6,
+            "allowed_ids_sha256": "4e098021cf9ec15699efd082b803811ec67394af4b3ea324e86edbccc3cbeac3",
+            "canonical": {
+              "ids": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "mode": "whitelist"
+            }
+          },
+          "n_sae_features": 16384,
+          "sae": {
+            "activation_type": "residual",
+            "actual_loaded_width": 16384,
+            "hook_name": "blocks.8.hook_resid_post",
+            "layer": 8,
+            "model": "gemma-2-2b",
+            "release": "gemma-scope-2b-pt-res-canonical",
+            "sae_id": "layer_8/width_16k/canonical",
+            "width": "16k"
+          },
+          "schema_version": 1,
+          "selection": {
+            "effective_positive_buckets": 1,
+            "feature_delta": null,
+            "negative_selection": {
+              "distribution": "geometric",
+              "mean": 1.0,
+              "std": 1.0
+            },
+            "num_buckets": 2,
+            "packed_row_fingerprint": "6c8d5ea56855545d7724665ab1d5f86f4fcc3c035283dd90fcc69dbe91195021",
+            "positive_selection": {
+              "distribution": "geometric",
+              "mean": 2.0,
+              "std": 2.0
+            },
+            "preselection_seed": 42,
+            "selection_hash": "6722634a86429649a01e50001d25e45c840de8accf37c0dbdf4466f17801308e",
+            "selection_manifest_sha256": "b45a6e8bf426bec50c2e5d73ca8239a1eba30b1a7e7cb01a4febccce33a67d49",
+            "selection_shards_sha256": "56330fe9da25ba53863057c07e080563e4501c5de259f37eba06fbc81acfde3d"
+          },
+          "statistics": {
+            "feature_id_domain": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "file_sha256": "<elided: nondeterministic raw-file-hash, see module docstring>",
+            "n_sae_features": 16384,
+            "percentile_table_checksum": "8a00abaabf2fc001f19e2d70c967266ea556c6447ae0a34e3813667f17addb79"
+          }
+        }
+      },
+      "tier": "tier2"
+    },
+    "sampling_selection_payload": {
+      "oracle_outcome": {
+        "error_message": null,
+        "fingerprint": "a148411b17715f1ee1b2c2b6d245c654758f84a040dd3e0188f39794ae4ba56b",
+        "raises": false,
+        "semantic_dict": {
+          "algorithms": {
+            "concept_projection": "mask_first_min_allowed_representative_v1",
+            "feature_diffmean_projection": "per_completion_uint8_amax_then_mean_v1",
+            "generic_roofline_signal": "per_document_cluster_signal_v2",
+            "packed_percentile_selection": "training_uint8_roundtrip_cluster_amax_v1",
+            "qc_target_reduction": "member_token_amax_own_percentile_v1"
+          },
+          "checkpoint": {
+            "feature_vocab": {
+              "canonical": {
+                "n_sae_features": 8,
+                "original_ids": [
+                  1,
+                  3,
+                  4,
+                  6
+                ]
+              },
+              "persistent": true,
+              "sha256": "f8c9c5d22e5a6cda35b5422c51d19c6121f69f325c255f63035e93c127199729"
+            },
+            "load_bearing_metadata": {},
+            "metadata_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+            "model_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+            "n_sae_features": 8,
+            "resolved_tag": "clustered-fixture",
+            "step": 7
+          },
+          "concept_source": {
+            "domain": [
+              2,
+              3,
+              4,
+              6
+            ],
+            "mode": "statistics_domain",
+            "source_to_representative": [
+              [
+                2,
+                1
+              ],
+              [
+                3,
+                3
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                6,
+                6
+              ]
+            ]
+          },
+          "feature_clusters": {
+            "canonical": {
+              "clusters": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "schema_version": 1
+            },
+            "consolidated_away": [
+              2,
+              5
+            ],
+            "descriptor": {
+              "content_sha256": "22f2702f51f965cae87643722932230ea0c33406f1bba73e083c39b63c323923",
+              "n_sae_features": 8,
+              "schema_version": 1,
+              "semantics": "post_mask_post_delta_max_percentile_v1"
+            },
+            "representative_to_allowed_members": [
+              [
+                1,
+                [
+                  1,
+                  2
+                ]
+              ],
+              [
+                3,
+                [
+                  3
+                ]
+              ],
+              [
+                4,
+                [
+                  4,
+                  5
+                ]
+              ],
+              [
+                6,
+                [
+                  6
+                ]
+              ]
+            ],
+            "representative_universe": [
+              1,
+              3,
+              4,
+              6
+            ]
+          },
+          "feature_directory": {
+            "activation_type": "residual",
+            "context_independent_features": false,
+            "dataset_phase": "base",
+            "ignore_bos_features": true,
+            "layer": 8,
+            "model": "gemma-2-2b",
+            "pooling": "max_pool",
+            "segment_size": 128,
+            "width": "16k"
+          },
+          "feature_mask": {
+            "allowed_count": 6,
+            "allowed_ids_sha256": "17ec0c346922df8a32b8fee47a41171e9d6fddd3b46b04f9c3a70d9eb7b14af7",
+            "canonical": {
+              "ids": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ],
+              "mode": "whitelist"
+            }
+          },
+          "n_sae_features": 8,
+          "sae": {
+            "activation_type": "residual",
+            "actual_loaded_width": 8,
+            "hook_name": "blocks.8.hook_resid_post",
+            "layer": 8,
+            "model": "gemma-2-2b",
+            "release": "gemma-scope-2b-pt-res",
+            "sae_id": "layer_8/width_16k/canonical",
+            "width": "16k"
+          },
+          "schema_version": 1,
+          "selection": {
+            "effective_positive_buckets": 1,
+            "feature_delta": null,
+            "negative_selection": {
+              "distribution": "geometric",
+              "mean": 1.0
+            },
+            "num_buckets": 2,
+            "packed_row_fingerprint": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+            "positive_selection": {
+              "distribution": "geometric",
+              "mean": 2.0
+            },
+            "preselection_seed": 42,
+            "selection_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "selection_manifest_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "selection_shards_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+          },
+          "statistics": {
+            "feature_id_domain": [
+              2,
+              3,
+              4,
+              6
+            ],
+            "file_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "n_sae_features": 8,
+            "percentile_table_checksum": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        }
+      },
+      "tier": "tier1"
+    },
+    "singleton_after_mask": {
+      "oracle_outcome": {
+        "error_message": null,
+        "fingerprint": "4c96f205f163f25d82ca642aa5d3a754e78dbea11f5f253d58196d446bfb7e4d",
+        "raises": false,
+        "semantic_dict": {
+          "algorithms": {
+            "concept_projection": "mask_first_min_allowed_representative_v1",
+            "feature_diffmean_projection": "per_completion_uint8_amax_then_mean_v1",
+            "generic_roofline_signal": "per_document_cluster_signal_v2",
+            "packed_percentile_selection": "training_uint8_roundtrip_cluster_amax_v1",
+            "qc_target_reduction": "member_token_amax_own_percentile_v1"
+          },
+          "checkpoint": {
+            "feature_vocab": {
+              "canonical": {
+                "n_sae_features": 8,
+                "original_ids": [
+                  1,
+                  2,
+                  4,
+                  5,
+                  6
+                ]
+              },
+              "persistent": true,
+              "sha256": "192597be309aa9a9740e44a820bfec054cb22640b7f9a0c86ce332c3c8a09a77"
+            },
+            "load_bearing_metadata": {},
+            "metadata_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+            "model_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+            "n_sae_features": 8,
+            "resolved_tag": "clustered-fixture",
+            "step": 7
+          },
+          "concept_source": {
+            "domain": [
+              1,
+              2,
+              4,
+              6
+            ],
+            "mode": "statistics_domain",
+            "source_to_representative": [
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                6,
+                6
+              ]
+            ]
+          },
+          "feature_clusters": {
+            "canonical": {
+              "clusters": [
+                [
+                  2,
+                  3
+                ]
+              ],
+              "schema_version": 1
+            },
+            "consolidated_away": [],
+            "descriptor": {
+              "content_sha256": "d68918f71f740f4210e83e1d9e11d27f8dec76da33e0176afa47aa0ccb39b28a",
+              "n_sae_features": 8,
+              "schema_version": 1,
+              "semantics": "post_mask_post_delta_max_percentile_v1"
+            },
+            "representative_to_allowed_members": [
+              [
+                1,
+                [
+                  1
+                ]
+              ],
+              [
+                2,
+                [
+                  2
+                ]
+              ],
+              [
+                4,
+                [
+                  4
+                ]
+              ],
+              [
+                5,
+                [
+                  5
+                ]
+              ],
+              [
+                6,
+                [
+                  6
+                ]
+              ]
+            ],
+            "representative_universe": [
+              1,
+              2,
+              4,
+              5,
+              6
+            ]
+          },
+          "feature_directory": {
+            "activation_type": "residual",
+            "context_independent_features": false,
+            "dataset_phase": "base",
+            "ignore_bos_features": true,
+            "layer": 8,
+            "model": "gemma-2-2b",
+            "pooling": "max_pool",
+            "segment_size": 128,
+            "width": "16k"
+          },
+          "feature_mask": {
+            "allowed_count": 5,
+            "allowed_ids_sha256": "e333d85ee7eb33b296cd703526c26267d1da5b0fdb1594c19042c32f34143925",
+            "canonical": {
+              "ids": [
+                1,
+                2,
+                4,
+                5,
+                6
+              ],
+              "mode": "whitelist"
+            }
+          },
+          "n_sae_features": 8,
+          "sae": {
+            "activation_type": "residual",
+            "actual_loaded_width": 8,
+            "hook_name": "blocks.8.hook_resid_post",
+            "layer": 8,
+            "model": "gemma-2-2b",
+            "release": "gemma-scope-2b-pt-res",
+            "sae_id": "layer_8/width_16k/canonical",
+            "width": "16k"
+          },
+          "schema_version": 1,
+          "selection": {
+            "effective_positive_buckets": 1,
+            "feature_delta": null,
+            "negative_selection": {
+              "threshold": 0.5,
+              "threshold_type": "feature_percentile"
+            },
+            "num_buckets": 2,
+            "packed_row_fingerprint": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+            "positive_selection": {
+              "threshold": 0.9,
+              "threshold_type": "feature_percentile"
+            },
+            "preselection_seed": 42,
+            "selection_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "selection_manifest_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "selection_shards_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+          },
+          "statistics": {
+            "feature_id_domain": [
+              1,
+              2,
+              4,
+              6
+            ],
+            "file_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "n_sae_features": 8,
+            "percentile_table_checksum": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        }
+      },
+      "tier": "tier1"
+    },
+    "threshold_selection_payload": {
+      "oracle_outcome": {
+        "error_message": null,
+        "fingerprint": "185800c1b504d07aa0d127faf06ef53e699c610ca443ccbcfbaa5794af610840",
+        "raises": false,
+        "semantic_dict": {
+          "algorithms": {
+            "concept_projection": "mask_first_min_allowed_representative_v1",
+            "feature_diffmean_projection": "per_completion_uint8_amax_then_mean_v1",
+            "generic_roofline_signal": "per_document_cluster_signal_v2",
+            "packed_percentile_selection": "training_uint8_roundtrip_cluster_amax_v1",
+            "qc_target_reduction": "member_token_amax_own_percentile_v1"
+          },
+          "checkpoint": {
+            "feature_vocab": {
+              "canonical": {
+                "n_sae_features": 8,
+                "original_ids": [
+                  1,
+                  3,
+                  4,
+                  6
+                ]
+              },
+              "persistent": true,
+              "sha256": "f8c9c5d22e5a6cda35b5422c51d19c6121f69f325c255f63035e93c127199729"
+            },
+            "load_bearing_metadata": {},
+            "metadata_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+            "model_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+            "n_sae_features": 8,
+            "resolved_tag": "clustered-fixture",
+            "step": 7
+          },
+          "concept_source": {
+            "domain": [
+              2,
+              3,
+              4,
+              6
+            ],
+            "mode": "statistics_domain",
+            "source_to_representative": [
+              [
+                2,
+                1
+              ],
+              [
+                3,
+                3
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                6,
+                6
+              ]
+            ]
+          },
+          "feature_clusters": {
+            "canonical": {
+              "clusters": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "schema_version": 1
+            },
+            "consolidated_away": [
+              2,
+              5
+            ],
+            "descriptor": {
+              "content_sha256": "22f2702f51f965cae87643722932230ea0c33406f1bba73e083c39b63c323923",
+              "n_sae_features": 8,
+              "schema_version": 1,
+              "semantics": "post_mask_post_delta_max_percentile_v1"
+            },
+            "representative_to_allowed_members": [
+              [
+                1,
+                [
+                  1,
+                  2
+                ]
+              ],
+              [
+                3,
+                [
+                  3
+                ]
+              ],
+              [
+                4,
+                [
+                  4,
+                  5
+                ]
+              ],
+              [
+                6,
+                [
+                  6
+                ]
+              ]
+            ],
+            "representative_universe": [
+              1,
+              3,
+              4,
+              6
+            ]
+          },
+          "feature_directory": {
+            "activation_type": "residual",
+            "context_independent_features": false,
+            "dataset_phase": "base",
+            "ignore_bos_features": true,
+            "layer": 8,
+            "model": "gemma-2-2b",
+            "pooling": "max_pool",
+            "segment_size": 128,
+            "width": "16k"
+          },
+          "feature_mask": {
+            "allowed_count": 6,
+            "allowed_ids_sha256": "17ec0c346922df8a32b8fee47a41171e9d6fddd3b46b04f9c3a70d9eb7b14af7",
+            "canonical": {
+              "ids": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ],
+              "mode": "whitelist"
+            }
+          },
+          "n_sae_features": 8,
+          "sae": {
+            "activation_type": "residual",
+            "actual_loaded_width": 8,
+            "hook_name": "blocks.8.hook_resid_post",
+            "layer": 8,
+            "model": "gemma-2-2b",
+            "release": "gemma-scope-2b-pt-res",
+            "sae_id": "layer_8/width_16k/canonical",
+            "width": "16k"
+          },
+          "schema_version": 1,
+          "selection": {
+            "effective_positive_buckets": 1,
+            "feature_delta": null,
+            "negative_selection": {
+              "threshold": 0.5,
+              "threshold_type": "feature_percentile"
+            },
+            "num_buckets": 2,
+            "packed_row_fingerprint": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+            "positive_selection": {
+              "threshold": 0.9,
+              "threshold_type": "feature_percentile"
+            },
+            "preselection_seed": 42,
+            "selection_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "selection_manifest_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "selection_shards_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+          },
+          "statistics": {
+            "feature_id_domain": [
+              2,
+              3,
+              4,
+              6
+            ],
+            "file_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "n_sae_features": 8,
+            "percentile_table_checksum": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        }
+      },
+      "tier": "tier1"
+    },
+    "trivial_cluster_num_buckets_dedup": {
+      "oracle_outcome": {
+        "error_message": null,
+        "fingerprint": "9bacb13285d985d81f4646e09c2485f73eedacad81076e1437773b9d915b8483",
+        "raises": false,
+        "semantic_dict": {
+          "algorithms": {
+            "concept_projection": "mask_first_min_allowed_representative_v1",
+            "feature_diffmean_projection": "per_completion_uint8_amax_then_mean_v1",
+            "generic_roofline_signal": "per_document_cluster_signal_v2",
+            "packed_percentile_selection": "training_uint8_roundtrip_cluster_amax_v1",
+            "qc_target_reduction": "member_token_amax_own_percentile_v1"
+          },
+          "checkpoint": {
+            "feature_vocab": {
+              "canonical": {
+                "n_sae_features": 16384,
+                "original_ids": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              },
+              "persistent": true,
+              "sha256": "64483a266f2a2277a4e2886bf3ed13cd1401cf11f249a03b0a03204fb8ba8a65"
+            },
+            "load_bearing_metadata": {
+              "encoder_config": {
+                "depth": 1,
+                "n_embd": 8
+              },
+              "feature_clusters_canonical": {
+                "clusters": [
+                  [
+                    0,
+                    10
+                  ],
+                  [
+                    1,
+                    11
+                  ],
+                  [
+                    2,
+                    12
+                  ],
+                  [
+                    3,
+                    13
+                  ],
+                  [
+                    4,
+                    14
+                  ],
+                  [
+                    5,
+                    15
+                  ]
+                ],
+                "schema_version": 1
+              },
+              "feature_clusters_descriptor": {
+                "content_sha256": "9318b27753acd566ad1fc260feb52b6508b36566baa649c71045449e92266203",
+                "n_sae_features": 16384,
+                "schema_version": 1,
+                "semantics": "post_mask_post_delta_max_percentile_v1"
+              },
+              "feature_mask_canonical": {
+                "ids": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ],
+                "mode": "whitelist"
+              },
+              "feature_vocab": {
+                "n_sae_features": 16384,
+                "sha256": "64483a266f2a2277a4e2886bf3ed13cd1401cf11f249a03b0a03204fb8ba8a65",
+                "vocab_size": 6
+              },
+              "model_config": {
+                "n_embd": 8,
+                "n_layer": 2
+              },
+              "num_buckets": 2,
+              "user_config": {
+                "feature_delta": null,
+                "feature_prediction": null,
+                "feature_selection": {
+                  "distribution": "geometric",
+                  "mean": 2.0,
+                  "std": 2.0
+                },
+                "negative_selection": {
+                  "distribution": "geometric",
+                  "mean": 1.0,
+                  "std": 1.0
+                },
+                "num_buckets": 2,
+                "sae": {
+                  "activation_type": "residual",
+                  "l0": null,
+                  "layer": 8,
+                  "model": "gemma-2-2b",
+                  "release": "gemmascope",
+                  "width": "16k"
+                },
+                "seed": 42
+              },
+              "xattn_config": {
+                "frequency": 1
+              }
+            },
+            "metadata_sha256": "1ef3ef3e42a60f5c394094b039d7cb7141696a0bea1f6c4345a300c5f9f985a9",
+            "model_sha256": "<elided: nondeterministic raw-file-hash, see module docstring>",
+            "n_sae_features": 16384,
+            "resolved_tag": "fixture-step-7",
+            "step": 7
+          },
+          "concept_source": {
+            "domain": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "mode": "statistics_domain",
+            "source_to_representative": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                3,
+                3
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                5,
+                5
+              ]
+            ]
+          },
+          "feature_clusters": {
+            "canonical": {
+              "clusters": [
+                [
+                  0,
+                  10
+                ],
+                [
+                  1,
+                  11
+                ],
+                [
+                  2,
+                  12
+                ],
+                [
+                  3,
+                  13
+                ],
+                [
+                  4,
+                  14
+                ],
+                [
+                  5,
+                  15
+                ]
+              ],
+              "schema_version": 1
+            },
+            "consolidated_away": [],
+            "descriptor": {
+              "content_sha256": "9318b27753acd566ad1fc260feb52b6508b36566baa649c71045449e92266203",
+              "n_sae_features": 16384,
+              "schema_version": 1,
+              "semantics": "post_mask_post_delta_max_percentile_v1"
+            },
+            "representative_to_allowed_members": [
+              [
+                0,
+                [
+                  0
+                ]
+              ],
+              [
+                1,
+                [
+                  1
+                ]
+              ],
+              [
+                2,
+                [
+                  2
+                ]
+              ],
+              [
+                3,
+                [
+                  3
+                ]
+              ],
+              [
+                4,
+                [
+                  4
+                ]
+              ],
+              [
+                5,
+                [
+                  5
+                ]
+              ]
+            ],
+            "representative_universe": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "feature_directory": {
+            "activation_type": "residual",
+            "context_independent_features": false,
+            "dataset_phase": "base",
+            "ignore_bos_features": false,
+            "layer": 8,
+            "model": "gemma-2-2b",
+            "pooling": "max_pool",
+            "segment_size": 128,
+            "width": "16k"
+          },
+          "feature_mask": {
+            "allowed_count": 6,
+            "allowed_ids_sha256": "4e098021cf9ec15699efd082b803811ec67394af4b3ea324e86edbccc3cbeac3",
+            "canonical": {
+              "ids": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "mode": "whitelist"
+            }
+          },
+          "n_sae_features": 16384,
+          "sae": {
+            "activation_type": "residual",
+            "actual_loaded_width": 16384,
+            "hook_name": "blocks.8.hook_resid_post",
+            "layer": 8,
+            "model": "gemma-2-2b",
+            "release": "gemma-scope-2b-pt-res-canonical",
+            "sae_id": "layer_8/width_16k/canonical",
+            "width": "16k"
+          },
+          "schema_version": 1,
+          "selection": {
+            "effective_positive_buckets": 1,
+            "feature_delta": null,
+            "negative_selection": {
+              "distribution": "geometric",
+              "mean": 1.0,
+              "std": 1.0
+            },
+            "num_buckets": 2,
+            "packed_row_fingerprint": "6c8d5ea56855545d7724665ab1d5f86f4fcc3c035283dd90fcc69dbe91195021",
+            "positive_selection": {
+              "distribution": "geometric",
+              "mean": 2.0,
+              "std": 2.0
+            },
+            "preselection_seed": 42,
+            "selection_hash": "6722634a86429649a01e50001d25e45c840de8accf37c0dbdf4466f17801308e",
+            "selection_manifest_sha256": "b45a6e8bf426bec50c2e5d73ca8239a1eba30b1a7e7cb01a4febccce33a67d49",
+            "selection_shards_sha256": "56330fe9da25ba53863057c07e080563e4501c5de259f37eba06fbc81acfde3d"
+          },
+          "statistics": {
+            "feature_id_domain": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "file_sha256": "<elided: nondeterministic raw-file-hash, see module docstring>",
+            "n_sae_features": 16384,
+            "percentile_table_checksum": "8a00abaabf2fc001f19e2d70c967266ea556c6447ae0a34e3813667f17addb79"
+          }
+        }
+      },
+      "tier": "tier2"
+    }
+  },
+  "oracle_commit": "f357458b3871534a00372673fc4c40f2e62f2ce7",
+  "oracle_source_sha256": "eb265239a1ee2f68fbce286098d29067b4ebf4f1d8da7decc39bbff5f3fbf8b9",
+  "oracle_worktree": ".claude/worktrees/pr739-oracle",
+  "schema_version": 1,
+  "stack_pinned_cells": {
+    "genuine_cluster_effective_vocab_accepted": {
+      "label": "post-#759 production-correct value; the pre-#759 oracle cannot produce it",
+      "normalized_semantic_dict": {
+        "algorithms": {
+          "concept_projection": "mask_first_min_allowed_representative_v1",
+          "feature_diffmean_projection": "per_completion_uint8_amax_then_mean_v1",
+          "generic_roofline_signal": "per_document_cluster_signal_v2",
+          "packed_percentile_selection": "training_uint8_roundtrip_cluster_amax_v1",
+          "qc_target_reduction": "member_token_amax_own_percentile_v1"
+        },
+        "checkpoint": {
+          "feature_vocab": {
+            "canonical": {
+              "n_sae_features": 16384,
+              "original_ids": [
+                0,
+                2,
+                4,
+                5
+              ]
+            },
+            "persistent": true,
+            "sha256": "d8ce4a0df1f115fdd25ce178ddab564e03dbce83a12d0dc86a602b4f48fa0639"
+          },
+          "load_bearing_metadata": {
+            "encoder_config": {
+              "depth": 1,
+              "n_embd": 8
+            },
+            "feature_clusters_canonical": {
+              "clusters": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "schema_version": 1
+            },
+            "feature_clusters_descriptor": {
+              "content_sha256": "f8e1096dc8c9ae235a76f1b83544c05d59106b97d6cc81eac201e364223990e3",
+              "n_sae_features": 16384,
+              "schema_version": 1,
+              "semantics": "post_mask_post_delta_max_percentile_v1"
+            },
+            "feature_mask_canonical": {
+              "ids": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "mode": "whitelist"
+            },
+            "feature_vocab": {
+              "n_sae_features": 16384,
+              "sha256": "d8ce4a0df1f115fdd25ce178ddab564e03dbce83a12d0dc86a602b4f48fa0639",
+              "vocab_size": 4
+            },
+            "model_config": {
+              "n_embd": 8,
+              "n_layer": 2
+            },
+            "num_buckets": 2,
+            "user_config": {
+              "feature_delta": null,
+              "feature_prediction": null,
+              "feature_selection": {
+                "distribution": "geometric",
+                "mean": 2.0,
+                "std": 2.0
+              },
+              "negative_selection": {
+                "distribution": "geometric",
+                "mean": 1.0,
+                "std": 1.0
+              },
+              "sae": {
+                "activation_type": "residual",
+                "l0": null,
+                "layer": 8,
+                "model": "gemma-2-2b",
+                "release": "gemmascope",
+                "width": "16k"
+              },
+              "seed": 42
+            },
+            "xattn_config": {
+              "frequency": 1
+            }
+          },
+          "metadata_sha256": "620bdea687019faadc336d4e921c0ddd04dbb41939649b95f56424b0b2e618eb",
+          "model_sha256": "<elided: nondeterministic raw-file-hash, see module docstring>",
+          "n_sae_features": 16384,
+          "resolved_tag": "fixture-step-7",
+          "step": 7
+        },
+        "concept_source": {
+          "domain": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "mode": "statistics_domain",
+          "source_to_representative": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              5,
+              5
+            ]
+          ]
+        },
+        "feature_clusters": {
+          "canonical": {
+            "clusters": [
+              [
+                0,
+                1
+              ],
+              [
+                2,
+                3
+              ]
+            ],
+            "schema_version": 1
+          },
+          "consolidated_away": [
+            1,
+            3
+          ],
+          "descriptor": {
+            "content_sha256": "f8e1096dc8c9ae235a76f1b83544c05d59106b97d6cc81eac201e364223990e3",
+            "n_sae_features": 16384,
+            "schema_version": 1,
+            "semantics": "post_mask_post_delta_max_percentile_v1"
+          },
+          "representative_to_allowed_members": [
+            [
+              0,
+              [
+                0,
+                1
+              ]
+            ],
+            [
+              2,
+              [
+                2,
+                3
+              ]
+            ],
+            [
+              4,
+              [
+                4
+              ]
+            ],
+            [
+              5,
+              [
+                5
+              ]
+            ]
+          ],
+          "representative_universe": [
+            0,
+            2,
+            4,
+            5
+          ]
+        },
+        "feature_directory": {
+          "activation_type": "residual",
+          "context_independent_features": false,
+          "dataset_phase": "base",
+          "ignore_bos_features": false,
+          "layer": 8,
+          "model": "gemma-2-2b",
+          "pooling": "max_pool",
+          "segment_size": 128,
+          "width": "16k"
+        },
+        "feature_mask": {
+          "allowed_count": 6,
+          "allowed_ids_sha256": "4e098021cf9ec15699efd082b803811ec67394af4b3ea324e86edbccc3cbeac3",
+          "canonical": {
+            "ids": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "mode": "whitelist"
+          }
+        },
+        "n_sae_features": 16384,
+        "sae": {
+          "activation_type": "residual",
+          "actual_loaded_width": 16384,
+          "hook_name": "blocks.8.hook_resid_post",
+          "layer": 8,
+          "model": "gemma-2-2b",
+          "release": "gemma-scope-2b-pt-res-canonical",
+          "sae_id": "layer_8/width_16k/canonical",
+          "width": "16k"
+        },
+        "schema_version": 1,
+        "selection": {
+          "effective_positive_buckets": 1,
+          "feature_delta": null,
+          "negative_selection": {
+            "distribution": "geometric",
+            "mean": 1.0,
+            "std": 1.0
+          },
+          "num_buckets": 2,
+          "packed_row_fingerprint": "6c8d5ea56855545d7724665ab1d5f86f4fcc3c035283dd90fcc69dbe91195021",
+          "positive_selection": {
+            "distribution": "geometric",
+            "mean": 2.0,
+            "std": 2.0
+          },
+          "preselection_seed": 42,
+          "selection_hash": "5fda71cc6c9ed552fe1532bf4666fe78d3069d27aa23cce669edc5f44d27b84f",
+          "selection_manifest_sha256": "5cefbbd5957875577f2865485cade608914fae4f3703d557d109e80a8a5797df",
+          "selection_shards_sha256": "56330fe9da25ba53863057c07e080563e4501c5de259f37eba06fbc81acfde3d"
+        },
+        "statistics": {
+          "feature_id_domain": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "file_sha256": "<elided: nondeterministic raw-file-hash, see module docstring>",
+          "n_sae_features": 16384,
+          "percentile_table_checksum": "8a00abaabf2fc001f19e2d70c967266ea556c6447ae0a34e3813667f17addb79"
+        }
+      },
+      "normalized_semantic_sha256": "e6d9a27d295a48817c728a02f372706492779cc9b07bca327508eea8b276a0b2"
+    }
+  }
+}

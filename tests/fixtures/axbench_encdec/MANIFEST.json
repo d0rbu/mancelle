@@ -1,0 +1,55 @@
+{
+  "files": {
+    "diffmean_fixture.safetensors": {
+      "sha256": "8cdf17527d5f39f4c08b10fb0a50276515bf2ccd05eccac7a98157d8da0e2335"
+    },
+    "lora_fixture.safetensors": {
+      "sha256": "a3b83336a2a93a0da01111d072375365634f3d38bf1014ea1759575afe5ca371"
+    }
+  },
+  "fixture_parameters": {
+    "device": "cpu",
+    "diffmean": {
+      "class_rows": 8,
+      "row_lengths": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        3
+      ],
+      "width": 64
+    },
+    "dtype": "float32",
+    "lora": {
+      "alpha": 32,
+      "dropout": 0.05,
+      "eval_mode": true,
+      "in_features": 32,
+      "out_features": 16,
+      "rank": 4,
+      "scaling": 16.0
+    }
+  },
+  "format_version": 1,
+  "generator": "dev/generate_axbench_encdec_fixtures.py",
+  "generator_args": [],
+  "generator_command": "uv run --project vendor/axbench --frozen python dev/generate_axbench_encdec_fixtures.py",
+  "library_versions": {
+    "peft": "0.13.2",
+    "safetensors": "0.4.5",
+    "torch": "2.5.1",
+    "transformers": "4.45.1"
+  },
+  "seeds": {
+    "activation_rows": 2026082501,
+    "lora_base_weight": 2026082503,
+    "lora_fixture_A_B": 2026082504,
+    "lora_input": 2026082505,
+    "lora_peft_A_initialization": 1234
+  },
+  "vendored_commit": "41c8332543e5a631f9a8c0a9df38799893ace758"
+}

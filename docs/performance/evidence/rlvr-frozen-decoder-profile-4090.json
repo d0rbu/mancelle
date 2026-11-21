@@ -1,0 +1,1459 @@
+{
+  "schema": "rlvr_frozen_decoder_profile_diagnostic_evidence_v1",
+  "purpose": "Mechanism attribution only; these separate instrumented diagnostics provide no end-to-end performance estimate.",
+  "scripts": [
+    {
+      "path": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-bf256093/out/rlvr-perf/summarize_frozen_profile.py",
+      "bytes": 15220,
+      "sha256": "9be9e2f295e09069739f49d3c7ab599bdeb0a422d012fc32c87336d9f4344d0e"
+    },
+    {
+      "path": "out/rlvr-perf/stream_trace.py",
+      "bytes": 10704,
+      "sha256": "d5fb208a4f46f87b4c73aee162fdd77b4c9e0bdc29c20fc248bfb6e78e29b14c"
+    },
+    {
+      "path": "out/rlvr-perf/attribute_copy_shapes.py",
+      "bytes": 5850,
+      "sha256": "ff43de84f6056bbcb79de5d71399ee9443f28b26b193daedacad5c46f3c2566c"
+    }
+  ],
+  "primary_production_evidence": {
+    "path": "out/rlvr-perf/cycle3-production-evidence.json",
+    "bytes": 239917,
+    "sha256": "0c251ccba35bf0dbaa98aa8688ff2710208a659b1474a1d836768bb10f56439c"
+  },
+  "matched_configuration": {
+    "base_checkpoint_dir": "/home/d0rb/.cache/nanochat/conditional_encdec_checkpoints/full3b_clustered_c2048_long_w32_bf16_b14_fp/standard_steered_sft_conditioned_checkpoints/sft3b-steered-turnseg32-20260905",
+    "model_step": 1116,
+    "bundle_dir": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/.codex/worktrees/codex-bccea5ce/out/rlvr-qualification/data",
+    "stats_path": "/home/d0rb/Documents/Github/nano-gpt-pretrain-steer/out/data/features/s32/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/standard_steered_sft/context_independent/no_bos/turn_delimited/feature_statistics.safetensors",
+    "resume_from_step": -1,
+    "resume_checkpoint_dir": null,
+    "train_feature_head_only": true,
+    "global_prompts_per_step": 1,
+    "group_size": 2,
+    "num_iterations": 1,
+    "device_type": "cuda",
+    "seed": 42,
+    "tasks": [
+      "ARC-Easy",
+      "ARC-Challenge",
+      "MMLU",
+      "GSM8K"
+    ],
+    "validation_seed": 314159,
+    "temperature": 1.0,
+    "top_k": null,
+    "mc_max_tokens": 16,
+    "gsm8k_max_tokens": 64,
+    "validation_per_task": 32,
+    "eval_every": 10,
+    "save_every": 10,
+    "grad_clip_max_norm": 1.0,
+    "lr_multiplier": 1.0,
+    "init_lr_frac": 0.05,
+    "embedding_lr": 0.2,
+    "unembedding_lr": 0.004,
+    "matrix_lr": 0.02,
+    "encoder_embedding_lr": 0.2,
+    "encoder_matrix_lr": 0.02,
+    "xattn_matrix_lr": 0.02,
+    "weight_decay": 0.0,
+    "lr_decay_start": 0.8,
+    "wandb": {
+      "enabled": false,
+      "mode": "online",
+      "project": "nanochat-encdec-rlvr",
+      "entity": null,
+      "name": null,
+      "new_run": false
+    },
+    "row_indices": [
+      0,
+      8,
+      16,
+      24
+    ],
+    "warmup_steps": 1,
+    "measure_steps": 2,
+    "compiler_reset": null,
+    "measure_phases": true,
+    "profile": true,
+    "parity_steps": []
+  },
+  "config_differences": {
+    "frozen_decoder_max_shadow_bytes": {
+      "historical": null,
+      "current": 2147483648
+    },
+    "frozen_decoder_min_free_bytes": {
+      "historical": null,
+      "current": 4294967296
+    },
+    "output_dir": {
+      "historical": "out/rlvr-perf/cycle2-position-profile",
+      "current": "out/rlvr-perf/cycle3-production-profile"
+    }
+  },
+  "matched_runtime": {
+    "values": {
+      "gpu": "NVIDIA GeForce RTX 4090",
+      "gpu_capability": [
+        8,
+        9
+      ],
+      "torch": "2.13.0+cu130",
+      "cuda": "13.0",
+      "compute_dtype": "torch.bfloat16",
+      "autocast_enabled": false,
+      "attention": "sdpa",
+      "deterministic": true,
+      "compiler": {
+        "derived_minimum": 8193,
+        "window_variants": 2,
+        "sequence_len": 2048,
+        "recompile_limit": 8193,
+        "accumulated_recompile_limit": 8193,
+        "fail_on_recompile_limit_hit": true,
+        "suppress_errors": false
+      }
+    },
+    "canonical_sha256": "b7fffbd63e01eefb9f59dc1c155c4afcc82c33a3d266bdde5a926e8c35cb5471"
+  },
+  "matched_artifacts_geometry_rows_manifest": {
+    "base_identity": {
+      "step": 1116,
+      "model_sha256": "a91b0ffb0fefe6d34c2954f72d57bdbe33f73c306177cfc8e23128c7b9cead27",
+      "metadata_sha256": "1ee6c80ec85673d1b54d9805886a55da44b528bbc1c9a06401ec571923e7d73c"
+    },
+    "bundle_sha256": "11bdc48b92295cf29ab5478581d855c5faf62b86da439b17c8eec8190763f3e6",
+    "geometry": {
+      "effective_prompts_per_update": 4,
+      "decoder": {
+        "sequence_len": 2048,
+        "vocab_size": 32768,
+        "n_layer": 27,
+        "n_head": 13,
+        "n_kv_head": 13,
+        "n_embd": 1664,
+        "window_pattern": "SSSL"
+      },
+      "encoder": {
+        "n_sae_features": 65536,
+        "num_buckets": 2,
+        "n_embd": 1664,
+        "n_layer": 27,
+        "n_head": 13,
+        "n_kv_head": 13,
+        "head_dim": 128,
+        "ve_gate_channels": 32
+      },
+      "feature_head": {
+        "weight": 0.1,
+        "layer": -1,
+        "loss_mode": "max_pool",
+        "loss_fn": "bce",
+        "mlp_layers": 0
+      },
+      "cadence": 33,
+      "parameter_count": 2988187138,
+      "trainable_parameter_count": 1405260
+    },
+    "rows": [
+      {
+        "index": 0,
+        "row_id": "rlvr:ad4f4ee72148be338012e4873a2d001ec968cb845f63447a3a29607148abc6dc",
+        "task": "ARC-Easy",
+        "prompt_tokens": 53
+      },
+      {
+        "index": 8,
+        "row_id": "rlvr:ca3053a56a6837b3d9acab125152470202eed4927b17184df388e6bab9803135",
+        "task": "ARC-Challenge",
+        "prompt_tokens": 52
+      },
+      {
+        "index": 16,
+        "row_id": "rlvr:6c876b0a5ae04500c6f03bfe8b6210d6872a2954fe748f3aad7a1ef1738ca374",
+        "task": "MMLU",
+        "prompt_tokens": 238
+      },
+      {
+        "index": 24,
+        "row_id": "rlvr:9e1e38467b4e11cd340b590d937c89e9dbd43f0551a2ad49c93252824c02d20b",
+        "task": "GSM8K",
+        "prompt_tokens": 63
+      }
+    ],
+    "manifest": [
+      "feature_pred_head.weight",
+      "feature_pred_head.bias"
+    ]
+  },
+  "matched_non_timing_receipts": {
+    "warmup": {
+      "steps": [
+        0
+      ],
+      "canonical_sha256": "bfbd482fcc547cf395b5bdd396d543d0c97604cc32b3726c4eb82754035fbf3b",
+      "exactly_equal": true
+    },
+    "measured": {
+      "steps": [
+        1,
+        2
+      ],
+      "canonical_sha256": "e71f7d86984e7d79eab9e8e4fd4b51af4460fe29fbe87d224eaf2c1d01202e92",
+      "exactly_equal": true
+    },
+    "phase_diagnostic": {
+      "steps": [
+        3
+      ],
+      "canonical_sha256": "6f9515729bf5ea2160371a279dcd5e841a14ae993ea72c553890a2902cf343f4",
+      "exactly_equal": true
+    },
+    "profile_diagnostic": {
+      "steps": [
+        4
+      ],
+      "canonical_sha256": "7cdc2f2b8a822ee25845b630c5265cd202f81eca6521c658a47279f08f1db35d",
+      "exactly_equal": true
+    }
+  },
+  "excluded_receipt_fields": [
+    "peak_allocated_bytes",
+    "phase_seconds",
+    "seconds"
+  ],
+  "native_step_ast_identical": true,
+  "source_scope": "Historical source9147b00e9 and current4779b3dd have different runtime/benchmark hashes. The native _step AST and model shape definitions are identical; benchmark staging setup/cleanup, trainer lifecycle, runtime settings validation and configuration changed. Invoked frozen-linear behavior intentionally differs. This is a historical mechanism comparison, not a same-source timing control.",
+  "source_shape_references": [
+    {
+      "path": "nanochat/gpt.py",
+      "lines": [
+        60,
+        94,
+        168
+      ],
+      "identical_at_both_revisions": true,
+      "sha256": "d590cb0c284ff36396508f713fef4ded10b3e5e49d24535010d6d3c9e1d20717"
+    },
+    {
+      "path": "steering/conditional/encoder_decoder/model.py",
+      "lines": [
+        228,
+        281
+      ],
+      "identical_at_both_revisions": true,
+      "sha256": "d6b693fcf4f36c028e219b094a6ee63151762c89c491e555ed900a528abdbbf9"
+    },
+    {
+      "path": "steering/conditional/encoder_decoder/encoder.py",
+      "lines": [
+        136,
+        223
+      ],
+      "identical_at_both_revisions": true,
+      "sha256": "3a33d406afc2714559ca509eaa8b7875ab609e2826d60edb4b6509663199cf87"
+    },
+    {
+      "path": "steering/conditional/encoder_decoder/cross_attention.py",
+      "lines": [
+        286,
+        382,
+        417
+      ],
+      "identical_at_both_revisions": true,
+      "sha256": "71bf81b619200762d987cdc72832d095c1cd803610d81a8f37b2586aa185c35c"
+    }
+  ],
+  "historical": {
+    "source": {
+      "git_sha": "9147b00e9ccec02a6a6551dcf2261481a56e26ac",
+      "source_identity": {
+        "runtime_version": "chatcore_scalar_self_conditioned_v1",
+        "git_commit": "9147b00e9ccec02a6a6551dcf2261481a56e26ac",
+        "source_sha256": "34cacabc4d47a02bf38155d6781bc54cd64e73d71060ed56dbf627e157ff848e"
+      },
+      "benchmark_sha256": "170ae9dd0f8a2d4982fce5845c59a0405f79bcacc6cbb724f7b7d35f5a117deb"
+    },
+    "files": {
+      "results": {
+        "path": "out/rlvr-perf/cycle2-position-profile/results.json",
+        "bytes": 11193,
+        "sha256": "1b2b44136abcd09e85dc311320279b862596750cea640e6a336531cae14c63fa"
+      },
+      "stream_summary": {
+        "path": "out/rlvr-perf/cycle2-position-profile/stream-summary.json",
+        "bytes": 97995,
+        "sha256": "7334dad9065987e2202fbca255c81f270d9b274826f1dbc3a3e3241072d765bc"
+      },
+      "copy_shapes": {
+        "path": "out/rlvr-perf/cycle2-position-profile/copy-shapes.json",
+        "bytes": 714013,
+        "sha256": "9af29b5c6d2f68c8d3374c70bb5faf5398bbbe2d32bc2adf4d1b1d89097a915f"
+      },
+      "log": {
+        "path": "out/rlvr-perf/cycle2-position-profile.log",
+        "bytes": 3464,
+        "sha256": "9d9394327581cb0176bbee3d827a41d803fadccb4e6ee13538a9c518748477f0"
+      },
+      "exit_status": null
+    },
+    "completion": {
+      "frozen_parameters_unchanged": true,
+      "recorded_exit_status": null,
+      "scope": "Historical profile has completed result/log receipts but no separately preserved exit-status sidecar."
+    },
+    "trace_pin_from_streaming_passes": {
+      "path": "out/rlvr-perf/cycle2-position-profile/trace.json",
+      "bytes": 1671037507,
+      "sha256": "5c7fc3bbb9987fae5e3a5483665abf0796b8374834fddbe9cf695fce625a23d9"
+    },
+    "native_step_ast": {
+      "sha256": "fa4265387d08339b994a15f6ac62bb290367428ec2249d5a0e9744edea094b2d",
+      "line": 94,
+      "method": "ast.dump(FunctionDef, include_attributes=False), including arguments, body and decorators"
+    },
+    "instrumented_profile_step": {
+      "step": 4,
+      "seconds": 5.642622821033001,
+      "phase_seconds": {},
+      "phase_synchronized": false,
+      "gradient_norm_before_clip": 34.70801544189453,
+      "peak_allocated_bytes": 10598304256,
+      "generated_tokens": 134,
+      "live_actions": 14,
+      "rewards": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "advantages": [
+        [
+          1.0,
+          -1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "replay": [
+        {
+          "loss": 0.0,
+          "ratio_min": 1.0,
+          "ratio_max": 1.0,
+          "live_decisions": 2
+        },
+        {
+          "loss": 4.57763671875e-05,
+          "ratio_min": 1.0,
+          "ratio_max": 1.000091552734375,
+          "live_decisions": 2
+        },
+        {
+          "loss": 3.4332275390625e-05,
+          "ratio_min": 0.9999923706054688,
+          "ratio_max": 1.00006103515625,
+          "live_decisions": 2
+        },
+        {
+          "loss": 0.0,
+          "ratio_min": 0.9999923706054688,
+          "ratio_max": 1.0000152587890625,
+          "live_decisions": 8
+        }
+      ]
+    },
+    "copy_kernel_attribution": {
+      "groups": {
+        "eager_frozen_decoder_blocks": {
+          "calls": 20496,
+          "gpu_duration_sum_seconds": 0.8258473419999985
+        },
+        "eager_frozen_lm_head": {
+          "calls": 148,
+          "gpu_duration_sum_seconds": 0.05324065399999998
+        },
+        "eager_feature_head_shaped": {
+          "calls": 350,
+          "gpu_duration_sum_seconds": 0.0014969260000000002
+        },
+        "compiled_encoder_weight_casts": {
+          "calls": 9028,
+          "gpu_duration_sum_seconds": 0.36884371499999996
+        },
+        "compiled_cross_attention_weight_casts": {
+          "calls": 13608,
+          "gpu_duration_sum_seconds": 0.2504264520000003
+        },
+        "compiled_bf16_layout_copies": {
+          "calls": 756,
+          "gpu_duration_sum_seconds": 0.0008383090000000001
+        },
+        "compiled_copy_unattributed": {
+          "calls": 2,
+          "gpu_duration_sum_seconds": 1.9968e-05
+        }
+      },
+      "weight_shapes": [
+        {
+          "group": "eager_frozen_decoder_blocks",
+          "input_dims": [
+            [
+              6656,
+              1664
+            ],
+            [
+              6656,
+              1664
+            ],
+            []
+          ],
+          "input_types": [
+            "c10::BFloat16",
+            "float",
+            "Scalar"
+          ],
+          "calls": 4536,
+          "gpu_duration_sum_seconds": 0.2851937089999991,
+          "unannotated_calls": 0
+        },
+        {
+          "group": "eager_frozen_decoder_blocks",
+          "input_dims": [
+            [
+              1664,
+              6656
+            ],
+            [
+              1664,
+              6656
+            ],
+            []
+          ],
+          "input_types": [
+            "c10::BFloat16",
+            "float",
+            "Scalar"
+          ],
+          "calls": 4536,
+          "gpu_duration_sum_seconds": 0.23736862599999972,
+          "unannotated_calls": 0
+        },
+        {
+          "group": "eager_frozen_decoder_blocks",
+          "input_dims": [
+            [
+              4992,
+              1664
+            ],
+            [
+              4992,
+              1664
+            ],
+            []
+          ],
+          "input_types": [
+            "c10::BFloat16",
+            "float",
+            "Scalar"
+          ],
+          "calls": 4536,
+          "gpu_duration_sum_seconds": 0.23315348099999983,
+          "unannotated_calls": 0
+        },
+        {
+          "group": "compiled_cross_attention_weight_casts",
+          "input_dims": [
+            [
+              1664,
+              1664
+            ],
+            [
+              1664,
+              1664
+            ],
+            []
+          ],
+          "input_types": [
+            "float",
+            "c10::BFloat16",
+            "Scalar"
+          ],
+          "calls": 9072,
+          "gpu_duration_sum_seconds": 0.13690675099999994,
+          "unannotated_calls": 0
+        },
+        {
+          "group": "compiled_cross_attention_weight_casts",
+          "input_dims": [
+            [
+              3328,
+              1664
+            ],
+            [
+              3328,
+              1664
+            ],
+            []
+          ],
+          "input_types": [
+            "float",
+            "c10::BFloat16",
+            "Scalar"
+          ],
+          "calls": 4536,
+          "gpu_duration_sum_seconds": 0.11351970100000038,
+          "unannotated_calls": 0
+        },
+        {
+          "group": "eager_frozen_decoder_blocks",
+          "input_dims": [
+            [
+              1664,
+              1664
+            ],
+            [
+              1664,
+              1664
+            ],
+            []
+          ],
+          "input_types": [
+            "c10::BFloat16",
+            "float",
+            "Scalar"
+          ],
+          "calls": 4536,
+          "gpu_duration_sum_seconds": 0.06736664199999993,
+          "unannotated_calls": 0
+        },
+        {
+          "group": "eager_frozen_lm_head",
+          "input_dims": [
+            [
+              32768,
+              1664
+            ],
+            [
+              32768,
+              1664
+            ],
+            []
+          ],
+          "input_types": [
+            "c10::BFloat16",
+            "float",
+            "Scalar"
+          ],
+          "calls": 148,
+          "gpu_duration_sum_seconds": 0.05324065399999998,
+          "unannotated_calls": 0
+        },
+        {
+          "group": "compiled_encoder_weight_casts",
+          "input_dims": [
+            [
+              6656,
+              1664
+            ],
+            [
+              6656,
+              1664
+            ],
+            []
+          ],
+          "input_types": [
+            "float",
+            "c10::BFloat16",
+            "Scalar"
+          ],
+          "calls": 1998,
+          "gpu_duration_sum_seconds": 0.13394436399999995,
+          "unannotated_calls": 0
+        },
+        {
+          "group": "compiled_encoder_weight_casts",
+          "input_dims": [
+            [
+              1664,
+              6656
+            ],
+            [
+              1664,
+              6656
+            ],
+            []
+          ],
+          "input_types": [
+            "float",
+            "c10::BFloat16",
+            "Scalar"
+          ],
+          "calls": 1998,
+          "gpu_duration_sum_seconds": 0.11913831500000004,
+          "unannotated_calls": 0
+        },
+        {
+          "group": "compiled_encoder_weight_casts",
+          "input_dims": [
+            [
+              4992,
+              1664
+            ],
+            [
+              4992,
+              1664
+            ],
+            []
+          ],
+          "input_types": [
+            "float",
+            "c10::BFloat16",
+            "Scalar"
+          ],
+          "calls": 1998,
+          "gpu_duration_sum_seconds": 0.08088106799999996,
+          "unannotated_calls": 0
+        },
+        {
+          "group": "compiled_encoder_weight_casts",
+          "input_dims": [
+            [
+              1664,
+              1664
+            ],
+            [
+              1664,
+              1664
+            ],
+            []
+          ],
+          "input_types": [
+            "float",
+            "c10::BFloat16",
+            "Scalar"
+          ],
+          "calls": 1998,
+          "gpu_duration_sum_seconds": 0.033765438000000016,
+          "unannotated_calls": 0
+        },
+        {
+          "group": "eager_frozen_decoder_blocks",
+          "input_dims": [
+            [
+              13,
+              32
+            ],
+            [
+              13,
+              32
+            ],
+            []
+          ],
+          "input_types": [
+            "c10::BFloat16",
+            "float",
+            "Scalar"
+          ],
+          "calls": 2352,
+          "gpu_duration_sum_seconds": 0.002764883999999965,
+          "unannotated_calls": 0
+        },
+        {
+          "group": "eager_feature_head_shaped",
+          "input_dims": [
+            [
+              844,
+              1664
+            ],
+            [
+              844,
+              1664
+            ],
+            []
+          ],
+          "input_types": [
+            "c10::BFloat16",
+            "float",
+            "Scalar"
+          ],
+          "calls": 168,
+          "gpu_duration_sum_seconds": 0.001276405,
+          "unannotated_calls": 0
+        },
+        {
+          "group": "compiled_encoder_weight_casts",
+          "input_dims": [
+            [
+              13,
+              32
+            ],
+            [
+              13,
+              32
+            ],
+            []
+          ],
+          "input_types": [
+            "float",
+            "c10::BFloat16",
+            "Scalar"
+          ],
+          "calls": 1036,
+          "gpu_duration_sum_seconds": 0.0011145299999999999,
+          "unannotated_calls": 0
+        },
+        {
+          "group": "eager_feature_head_shaped",
+          "input_dims": [
+            [
+              844
+            ],
+            [
+              844
+            ],
+            []
+          ],
+          "input_types": [
+            "c10::BFloat16",
+            "float",
+            "Scalar"
+          ],
+          "calls": 182,
+          "gpu_duration_sum_seconds": 0.000220521,
+          "unannotated_calls": 14
+        }
+      ]
+    },
+    "cpu_operator_totals_inclusive": {
+      "aten::to": {
+        "calls": 47999,
+        "total_seconds": 0.42766747599997446,
+        "bytes": 0
+      },
+      "aten::_to_copy": {
+        "calls": 26809,
+        "total_seconds": 0.4068043360000013,
+        "bytes": 0
+      },
+      "aten::copy_": {
+        "calls": 41598,
+        "total_seconds": 0.27671506700000115,
+        "bytes": 0
+      },
+      "aten::item": {
+        "calls": 7627,
+        "total_seconds": 0.1510571959999991,
+        "bytes": 0
+      },
+      "aten::_local_scalar_dense": {
+        "calls": 7627,
+        "total_seconds": 0.14573539999999793,
+        "bytes": 0
+      },
+      "aten::mm": {
+        "calls": 43299,
+        "total_seconds": 0.4045181249999991,
+        "bytes": 0
+      },
+      "aten::linear": {
+        "calls": 20815,
+        "total_seconds": 0.34941793099999974,
+        "bytes": 0
+      },
+      "aten::matmul": {
+        "calls": 20647,
+        "total_seconds": 0.2859657239999999,
+        "bytes": 0
+      },
+      "aten::scaled_dot_product_attention": {
+        "calls": 4536,
+        "total_seconds": 0.23427412699999983,
+        "bytes": 0
+      }
+    },
+    "cpu_rlvr_annotations_inclusive": {
+      "rlvr/collection": {
+        "calls": 4,
+        "total_seconds": 5.023693976,
+        "bytes": 0
+      },
+      "rlvr/token_cached_forward": {
+        "calls": 148,
+        "total_seconds": 3.724020464999999,
+        "bytes": 0
+      },
+      "rlvr/canonical_feature_policy": {
+        "calls": 20,
+        "total_seconds": 1.3007917430000002,
+        "bytes": 0
+      },
+      "rlvr/full_prefix_forward": {
+        "calls": 20,
+        "total_seconds": 0.7613282440000001,
+        "bytes": 0
+      },
+      "rlvr/replay_backward": {
+        "calls": 4,
+        "total_seconds": 0.616136106,
+        "bytes": 0
+      },
+      "rlvr/encoder": {
+        "calls": 74,
+        "total_seconds": 0.5677624619999998,
+        "bytes": 0
+      },
+      "rlvr/clip_optimizer": {
+        "calls": 1,
+        "total_seconds": 0.002560058,
+        "bytes": 0
+      }
+    },
+    "cpu_cuda_stream_synchronize": {
+      "calls": 4399,
+      "total_seconds": 0.21623527200000003,
+      "bytes": 0
+    },
+    "scalar_cuda_runtime_correlations": {
+      "aten::_local_scalar_dense | cudaStreamSynchronize": {
+        "calls": 1989,
+        "total_seconds": 0.13262725699999997,
+        "bytes": 0
+      },
+      "aten::_local_scalar_dense | cudaMemcpyAsync": {
+        "calls": 1989,
+        "total_seconds": 0.007080149999999994,
+        "bytes": 0
+      }
+    },
+    "scalar_gpu_event_correlations": {
+      "aten::_local_scalar_dense | gpu_memcpy | Memcpy DtoH (Device -> Pinned)": {
+        "calls": 1989,
+        "total_seconds": 0.0019296914062499537,
+        "bytes": 10333
+      }
+    },
+    "actual_gpu_kernel_count": 430693,
+    "actual_gpu_kernel_duration_sum_seconds": 2.604550444000028,
+    "gpu_busy_unions_by_device": {
+      "0": {
+        "kernel_busy_union_seconds": 2.60456080078125,
+        "kernel_and_transfer_union_seconds": 2.623515955078125
+      }
+    },
+    "actual_gpu_transfer_totals": {
+      "Memcpy DtoD (Device -> Device)": {
+        "calls": 12339,
+        "total_seconds": 0.01159356000000153,
+        "bytes": 160462981
+      },
+      "Memset (Device)": {
+        "calls": 5687,
+        "total_seconds": 0.0035845299999998923,
+        "bytes": 3635124
+      },
+      "Memcpy DtoH (Device -> Pinned)": {
+        "calls": 2867,
+        "total_seconds": 0.00263880999999996,
+        "bytes": 13845
+      },
+      "Memcpy HtoD (Pageable -> Device)": {
+        "calls": 1292,
+        "total_seconds": 0.0009051470000000186,
+        "bytes": 9538128
+      },
+      "Memcpy DtoH (Device -> Pageable)": {
+        "calls": 264,
+        "total_seconds": 0.0002363600000000002,
+        "bytes": 76512
+      }
+    }
+  },
+  "current": {
+    "source": {
+      "git_sha": "4779b3dd743868a0fac0c7999a332c56093dc7d1",
+      "source_identity": {
+        "runtime_version": "chatcore_scalar_self_conditioned_v1",
+        "git_commit": "4779b3dd743868a0fac0c7999a332c56093dc7d1",
+        "source_sha256": "e07008d7c52af0e329cc9d8e37384c88fa72edc4571e69fd0dfb06473c6148b4"
+      },
+      "benchmark_sha256": "3564ebef0cb15f8c2d1ed8ef4876abf8bd852363374d36ae19267313ebefe12a"
+    },
+    "files": {
+      "results": {
+        "path": "out/rlvr-perf/cycle3-production-profile/results.json",
+        "bytes": 16912,
+        "sha256": "92f44353fbe9ee73a444c0e1d134d9bd8cbf983de0eb3033db7e7b04515217f5"
+      },
+      "stream_summary": {
+        "path": "out/rlvr-perf/cycle3-production-profile/stream-summary.json",
+        "bytes": 97878,
+        "sha256": "7f68063acfcf1bdc8cef7e36fed22eedaf0449b9720ef405335819d8819693a3"
+      },
+      "copy_shapes": {
+        "path": "out/rlvr-perf/cycle3-production-profile/copy-shapes.json",
+        "bytes": 694203,
+        "sha256": "362e1f7033112f14531c3265a5d2ac7093d99d08ef9657d97593a9c4b5c7640c"
+      },
+      "log": {
+        "path": "out/rlvr-perf/cycle3-production-profile.log",
+        "bytes": 7829,
+        "sha256": "843fcf8f7d1ca2815e21457e48a3b56827076dcd72c3a7d870d7bcf52092ea9b"
+      },
+      "exit_status": {
+        "path": "out/rlvr-perf/cycle3-production-profile.exit-status",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      }
+    },
+    "completion": {
+      "frozen_parameters_unchanged": true,
+      "recorded_exit_status": 0,
+      "scope": "Exit-status sidecar records zero."
+    },
+    "trace_pin_from_streaming_passes": {
+      "path": "out/rlvr-perf/cycle3-production-profile/trace.json",
+      "bytes": 1545273847,
+      "sha256": "6402e95e3e7f0c949032891e021384690e48eeb1358daa7752fc63654b3af43e"
+    },
+    "native_step_ast": {
+      "sha256": "fa4265387d08339b994a15f6ac62bb290367428ec2249d5a0e9744edea094b2d",
+      "line": 99,
+      "method": "ast.dump(FunctionDef, include_attributes=False), including arguments, body and decorators"
+    },
+    "instrumented_profile_step": {
+      "step": 4,
+      "seconds": 5.505687728524208,
+      "phase_seconds": {},
+      "phase_synchronized": false,
+      "gradient_norm_before_clip": 34.70801544189453,
+      "peak_allocated_bytes": 12499908096,
+      "generated_tokens": 134,
+      "live_actions": 14,
+      "rewards": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "advantages": [
+        [
+          1.0,
+          -1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "replay": [
+        {
+          "loss": 0.0,
+          "ratio_min": 1.0,
+          "ratio_max": 1.0,
+          "live_decisions": 2
+        },
+        {
+          "loss": 4.57763671875e-05,
+          "ratio_min": 1.0,
+          "ratio_max": 1.000091552734375,
+          "live_decisions": 2
+        },
+        {
+          "loss": 3.4332275390625e-05,
+          "ratio_min": 0.9999923706054688,
+          "ratio_max": 1.00006103515625,
+          "live_decisions": 2
+        },
+        {
+          "loss": 0.0,
+          "ratio_min": 0.9999923706054688,
+          "ratio_max": 1.0000152587890625,
+          "live_decisions": 8
+        }
+      ]
+    },
+    "copy_kernel_attribution": {
+      "groups": {
+        "eager_frozen_decoder_blocks": {
+          "calls": 0,
+          "gpu_duration_sum_seconds": 0.0
+        },
+        "eager_frozen_lm_head": {
+          "calls": 0,
+          "gpu_duration_sum_seconds": 0.0
+        },
+        "eager_feature_head_shaped": {
+          "calls": 350,
+          "gpu_duration_sum_seconds": 0.001442801
+        },
+        "compiled_encoder_weight_casts": {
+          "calls": 9028,
+          "gpu_duration_sum_seconds": 0.3688884979999999
+        },
+        "compiled_cross_attention_weight_casts": {
+          "calls": 13608,
+          "gpu_duration_sum_seconds": 0.2697571469999996
+        },
+        "compiled_bf16_layout_copies": {
+          "calls": 756,
+          "gpu_duration_sum_seconds": 0.0008326510000000001
+        },
+        "compiled_copy_unattributed": {
+          "calls": 2,
+          "gpu_duration_sum_seconds": 1.952e-05
+        }
+      },
+      "weight_shapes": [
+        {
+          "group": "compiled_cross_attention_weight_casts",
+          "input_dims": [
+            [
+              3328,
+              1664
+            ],
+            [
+              3328,
+              1664
+            ],
+            []
+          ],
+          "input_types": [
+            "float",
+            "c10::BFloat16",
+            "Scalar"
+          ],
+          "calls": 4536,
+          "gpu_duration_sum_seconds": 0.140124061,
+          "unannotated_calls": 0
+        },
+        {
+          "group": "compiled_cross_attention_weight_casts",
+          "input_dims": [
+            [
+              1664,
+              1664
+            ],
+            [
+              1664,
+              1664
+            ],
+            []
+          ],
+          "input_types": [
+            "float",
+            "c10::BFloat16",
+            "Scalar"
+          ],
+          "calls": 9072,
+          "gpu_duration_sum_seconds": 0.12963308599999965,
+          "unannotated_calls": 0
+        },
+        {
+          "group": "compiled_encoder_weight_casts",
+          "input_dims": [
+            [
+              6656,
+              1664
+            ],
+            [
+              6656,
+              1664
+            ],
+            []
+          ],
+          "input_types": [
+            "float",
+            "c10::BFloat16",
+            "Scalar"
+          ],
+          "calls": 1998,
+          "gpu_duration_sum_seconds": 0.13452938199999998,
+          "unannotated_calls": 0
+        },
+        {
+          "group": "compiled_encoder_weight_casts",
+          "input_dims": [
+            [
+              1664,
+              6656
+            ],
+            [
+              1664,
+              6656
+            ],
+            []
+          ],
+          "input_types": [
+            "float",
+            "c10::BFloat16",
+            "Scalar"
+          ],
+          "calls": 1998,
+          "gpu_duration_sum_seconds": 0.1180286929999999,
+          "unannotated_calls": 0
+        },
+        {
+          "group": "compiled_encoder_weight_casts",
+          "input_dims": [
+            [
+              4992,
+              1664
+            ],
+            [
+              4992,
+              1664
+            ],
+            []
+          ],
+          "input_types": [
+            "float",
+            "c10::BFloat16",
+            "Scalar"
+          ],
+          "calls": 1998,
+          "gpu_duration_sum_seconds": 0.08137608899999993,
+          "unannotated_calls": 0
+        },
+        {
+          "group": "compiled_encoder_weight_casts",
+          "input_dims": [
+            [
+              1664,
+              1664
+            ],
+            [
+              1664,
+              1664
+            ],
+            []
+          ],
+          "input_types": [
+            "float",
+            "c10::BFloat16",
+            "Scalar"
+          ],
+          "calls": 1998,
+          "gpu_duration_sum_seconds": 0.03384837300000001,
+          "unannotated_calls": 0
+        },
+        {
+          "group": "eager_feature_head_shaped",
+          "input_dims": [
+            [
+              844,
+              1664
+            ],
+            [
+              844,
+              1664
+            ],
+            []
+          ],
+          "input_types": [
+            "c10::BFloat16",
+            "float",
+            "Scalar"
+          ],
+          "calls": 168,
+          "gpu_duration_sum_seconds": 0.0012222509999999997,
+          "unannotated_calls": 0
+        },
+        {
+          "group": "compiled_encoder_weight_casts",
+          "input_dims": [
+            [
+              13,
+              32
+            ],
+            [
+              13,
+              32
+            ],
+            []
+          ],
+          "input_types": [
+            "float",
+            "c10::BFloat16",
+            "Scalar"
+          ],
+          "calls": 1036,
+          "gpu_duration_sum_seconds": 0.0011059610000000006,
+          "unannotated_calls": 0
+        },
+        {
+          "group": "eager_feature_head_shaped",
+          "input_dims": [
+            [
+              844
+            ],
+            [
+              844
+            ],
+            []
+          ],
+          "input_types": [
+            "c10::BFloat16",
+            "float",
+            "Scalar"
+          ],
+          "calls": 182,
+          "gpu_duration_sum_seconds": 0.00022055000000000016,
+          "unannotated_calls": 14
+        }
+      ]
+    },
+    "cpu_operator_totals_inclusive": {
+      "aten::to": {
+        "calls": 27355,
+        "total_seconds": 0.1719498319999998,
+        "bytes": 0
+      },
+      "aten::_to_copy": {
+        "calls": 6165,
+        "total_seconds": 0.1635398259999998,
+        "bytes": 0
+      },
+      "aten::copy_": {
+        "calls": 20954,
+        "total_seconds": 0.197915513,
+        "bytes": 0
+      },
+      "aten::item": {
+        "calls": 7627,
+        "total_seconds": 0.11512188499999917,
+        "bytes": 0
+      },
+      "aten::_local_scalar_dense": {
+        "calls": 7627,
+        "total_seconds": 0.11004376699999902,
+        "bytes": 0
+      },
+      "aten::mm": {
+        "calls": 43299,
+        "total_seconds": 0.41839023699999933,
+        "bytes": 0
+      },
+      "aten::linear": {
+        "calls": 20815,
+        "total_seconds": 0.36365934200000044,
+        "bytes": 0
+      },
+      "aten::matmul": {
+        "calls": 20647,
+        "total_seconds": 0.29832821699999795,
+        "bytes": 0
+      },
+      "aten::scaled_dot_product_attention": {
+        "calls": 4536,
+        "total_seconds": 0.23817816299999883,
+        "bytes": 0
+      }
+    },
+    "cpu_rlvr_annotations_inclusive": {
+      "rlvr/collection": {
+        "calls": 4,
+        "total_seconds": 4.888068659,
+        "bytes": 0
+      },
+      "rlvr/token_cached_forward": {
+        "calls": 148,
+        "total_seconds": 3.6569985210000024,
+        "bytes": 0
+      },
+      "rlvr/canonical_feature_policy": {
+        "calls": 20,
+        "total_seconds": 1.2779646659999997,
+        "bytes": 0
+      },
+      "rlvr/full_prefix_forward": {
+        "calls": 20,
+        "total_seconds": 0.7340400910000001,
+        "bytes": 0
+      },
+      "rlvr/replay_backward": {
+        "calls": 4,
+        "total_seconds": 0.614818038,
+        "bytes": 0
+      },
+      "rlvr/encoder": {
+        "calls": 74,
+        "total_seconds": 0.5588147670000001,
+        "bytes": 0
+      },
+      "rlvr/clip_optimizer": {
+        "calls": 1,
+        "total_seconds": 0.002570598,
+        "bytes": 0
+      }
+    },
+    "cpu_cuda_stream_synchronize": {
+      "calls": 4399,
+      "total_seconds": 0.18637324899999966,
+      "bytes": 0
+    },
+    "scalar_cuda_runtime_correlations": {
+      "aten::_local_scalar_dense | cudaStreamSynchronize": {
+        "calls": 1989,
+        "total_seconds": 0.09835403400000008,
+        "bytes": 0
+      },
+      "aten::_local_scalar_dense | cudaMemcpyAsync": {
+        "calls": 1989,
+        "total_seconds": 0.005630786999999988,
+        "bytes": 0
+      }
+    },
+    "scalar_gpu_event_correlations": {
+      "aten::_local_scalar_dense | gpu_memcpy | Memcpy DtoH (Device -> Pinned)": {
+        "calls": 1989,
+        "total_seconds": 0.0016798300781249575,
+        "bytes": 10333
+      }
+    },
+    "actual_gpu_kernel_count": 389405,
+    "actual_gpu_kernel_duration_sum_seconds": 1.7971810290000105,
+    "gpu_busy_unions_by_device": {
+      "0": {
+        "kernel_busy_union_seconds": 1.797189947265625,
+        "kernel_and_transfer_union_seconds": 1.8158314541015625
+      }
+    },
+    "actual_gpu_transfer_totals": {
+      "Memcpy DtoD (Device -> Device)": {
+        "calls": 12339,
+        "total_seconds": 0.011538651000001615,
+        "bytes": 160462981
+      },
+      "Memset (Device)": {
+        "calls": 5687,
+        "total_seconds": 0.0035544429999998612,
+        "bytes": 3635124
+      },
+      "Memcpy DtoH (Device -> Pinned)": {
+        "calls": 2867,
+        "total_seconds": 0.0023988099999999726,
+        "bytes": 13845
+      },
+      "Memcpy HtoD (Pageable -> Device)": {
+        "calls": 1292,
+        "total_seconds": 0.0009208300000000193,
+        "bytes": 9538128
+      },
+      "Memcpy DtoH (Device -> Pageable)": {
+        "calls": 264,
+        "total_seconds": 0.0002316759999999999,
+        "bytes": 76512
+      }
+    }
+  },
+  "current_staging": {
+    "applied": true,
+    "reason": "staged",
+    "planned_shadow_bytes": 1903308160,
+    "staged_shadow_bytes": 1903308160,
+    "staging_seconds": 0.0075001902878284454,
+    "admission_free_bytes": 812318720,
+    "admission_allocator_reserved_bytes": 23083352064,
+    "admission_allocator_allocated_bytes": 10322560512,
+    "admission_reusable_reserved_bytes": 12760791552,
+    "admission_estimated_available_bytes": 13573110272,
+    "storage_overlap_registered_names": [],
+    "fallback_calls": 0,
+    "invalidated_modules": 0,
+    "cleaned_up": true,
+    "benchmark_completed": true,
+    "requested": {
+      "max_shadow_bytes": 2147483648,
+      "min_free_bytes": 4294967296
+    },
+    "setup_seconds": 0.01252349466085434,
+    "cleanup_seconds": 0.0004019103944301605,
+    "completed_worker_updates": 5,
+    "setup_seconds_per_update": 0.002504698932170868,
+    "timing_contract": "Persistent worker staging spans warmup, measured and diagnostic updates. Setup/cleanup excluded from native _step timings and reported separately; per-forward guards remain timed."
+  },
+  "copy_count_transitions": {
+    "eager_frozen_decoder_blocks": {
+      "historical_calls": 20496,
+      "current_calls": 0,
+      "calls_removed": 20496
+    },
+    "eager_frozen_lm_head": {
+      "historical_calls": 148,
+      "current_calls": 0,
+      "calls_removed": 148
+    },
+    "eager_feature_head_shaped": {
+      "historical_calls": 350,
+      "current_calls": 350,
+      "calls_removed": 0
+    },
+    "compiled_encoder_weight_casts": {
+      "historical_calls": 9028,
+      "current_calls": 9028,
+      "calls_removed": 0
+    },
+    "compiled_cross_attention_weight_casts": {
+      "historical_calls": 13608,
+      "current_calls": 13608,
+      "calls_removed": 0
+    },
+    "compiled_bf16_layout_copies": {
+      "historical_calls": 756,
+      "current_calls": 756,
+      "calls_removed": 0
+    },
+    "compiled_copy_unattributed": {
+      "historical_calls": 2,
+      "current_calls": 2,
+      "calls_removed": 0
+    }
+  },
+  "attribution_rules": [
+    "CPU/GPU External id joins supply input shapes/dtypes; containing rlvr annotations supply phases. Module attribution is an inference from source, shape, dtype and phase, without tensor-address or stack provenance.",
+    "Eager frozen decoder shapes: c_qkv[4992,1664], attn.c_proj[1664,1664], mlp.c_fc[6656,1664], mlp.c_proj[1664,6656], ve_gate[13,32]; lm_head[32768,1664]. Decoder and encoder share shapes, so shape alone is insufficient.",
+    "Remaining eager casts have feature-head-shaped weight[844,1664] or bias[844]. Fourteen bias-shaped casts have no rlvr annotation and are not asserted to be the parameter itself.",
+    "Compiled FP32-to-BF16 same-shape copies inside rlvr/encoder are encoder weights. Outside encoder but inside token/full-prefix phases, [3328,1664] identifies cross-attention c_kv and [1664,1664] combines c_q/c_proj; the square matrices cannot be separated by shape.",
+    "756 compiled BF16-to-BF16 layout copies and2 unattributed Triton copies are excluded from weight-cast totals."
+  ],
+  "limits": [
+    "No gain or speedup is calculated from instrumented durations. Use the independent uninstrumented native production pairs for performance claims.",
+    "CPU operators/annotations are inclusive and nested; CUDA API durations are host elapsed times. Do not sum nested CPU regions or add CPU and GPU durations.",
+    "GPU duration sums count actual kernel events; union durations account for overlap and carry trace timestamp rounding. Tiny union/sum discrepancies are rounding, not negative overlap.",
+    "Non-timing scalar/workload receipts match across five updates; no full tensor parity is claimed between these historical profile runs. Exact production-pair tensor parity is recorded separately.",
+    "No new staging casts occur inside the profiled step because worker staging happens before warmup. Setup/cleanup costs are recorded separately.",
+    "Primary timing ownership monitoring does not qualify these separate profile windows. Both profiles include one compiler diagnostic event and are not pure steady-state device benchmarks.",
+    "Existing streamed trace pins are cross-checked; the historical copy parser streamed the1.6GB trace with bounded memory. The current trace is not reloaded or rehashed by this summary."
+  ]
+}

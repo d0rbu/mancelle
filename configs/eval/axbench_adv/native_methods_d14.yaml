@@ -1,0 +1,8 @@
+defaults:
+  - native_methods
+  - _self_
+
+# Must be the actual final D14 SFT step. Model/meta/tokenizer hashes are not
+# duplicated here: they are inherited from and matched against the authenticated
+# standard-union parent identities before model or provider work.
+step: ???

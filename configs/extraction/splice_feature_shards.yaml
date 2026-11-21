@@ -1,0 +1,64 @@
+# Post-extraction feature-shard splicer (issue #590).
+#
+# Recombines already-computed feature-shard segments (carrying features verbatim)
+# into a separate derived feature directory, leaving the base shards immutable.
+# Runs AFTER extract_features + compute_statistics. CPU-only, weight-free.
+#
+#   uv run -m scripts.preprocess.splice_feature_shards \
+#       feature_dir=out/data/features/s128/l8/a_res/p_max_pool/f16k/m_gemma-2-2b/base \
+#       cut_fraction=0.15
+
+feature_dir: null          # base feature directory (REQUIRED).
+data_dir: null             # source parquet dir (null = nanochat default base_data).
+output_dir: null           # random: <feature_dir>/splice/cut_frac{cut_fraction}/seed{seed}.
+                           # opposite_percentile appends _opposite_percentile_pool{size} to seed leaf.
+
+# The default must match the extraction contract. An explicit value must match
+# the base-shard metadata (the splice cannot change tokenizer/segmentation).
+model: null
+segment_size: null
+context_window: 1024
+
+# Fraction of splice points selected as cuts (in [0.0, 1.0]); must be set explicitly
+# or left at this default. Values outside [0.0, 1.0] raise before any shard work.
+cut_fraction: 0.15
+seed: 42                   # global RNG seed; per-shard seed = recombination_seed(seed, idx, cut_fraction).
+
+# random preserves the established seeded derangement exactly. opposite_percentile
+# locally improves incoming-vs-replaced-continuation L1 distance in bounded groups, using
+# the base feature_dir's local feature_statistics.safetensors (also in remote mode).
+pairing_mode: random       # random | opposite_percentile
+pairing_candidate_pool_size: 64 # integer >= 2; ignored in random mode.
+
+skip_existing: true        # skip shards whose derived shard + parquet + provenance exist,
+                           # after VERIFYING the sidecar's recorded params match this run
+                           # (mismatch raises). Requires write_provenance: true.
+write_provenance: true     # write the _splice_provenance/ sidecar. Must stay true while
+                           # skip_existing is true: a skip is only allowed when the sidecar
+                           # can verify the existing outputs belong to this run's params;
+                           # skip_existing: true + write_provenance: false raises at config
+                           # validation (no unverified resume). Set skip_existing: false to
+                           # always recompute without provenance.
+shard_parallelism: 1       # >1 uses spawn worker processes (one shard each).
+zstd_threads: 0            # 0 keeps legacy compression; >0 uses this many zstd workers.
+                           # Changes compressed bytes; recorded for verified resume.
+zstd_level: null           # null keeps the writer default; explicit levels 1–22 are
+                           # recorded separately for verified resume (including 12).
+async_feature_save_depth: 0 # 0 = synchronous save. >0 overlaps one serial save worker
+                            # with the next shard's compute; unsupported with
+                            # shard_parallelism > 1.
+
+profile: false
+profile_summary_output: out/traces/splice_feature_shards_profile.json
+
+# Optional bounded Hugging Face bucket staging. When disabled, every other
+# field in this block is ignored and the legacy local path is used literally.
+remote:
+  enabled: false
+  bucket_id: d0rb/nano-gpt-pretrain-steer-artifacts
+  local_features_root: out/data/features
+  remote_features_root: features
+  staging_dir: null
+  expected_shard_count: null
+  retry_timeout_seconds: 900.0
+  retry_interval_seconds: 5.0

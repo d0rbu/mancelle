@@ -1,0 +1,73 @@
+# Verified-reward RL on generated tokens and generated feature conditioning.
+# By default, all connected parameters except the untied LM head receive feature-policy gradients.
+base_checkpoint_dir: ???
+model_step: null
+bundle_dir: ???
+stats_path: null
+output_dir: ???
+resume_from_step: -1
+# Null resumes in output_dir. To branch from an older checkpoint, use its source
+# directory here, an empty output_dir, and wandb.new_run=true.
+resume_checkpoint_dir: null
+train_feature_head_only: false  # Freeze the trunk and train the complete feature head.
+
+# Optional process-local BF16 shadows for frozen decoder Linear weights.
+# Zero disables staging. Positive budgets apply only to single-rank CUDA head-only
+# runs; unsupported devices/dtypes or memory refusal use native weights.
+# Shadows are rebuilt after each checkpoint worker restart; setup is reported.
+frozen_decoder_max_shadow_bytes: 0
+frozen_decoder_min_free_bytes: 4294967296  # Require estimated 4 GiB headroom.
+
+# Optional group-local reuse of frozen trunk outputs during feature-head replay.
+# Zero disables caching. Positive budgets apply only to single-rank CUDA head-only
+# runs; each group releases its cache before the optimizer or checkpoint save.
+hidden_replay_max_cache_bytes: 0
+hidden_replay_min_free_bytes: 4294967296
+# Reuse frozen canonical history encodes during collection, within the same budget.
+hidden_replay_history_encoder: false
+# Also reuse canonical prompt encodes; requires history encoder reuse.
+hidden_replay_prompt_encoder: false
+
+global_prompts_per_step: ???
+group_size: ???
+num_iterations: ???
+device_type: ???
+
+seed: 42
+# Training only; validation always covers all four tasks. Order is resume-pinned.
+tasks: [ARC-Easy, ARC-Challenge, MMLU, GSM8K]
+validation_seed: 314159
+temperature: 1.0
+top_k: null
+mc_max_tokens: 16
+gsm8k_max_tokens: 512
+validation_per_task: 32
+eval_every: 10
+save_every: 10
+
+grad_clip_max_norm: 1.0
+lr_multiplier: 1.0
+init_lr_frac: 0.05
+embedding_lr: 0.2
+unembedding_lr: 0.004
+matrix_lr: 0.02
+encoder_embedding_lr: 0.2
+encoder_matrix_lr: 0.02
+xattn_matrix_lr: 0.02
+weight_decay: 0.0
+lr_decay_start: 0.8
+
+wandb:
+  enabled: true
+  mode: online
+  project: nanochat-encdec-rlvr
+  entity: null
+  name: null
+  new_run: false
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

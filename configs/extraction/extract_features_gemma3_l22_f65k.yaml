@@ -1,0 +1,44 @@
+# Gemma 3 (gemma-3-4b-it) + gemma-scope-2, residual, layer 22, width 65k.
+#
+# Pins the f65k width on top of extract_features_gemma3.yaml (whose default is
+# 16k). This is the exact SAE coordinate of the existing 369-shard dataset at
+#   out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-it/base/
+# (verified against shard_00000 metadata: layer=22, segment_size=128,
+#  pooling=max_pool, l0_tier=medium, context_independent_features=false).
+#
+# Used to extract the single missing shard 369 (the parquet val shard) so the
+# packed-rows pipeline can run with max_shards=null. assert_l0_tier_compatible
+# guards against a tier mismatch with the existing medium-tier shards.
+#
+# Extract ONLY shard 369:
+#   uv run python -m steering.extract_features \
+#       --config-name extract_features_gemma3_l22_f65k \
+#       start_shard=369 num_shards=370
+#
+# (start_shard=369, num_shards=370 ⇒ processed range [369, 370) = shard 369.)
+
+defaults:
+  - extract_features_gemma3
+  - _self_
+
+# Width override — the existing dataset is f65k, not the gemma3 default 16k.
+sae:
+  release: gemmascope_2
+  num_features: 65k
+  l0: medium
+
+# 24GB-4090 memory tuning: gemma-3-4b-it + the 65k gemma-scope-2 SAE is far
+# heavier than the gemma-2-2b/16k defaults (gpu=16/cpu=64). The fp32 TL
+# companion is offloaded to CPU before the bf16 nnterp Gemma-3 build
+# (_build_nnterp_gemma3), so the GPU holds only the bf16 nnterp model + SAE +
+# activations; keep the forward-pass batch small so they fit in 24GB. Raise
+# these on a bigger GPU. (Batch auto-tuning is a separate operational
+# follow-up — out of scope here.) model_dtype governs the nnterp/native HF
+# build + the SAE cast (NOT the TL load, which stays fp32 then offloads).
+gpu_batch_size: 2
+cpu_batch_size: 8
+model_dtype: bfloat16
+
+# Output auto-constructs to the existing dataset dir:
+#   out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-it/base
+# (feature_root + structured params; do not set output_dir).

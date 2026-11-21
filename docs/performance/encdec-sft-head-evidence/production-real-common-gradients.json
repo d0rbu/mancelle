@@ -1,0 +1,193 @@
+{
+  "schema": "independent_production_real_common_gradient_receipt_audit_v1",
+  "publication_derivation": {
+    "original_audit_sha256": "b1cbc51d86fda351978bbb148a8c97d3bae501e3a915aafc95131c3d4099a4ad",
+    "changes": ["Redacted historical_capture.source_checkpoint.directory; all measured values and source artifact hashes are unchanged."]
+  },
+  "status": "passed_scoped_exact_production_optimizer_gate",
+  "pass": true,
+  "receipt_sha256": "ea8d8c779e83d74d8e0390ea4fed99b2306733e4c1cc3a4be372a00fcc3dbfd6",
+  "download_artifacts_verified": {
+    "real-common-gradient-parity.json": "ea8d8c779e83d74d8e0390ea4fed99b2306733e4c1cc3a4be372a00fcc3dbfd6",
+    "real-common-gradient-parity.log": "2e16c1333c80b9e772767616b7438488f61eee89e301352a87c5c79cf9ee0bb3",
+    "real-common-gradient-parity.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+  },
+  "harness_sha256": "b14ca75ae086efc7d627b3bf3f1d46651d7d50421595770e44d034a686ebf4e1",
+  "production_loader_sha256": "25fa0450069e88ad1a07ce7afea9569b02a879f6a72ad3bf0d8655f85753d83e",
+  "source_manifest_sha256": "0e89bf87f2fcbea0e77fe8d3eb43d8c9b5071e9cf45666ecf85c272ea7e9c96f",
+  "production_adapter_sha256": "d995ec99d9af8d675c6823be30fea15a8977889194dc723dea60be370630384f",
+  "upstream_optimizer_sha256": "3aed3cc16baf172d11b02a26983e0d9f3e9465d2b3363ff2f185ea9dbac8ea7c",
+  "runtime_trainer_sha256": "6c2e9bd4d53e695503cb83f92ec1064b86ddf247a82aaaceaf29c1f23aeb19f1",
+  "source_files_verified": 1005,
+  "helper_files_verified": 10,
+  "source_reverified_by_gate": true,
+  "historical_capture": {
+    "source_revision": "de4c6772c11b1a7360897a1f8beb1ee563e40700",
+    "trainer_source_sha256": "80522c52a0e73202584dd4b3bdc64e1a3cbfc0d85f8cb51b8a71c3441012ebb9",
+    "capture_source_sha256": "39197d9c2e7c6e88e096b5bb9dc029e5765df14e8ddb764e0a1bc3eaae7b307f",
+    "payload_sha256": "b2d0b1348e1ab03751957de1e9df31b06db6893c8c6dae5b31099024c52b32f7",
+    "receipt_sha256": "9b099d01c5c7a1bedf76c7f0e51cb188f409a12fec72c299b7217e6e410aae1f",
+    "validation_sha256": "bc4b6c59efc1dcab790d441d2d99f236f3ea01bd10a99d4895883ac81537a719",
+    "optimizer_class": "MuonAdamW",
+    "source_checkpoint": {
+      "directory": "[cluster checkpoint directory redacted]",
+      "step": 250000,
+      "model_sha256": "562e8e214abd996d8a92051b3bd709263cbac519c9081b9d63181a12cddffbcf",
+      "metadata_sha256": "798de11aa0022c3c1865d89b54170d84b2614f65ee91fa50649e26e067297a71"
+    },
+    "head_config": {
+      "weight": 0.1,
+      "layer": -1,
+      "loss_mode": "max_pool",
+      "loss_fn": "bce",
+      "block": "transformer",
+      "head_layers": 10
+    }
+  },
+  "captured_parameter_count": 401,
+  "captured_parameter_dtype_counts": {
+    "torch.float32": 370,
+    "torch.bfloat16": 31
+  },
+  "ordered_optimizer_groups_verified": 13,
+  "muon_groups": 6,
+  "muon_matrices": 365,
+  "adamw_groups": 7,
+  "adamw_parameters": 36,
+  "state_entries_per_step": 120,
+  "state_tensors_per_step": 84,
+  "state_integer_counters_per_step": 36,
+  "metric_counts": {
+    "finite_producer_loss_scalars": 36,
+    "original_dtype_exact_checks": 10128,
+    "exact_finite_tensor_metrics": 12534,
+    "exact_integer_state_counters": 216,
+    "paired_steps": 6
+  },
+  "exact_tolerances": {
+    "atol": 0.0,
+    "rtol": 0.0,
+    "relative_rms": 0.0
+  },
+  "arms": {
+    "baseline_control": {
+      "optimizer_classes": [
+        "MuonAdamW",
+        "MuonAdamW"
+      ],
+      "steps": [
+        {
+          "step": 0,
+          "parameters_changed_in_original_dtype": 370,
+          "head_matrices_with_nonzero_gradient_rms": 20,
+          "head_matrices_with_nonzero_update_rms": 20,
+          "muon_momentum": 0.85,
+          "state_entries": 120,
+          "exact_finite_tensor_metrics": 2089
+        },
+        {
+          "step": 1,
+          "parameters_changed_in_original_dtype": 390,
+          "head_matrices_with_nonzero_gradient_rms": 40,
+          "head_matrices_with_nonzero_update_rms": 40,
+          "muon_momentum": 0.8503333333333333,
+          "state_entries": 120,
+          "exact_finite_tensor_metrics": 2089
+        },
+        {
+          "step": 2,
+          "parameters_changed_in_original_dtype": 390,
+          "head_matrices_with_nonzero_gradient_rms": 40,
+          "head_matrices_with_nonzero_update_rms": 40,
+          "muon_momentum": 0.8506666666666666,
+          "state_entries": 120,
+          "exact_finite_tensor_metrics": 2089
+        }
+      ],
+      "all_40_head_matrices_exercised": true
+    },
+    "candidate": {
+      "optimizer_classes": [
+        "MuonAdamW",
+        "PackedMuonAdamW"
+      ],
+      "steps": [
+        {
+          "step": 0,
+          "parameters_changed_in_original_dtype": 370,
+          "head_matrices_with_nonzero_gradient_rms": 20,
+          "head_matrices_with_nonzero_update_rms": 20,
+          "muon_momentum": 0.85,
+          "state_entries": 120,
+          "exact_finite_tensor_metrics": 2089
+        },
+        {
+          "step": 1,
+          "parameters_changed_in_original_dtype": 390,
+          "head_matrices_with_nonzero_gradient_rms": 40,
+          "head_matrices_with_nonzero_update_rms": 40,
+          "muon_momentum": 0.8503333333333333,
+          "state_entries": 120,
+          "exact_finite_tensor_metrics": 2089
+        },
+        {
+          "step": 2,
+          "parameters_changed_in_original_dtype": 390,
+          "head_matrices_with_nonzero_gradient_rms": 40,
+          "head_matrices_with_nonzero_update_rms": 40,
+          "muon_momentum": 0.8506666666666666,
+          "state_entries": 120,
+          "exact_finite_tensor_metrics": 2089
+        }
+      ],
+      "all_40_head_matrices_exercised": true
+    }
+  },
+  "initial_model_config_training_buffers_and_rng_match": true,
+  "captured_batch_geometry": {
+    "B": 2,
+    "T": 2048,
+    "microbatches": 2,
+    "total_tokens_per_step": 8192,
+    "head_layers": 10
+  },
+  "actual_sft_opt_in_selection": true,
+  "factory_patches": false,
+  "native_attention": {
+    "reported_impl": "fa4",
+    "has_fa4_backend": true,
+    "has_fa3": false,
+    "has_flex_attention": true,
+    "override": "fa4",
+    "environment_override": "fa4",
+    "flash_compat_validated": true,
+    "native_sm12_fa4": false,
+    "verified_routing": "flex_explicit_FLASH"
+  },
+  "compiled_graphs": {
+    "before": 0,
+    "after": 49
+  },
+  "runtime": {
+    "device": "NVIDIA H200",
+    "torch": "2.13.0+cu130",
+    "cuda": "13.0",
+    "deterministic_algorithms": false,
+    "float32_matmul_precision": "high"
+  },
+  "full_campaign_complete": false,
+  "whole_campaign_final_integrity": "not_audited_here",
+  "later_campaign_outcome_reported_by_coordinator": "failed independent small-model baseline gate; candidate not run; no timings",
+  "independent_candidate_forward_backward_qualified": false,
+  "timing_claim": false,
+  "distributed_qualified": false,
+  "limitations": [
+    "Each pair uses only its baseline producer for real forward/backward; its independent peer receives exact cloned post-clipping gradients. No independent packed forward/backward or loss comparison.",
+    "Baseline-control and candidate-pair producer trajectories are independently generated; their losses are not a cross-pair equivalence requirement.",
+    "Exact optimizer arithmetic includes all captured mixed-dtype parameters, gradients, updates and states over three evolving updates; this does not repair any failed native whole-model parity gate.",
+    "Historical capture receipt and validation bytes were independently rehashed locally. Large payload/checkpoint bytes were authenticated by the pinned gate remotely and their identities were checked here; they were not rehashed locally.",
+    "Single H200, captured single-rank SFT recipe, untimed. Whole-campaign final source/artifact verification remains outside this closed receipt audit; the coordinator subsequently reported failure of the independent small-model baseline gate and no timings.",
+    "No full-training, distributed, resume, or performance qualification."
+  ],
+  "audit_method": "Independent stdlib-only audit of pinned closed receipt, every metric and original-dtype flag, names/shapes/state coverage, source/helper bytes, capture receipt identities, hook/schedule/route records; read reviewed helper source for actual production SFT opt-in, independent storage, kernel binding and control flow. No helper execution, GPU or remote operation."
+}

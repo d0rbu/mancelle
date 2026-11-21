@@ -1,0 +1,8 @@
+defaults: [chat_eval, _self_]
+
+source: null
+hf_path: Qwen/Qwen2.5-3B-Instruct
+hf_revision: aa8e72537993ba99e69dfaafa59ed015b17504d1
+hf_template_date: null
+# Choose a new output directory on every invocation.
+output_dir: null

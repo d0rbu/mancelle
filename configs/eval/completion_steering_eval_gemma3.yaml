@@ -1,0 +1,31 @@
+# Gemma 3 + gemma-scope-2 completion-steering evaluation config. Inherits the
+# v1 completion_steering_eval.yaml and overrides ONLY the Neuronpedia
+# coordinates (Gemma-3-4b-it + gemma-scope-2 layer 22, 16k medium).
+#
+# completion_steering_eval.yaml has no top-level `model:` key — the only
+# model-bearing fields are under `neuronpedia`. Published v2 Neuronpedia
+# medium sources omit the tier, so layer-22 residual 16k medium →
+# `22-gemmascope-2-res-16k`.
+#
+# Layer note: valid gemma-scope-2 layers for the 4b model are {9, 17, 22, 29};
+# 22 is the default mid-late residual site.
+# See docs/pipelines/gemma-scope-2.md.
+
+defaults:
+  - completion_steering_eval
+  - _self_
+
+neuronpedia:
+  model_id: gemma-3-4b-it
+  sae_source: 22-gemmascope-2-res-16k
+
+# feature_mask: restrict the feature-selection universe to a subset of SAE features.
+# absent / null → disabled (unmasked pipeline, byte-identical to pre-mask runs).
+# To apply the same blacklist used at training time, override on CLI:
+#   feature_mask.mode=blacklist feature_mask.ids=[5,42,...]
+# or point at a file:
+#   feature_mask.mode=blacklist feature_mask.path=/path/to/ids.yaml
+# EVAL CORRECTNESS: a mask-trained encoder-decoder model must be evaluated
+# WITH its feature_mask so the selection pipeline matches training; omitting
+# the mask silently conditions on features the model was never trained to see.
+feature_mask: null

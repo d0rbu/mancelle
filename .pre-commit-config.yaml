@@ -1,0 +1,37 @@
+repos:
+  - repo: local
+    hooks:
+      - id: ruff
+        name: ruff
+        entry: uv run ruff check .
+        language: system
+        pass_filenames: false
+        files: '(^|/).*\.pyi?$|^pyproject\.toml$'
+
+      - id: ty
+        name: ty
+        entry: uv run ty check
+        language: system
+        pass_filenames: false
+        files: '(^|/).*\.py$|^pyproject\.toml$'
+
+      - id: vulture
+        name: vulture
+        entry: uv run vulture
+        language: system
+        pass_filenames: false
+        files: '^(steering|scripts|tasks|viz)/.*\.py$|^errors\.py$|^tests/code_quality/vulture_whitelist\.py$|^pyproject\.toml$'
+
+      - id: production-callers
+        name: production caller ratchet
+        entry: uv run pytest -q tests/code_quality/test_production_callers.py
+        language: system
+        pass_filenames: false
+        files: '^(steering|scripts|tasks|viz|nanochat|tests)/.*\.py$'
+
+      - id: pre-commit-config
+        name: pre-commit config
+        entry: uv run pre-commit validate-config
+        language: system
+        pass_filenames: false
+        files: '^\.pre-commit-config\.yaml$'

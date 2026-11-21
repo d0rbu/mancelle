@@ -1,0 +1,11 @@
+# 4090 (24GB) config for encoder-decoder conditional pretraining
+# Usage: python -m scripts.train.conditional_encdec_train config_name=conditional_encdec_4090
+
+defaults:
+  - conditional_encdec_train
+  - _self_
+
+# Smaller model for 24GB VRAM
+depth: 12
+device_batch_size: 4
+max_seq_len: 1024

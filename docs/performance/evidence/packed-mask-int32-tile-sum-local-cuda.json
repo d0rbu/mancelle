@@ -1,0 +1,238 @@
+{
+  "operation": "Authentic first-layer packed cross-attention BlockMask construction only",
+  "mechanism": "Use int32 for each128x128 boolean tile count; maximum16384 is exactly representable. Only zero/fulltile comparisons consume counts; returned sparsemetadata remains unchanged. Sharedhelper servesencoder andcrossattention.",
+  "scope": "LocalRTX4090 authenticTRAIN-derivedB32T1024,flattenedrouting32768x5376. No F+B/fulltrainer/throughput/optimizer claim.",
+  "sources": {
+    "baseline_packed_encoder": "ed166385f38cbf42a4b56b0d93d6b13a3703755de79b5db96d5f79b397d23801",
+    "candidate_packed_encoder": "491d3cebb7b263938bf450356c47d2812290375a6bb1e0421d3cdfe401ad1826",
+    "tests": "052547c893d6bc36fd0980f767a17fdeae6cdc099ea44e0576c478382e6b9282"
+  },
+  "capture": {
+    "sha256": "444833960202c35fd30ef0710545316697f920278f85b627779bfae4fe0b35cf",
+    "configured_SAE_SVD": true,
+    "trainer_seed": 42000126,
+    "first_layer": 0
+  },
+  "protocol": {
+    "schedule": "excludedAB thenABBABAAB",
+    "fresh_process_per_arm": true,
+    "warmup_builds": 32,
+    "timed_builds": 1024,
+    "checks_per_arm": 2,
+    "measured_records": 8192,
+    "excluded_records": 2048,
+    "metrics": "SUM CUDAevent durations andsynchronizedhostwall for1024 actualmaskbuilds; returnedmask releasedafterendpoint. Imports/compilation/warmups/oracles excluded."
+  },
+  "metrics": {
+    "means": {
+      "completion_wall": {
+        "baseline_mean_seconds": 4.7951556675,
+        "candidate_mean_seconds": 3.1763972355,
+        "improvement_percent": 33.75820399265484
+      },
+      "cuda_event": {
+        "baseline_mean_seconds": 4.771694983959198,
+        "candidate_mean_seconds": 3.158001040995121,
+        "improvement_percent": 33.818044707148346
+      }
+    },
+    "chronological_halves": [
+      {
+        "completion_wall": {
+          "baseline_mean_seconds": 4.809003018,
+          "candidate_mean_seconds": 3.1734141485,
+          "improvement_percent": 34.01097614990102
+        },
+        "cuda_event": {
+          "baseline_mean_seconds": 4.783071347951889,
+          "candidate_mean_seconds": 3.1549661065340042,
+          "improvement_percent": 34.038907701325414
+        }
+      },
+      {
+        "completion_wall": {
+          "baseline_mean_seconds": 4.781308317000001,
+          "candidate_mean_seconds": 3.1793803225,
+          "improvement_percent": 33.5039677070045
+        },
+        "cuda_event": {
+          "baseline_mean_seconds": 4.760318619966506,
+          "candidate_mean_seconds": 3.1610359754562376,
+          "improvement_percent": 33.59612606186267
+        }
+      }
+    ],
+    "order_positions": [
+      {
+        "completion_wall": {
+          "baseline_mean_seconds": 4.7953467275,
+          "candidate_mean_seconds": 3.171589437,
+          "improvement_percent": 33.86110291437732
+        },
+        "cuda_event": {
+          "baseline_mean_seconds": 4.771256464242935,
+          "candidate_mean_seconds": 3.153859641313553,
+          "improvement_percent": 33.898760945897244
+        }
+      },
+      {
+        "completion_wall": {
+          "baseline_mean_seconds": 4.794964607500001,
+          "candidate_mean_seconds": 3.1812050340000004,
+          "improvement_percent": 33.65529687071835
+        },
+        "cuda_event": {
+          "baseline_mean_seconds": 4.772133503675461,
+          "candidate_mean_seconds": 3.162142440676689,
+          "improvement_percent": 33.7373433027129
+        }
+      }
+    ],
+    "gates": {
+      "mean_completion_wall_at_least_3_percent": true,
+      "mean_cuda_event_at_least_3_percent": true,
+      "both_halves_strictly_positive_both_metrics": true,
+      "both_order_positions_strictly_positive_both_metrics": true
+    },
+    "pairs_report_only": [
+      {
+        "completion_wall": {
+          "baseline_mean_seconds": 4.799056075,
+          "candidate_mean_seconds": 3.180454146,
+          "improvement_percent": 33.72750607003482
+        },
+        "cuda_event": {
+          "baseline_mean_seconds": 4.775581953525544,
+          "candidate_mean_seconds": 3.1606635150909423,
+          "improvement_percent": 33.816160085838284
+        }
+      },
+      {
+        "completion_wall": {
+          "baseline_mean_seconds": 4.818949961,
+          "candidate_mean_seconds": 3.1663741510000003,
+          "improvement_percent": 34.29327599112623
+        },
+        "cuda_event": {
+          "baseline_mean_seconds": 4.790560742378235,
+          "candidate_mean_seconds": 3.149268697977066,
+          "improvement_percent": 34.26095884521365
+        }
+      },
+      {
+        "completion_wall": {
+          "baseline_mean_seconds": 4.770979254,
+          "candidate_mean_seconds": 3.176804723,
+          "improvement_percent": 33.41399000348703
+        },
+        "cuda_event": {
+          "baseline_mean_seconds": 4.753706264972687,
+          "candidate_mean_seconds": 3.1584505846500397,
+          "improvement_percent": 33.558145821443865
+        }
+      },
+      {
+        "completion_wall": {
+          "baseline_mean_seconds": 4.79163738,
+          "candidate_mean_seconds": 3.181955922,
+          "improvement_percent": 33.5935574907799
+        },
+        "cuda_event": {
+          "baseline_mean_seconds": 4.766930974960327,
+          "candidate_mean_seconds": 3.163621366262436,
+          "improvement_percent": 33.63400093518734
+        }
+      }
+    ],
+    "denominator": "Per-arm SUM of1024 maskbuild-only CUDAelapsed and synchronizedcompletionwall; equal repeatcount. Not ranks/pooledSUM/makespan/fulltrainer."
+  },
+  "memory_peaks": {
+    "max_allocated": {
+      "baseline_mean": 1762657792,
+      "candidate_mean": 1057971712,
+      "candidate_minus_baseline_mean_bytes": -704686080,
+      "baseline_max": 1762657792,
+      "candidate_max": 1057971712,
+      "candidate_minus_baseline_max_bytes": -704686080
+    },
+    "max_reserved": {
+      "baseline_mean": 1763704832,
+      "candidate_mean": 1059061760,
+      "candidate_minus_baseline_mean_bytes": -704643072,
+      "baseline_max": 1763704832,
+      "candidate_max": 1059061760,
+      "candidate_minus_baseline_max_bytes": -704643072
+    }
+  },
+  "correctness": {
+    "paired_routing_cases_per_arm": 52,
+    "existing_JUnit_per_arm": 7,
+    "all11_mask_fields_and_scalars_exact": true,
+    "authentic_output_and_all5_VJP_hashes_identical_to217": true,
+    "added_regression_tests": {
+      "baseline": {
+        "passed": 8,
+        "nodeids": [
+          "tests.steering.test_packed_encoder::test_dense_routing_metadata_matches_scalar_reference[shape0-full-False-cpu]",
+          "tests.steering.test_packed_encoder::test_dense_routing_metadata_matches_scalar_reference[shape0-full-False-cuda]",
+          "tests.steering.test_packed_encoder::test_dense_routing_metadata_matches_scalar_reference[shape1-partial-False-cpu]",
+          "tests.steering.test_packed_encoder::test_dense_routing_metadata_matches_scalar_reference[shape1-partial-False-cuda]",
+          "tests.steering.test_packed_encoder::test_dense_routing_metadata_matches_scalar_reference[shape2-partial-True-cpu]",
+          "tests.steering.test_packed_encoder::test_dense_routing_metadata_matches_scalar_reference[shape2-partial-True-cuda]",
+          "tests.steering.test_packed_encoder::test_dense_routing_metadata_matches_scalar_reference[shape3-empty-False-cpu]",
+          "tests.steering.test_packed_encoder::test_dense_routing_metadata_matches_scalar_reference[shape3-empty-False-cuda]"
+        ],
+        "junit_sha256": "e08f0b911072bb43494bdd3bb0c10b53108a699685d727261cf412e02d713f35",
+        "resource_sha256": "142861a2caf567ecd3a560ba327dc71efd1a4bc301ac4614b6a6d3a5123c866a",
+        "pid_pgid": 1197312,
+        "peak_rss_bytes": 1531453440,
+        "elapsed_seconds": 16.65103819221258
+      },
+      "candidate": {
+        "passed": 15,
+        "nodeids": [
+          "tests.steering.test_packed_encoder::test_dense_routing_metadata_matches_scalar_reference[shape0-full-False-cpu]",
+          "tests.steering.test_packed_encoder::test_dense_routing_metadata_matches_scalar_reference[shape0-full-False-cuda]",
+          "tests.steering.test_packed_encoder::test_dense_routing_metadata_matches_scalar_reference[shape1-partial-False-cpu]",
+          "tests.steering.test_packed_encoder::test_dense_routing_metadata_matches_scalar_reference[shape1-partial-False-cuda]",
+          "tests.steering.test_packed_encoder::test_dense_routing_metadata_matches_scalar_reference[shape2-partial-True-cpu]",
+          "tests.steering.test_packed_encoder::test_dense_routing_metadata_matches_scalar_reference[shape2-partial-True-cuda]",
+          "tests.steering.test_packed_encoder::test_dense_routing_metadata_matches_scalar_reference[shape3-empty-False-cpu]",
+          "tests.steering.test_packed_encoder::test_dense_routing_metadata_matches_scalar_reference[shape3-empty-False-cuda]",
+          "tests.steering.test_packed_encoder::test_vectorized_block_masks_match_create_block_mask_metadata_exactly[shape0-empty-17]",
+          "tests.steering.test_packed_encoder::test_vectorized_block_masks_match_create_block_mask_metadata_exactly[shape1-full-257]",
+          "tests.steering.test_packed_encoder::test_vectorized_block_masks_match_create_block_mask_metadata_exactly[shape2-irregular-389]",
+          "tests.steering.test_packed_encoder.TestPackedEncoderDifferential::test_synthetic_outputs_and_parameter_gradients_match_padded_reference",
+          "tests.steering.test_packed_encoder.TestPackedCrossAttentionDifferential::test_synthetic_outputs_and_all_gradients_match_independent_reference",
+          "tests.steering.test_packed_encoder.TestPackedCrossAttentionDifferential::test_cuda_requires_prebuilt_block_mask",
+          "tests.steering.test_packed_encoder.TestPackedCrossAttentionDifferential::test_cuda_rejects_dense_encoder_output"
+        ],
+        "junit_sha256": "bb1c852e47eea281c4119fb13862fc94c5355210faeebac56c36d70ee7de3b1c",
+        "resource_sha256": "f7844faf724c48542ed75aedc4ce98824fd67efa1120fbdf79d1be0b1256ab5d",
+        "pid_pgid": 1241582,
+        "peak_rss_bytes": 2389966848,
+        "elapsed_seconds": 33.97539320215583
+      }
+    },
+    "posttest_polish": "Annotations/comment andexplicitnotNone typeguard addedafter15PASS. Earlier successfulsum() already establishesnonNone; no algorithm/workload change."
+  },
+  "resources": {
+    "host_admit_gib": 10,
+    "host_RSS_gib": 6,
+    "host_floor_gib": 4,
+    "gpu_admit_gib": 22,
+    "gpu_allocator_cap_gib": 18,
+    "gpu_floor_gib": 4,
+    "sampling_seconds": 0.25
+  },
+  "decision": "PASS_FIXED_GATE",
+  "evidence_sha256": {
+    "out/splice_perf_236/int32_mask_correctness_independent_actual_pass_v1.json": "3fdf47b194b72264210b63a842e07a9dc843a4847f4b6c8db7db9b69893074cb",
+    "out/splice_perf_236/int32_mask_correctness_terminal_actual_pass_v1.json": "e510f2dbfd80719a6011a85f07ae2f89f1ea30439d7b8fd43bf7733dc6f4506a",
+    "out/splice_perf_237/int32_mask_benchmark_independent_actual_pass_v1.json": "78631c15851c3922a68d2a71cf750c23bd22c591d8007ac62a0f136380e25c44",
+    "out/splice_perf_237/int32_mask_benchmark_terminal_actual_pass_v1.json": "c81306a65e917e831265d46b3be3cd059ed40ebe63a5296b7ed8ceed01fe3880",
+    "out/splice_perf_237/int32_mask_benchmark_v1/summary.json": "6b052520bacbe85a599ed9f9d7461628e6808303ea8df40c60ad0f016cc56a71"
+  },
+  "retained_setup_failure": "Firstpostapplytestattempt failedexactsourceSHAassert beforetests becausewholefileformatter alteredpreexistingproductionformatting. Failedlogs/resourcesretained; restoredexactqualified491dbytes then15PASS in separatelynamedcorrected-sourceattempt. Benchmarkwasnotrerun.",
+  "style": "Changed-file ruffcheck andtycheck pass. Existingunrelatedformatting left unchanged."
+}

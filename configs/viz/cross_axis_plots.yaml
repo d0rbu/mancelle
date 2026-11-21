@@ -1,0 +1,14 @@
+# Generate cross-axis comparison plots from grid results
+# Usage:
+#   uv run python -m viz.cross_axis_plots
+#   uv run python -m viz.cross_axis_plots grid_dir=out/data/my_grid
+
+grid_dir: out/data/grid
+output_dir: fig/cross_axis
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

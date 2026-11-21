@@ -1,0 +1,36 @@
+# configs/eval/shuffled_conditioning_eval.yaml
+# Shuffled conditioning evaluation pipeline
+# Usage: uv run python -m scripts.eval.shuffled_conditioning_eval source=encdec feature_dir=path/to/features
+
+source: encdec
+stage: all               # all | generate | probe | aggregate
+force_recompute: false
+
+# Document sampling
+n_documents: 50
+samples_per_condition: 5
+
+# Feature selection
+feature_selection: random_k   # top_k | random_k
+top_k_features: 16
+
+# Generation
+temperature: 0.7
+top_k_sampling: 50
+threshold: 2048.9         # Maps to ThresholdConfig(ThresholdType.feature_percentile_segment_topk, ...)
+
+# Model checkpoint (auto-detected if null)
+model_tag: null
+step: null
+next_segment_conditioning_offset: auto
+
+# Feature data
+feature_dir: null
+output_dir: null
+
+# Hydra config
+hydra:
+  job:
+    chdir: false
+  run:
+    dir: .

@@ -1,0 +1,64 @@
+# Feature statistics computation config
+# Usage:
+#   uv run python -m steering.compute_statistics
+#   uv run python -m steering.compute_statistics feature_dir=path/to/features
+#   uv run python -m steering.compute_statistics layer=12 sae_width=32k
+#   uv run python -m steering.compute_statistics device=cuda  # GPU acceleration
+
+defaults:
+  - _self_
+
+# Structured feature path params (used when feature_dir is null)
+model: gemma-2-2b
+activation_type: residual      # residual | mlp | attention
+layer: 8
+pooling: max_pool
+segment_size: 128
+sae_width: "16k"               # 16k | 32k | 65k | 131k | 262k | 524k | 1m
+dataset_phase: null             # null = base, or: standard_sft | safety_sft | capabilities_sft
+feature_root: out/data/features
+
+feature_dir: null  # null = auto-construct from structured params above; set explicitly to override
+output_path: null  # null = {feature_dir}/feature_statistics.safetensors
+n_sae_features: null  # null = canonical path width; noncanonical paths use a discovery prepass
+activation_percentile: 0.0  # 0.0 = no filtering; float in (0, 1] to filter by percentile
+exclude_last_shard: true  # exclude last shard (validation) from statistics
+streaming: true
+
+# Exact streaming resume (opt-in). Use a dedicated local/persistent POSIX
+# directory with atomic rename, fsync, and flock support; it must not contain
+# the feature directory or output path.
+checkpoint_dir: null
+checkpoint_interval_shards: 50
+
+# Opt-in phase and per-shard timing sidecar. Instrumentation does not change
+# reducer behavior or the statistics artifact.
+profile: false
+profile_summary_output: null  # null = out/traces/compute_statistics_profile.json
+
+# Opt-in identity-sealed HF input. Disabled mode does not parse or validate
+# any remaining field in this block.
+remote:
+  enabled: false
+  # Defaults map the intended PT L22/f65k family directly to its flat bucket prefix.
+  # Override both roots together for another canonical local feature family.
+  bucket_id: henryac/nano-gpt-pretrain-steer
+  local_features_root: out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos
+  remote_features_root: l22_ci_nobos_raw
+  staging_dir: null
+  expected_shard_count: null
+  retry_timeout_seconds: 900.0
+  retry_interval_seconds: 5.0
+
+# GPU acceleration
+device: auto  # auto (use GPU if available), cpu, or cuda
+gpu_chunk_size: auto  # auto selects based on VRAM; or explicit int (e.g. 100000000 for 4090)
+
+allow_degenerate_statistics: false  # issue #549: escape hatch for the degeneracy hard-fail
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

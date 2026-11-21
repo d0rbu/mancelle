@@ -1,0 +1,16 @@
+# Single-shard, single-GPU feature extraction for install validation.
+# Extracts SAE features from one pretraining shard; ~2-5 min on a single H100.
+#
+# Usage:
+#   uv run python -m steering.extract_features --config-name=extract_features_quick
+# Or via the wrapper script:
+#   bash runs/extract_features_quick.sh
+
+defaults:
+  - extract_features
+  - _self_
+
+num_shards: 1
+gpu_batch_size: 8
+cpu_batch_size: 32
+zstd_level: 3            # faster compression for a smoke run

@@ -1,0 +1,47 @@
+# Activation collection method benchmark config
+# Usage: python -m scripts.benchmark.benchmark_activation_methods
+#   uv run python scripts/benchmark/benchmark_activation_methods.py
+#   uv run python scripts/benchmark/benchmark_activation_methods.py smoke=true
+
+batch_size: 16     # GPT-2 (Phase-1) path only — fine for GPT-2's ~50k vocab
+seq_len: 1024      # GPT-2 (Phase-1) path only
+layer: 8           # GPT-2 (Phase-1) path layer
+n_warmup: 3
+n_iters: 10
+device: cuda
+skip_nnterp: false
+
+# gemma needs its OWN, smaller input shape (NOT batch_size/seq_len above).
+# The Phase-1 full-forward-hook baseline runs the FULL Gemma{2,3}ForCausalLM
+# forward INCLUDING the lm_head + final_logit_softcapping. gemma's 256k-token
+# vocab makes those logits enormous: at the GPT-2 default 16x1024 the bf16
+# logits are [16,1024,256000] ≈ 8 GB and OOM a free 24 GB card (T9-surfaced:
+# torch.OutOfMemoryError at modeling_gemma2.py logits/final_logit_softcapping).
+# 8x512 → B·S=4096 → bf16 256k-vocab logits ≈ 2.0 GB, which fits comfortably
+# in 24 GB alongside the ~5 GB bf16 model, and matches the small spike regime
+# so the measured speedup tracks the documented ≈4.8×/≈3.9×.
+gemma_batch_size: 8
+gemma_seq_len: 512
+
+# Phase-2 (carry-over #2): truncated-native vs Phase-1 full-forward-hook on
+# gemma. Model/layer set is configurable; the defaults are the Phase-1-gate
+# pairs. The pre-timing correctness gate aborts any model whose truncated
+# output is not byte-identical to the full-forward-hook reference.
+model_dtype: bfloat16   # float32 | float16 | bfloat16
+models:
+  - {name: gemma-2-2b, layer: 6}
+  - {name: gemma-3-1b-pt, layer: 7}
+
+# smoke=true → tiny CPU gemma twins (built the native-suite conftest way):
+# proves the wiring + the fail-closed pre-timing gate WITHOUT a GPU. Real
+# perf numbers are collected on the 4090 (T9).
+smoke: false
+# run_gpt2=true also runs the legacy Phase-1 GPT-2 benchmark (kept working).
+run_gpt2: false
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

@@ -1,0 +1,6 @@
+# @package _global_
+# Dev tier: fast smoke tests + CI. Lower min_rows threshold for tiny fixtures.
+aggregation:
+  min_rows_per_side: 3
+device_batch_size: 4
+log_progress_every: 10

@@ -1,0 +1,44 @@
+# Merged robustness run: decoder-only sweep + encdec arm, aggregate/plot only.
+#
+# The scored tables under this tag are ASSEMBLED, not scored here: the
+# decoder-only sweep (`..._m_robustness`, 160,083 rows / 1.9 h) and the encdec
+# arm (`..._m_robustness_encdec`) are merged post-hoc -- same source run, same
+# feature contract, disjoint method sets -- rather than re-scoring everything
+# under one tag. The merge driver strips each parent table's identity stamps,
+# filters (37, positive) rows from the decoder tables for population symmetry
+# (see below), concatenates, and re-binds identity under THIS tag via
+# `bind_clustered_table` + `write_clustered_table_atomic` -- the same library
+# path production writers use, so `aggregate` validates the merged tables with
+# the same rules as any scored run.
+#
+# This config exists for the aggregate/plot stages (and any inspection): the
+# method union and the exclusion below describe the merged population exactly.
+#
+# Population symmetry: (37, positive) is excluded EVERYWHERE. The encdec arm
+# cannot counter-steer it (#1249: its conditioned direction has non-positive
+# max_activation, refused by the #1228 guard; the only failure in the
+# 100-fit census), so the decoder series drop those rows too and every plotted
+# series covers the same concepts per mode: 49 positive, 50 negative.
+
+defaults:
+  - axbench_bpb_adv_gemma3_4bpt_l22_f65k_clustered_robustness
+  - _self_
+
+base_methods:
+  - diffmean_decoder_only
+  - neg_diffmean_decoder_only
+  - linear_probe_decoder_only
+  - neg_linear_probe_decoder_only
+  - control_decoder_only
+  - neg_control_decoder_only
+  - feature_diffmean_encdec
+  - neg_feature_diffmean_encdec
+
+adversarial_methods:
+  - method: additive_direction
+    families: [diffmean, linear_probe, ours]
+    magnitudes: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, 4.0, 6.0]
+
+exclude_concept_modes: ["37:positive"]
+
+run_tag: l22_f65k_clustered_std50_m_robustness_merged

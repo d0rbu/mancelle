@@ -1,0 +1,77 @@
+# Precompute packed rows for encoder-decoder training
+# Usage:
+#   uv run python -m scripts.preprocess.precompute_packed_rows
+#   uv run python -m scripts.preprocess.precompute_packed_rows context_len=1024 max_shards=50
+#   uv run python -m scripts.preprocess.precompute_packed_rows feature_dir=path/to/features resume=true
+
+defaults:
+  - _self_
+
+# Structured feature path params (used when feature_dir is null)
+model: gemma-2-2b
+activation_type: residual      # residual | mlp | attention
+layer: 8
+pooling: max_pool
+segment_size: 128
+sae_width: "16k"               # 16k | 32k | 65k | 131k | 262k | 524k | 1m
+dataset_phase: null             # null = base, or: standard_sft | safety_sft | capabilities_sft
+feature_root: out/data/features
+
+feature_dir: null  # null = auto-construct from structured params above; set explicitly to override
+data_dir: null     # null = default DATA_DIR from nanochat; set explicitly to override
+
+# Optional bounded HF Storage Bucket input. Disabled mode reads only
+# ``remote.enabled`` and follows the literal local runner. Remote mode streams
+# raw feature and percentile-overlay bodies; statistics, token overlays,
+# parquets, outputs, provenance, certificates, and profiles remain local. The
+# percentile manifest is verified from the bucket snapshot.
+remote:
+  enabled: false
+  bucket_id: henryac/nano-gpt-pretrain-steer
+  local_features_root: out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos
+  remote_features_root: l22_ci_nobos_raw
+  staging_dir: null
+  expected_shard_count: null
+  retry_timeout_seconds: 900.0
+  retry_interval_seconds: 5.0
+  # Publish-then-evict offload. A production family is larger than the
+  # filesystem that produces it (c2048 writes ~2.4 TB against a 1 TB pool), so
+  # with offload enabled every completed packed body and its provenance sidecar
+  # is uploaded, verified against the bucket's size + Xet identity, recorded in
+  # an `_offload/` receipt, and only then removed locally. Receipts make an
+  # evicted shard resume-complete, so a preempted run continues normally.
+  # Enabling it does NOT invalidate an in-progress resume state.
+  # `remote_packed_root` is the bucket root the packed output tree is published
+  # under (same layout remote_preselection materializes packed bodies from); it
+  # must be disjoint from `remote_features_root`. Mirror symlinks are not
+  # published for an offloaded family — the bodies live in the bucket.
+  offload:
+    enabled: false
+    remote_packed_root: null
+
+# Packing params
+context_len: 1024              # T: sequence length per row
+max_shards: null               # null = all shards; int = limit to first N parquet shards
+buffer_size: 1000              # document buffer size for best-fit packing
+rows_per_shard: 16384          # R: number of packed rows per output shard
+
+# Processing options
+resume: false                  # skip output shards that already exist
+resume_from_shard: null        # null = count local shards; int = explicit train shard index
+zstd_level: 12                 # zstd compression level (1-22) for output shards
+
+# Profiling (issue #531). profile=true runs the full (max_shards-bounded) packing with
+# stage-level instrumentation and writes a JSON sidecar (profile_summary_output).
+profile: false                 # enable the stage-level JSON sidecar
+profile_summary_output: null   # null => out/traces/packed_rows_profile.json (JSON sidecar)
+
+# Parallel shard compression (issue #531). 0 = auto (min(cpu//4, 8)); 1 = serialized (still
+# overlaps the next shard's packing). Output is byte-identical across all values.
+compress_workers: 0
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

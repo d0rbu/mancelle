@@ -1,0 +1,17 @@
+Thu Sep 24 08:56:37 2026    /tmp/axbench-source-validation-cprofile-pr1770.prof
+
+         53107436 function calls (50911460 primitive calls) in 37.074 seconds
+
+   Ordered by: cumulative time
+   List reduced from 32233 to 9 due to restriction <'stats_io.py'>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000   13.503   13.503 stats_io.py:738(load_statistics_and_checksum_from_bytes)
+        1    9.758    9.758   13.486   13.486 stats_io.py:494(_reconstruct_statistics)
+        2    0.004    0.002    0.109    0.054 stats_io.py:346(content_sha256)
+        1    0.000    0.000    0.006    0.006 stats_io.py:1(<module>)
+        2    0.000    0.000    0.000    0.000 stats_io.py:799(_read_metadata)
+        4    0.000    0.000    0.000    0.000 stats_io.py:674(_load_percentile_dict)
+        3    0.000    0.000    0.000    0.000 stats_io.py:654(_load_histogram)
+        1    0.000    0.000    0.000    0.000 stats_io.py:45(_parse_l0_tier)
+        1    0.000    0.000    0.000    0.000 stats_io.py:63(_parse_bool_metadata)

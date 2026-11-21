@@ -1,0 +1,69 @@
+# Full progression config for d12_nextseg encoder-decoder.
+#
+# This model was trained with next_segment_conditioning_offset=true. Progression
+# eval must therefore use full target-real conditioning and next-segment target
+# slot routing inferred from checkpoint metadata.
+
+defaults:
+  - training_progression
+  - _self_
+
+mode: both
+
+model_tag: d12_nextseg
+model_family: encoder_decoder
+
+checkpoints_dir: null
+checkpoint_root: conditional_encdec_checkpoints
+checkpoint_prefix: "s128/dist_geometric/mean_10.0/std_10.0"
+
+phases:
+  - phase: pretrain
+    subdir: ""
+    steps:
+      - 4000
+      - 8000
+      - 12000
+      - 16000
+      - 20000
+      - 24000
+      - 28000
+      - 32000
+      - 36000
+      - 40000
+      - 44000
+      - 48000
+      - 52000
+      - 54600
+
+conditioning:
+  conditioned_configs: null
+  context_cache_dir: null
+  target_real_configs:
+    - {name: pooled, mode: pooled}
+    - {name: lockstep, mode: lockstep}
+  identity:
+    model_id: gemma-2-2b
+    sae_id: gemmascope-residual-l8-16k
+    layer: 8
+    pooling: max_pool
+    feature_selection_hash: f3cf767903a4d8442dfc3331142dd2f8eeea240eed8eb82d10e77b7a60c5278b
+  n_sae_features: 16384
+  num_buckets: 2
+
+evals: "core,chat,harmfulness"
+
+num_seeds: 3
+base_seed: 1234
+
+max_per_task: 100
+chat_max_problems: 100
+chat_max_new_tokens: 512
+harm_num_benign: 50
+harm_num_harmful: 50
+harm_max_new_tokens: 512
+
+num_gpus: 2
+
+results_file: out/progression/d12_nextseg/results.json
+fig_dir: fig/progression/d12_nextseg

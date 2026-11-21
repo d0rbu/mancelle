@@ -1,0 +1,20 @@
+# Histogram of per-feature activation-frequency (count / n_segments) from
+# feature_statistics.safetensors. Reads the stats artifact; never re-scans
+# shards. The metric is fraction of POST-POOLING segments active (NOT tokens
+# — see docs/reference/configuration.md).
+# Usage:
+#   uv run -m viz.plot_feature_activation_frequency \
+#     feature_dir=path/to/feature_dir
+feature_dir: ???                # required; leaf dir w/ feature_statistics.safetensors
+output_dir: null                # null -> write into feature_dir
+output_name: feature_activation_frequency_hist.png
+n_bins: 50
+threshold_lines: [0.001, 0.01, 0.1, 0.5]
+title: null                     # null -> "Feature activation frequency — <dir>"
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

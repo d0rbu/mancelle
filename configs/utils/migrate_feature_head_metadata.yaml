@@ -1,0 +1,11 @@
+# Explicit conversion; model and optimizer files are never written.
+source_metadata: ???
+weights: ???
+output_metadata: ???
+
+hydra:
+  job:
+    chdir: false
+  run:
+    dir: .
+  output_subdir: null

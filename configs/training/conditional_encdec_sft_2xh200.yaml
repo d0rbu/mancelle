@@ -1,0 +1,23 @@
+# 2xH200 (144GB each) config for encoder-decoder SFT finetuning.
+#
+# Usage:
+#     torchrun --standalone --nproc_per_node=2 \
+#         -m scripts.train.conditional_encdec_sft -- \
+#         --config-name conditional_encdec_sft_2xh200 \
+#         dataset=safety model_tag=my_model
+#
+# Keeps the shared max_seq_len=1024 while reducing device_batch_size from
+# 32 to 8 so the combined KV cache + encoder activations fit across
+# just two H200s. The inherited total_batch_size (524288) implies
+# grad_accum_steps = 524288 / (8 * 1024 * 2) = 32 per rank.
+#
+# NOTE: FP8 is supported for pretraining (see
+# conditional_encdec_2xh200.yaml) but SFT does not currently call
+# apply_fp8_training().  This config intentionally omits fp8; adding
+# FP8 support to the SFT script is a separate workstream.
+
+defaults:
+  - conditional_encdec_sft
+  - _self_
+
+device_batch_size: 8

@@ -1,0 +1,16 @@
+# Fast BPB-only eval against an existing checkpoint.
+# Skips CORE (slow) and sample (qualitative); ~5-10 min on a single GPU.
+#
+# Usage (against a project checkpoint):
+#   python -m scripts.eval.base_eval --config-name=base_eval_quick source=base model_tag=d12 step=10000
+# Or against a HF model:
+#   python -m scripts.eval.base_eval --config-name=base_eval_quick source=hf hf_path=openai-community/gpt2
+
+defaults:
+  - base_eval
+  - _self_
+
+eval: "bpb"
+device_batch_size: 16
+max_per_task: 50
+split_tokens: 524288

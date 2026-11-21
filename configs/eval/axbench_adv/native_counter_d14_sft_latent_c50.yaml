@@ -1,0 +1,15 @@
+defaults:
+  - native_counter_d14
+  - _self_
+
+# 399,115,836-parameter D14/W896 decoder-only SFT, actual final step 1001.
+# PromptSteering is the positive method; both checkpoint-own counter fits run.
+step: 1001
+expected:
+  model_sha256: 7611c5e572b71b9a98482e1ff2df7ced67a52b03e6d769ff311d7e7f19437002
+  meta_sha256: 50a5588643813b640dd17b0a0e779e6ba60e2489f5013b718b3f9a3e63e75101
+  tokenizer_sha256: c3945190ac5c38a6ac941480e21895763775619e756cde4d108cafb5a081e185
+
+# Raw saved-direction units; shared zero is inherited from standard100.
+# 2048 brackets quality loss and 4096 is the measured collapse anchor.
+magnitudes: [64, 256, 512, 1024, 2048, 4096]

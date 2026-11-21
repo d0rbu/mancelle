@@ -1,0 +1,21 @@
+# @package _global_
+# Issues #806/#853: remote selection/checkpoint contract plus verified,
+# rank-striped prefetch of TRAIN packed-row bodies.
+defaults:
+  - conditional_encdec_splice_cf_gemma3pt_c1024_remote
+  - _self_
+
+run: l22_gemma3pt_clustered_splice_cf_c1024_remote_packed_v1
+model_tag: l22_gemma3pt_clustered_splice_cf_c1024_remote_packed_v1_806
+
+remote_training:
+  body_prefetch:
+    lookahead_shards_per_rank: 2
+    cache_shards: 24
+  train_packed:
+    # Trust completed HF/Xet downloads and skip consumer-side content hashing.
+    # Publication receipts coordinate visibility but do not authenticate bytes.
+    trust_existing_cache: true
+    # CUDA staging remains deliberately absent from this hardware-independent
+    # preset. Target-specific 2xH200/8xH100 presets choose bounded values.
+    # See docs/pipelines/precomputed-packed-prefetch.md for the opt-in block.

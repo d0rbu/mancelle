@@ -1,0 +1,17 @@
+# Real-conditioned AxBench-training direction fit for issue #1673.
+prepared_dir: ???
+target_meta_path: ???
+feature_statistics_path: ???
+output_root: ???
+
+max_concepts: 50
+layer: 21
+seed: 42
+device: cuda:0
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

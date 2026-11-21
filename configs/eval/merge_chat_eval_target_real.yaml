@@ -1,0 +1,13 @@
+# Merge disjoint target-real (receipt v1/v2) or self-conditioned (v3) ChatCORE
+# results. K, policies, checkpoint/cache bytes, seed and generation must agree.
+# Kinds/versions never mix; exact declared ranges are merged by integer counts.
+input_files: []
+output_file: ???
+task_totals: null  # shard merge: exact task -> N declarations for coverage of [0, N)
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

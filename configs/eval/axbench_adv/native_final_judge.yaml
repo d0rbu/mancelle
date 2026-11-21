@@ -1,0 +1,12 @@
+points_dir: ???
+output_dir: ???
+judge_cache: ???
+max_concepts: 50
+concept_ids: null
+proposal_counts: [1, 2, 4, 8]
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

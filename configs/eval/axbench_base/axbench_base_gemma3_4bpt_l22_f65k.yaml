@@ -1,0 +1,47 @@
+# configs/eval/axbench_base/axbench_base_gemma3_4bpt_l22_f65k.yaml
+# Gemma-3-4b-pt + gemma-scope-2 (layer 22, residual, 65k) AxBench-Base config.
+#
+# Inherits axbench_base.yaml and overrides ONLY the Gemma-3 / gemma-scope-2
+# identity coordinates. Without these overrides a Gemma-3 run keeps the
+# gemma-2-2b defaults and queries the WRONG Neuronpedia source, silently
+# 404-ing every feature index >= 16384 (~75% of a 65k SAE) and mislabeling
+# the rest with gemma-2-2b descriptions. The Stage 0a
+# `max_not_published_description_rate` guard now fails such a run loudly; this
+# config is the matching correct source (issue #657).
+#
+# Neuronpedia hosts the SAE under the base model id `gemma-3-4b` with the 65k
+# medium source `22-gemmascope-2-res-65k`; local SAE/model loading uses
+# `gemma-3-4b-pt` via `feature_extraction_model_id` (the #667 API/local split).
+# Valid gemma-scope-2 layers for the 4b model are {9, 17, 22, 29}; this targets
+# the layer-22 residual site. See docs/pipelines/gemma-scope-2.md and
+# docs/evaluation/axbench-base.md.
+#
+# Still required (set per run, as in the base config): feature_dir,
+# feature_statistics_path, decoder_only, and encdec. Device defaults to CUDA;
+# output_root defaults to the historical NANOCHAT_BASE_DIR location. The
+# feature_dir follows out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base .
+
+defaults:
+  - axbench_base
+  - _self_
+
+neuronpedia_model_id: gemma-3-4b
+neuronpedia_source: 22-gemmascope-2-res-65k
+feature_extraction_model_id: gemma-3-4b-pt
+extraction_tokenizer_id: google/gemma-3-4b-pt
+
+# Direction-hook layer for the diffmean / linear-probe baselines.
+#
+# This indexes the *decoder* (`model.transformer.h[layer]`, a 12-block nanochat
+# GPT), NOT the gemma-3-4b-pt residual stream the SAE features come from. The
+# two are different models and their layer numbers are not interchangeable:
+# `22` is the gemma-scope-2 site (`identity.sae_id: layer_22_width_65k_l0_medium`),
+# and setting it here crashed stage 3a with a bare
+# `IndexError: index 22 is out of range` from `nn.ModuleList.__getitem__`.
+#
+# Inherited default from axbench_base.yaml, restated for the record: a mid-stack
+# site on the 12-block decoder. Nothing ties it to the encoder's SAE layer --
+# conditioning enters this encdec as an encoder prefix, not as a residual
+# injection at a fixed decoder block, so there is no site to match.
+layer_hooks:
+  diffmean_and_probe_layer: 6

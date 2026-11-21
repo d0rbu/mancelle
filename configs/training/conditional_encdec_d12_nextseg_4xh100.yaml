@@ -1,0 +1,60 @@
+# 4xH100 config for depth-12 next-segment conditioning experiment
+# Usage: torchrun --nproc_per_node=4 -m scripts.train.conditional_encdec_train -- config_name=conditional_encdec_d12_nextseg_4xh100
+
+defaults:
+  - conditional_encdec_train
+  - _self_
+
+# WandB run name
+run: encdec_d12_nextseg_4xh100
+
+# depth=12 gives 768 dim, 6 heads
+depth: 12
+
+# 1024 context length (half the default 2048)
+max_seq_len: 1024
+
+# Larger device batch (smaller model + shorter context)
+device_batch_size: 32
+
+# Dynamic compilation
+compile_static: false
+
+# BF16 training (no FP8)
+fp8: false
+
+# Training duration via data ratio (100x params)
+num_iterations: -1
+target_param_data_ratio: 100
+
+# Use all 370 feature shards
+max_train_shards: null
+
+# Next-segment conditioning: segment i conditioned on features from segment i+1
+next_segment_conditioning_offset: true
+
+# Feature selection: geometric, mean=10, max=40, top-k percentile
+feature_selection:
+  distribution: geometric
+  mean: 10.0
+  std: 10.0
+  min_k: 1
+  max_k: 40
+  mode: top_k_percentile
+  delta_weights: null
+
+# Negative feature sampling: geometric, mean=10, max=40
+negative_selection:
+  distribution: geometric
+  mean: 10.0
+  min_k: 0
+  max_k: 40
+
+# Steering eval every 250 steps
+steering_eval_every: 250
+
+# Feature delta conditioning disabled
+feature_delta: null
+
+# No feature prediction head
+feature_prediction: null

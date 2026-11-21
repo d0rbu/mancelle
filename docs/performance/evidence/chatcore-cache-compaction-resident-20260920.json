@@ -1,0 +1,2757 @@
+{
+  "schema_version": 1,
+  "scope": "Resident complete-suite screen; fresh-process qualification still required",
+  "job_id": "23341075",
+  "slurm_terminal": {
+    "JobIDRaw": "23341075",
+    "State": "COMPLETED",
+    "ExitCode": "0:0",
+    "NodeList": "node3002",
+    "AllocTRES": "billing=8,cpu=8,gres/gpu:l40s=1,gres/gpu=1,mem=64G,node=1",
+    "Elapsed": "00:08:22"
+  },
+  "quartet_effects": [
+    {
+      "block": 1,
+      "orientation": "BAAB",
+      "geometric_means_seconds": {
+        "reference": 9.859115909415994,
+        "candidate": 9.184980411670711
+      },
+      "candidate_minus_reference_log_ratio": -0.07082691421357053,
+      "latency_reduction_percent": 6.837687110478607
+    },
+    {
+      "block": 2,
+      "orientation": "BAAB",
+      "geometric_means_seconds": {
+        "reference": 9.789376951178879,
+        "candidate": 9.259942097451832
+      },
+      "candidate_minus_reference_log_ratio": -0.05560001750317635,
+      "latency_reduction_percent": 5.4082589358589335
+    },
+    {
+      "block": 3,
+      "orientation": "ABBA",
+      "geometric_means_seconds": {
+        "reference": 9.81514018701289,
+        "candidate": 9.22717154865893
+      },
+      "candidate_minus_reference_log_ratio": -0.061773550108636444,
+      "latency_reduction_percent": 5.990425273109635
+    },
+    {
+      "block": 4,
+      "orientation": "ABBA",
+      "geometric_means_seconds": {
+        "reference": 9.774936219658949,
+        "candidate": 9.24172948086339
+      },
+      "candidate_minus_reference_log_ratio": -0.05609253961458985,
+      "latency_reduction_percent": 5.454835988834339
+    },
+    {
+      "block": 5,
+      "orientation": "BAAB",
+      "geometric_means_seconds": {
+        "reference": 9.802539205049584,
+        "candidate": 9.218189102685022
+      },
+      "candidate_minus_reference_log_ratio": -0.061462846080832995,
+      "latency_reduction_percent": 5.961211581419079
+    },
+    {
+      "block": 6,
+      "orientation": "ABBA",
+      "geometric_means_seconds": {
+        "reference": 9.77677695730884,
+        "candidate": 9.21978510374484
+      },
+      "candidate_minus_reference_log_ratio": -0.05865814558731001,
+      "latency_reduction_percent": 5.69709072832646
+    },
+    {
+      "block": 7,
+      "orientation": "ABBA",
+      "geometric_means_seconds": {
+        "reference": 9.80675311544689,
+        "candidate": 9.21085669653761
+      },
+      "candidate_minus_reference_log_ratio": -0.0626883777500625,
+      "latency_reduction_percent": 6.076388503863395
+    },
+    {
+      "block": 8,
+      "orientation": "BAAB",
+      "geometric_means_seconds": {
+        "reference": 9.827213306058022,
+        "candidate": 9.183725009363213
+      },
+      "candidate_minus_reference_log_ratio": -0.06772250849777117,
+      "latency_reduction_percent": 6.548024110742845
+    }
+  ],
+  "primary_geometric_means_seconds": {
+    "reference": 9.806446717741947,
+    "candidate": 9.2182653994937
+  },
+  "primary_latency_reduction_percent": 5.997904594577619,
+  "primary_seconds_saved": 0.5881813182482478,
+  "orientation_and_temporal_effects_percent": {
+    "ABBA": 5.805006489507414,
+    "BAAB": 6.190407671445664,
+    "first_four": 5.924567804477943,
+    "last_four": 6.071184214758896
+  },
+  "leave_one_quartet_out_effects_percent_fragility_guard": [
+    5.877319292993155,
+    6.08183910323582,
+    5.998973020496567,
+    6.075230760626782,
+    6.003145284714528,
+    6.040799601392111,
+    5.986687255159451,
+    5.919052179461659
+  ],
+  "leave_one_quartet_out_range_percent": [
+    5.877319292993155,
+    6.08183910323582
+  ],
+  "positive_quartets": 8,
+  "placebo_effects": [
+    {
+      "after_block": 3,
+      "orientation": "ABBA",
+      "raw_seconds": {
+        "A": [
+          9.856747342739254,
+          9.848436629865319
+        ],
+        "B": [
+          9.811284580733627,
+          9.743229647632688
+        ]
+      },
+      "label_geometric_means_seconds": {
+        "A": 9.852591110036023,
+        "B": 9.777197901667192
+      },
+      "apparent_reduction_percent": 0.7652119886720432
+    },
+    {
+      "after_block": 6,
+      "orientation": "BAAB",
+      "raw_seconds": {
+        "A": [
+          9.838451387826353,
+          9.786767018027604
+        ],
+        "B": [
+          9.7454904159531,
+          9.859254817012697
+        ]
+      },
+      "label_geometric_means_seconds": {
+        "A": 9.812575174277486,
+        "B": 9.802207574196572
+      },
+      "apparent_reduction_percent": 0.1056562614479728
+    }
+  ],
+  "advance_conditions": {
+    "full_sample_positive": true,
+    "both_orientations_positive": true,
+    "both_halves_positive": true,
+    "exceeds_each_absolute_RR": true,
+    "all_leave_one_out_positive": true
+  },
+  "numerical_screen_conditions_met": true,
+  "decision": "eligible_for_independent_fresh_process_qualification_review",
+  "performance_qualified": false,
+  "gpu": "NVIDIA L40S",
+  "gpu_uuid": "3950ad1c-a3f9-cf7b-acec-6ad2ae4ff360",
+  "torch": "2.13.0+cu130",
+  "triton": "3.7.1",
+  "cpu_affinity": [
+    9,
+    11,
+    13,
+    15,
+    25,
+    27,
+    29,
+    31,
+    73,
+    75,
+    77,
+    79,
+    89,
+    91,
+    93,
+    95
+  ],
+  "slurm_cpus_per_task": "8",
+  "seed": 20260920,
+  "orientations": [
+    "BAAB",
+    "BAAB",
+    "ABBA",
+    "ABBA",
+    "BAAB",
+    "ABBA",
+    "ABBA",
+    "BAAB"
+  ],
+  "all_44_suite_artifacts_byte_equal_to_f95_baseline": true,
+  "sampled_logits": {
+    "reference": {
+      "samples": 8,
+      "finite_logit_values": 1048576,
+      "ids": 705,
+      "dtype_shape_and_raw_bytes_equal": true,
+      "artifact_sha256": "4564aac3b2cb481e2f4c83a605b1ea6bf09fb04742ac074b1a084b2f37c3aba3"
+    },
+    "candidate": {
+      "samples": 8,
+      "finite_logit_values": 1048576,
+      "ids": 705,
+      "dtype_shape_and_raw_bytes_equal": true,
+      "artifact_sha256": "7965207ae0004c0b9397586f5b9371490ac3bb5ee1af14d467c8f560dded68d1"
+    }
+  },
+  "ownership": {
+    "gpu-preflight": {
+      "samples": 22,
+      "positive_owned_samples": 5,
+      "outsiders": 0,
+      "exit_code": 0,
+      "timeout_seconds": 300
+    },
+    "resident": {
+      "samples": 430,
+      "positive_owned_samples": 414,
+      "outsiders": 0,
+      "exit_code": 0,
+      "timeout_seconds": 1200
+    }
+  },
+  "source_sha256": {
+    "scripts/benchmark/benchmark_chatcore.py": "c3017a5f159c6039020ad556189b4ea9edb189f17abd932a53bdfdb5b800e091",
+    "steering/eval/python_success.py": "95dd57ef6fa31f22ca66a53774a5cd0eb81d1ee7fade26bf160f13a1c8d6d8fb",
+    "steering/eval/greedy_token_batch.py": "c308fc9e78e9bfee7336e917fd20b5903523727b88dfa94ee62ec1bcec5f65b5",
+    "steering/eval/triton_qk_rope_norm.py": "8be4378ebc194dead546e16bd134adbb90252e887da89580b2b2074a906ce778",
+    "steering/eval/triton_ragged_attention.py": "6a9762a91ebdb7eb03461703f47bbc3f246393939c95c76b0a05ac0e525cec96",
+    "steering/eval/triton_relu_squared.py": "3842008f163b60bcbfd06214127fa09d908c75182621ba9d1ce0ce76ba04a91f",
+    "steering/eval/triton_residual_blend.py": "61043bc319c6b662ba60675008794ae7ad373fd66288a352a5aca46f47cd8b21",
+    "steering/eval/sanity_check/run_all.py": "46f6569f99c0ad3ba627ba286fe9a872e60313d98832529c663e460b6afa3a90",
+    "tasks/humaneval.py": "ac21c2f45c961ae8d73a8dd36990bf3f67e254ecad27d26ce57fdb9aa5e275b2",
+    "nanochat/execution.py": "dc8de4d61bb5663048a2abac3631288daa13ab9c82067148554cd336386e8980",
+    "steering/eval/triton_kv_cache_compaction.py": "6eed19cc2331e361d84a9e091c12a95b2a0afaebe4331cd380818084b3b67254"
+  },
+  "input_sha256": {
+    "/tmp/chatcore-0920-23341075-nufiyU/checkpoint/model_000999.pt": "d3d320a5b4e3985a6915d70d51f63f4500ace6c12bc7bbd867fec74ab50f7371",
+    "/tmp/chatcore-0920-23341075-nufiyU/checkpoint/meta_000999.json": "342cc82f20dc6b8fb933a955d59ea78db549de32042dfa5ebd61216156ab7dd7",
+    "/home/henryac/chatcore-loop7-assets-home-direct/tokenizer/tokenizer.pkl": "c3945190ac5c38a6ac941480e21895763775619e756cde4d108cafb5a081e185"
+  },
+  "source_receipt_sha256": "e5bbf94dea6633d3914b2401c623b0738a52a99c6926b61a97dd43a953f76290",
+  "precommitted_plan_sha256": "1511886a3498129a4e129b4464d07b43c7e25f6dc9a8d3dbddf4e0515afba1d9",
+  "advance_rule": {
+    "all_correctness_provenance_ownership_checks_pass": true,
+    "full_sample_geometric_reduction_positive": true,
+    "both_orientation_effects_positive": true,
+    "first_four_and_last_four_effects_positive": true,
+    "full_sample_reduction_exceeds_each_absolute_RR_effect": true,
+    "all_leave_one_quartet_out_effects_positive_as_fragility_guard": true,
+    "interpretation": "Necessary screening conditions only. Material order sensitivity, placebo-scale effects or concentration in one favorable quartet remain grounds to stop. No additional resident allocation, selected-sample replacement or post-hoc gate relaxation. A convincing result advances independent fresh-process qualification only."
+  },
+  "caveat": "Eight quartets in one process are not independent allocations. RR effects are reported separately, never subtracted. Leave-one-out values are a predeclared fragility guard, never a replacement estimator. No confidence interval or universal speedup is claimed; qualifying fresh-process evidence remains required.",
+  "raw_runs": [
+    {
+      "phase": "warmup",
+      "experiment_block": null,
+      "label": "A",
+      "decoder_selection": "reference",
+      "repeat": 0,
+      "instrumented_warmup": true,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": {
+        "path": "logits_reference.pt",
+        "sha256": "4564aac3b2cb481e2f4c83a605b1ea6bf09fb04742ac074b1a084b2f37c3aba3",
+        "samples": 8,
+        "logit_values": 1048576,
+        "ids": 705
+      },
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 16.084732688963413,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 26159874048,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "warmup",
+      "experiment_block": null,
+      "label": "B",
+      "decoder_selection": "candidate",
+      "repeat": 1,
+      "instrumented_warmup": true,
+      "compactor_source_sha256": "c308fc9e78e9bfee7336e917fd20b5903523727b88dfa94ee62ec1bcec5f65b5",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": {
+        "path": "logits_candidate.pt",
+        "sha256": "7965207ae0004c0b9397586f5b9371490ac3bb5ee1af14d467c8f560dded68d1",
+        "samples": 8,
+        "logit_values": 1048576,
+        "ids": 705
+      },
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.27225891361013,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "warmup",
+      "experiment_block": null,
+      "label": "A",
+      "decoder_selection": "reference",
+      "repeat": 2,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.84242636198178,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "warmup",
+      "experiment_block": null,
+      "label": "B",
+      "decoder_selection": "candidate",
+      "repeat": 3,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "c308fc9e78e9bfee7336e917fd20b5903523727b88dfa94ee62ec1bcec5f65b5",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.26484930375591,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 1,
+      "label": "B",
+      "decoder_selection": "candidate",
+      "repeat": 4,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "c308fc9e78e9bfee7336e917fd20b5903523727b88dfa94ee62ec1bcec5f65b5",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.192199589218944,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 1,
+      "label": "A",
+      "decoder_selection": "reference",
+      "repeat": 5,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.892854885198176,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 1,
+      "label": "A",
+      "decoder_selection": "reference",
+      "repeat": 6,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.82549199834466,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 1,
+      "label": "B",
+      "decoder_selection": "candidate",
+      "repeat": 7,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "c308fc9e78e9bfee7336e917fd20b5903523727b88dfa94ee62ec1bcec5f65b5",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.177766903769225,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 2,
+      "label": "B",
+      "decoder_selection": "candidate",
+      "repeat": 8,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "c308fc9e78e9bfee7336e917fd20b5903523727b88dfa94ee62ec1bcec5f65b5",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.24649461498484,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 2,
+      "label": "A",
+      "decoder_selection": "reference",
+      "repeat": 9,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.766134510282427,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 2,
+      "label": "A",
+      "decoder_selection": "reference",
+      "repeat": 10,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.812674706801772,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 2,
+      "label": "B",
+      "decoder_selection": "candidate",
+      "repeat": 11,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "c308fc9e78e9bfee7336e917fd20b5903523727b88dfa94ee62ec1bcec5f65b5",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.273409137036651,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 3,
+      "label": "A",
+      "decoder_selection": "reference",
+      "repeat": 12,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.76352362614125,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 3,
+      "label": "B",
+      "decoder_selection": "candidate",
+      "repeat": 13,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "c308fc9e78e9bfee7336e917fd20b5903523727b88dfa94ee62ec1bcec5f65b5",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.21648254012689,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 3,
+      "label": "B",
+      "decoder_selection": "candidate",
+      "repeat": 14,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "c308fc9e78e9bfee7336e917fd20b5903523727b88dfa94ee62ec1bcec5f65b5",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.237872953992337,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 3,
+      "label": "A",
+      "decoder_selection": "reference",
+      "repeat": 15,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.867029627785087,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "placebo",
+      "experiment_block": 3,
+      "label": "A",
+      "decoder_selection": "reference",
+      "repeat": 16,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.856747342739254,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "placebo",
+      "experiment_block": 3,
+      "label": "B",
+      "decoder_selection": "reference",
+      "repeat": 17,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.811284580733627,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "placebo",
+      "experiment_block": 3,
+      "label": "B",
+      "decoder_selection": "reference",
+      "repeat": 18,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.743229647632688,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "placebo",
+      "experiment_block": 3,
+      "label": "A",
+      "decoder_selection": "reference",
+      "repeat": 19,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.848436629865319,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 4,
+      "label": "A",
+      "decoder_selection": "reference",
+      "repeat": 20,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.808601195923984,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 4,
+      "label": "B",
+      "decoder_selection": "candidate",
+      "repeat": 21,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "c308fc9e78e9bfee7336e917fd20b5903523727b88dfa94ee62ec1bcec5f65b5",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.200175648089498,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 4,
+      "label": "B",
+      "decoder_selection": "candidate",
+      "repeat": 22,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "c308fc9e78e9bfee7336e917fd20b5903523727b88dfa94ee62ec1bcec5f65b5",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.283470997121185,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 4,
+      "label": "A",
+      "decoder_selection": "reference",
+      "repeat": 23,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.741386787965894,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 5,
+      "label": "B",
+      "decoder_selection": "candidate",
+      "repeat": 24,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "c308fc9e78e9bfee7336e917fd20b5903523727b88dfa94ee62ec1bcec5f65b5",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.2047103587538,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 5,
+      "label": "A",
+      "decoder_selection": "reference",
+      "repeat": 25,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.84094075858593,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 5,
+      "label": "A",
+      "decoder_selection": "reference",
+      "repeat": 26,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.764287502970546,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 5,
+      "label": "B",
+      "decoder_selection": "candidate",
+      "repeat": 27,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "c308fc9e78e9bfee7336e917fd20b5903523727b88dfa94ee62ec1bcec5f65b5",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.231687583960593,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 6,
+      "label": "A",
+      "decoder_selection": "reference",
+      "repeat": 28,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.766606263816357,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 6,
+      "label": "B",
+      "decoder_selection": "candidate",
+      "repeat": 29,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "c308fc9e78e9bfee7336e917fd20b5903523727b88dfa94ee62ec1bcec5f65b5",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.17030629934743,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 6,
+      "label": "B",
+      "decoder_selection": "candidate",
+      "repeat": 30,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "c308fc9e78e9bfee7336e917fd20b5903523727b88dfa94ee62ec1bcec5f65b5",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.269530873280019,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 6,
+      "label": "A",
+      "decoder_selection": "reference",
+      "repeat": 31,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.786958242300898,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "placebo",
+      "experiment_block": 6,
+      "label": "B",
+      "decoder_selection": "reference",
+      "repeat": 32,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.7454904159531,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "placebo",
+      "experiment_block": 6,
+      "label": "A",
+      "decoder_selection": "reference",
+      "repeat": 33,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.838451387826353,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "placebo",
+      "experiment_block": 6,
+      "label": "A",
+      "decoder_selection": "reference",
+      "repeat": 34,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.786767018027604,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "placebo",
+      "experiment_block": 6,
+      "label": "B",
+      "decoder_selection": "reference",
+      "repeat": 35,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.859254817012697,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 7,
+      "label": "A",
+      "decoder_selection": "reference",
+      "repeat": 36,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.788145784754306,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 7,
+      "label": "B",
+      "decoder_selection": "candidate",
+      "repeat": 37,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "c308fc9e78e9bfee7336e917fd20b5903523727b88dfa94ee62ec1bcec5f65b5",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.193412993103266,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 7,
+      "label": "B",
+      "decoder_selection": "candidate",
+      "repeat": 38,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "c308fc9e78e9bfee7336e917fd20b5903523727b88dfa94ee62ec1bcec5f65b5",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.228333497885615,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 7,
+      "label": "A",
+      "decoder_selection": "reference",
+      "repeat": 39,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.825395818799734,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 8,
+      "label": "B",
+      "decoder_selection": "candidate",
+      "repeat": 40,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "c308fc9e78e9bfee7336e917fd20b5903523727b88dfa94ee62ec1bcec5f65b5",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.20698374696076,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 8,
+      "label": "A",
+      "decoder_selection": "reference",
+      "repeat": 41,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.840272404253483,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 8,
+      "label": "A",
+      "decoder_selection": "reference",
+      "repeat": 42,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "eebb1100a7aeb6d6d78a03023bf3c2f2ff8a63ab4f0a03896472757472f3629d",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.814171538688242,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    },
+    {
+      "phase": "comparison",
+      "experiment_block": 8,
+      "label": "B",
+      "decoder_selection": "candidate",
+      "repeat": 43,
+      "instrumented_warmup": false,
+      "compactor_source_sha256": "c308fc9e78e9bfee7336e917fd20b5903523727b88dfa94ee62ec1bcec5f65b5",
+      "selected_module": "steering.eval.greedy_token_batch",
+      "unchanged_imports": [
+        "GreedyBatchCapacityError",
+        "_initial_expandable_ragged_cache_len",
+        "_stage_linear_weights_for_greedy_batches",
+        "_supports_expandable_ragged_cache",
+        "generate_greedy_token_batch",
+        "predict_categorical_token_batch"
+      ],
+      "sample_artifact": null,
+      "staging_clean_after_suite": true,
+      "public_providers_unchanged": true,
+      "private_wrappers_restored": true,
+      "original_decoder_restored": true,
+      "original_generator_binding_unchanged": true,
+      "original_compact_restored": true,
+      "seconds": 9.160525028128177,
+      "peak_allocated": 18571301888,
+      "peak_reserved": 28399632384,
+      "scores": {
+        "status": "pass",
+        "chatcore": 0.2867,
+        "per_task_scores": {
+          "ARC-Easy": 0.48,
+          "ARC-Challenge": 0.4,
+          "MMLU": 0.32,
+          "GSM8K": 0.06,
+          "HumanEval": 0.06,
+          "SpellingBee": 1.0
+        },
+        "max_problems": 50,
+        "issues": []
+      },
+      "completion_sha256": "983ddc49d8ab5044423924c0d8d64b53ae273d4bab9ab155933477c804a1c1fd",
+      "completion_tokens": 42089,
+      "grade_sha256": "85bbd4bcae7301b4b9a7815b5998d7217f9a2a36768b13408c6fc7561023efe9",
+      "graded_programs": 50,
+      "grade_batches": [
+        {
+          "programs": 50,
+          "max_workers": 2
+        }
+      ],
+      "scalar_graded_programs": 0,
+      "max_parent_rss_kib": 7056708,
+      "max_single_child_rss_kib": 7056708
+    }
+  ],
+  "route_summary": {
+    "reference": {
+      "decode_calls": 511,
+      "compact_calls": 70,
+      "helper_calls": 0,
+      "admitted_calls": 0,
+      "fused_launches": 0,
+      "fallback_calls": 0,
+      "sample_calls": [
+        0,
+        64,
+        128,
+        192,
+        256,
+        320,
+        384,
+        448
+      ],
+      "wrappers_restored": true,
+      "storage_contracts_records": 70
+    },
+    "candidate": {
+      "decode_calls": 511,
+      "compact_calls": 70,
+      "helper_calls": 70,
+      "admitted_calls": 70,
+      "fused_launches": 1820,
+      "fallback_calls": 0,
+      "sample_calls": [
+        0,
+        64,
+        128,
+        192,
+        256,
+        320,
+        384,
+        448
+      ],
+      "wrappers_restored": true,
+      "storage_contracts_records": 70
+    }
+  },
+  "evidence_sha256": {
+    "compaction-resident-23341075/comparison.json": "d0801f37d6ebdedb04ce2ac5537aaa1bcc406ba171761d9d65faa0bfa1b1d5cd",
+    "compaction-resident-23341075/independent-audit.json": "9cf4f46f01ff27e972862d64a505cc5c67171d47b064f10f1e1982ffecaa8c7b",
+    "compaction-resident-23341075/output.sha256": "567c04bb0c900bfcb01b8c8d8e26b897268c04546764afbe7e53c83cb3a77a00",
+    "loop19-resident-sources.json": "e5bbf94dea6633d3914b2401c623b0738a52a99c6926b61a97dd43a953f76290",
+    "loop19-resident-plan.json": "1511886a3498129a4e129b4464d07b43c7e25f6dc9a8d3dbddf4e0515afba1d9",
+    "loop19-resident-controls.sha256": "e8e63276d114f246d733690ab55db5be21a6fcb0d60689071ee22989ee4fc949",
+    "loop19-resident-controls.tar.gz": "693e62c4718577884ac446f4bbd614d7c1735fd03138abd4fb5171c52d3d7cc9",
+    "loop19-resident-source.tar.gz": "4dc78a5e2b705aed9d10c39a747b55e909e6ba201003eee7f65a02e48883ba4e",
+    "loop19-compaction-source-proof.json": "ac0299663d97470d9585a9d4be6b4f192860a38397f10587c42b5daccf21591e",
+    "loop19-quality-summary.json": "5d7eae4bcf0f6c006b5cd43efcf4fe213cd56f9f7ea975c1f66a39c6f4798b54"
+  }
+}

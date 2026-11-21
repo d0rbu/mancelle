@@ -1,0 +1,19 @@
+action: ???
+stage: null
+source: null
+step: null
+base: null
+leaf: null
+parquet: null
+features: null
+world_size: 4
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false
+  job_logging:
+    handlers:
+      file:
+        filename: /dev/null

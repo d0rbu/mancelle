@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "measured_at": "2026-08-28",
+  "base_commit": "c8eeb4450",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "checkpoint": {
+    "step": 54600,
+    "model_sha256": "153d29c0e813036539f71cad8058e47051131d458b21513641f05994471a278d",
+    "meta_sha256": "03e2f1ead1b3fe48712d9d8ab7fc12c17f04d61db2cc1d6416d959ba5d74cb0f",
+    "model_bytes": 1274486563,
+    "feature_vocab_sha256": "8c183369ce4a8ff1e5f153a749e9eb71f9def65283d0a22b4d33bf5ff2d6f16c",
+    "feature_vocab_size": 2074
+  },
+  "context_cache": {
+    "feature_selection_hash": "6be4095ad0116d3e1b7ca93a2fe0a47439eaba770c6d0ef08ab164a0652a19bc",
+    "manifest_sha256": "a5e82c9db399016cbb1de63364ead2ddada101c843bdae9a8bc0a457d8dc9132",
+    "manifest_bytes": 550077,
+    "feature_vocab_sha256": "8c183369ce4a8ff1e5f153a749e9eb71f9def65283d0a22b4d33bf5ff2d6f16c"
+  },
+  "workload": {
+    "suite": "core",
+    "seed": 1234,
+    "max_per_task": 5,
+    "conditioned_feature_id": 8,
+    "conditioned_bucket": 1
+  },
+  "before": {
+    "hellaswag_examples_scored": 5,
+    "hellaswag_seconds": 45.24,
+    "next_task": "jeopardy",
+    "failure": "missing exact context row",
+    "failed_before_suite_completion": true
+  },
+  "after": {
+    "wall_seconds_to_failure": 11.03,
+    "required_unique_contexts": 120,
+    "missing_contexts": 75,
+    "zero_segment_contexts": 0,
+    "examples_scored_before_failure": 0,
+    "failed_before_first_eval_forward": true
+  },
+  "unrun_boundary": "The available cache is incomplete, so no successful full macro or suite profile was claimed."
+}

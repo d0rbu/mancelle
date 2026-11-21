@@ -1,0 +1,74 @@
+# Historical Qwen2.5-3B-Instruct AxBench-Adv source (was the default at
+# configs/eval/axbench_adv/axbench_adv.yaml, now SmolLM3-3B -- see that
+# file). NOT currently runnable: project_parquet/project_manifest still
+# point at a threshold-era SelfConditioningMasked run
+# (ce941fe47-c2-six-method-20260816), which fails the rank-era schema-3
+# gate in source_contract.py (PR #1592). Needs its own regenerated
+# six-method project run plus a clean-commit main/aux/project campaign
+# before it can be pinned again.
+source:
+  prepared_dir: ???
+  main_parquet: ???
+  aux_parquet: ???
+  evaluated_jsonl: out/axbench/runs/ce941fe47-c2-six-method-20260816/evaluated-v3-cache-only/steering.jsonl
+  project_parquet: out/axbench/runs/ce941fe47-c2-six-method-20260816/project/inference/steering_data.parquet
+  target_meta: ???
+  feature_statistics: ???
+  hashes:
+    main_parquet: f295eafc88200e59c9d01041ad299775c9fbfd2597278b9d2b475ab0810426dc
+    aux_parquet: bc698ea3e998324327ceca00cd297d377f1a3604cd15be5ba878aabef3007dfb
+    evaluated_jsonl: 804d032ace8223f287253c5620884a10f1d050cd8e395c1c01ce61e3e50d67f5
+    project_parquet: 7df6478c978bfc90a0a5a77d5a4c5889882fd76ca3bf04764b7b76c477fc0ca9
+    project_manifest: d76f8bf275091873b9b8502b5a0e971dc34667c9dcc319ceb7988cf9c38a9800
+    target_receipt: 3bd98a7f73bd61d4e73b40137fb68ac9a37fa38fbd5b8a0e85a88f66f54e86f5
+  expectations:
+    max_concepts: ???
+    repository_git_commit: 05f03dedea69c9d952e6c84c0353a44b506a9dd5
+    dataset_revision: ad8a5d60c4616b599c24dd6689f05f696ec610f3
+    target_model: Qwen/Qwen2.5-3B-Instruct
+    model_revision: null
+    project_target_step: 54600
+    project_target_model_tag: l22_main_h100_8rank_db16_v1
+    # Baseline-target-specific: the historical main/aux run manifests' own
+    # config_name (f"{config_name_prefix}_{source}.yaml") and steering
+    # layer -- Qwen2.5-3B-Instruct's own values, not shared across targets.
+    config_name_prefix: qwen2_5_3b
+    layer: 28
+    require_clean_worktree: true
+    seed: 42
+    temperature: 1.0
+    output_length: 128
+    package_lock_sha256: f3ebe930d78d546140c99b2f0271ecdd4cb25bb9743c27e2841aa8cca9dfe534
+    vendored_axbench_upstream_commit: 41c8332543e5a631f9a8c0a9df38799893ace758
+    project_repository_git_commit: ce941fe4774b8db8e7855cb796ca1bdbd0804b66
+    project_package_lock_sha256: 56f7fcbf29e933bbe31f2ed6e3e34dc23be294ab85eb382db2320ded5bb0095e
+
+output_dir: ???
+judge_cache: ???
+reflection_cache: ???
+cache_only: false
+
+master_seed: 42
+gepa_seed: 42
+device: cuda:0
+api_base_url: https://openrouter.ai/api/v1
+worker_timeout_seconds: 120.0
+worker_max_prompt_tokens: 1024
+seed_suffix: Please avoid the target concept while remaining helpful and responsive.
+factor_overrides: {}
+
+reflection:
+  provider: openrouter
+  model: ???
+  requests_per_minute: 60
+  max_concurrent: 1
+  transport_retry_budget_seconds: 300.0
+reflection_max_retries: 3
+reflection_minibatch_size: 3
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false

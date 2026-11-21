@@ -1,0 +1,72 @@
+# AxBench-BPB-Adv: per-datapoint sampled completions (decoder-only ONLY).
+#
+# Reads a FINISHED bpb-adv run (candidates.parquet + the aggregate directory
+# selected by `steering_metric`) and, for each decoder-only steering family at its
+# representative coefficient, samples `generation.n_completions` decoder-only
+# completions at every counter-steering strength from the first concepts/prefixes,
+# under the EXACT steered intervention the eval scored. Writes one YAML per family under
+# `samples/<mode>/<method>__<adv>.yaml`.
+#
+# Point `source_run_dir` / `output_root` / `run_tag` at the SAME finished run the
+# eval produced, and keep `decoder_only_target`, `diffmean_and_probe_layer`, and
+# `counter_direction_family` identical so generation reuses the scored model +
+# intervention. Keep `steering_metric` identical to the finished eval too,
+# especially when reusing a run directory across metric switches. This script
+# consumes finished artifacts only; do not mirror score-stage
+# `roundtrip_steering.enabled` here.
+
+source_run_dir: ???
+output_root: out/eval/axbench_bpb_adv
+# The finished run's tag (the directory under output_root the eval wrote). null
+# falls back to "samples" -- normally set this to the eval's run_tag.
+run_tag: null
+device: cuda
+
+# Decoder-only ONLY: an encdec target is rejected loudly (deliberate follow-up).
+target_models:
+  - decoder_only
+
+# The decoder-only target bundle (passed through to the AxBench-BPB runtime so the
+# SAME model the eval scored is loaded). Mirror the eval config's value.
+decoder_only_target: {}
+encdec_target: {}
+lora_adapter: {}
+
+# Required by the shared config loader / model detection (mirror the eval config).
+feature_dir: ???
+feature_statistics_path: ???
+extraction_tokenizer_id: google/gemma-2-2b
+neuronpedia_model_id: gemma-2-2b
+neuronpedia_source: 8-gemmascope-res-16k
+extraction_max_tokens: 1024
+extraction_threshold: 0.0
+
+diffmean_and_probe_layer: 6
+steering_metric: roundtrip
+# Optional OVERRIDE of the additive counter-steering direction family loaded per
+# concept. null (the default) = resolve from the eval's additive config exactly as
+# the scorer does (`adversarial_methods[additive_direction].counter_direction_family`,
+# falling back to "diffmean"); set a value here ONLY to force a different family.
+counter_direction_family: null
+# Echoed into each YAML's `scatter_baseline_x` so the qualitative sample records
+# the same baseline-x convention the plots use. Mirror the eval config's value
+# (default `general_val_bpb`; config.py).
+scatter_baseline_x: general_val_bpb
+
+offload_between_stages: true
+
+# Per-datapoint completion sampling knobs.
+generation:
+  n_concepts: 5              # first-N concepts (sorted ascending by concept_id)
+  n_prefixes_per_concept: 1  # first-N core-prefixes per concept
+  n_completions: 5           # decoder-only completions sampled per datapoint
+  temperature: 0.7
+  top_k: 50
+  max_new_tokens: 128
+  base_seed: 0               # seeds base_seed + i; reused across strengths
+  methods: null              # optional method_name whitelist; null = all families
+
+hydra:
+  output_subdir: null
+  run:
+    dir: .

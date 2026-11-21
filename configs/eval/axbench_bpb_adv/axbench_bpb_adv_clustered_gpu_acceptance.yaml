@@ -1,0 +1,120 @@
+# Reproducible H3 clustered GPU acceptance.
+#
+# The checked-in defaults pin the real l22/f65k target. The runbook documents
+# the smaller step-1 checkpoint overrides used while iterating. Asset paths stay
+# required because silently substituting another mask, cluster file, statistics
+# file, or packed-selection manifest would invalidate the acceptance claim.
+
+defaults:
+  - axbench_bpb_adv_clustered
+  - _self_
+
+source_run_dir: ???
+run_tag: h3-clustered-gpu
+
+feature_dir: out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos
+feature_statistics_path: out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos/feature_statistics.safetensors
+feature_mask:
+  mode: whitelist
+  path: out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos/preselection_provenance/l22_clustered_splice_cf/manual_feature_filter_with_descriptions.yaml
+feature_clusters:
+  path: out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos/preselection_provenance/l22_clustered_splice_cf/feature_clusters_two_stage_schema_v1.yaml
+selection_splice_batch_size: 64
+selection_manifest_path: out/data/features/s128/l22/a_res/p_max_pool/f65k/m_gemma-3-4b-pt/base/context_independent/no_bos/splice/cut_frac0.15/seed42/pct/623c372d3f121b18/tok/dc6308e6116cbfe0/c1024/val_s2/sel/e9e395739f1ac4c9498f0935e2e48a407ae9eb13b0134904d70f7ec64a3d5be3/manifest.json
+
+extraction_tokenizer_id: google/gemma-3-4b-pt
+neuronpedia_model_id: gemma-3-4b
+feature_extraction_model_id: google/gemma-3-4b-pt
+neuronpedia_source: 22-gemmascope-2-res-65k
+extraction_max_tokens: 1024
+
+decoder_only_target:
+  source: base
+  model_tag: d12_base
+  step: 54600
+encdec_target:
+  source: encdec
+  model_tag: l22_main_h100_8rank_db16_v1
+  step: 54600
+
+device_batch_size: 1
+feature_diffmean_extraction_batch_size: 1
+pair_subsample: 1
+offload_between_stages: true
+
+# Full clustered method matrix: all 14. #1008 removed the two stale guards that
+# blocked 12 of them; #1050 replaced resume-time byte-comparison of precomputed
+# bags with identity-based reuse, which is what lets the four ours_gcg methods
+# run here -- their derive is not bitwise reproducible.
+base_methods:
+  - diffmean_decoder_only
+  - neg_diffmean_decoder_only
+  - linear_probe_decoder_only
+  - neg_linear_probe_decoder_only
+  - control_decoder_only
+  - neg_control_decoder_only
+  - feature_diffmean_encdec
+  - neg_feature_diffmean_encdec
+  - feature_diffmean_roofline_encdec
+  - neg_feature_diffmean_roofline_encdec
+  - ours_gcg_encdec
+  - neg_ours_gcg_encdec
+  - ours_gcg_roofline_encdec
+  - neg_ours_gcg_roofline_encdec
+
+# All 14 clustered methods became reachable once #1008's two stale guards in
+# steering/eval/axbench_bpb/intervention.py were removed in this change and replaced
+# with real feature-contract-fingerprint validation on read.
+adversarial_methods:
+  - method: additive_direction
+    families: [diffmean, linear_probe]
+    magnitudes: [0.0]
+  - method: faster_gcg
+    optimized_token_counts: [0]
+    max_steps: 0
+    candidate_batch_size: 1
+    top_k: 1
+    distance_weight: 10.0
+    temperature: 0.1
+    master_seed: 0
+    universal_minibatch_size: 1
+    candidate_eval_device_batch_size: null
+
+ours_gcg:
+  reg_lambda_grid: [0.0]
+  split_ratio: 0.5
+  split_seed: 0
+  # 1 is the cheapest value that actually executes the optimizer; FeatureGcgConfig
+  # rejects 0 outright. One real GCG step is also what makes this run exercise the
+  # nondeterminism #1050 is about, so the resume phase genuinely tests bag reuse.
+  max_steps: 1
+  minibatch_size: 1
+  master_seed: 0
+  mean_g_steer_batch: 1
+  max_forward_batch: 1
+
+
+steering_metric: bpb_class_margin
+roundtrip_steering:
+  enabled: false
+scatter_baseline_x: baseline_loss
+general_val_bpb:
+  enabled: false
+  n_documents: 1
+  prefix_tokens: 128
+  output_tokens: 16
+  max_interventions: 0
+  seed: 0
+context_cache:
+  extraction_batch_size: 1
+  force_rebuild: false
+  segment_size: 128
+  num_buckets: 2
+
+profile:
+  enabled: true
+  output_dir: null
+  synchronize_cuda: true
+  gpu_utilization: true
+  gpu_poll_interval_ms: 100
+  gpu_idle_threshold: 0.1
